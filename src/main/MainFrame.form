@@ -165,7 +165,7 @@
                       <Component id="btn_charts" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn_tags" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -194,6 +194,9 @@
                 <Property name="text" type="java.lang.String" value="Working Days &amp; Hours"/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_workingDaysActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_module">
               <Properties>

@@ -8,15 +8,16 @@ package main;
 import DB.DBConnection;
 import Location.frm_Location;
 import Location.pnl_Location;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import WorkingDaysHours.pnl_WorkingDays;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import menu.MenuItem;
 import menu.SplashScreen;
 
@@ -132,6 +133,11 @@ public class MainFrame extends javax.swing.JFrame {
         btn_workingDays.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_workingDays.setText("Working Days & Hours");
         btn_workingDays.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_workingDays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_workingDaysActionPerformed(evt);
+            }
+        });
 
         btn_module.setBackground(new java.awt.Color(185, 51, 63));
         btn_module.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -213,7 +219,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(btn_charts)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_tags)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
@@ -253,6 +259,14 @@ public class MainFrame extends javax.swing.JFrame {
         panelBody.repaint();
         panelBody.revalidate();
     }//GEN-LAST:event_btn_locationActionPerformed
+
+    private void btn_workingDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_workingDaysActionPerformed
+        // TODO add your handling code here:
+        panelBody.removeAll();
+        panelBody.add(new pnl_WorkingDays());
+        panelBody.repaint();
+        panelBody.revalidate();
+    }//GEN-LAST:event_btn_workingDaysActionPerformed
 
     /**
      * @param args the command line arguments
