@@ -8,6 +8,7 @@ package main;
 import DB.DBConnection;
 import Location.frm_Location;
 import Location.pnl_Location;
+import Student.pnl_Student;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -127,6 +128,11 @@ public class MainFrame extends javax.swing.JFrame {
         btn_student.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_student.setText("Students");
         btn_student.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_student.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_studentActionPerformed(evt);
+            }
+        });
 
         btn_workingDays.setBackground(new java.awt.Color(185, 51, 63));
         btn_workingDays.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -253,6 +259,13 @@ public class MainFrame extends javax.swing.JFrame {
         panelBody.repaint();
         panelBody.revalidate();
     }//GEN-LAST:event_btn_locationActionPerformed
+
+    private void btn_studentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_studentActionPerformed
+        panelBody.removeAll();
+        panelBody.add(new pnl_Student());
+        panelBody.repaint();
+        panelBody.revalidate();
+    }//GEN-LAST:event_btn_studentActionPerformed
 
     /**
      * @param args the command line arguments
