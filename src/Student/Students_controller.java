@@ -8,8 +8,8 @@ package Student;
 import DB.DBConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import Student.Student;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  *
@@ -28,13 +28,15 @@ public class Students_controller {
         try {
             Connection connection = DBConnection.getConnection();
             
-            ps = connection.preparStatement("INSERT INTO AcdYerAndSem "
-                    + "("+"yerName"+") VALUES(?)"
-                    , PreparedStatement.RETURN_GENERATED_KEYS);
+            String insert = "INSERT INTO AcdYerAndSem (yerName) VALUES (?)";
+            
+            ps = connection.prepareStatement(insert, PreparedStatement.RETURN_GENERATED_KEYS);
             
             //set variable into query
             
-            ps.setString(1, add_year_and_sem.getYerName());
+            ps.setString(1, add_year_and_sem.getYerName().toUpperCase());
+                      
+            ps.executeUpdate();
             
             rs = ps.getGeneratedKeys();
             
@@ -56,6 +58,27 @@ public class Students_controller {
         }
         
         return yer_and_semID;
+    }
+    
+    public boolean isCheckAS(String as)throws SQLException{
+        PreparedStatement ps = null;
+        Connection connection = DBConnection.getConnection();
+        boolean temp = true;
+        
+        try {
+            ps = connection.prepareStatement("SELECT yerName FROM AcdYerAndSem WHERE yerName=?");
+            ps.setString(1, as);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                if(rs != null)
+                  temp = false;  
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        
+        return temp;
     }
     
 }

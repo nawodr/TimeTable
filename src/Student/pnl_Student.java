@@ -204,4 +204,5 @@ public class pnl_Student extends javax.swing.JPanel {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel panl_all_add_details;
     // End of variables declaration//GEN-END:variables
+
 }
