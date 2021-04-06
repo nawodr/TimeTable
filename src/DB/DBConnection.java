@@ -19,7 +19,7 @@ public class DBConnection {
         
         try {
             Class.forName("org.sqlite.JDBC");                 
-            Connection con = DriverManager.getConnection("jdbc:sqlite:TimeTableSystem.db");
+            Connection con = DriverManager.getConnection("jdbc:sqlite:db.db");
             
             System.out.println("Connection Succesfull");
             
