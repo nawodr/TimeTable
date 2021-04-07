@@ -45,4 +45,27 @@ public class AcdYerAndSem {
         return temp;
     }
     
+    public int update(int final_id, String yer_sem) throws SQLException{
+        
+        String query = "UPDATE AcdYerAndSem SET yerName=? WHERE idAcdYerAndSem=?";
+        
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setString(1, yer_sem);
+        ps.setInt(2, final_id);
+        int x = ps.executeUpdate();      
+        return x;
+        
+    }
+    
+    public int delete(int final_id) throws SQLException{
+        
+        String query = "DELETE FROM AcdYerAndSem WHERE idAcdYerAndSem=?";
+        
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setInt(1, final_id);
+        int x = ps.executeUpdate();       
+        return x;
+        
+    }
+    
 }

@@ -24,4 +24,12 @@ public class YearSemController {
         return  ac.isCheckAS(degPro);
     }
     
+    public int updateHandleClick(int final_id, String yer_sem) throws SQLException{
+        return ac.update(final_id, yer_sem);
+    }
+    
+    public int deleteHandleClick(int final_id) throws SQLException{
+        return ac.delete(final_id);
+    }
+    
 }
