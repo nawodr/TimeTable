@@ -8,7 +8,7 @@ package main;
 import DB.DBConnection;
 import Location.frm_Location;
 import Location.pnl_Location;
-import Student.pnl_Student;
+//import Test.pnl_Student;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import menu.MenuItem;
 import menu.SplashScreen;
+import student.view.pnl_Student;
 
 /**
  *
