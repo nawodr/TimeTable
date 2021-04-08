@@ -24,4 +24,11 @@ public class GroupController {
         return  gn.isCheckAS(grp_num);
     }
     
+    public int updateHandleClick(int final_id, String grp_num) throws SQLException{
+        return gn.update(final_id, grp_num);
+    }
+    
+    public int deleteHandleClick(int final_id) throws SQLException{
+        return gn.delete(final_id);
+    }
 }

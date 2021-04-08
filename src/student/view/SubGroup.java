@@ -45,11 +45,14 @@ public class SubGroup extends javax.swing.JPanel {
         tbl_sub_grp = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btn_sub_grp_num = new javax.swing.JButton();
         txt_sub_grp_num = new javax.swing.JTextField();
         id = new javax.swing.JLabel();
         errorMsg = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btn_back = new javax.swing.JButton();
+        btn_del = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_sub_grp_num = new javax.swing.JButton();
 
         tbl_sub_grp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,19 +65,17 @@ public class SubGroup extends javax.swing.JPanel {
                 "ID", "Sub Group Number"
             }
         ));
+        tbl_sub_grp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_sub_grpMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_sub_grp);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Sub Group Number");
-
-        btn_sub_grp_num.setText("Submit");
-        btn_sub_grp_num.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_sub_grp_numActionPerformed(evt);
-            }
-        });
 
         id.setText("id");
 
@@ -90,21 +91,16 @@ public class SubGroup extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(errorMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_sub_grp_num))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(errorMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(102, 102, 102)))
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_sub_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(96, 96, 96)))
+                .addGap(35, 35, 35)
+                .addComponent(txt_sub_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(id)
                 .addGap(53, 53, 53))
@@ -117,13 +113,34 @@ public class SubGroup extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(txt_sub_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(id)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorMsg)
-                .addGap(18, 18, 18)
-                .addComponent(btn_sub_grp_num)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
+
+        btn_back.setText("Back");
+
+        btn_del.setText("Delete");
+        btn_del.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_delActionPerformed(evt);
+            }
+        });
+
+        btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+
+        btn_sub_grp_num.setText("Submit");
+        btn_sub_grp_num.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_sub_grp_numActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -131,19 +148,34 @@ public class SubGroup extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(265, 265, 265)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_sub_grp_num)
+                        .addGap(34, 34, 34)
+                        .addComponent(btn_update)
+                        .addGap(27, 27, 27)
+                        .addComponent(btn_del)
+                        .addGap(29, 29, 29)
+                        .addComponent(btn_back))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(111, 111, 111)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_back)
+                    .addComponent(btn_del)
+                    .addComponent(btn_update)
+                    .addComponent(btn_sub_grp_num))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,7 +185,7 @@ public class SubGroup extends javax.swing.JPanel {
 
             if (inputDataValidator() == true && allReady() == true) {
 
-                String sub_grp_num = txt_sub_grp_num.getText().trim().toUpperCase();
+                String sub_grp_num = txt_sub_grp_num.getText().trim();
 
                 int i = sb.addHandleClick(sub_grp_num);
                 if (i != 0) {
@@ -175,6 +207,86 @@ public class SubGroup extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btn_sub_grp_numActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        
+        String idYS = id.getText();
+        int final_id = Integer.parseInt(idYS);
+
+        try {
+
+            if (inputDataValidator() == true && allReady() == true) {
+
+                errorMsg.setVisible(false);
+
+                String sub_grp_num = txt_sub_grp_num.getText().trim().toUpperCase();
+
+                int i = sb.updateHandleClick(final_id, sub_grp_num);
+//                System.out.println(i);
+                if (i != 0) {
+//                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
+                    txt_sub_grp_num.setText("");
+                    showYnSList();
+                } else {
+                    JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delActionPerformed
+        
+        String idYS = id.getText();
+        int final_id = Integer.parseInt(idYS);
+
+        int v = JOptionPane.showConfirmDialog(jPanel1, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+
+        if (v == JOptionPane.YES_OPTION) {
+
+            try {
+                                                
+                int i = sb.deleteHandleClick(final_id);
+
+                showYnSList();
+                
+                if (i != 0) {
+//                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(jPanel1, "Successfully Deleted!");
+                    txt_sub_grp_num.setText("");
+
+                } else {
+                    JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (SQLException e) {
+
+                Logger.getLogger(YearSemester.class.getName()).log(Level.SEVERE, null, e);
+
+            }
+
+        } else if (v == JOptionPane.NO_OPTION) {
+
+        } else {
+
+        }
+        
+    }//GEN-LAST:event_btn_delActionPerformed
+
+    private void tbl_sub_grpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sub_grpMouseClicked
+        
+        int selectedRow = tbl_sub_grp.getSelectedRow();
+        int Id = (int) tbl_sub_grp.getValueAt(selectedRow, 0);
+        String valueAt = (String) tbl_sub_grp.getValueAt(selectedRow, 1);
+        String valuId = String.valueOf(Id);
+        id.setText(valuId);
+        txt_sub_grp_num.setText(valueAt);
+        
+    }//GEN-LAST:event_tbl_sub_grpMouseClicked
 
     
     public void showYnSList() {
@@ -219,7 +331,10 @@ public class SubGroup extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_back;
+    private javax.swing.JButton btn_del;
     private javax.swing.JButton btn_sub_grp_num;
+    private javax.swing.JButton btn_update;
     private javax.swing.JLabel errorMsg;
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;

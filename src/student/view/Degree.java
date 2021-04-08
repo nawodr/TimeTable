@@ -42,25 +42,21 @@ public class Degree extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btn_deg_pro = new javax.swing.JButton();
         txt_deg_pro = new javax.swing.JTextField();
         errorMsg = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_deg_por = new javax.swing.JTable();
+        btn_back_deg = new javax.swing.JButton();
+        btn_del = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_deg_pro = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Degree Program");
-
-        btn_deg_pro.setText("submit");
-        btn_deg_pro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_deg_proActionPerformed(evt);
-            }
-        });
 
         errorMsg.setForeground(java.awt.Color.red);
         errorMsg.setText("error");
@@ -84,12 +80,10 @@ public class Degree extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addGap(113, 113, 113)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_deg_pro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_deg_pro))
+                        .addComponent(txt_deg_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,9 +96,7 @@ public class Degree extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorMsg)
-                .addGap(11, 11, 11)
-                .addComponent(btn_deg_pro)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         tbl_deg_por.setModel(new javax.swing.table.DefaultTableModel(
@@ -122,15 +114,47 @@ public class Degree extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbl_deg_por);
 
+        btn_back_deg.setText("Back");
+
+        btn_del.setText("Delete");
+        btn_del.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_delActionPerformed(evt);
+            }
+        });
+
+        btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+
+        btn_deg_pro.setText("submit");
+        btn_deg_pro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deg_proActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(255, 255, 255)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(btn_deg_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_update)
+                        .addGap(29, 29, 29)
+                        .addComponent(btn_del)
+                        .addGap(26, 26, 26)
+                        .addComponent(btn_back_deg))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
                 .addContainerGap(262, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -140,7 +164,13 @@ public class Degree extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_back_deg)
+                    .addComponent(btn_del)
+                    .addComponent(btn_update)
+                    .addComponent(btn_deg_pro))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -150,13 +180,15 @@ public class Degree extends javax.swing.JPanel {
 
             if (inputDataValidator() == true && allReady() == true) {
 
-                String deg_pro = txt_deg_pro.getText().trim().toUpperCase();
+                errorMsg.setVisible(false);
 
+                String deg_pro = txt_deg_pro.getText().trim().toUpperCase();
+                showYnSList();
                 int i = dp.btn_deg_proHandleClick(deg_pro);
                 if (i != 0) {
                     JOptionPane.showMessageDialog(jPanel1, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
                     txt_deg_pro.setText("");
-                    showYnSList();
+
                 } else {
                     JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -183,6 +215,75 @@ public class Degree extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tbl_deg_porMouseClicked
 
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+
+        String idYS = id.getText();
+        int final_id = Integer.parseInt(idYS);
+
+        try {
+
+            if (inputDataValidator() == true && allReady() == true) {
+
+                errorMsg.setVisible(false);
+
+                String deg_pro = txt_deg_pro.getText().trim().toUpperCase();
+
+                int i = dp.updateHandleClick(final_id, deg_pro);
+//                System.out.println(i);
+                if (i != 0) {
+//                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
+                    txt_deg_pro.setText("");
+                    showYnSList();
+                } else {
+                    JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delActionPerformed
+
+        String idYS = id.getText();
+        int final_id = Integer.parseInt(idYS);
+
+        int v = JOptionPane.showConfirmDialog(jPanel1, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+
+        if (v == JOptionPane.YES_OPTION) {
+
+            try {
+
+                int i = dp.deleteHandleClick(final_id);
+
+                showYnSList();
+
+                if (i != 0) {
+//                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(jPanel1, "Successfully Deleted!");
+                    txt_deg_pro.setText("");
+
+                } else {
+                    JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (SQLException ex) {
+
+                Logger.getLogger(YearSemester.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+        } else if (v == JOptionPane.NO_OPTION) {
+
+        } else {
+
+        }
+
+    }//GEN-LAST:event_btn_delActionPerformed
+
     public void showYnSList() {
         HashMap hm = new HashMap();
         hm.put("idDegPro", "int");
@@ -206,11 +307,10 @@ public class Degree extends javax.swing.JPanel {
     public boolean allReady() {
 
         String degPro = txt_deg_pro.getText().toString().toUpperCase();
-        
 
         try {
             if (!dp.getAllReady(degPro)) {
-                
+
                 errorMsg.setText("Degree Program Already Exist");
                 errorMsg.setVisible(true);
                 return false;
@@ -225,7 +325,10 @@ public class Degree extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_back_deg;
     private javax.swing.JButton btn_deg_pro;
+    private javax.swing.JButton btn_del;
+    private javax.swing.JButton btn_update;
     private javax.swing.JLabel errorMsg;
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;

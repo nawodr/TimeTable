@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import student.controller.GroupController;
 import student.util.LoadTable;
+import student.controller.GroupController;
 import student.view.Degree;
 
 /**
@@ -43,25 +43,21 @@ public class Group extends javax.swing.JPanel {
 
         pan = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btn_grp_num = new javax.swing.JButton();
         txt_grp_num = new javax.swing.JTextField();
         id = new javax.swing.JLabel();
         errorMsg = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_grp_num = new javax.swing.JTable();
+        btn_back = new javax.swing.JButton();
+        btn_del = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_grp_num = new javax.swing.JButton();
 
         pan.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Group Number");
-
-        btn_grp_num.setText("Submit");
-        btn_grp_num.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_grp_numActionPerformed(evt);
-            }
-        });
 
         id.setText("id");
 
@@ -77,22 +73,17 @@ public class Group extends javax.swing.JPanel {
         panLayout.setHorizontalGroup(
             panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panLayout.createSequentialGroup()
-                .addGroup(panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(61, 61, 61)
+                .addGroup(panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panLayout.createSequentialGroup()
-                        .addGap(302, 302, 302)
-                        .addComponent(btn_grp_num))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panLayout.createSequentialGroup()
-                                .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 92, Short.MAX_VALUE))
-                            .addGroup(panLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 92, Short.MAX_VALUE))
+                    .addGroup(panLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(id)
                 .addContainerGap(75, Short.MAX_VALUE))
@@ -108,9 +99,7 @@ public class Group extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(errorMsg)
-                .addGap(18, 18, 18)
-                .addComponent(btn_grp_num)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         tbl_grp_num.setModel(new javax.swing.table.DefaultTableModel(
@@ -131,15 +120,47 @@ public class Group extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbl_grp_num);
 
+        btn_back.setText("Back");
+
+        btn_del.setText("Delete");
+        btn_del.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_delActionPerformed(evt);
+            }
+        });
+
+        btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+
+        btn_grp_num.setText("Submit");
+        btn_grp_num.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_grp_numActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(242, 242, 242)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_grp_num)
+                        .addGap(31, 31, 31)
+                        .addComponent(btn_update)
+                        .addGap(26, 26, 26)
+                        .addComponent(btn_del)
+                        .addGap(26, 26, 26)
+                        .addComponent(btn_back))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(310, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -149,7 +170,13 @@ public class Group extends javax.swing.JPanel {
                 .addComponent(pan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_back)
+                    .addComponent(btn_del)
+                    .addComponent(btn_update)
+                    .addComponent(btn_grp_num))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -159,6 +186,8 @@ public class Group extends javax.swing.JPanel {
 
             if (inputDataValidator() == true && allReady() == true) {
 
+                errorMsg.setVisible(false);
+                
                 String grp_num = txt_grp_num.getText().trim();
 
                 int i = gc.addHandleClick(grp_num);
@@ -192,6 +221,74 @@ public class Group extends javax.swing.JPanel {
         txt_grp_num.setText(valueAt);
         
     }//GEN-LAST:event_tbl_grp_numMouseClicked
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+       
+       String idYS = id.getText();
+        int final_id = Integer.parseInt(idYS);
+
+        try {
+
+            if (inputDataValidator() == true && allReady() == true) {
+
+                errorMsg.setVisible(false);
+
+                String grp_num = txt_grp_num.getText().trim().toUpperCase();
+
+                int i = gc.updateHandleClick(final_id, grp_num);
+//                System.out.println(i);
+                if (i != 0) {
+//                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(jLabel1, "Successfully Updated!");
+                    txt_grp_num.setText("");
+                    showYnSList();
+                } else {
+                    JOptionPane.showMessageDialog(jLabel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+
+        } catch (Exception e) {
+        } 
+        
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delActionPerformed
+        
+        String idYS = id.getText();
+        int final_id = Integer.parseInt(idYS);
+
+        int v = JOptionPane.showConfirmDialog(jLabel1, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+
+        if (v == JOptionPane.YES_OPTION) {
+
+            try {
+                                                
+                int i = gc.deleteHandleClick(final_id);
+                               
+                if (i != 0) {
+//                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(jLabel1, "Successfully Deleted!");
+                    txt_grp_num.setText("");
+                    showYnSList();
+
+                } else {
+                    JOptionPane.showMessageDialog(jLabel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (SQLException ex) {
+
+                Logger.getLogger(YearSemester.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+        } else if (v == JOptionPane.NO_OPTION) {
+
+        } else {
+
+        }
+        
+    }//GEN-LAST:event_btn_delActionPerformed
 
     
     public void showYnSList() {
@@ -236,7 +333,10 @@ public class Group extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_back;
+    private javax.swing.JButton btn_del;
     private javax.swing.JButton btn_grp_num;
+    private javax.swing.JButton btn_update;
     private javax.swing.JLabel errorMsg;
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;

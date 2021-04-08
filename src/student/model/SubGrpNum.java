@@ -45,4 +45,27 @@ public class SubGrpNum {
         return temp;
     }
     
+    public int update(int final_id, String sub_grp_num) throws SQLException{
+        
+        String query = "UPDATE SubGrpNum SET subGrpNum=? WHERE idSubGrpNum=?";
+        
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setString(1, sub_grp_num);
+        ps.setInt(2, final_id);
+        int x = ps.executeUpdate();      
+        return x;
+        
+    }
+    
+    public int delete(int final_id) throws SQLException{
+        
+        String query = "DELETE FROM SubGrpNum WHERE idSubGrpNum=?";
+        
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setInt(1, final_id);
+        int x = ps.executeUpdate();       
+        return x;
+        
+    }
+    
 }

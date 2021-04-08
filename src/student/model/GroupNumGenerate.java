@@ -13,27 +13,27 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Administrator
+ * @author RPsandeepa
  */
-public class DegreePro {
-
+public class GroupNumGenerate {
+    
     Connection connection = DBConnection.getConnection();
 
-    public int insert(String deg_pro) throws SQLException {
+    public int insert(String deg_pro) throws SQLException {       
 
-        String query = "INSERT INTO DegreePro (degName) VALUES (?)";
+        String query = "INSERT INTO GroupNumGenerate (GrpNum) VALUES (?)";
 
         PreparedStatement ps = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
         ps.setString(1, deg_pro);
         return ps.executeUpdate();
     }
 
-    public boolean isCheckAS(String as) throws SQLException {
+    public boolean isCheckAS(String groupId) throws SQLException {
 
         boolean temp = true;
-        
-        PreparedStatement ps = connection.prepareStatement(" SELECT degName FROM DegreePro WHERE degName = ? ");
-        ps.setString(1, as);
+
+        PreparedStatement ps = connection.prepareStatement(" SELECT GrpNum FROM GroupNumGenerate WHERE GrpNum = ? ");
+        ps.setString(1, groupId);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
@@ -44,13 +44,13 @@ public class DegreePro {
 
         return temp;
     }
-    
-       public int update(int final_id, String deg_pro) throws SQLException{
+
+    public int update(int final_id, String groupId) throws SQLException{
         
-        String query = "UPDATE DegreePro SET degName=? WHERE idDegPro=?";
+        String query = "UPDATE GroupNumGenerate SET GrpNum=? WHERE idGrpNumGen=?";
         
         PreparedStatement ps = connection.prepareStatement(query);
-        ps.setString(1, deg_pro);
+        ps.setString(1, groupId);
         ps.setInt(2, final_id);
         int x = ps.executeUpdate();      
         return x;
@@ -59,7 +59,7 @@ public class DegreePro {
        
        public int delete(int final_id) throws SQLException{
         
-        String query = "DELETE FROM DegreePro WHERE idDegPro=?";
+        String query = "DELETE FROM GroupNumGenerate WHERE idGrpNumGen=?";
         
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setInt(1, final_id);
