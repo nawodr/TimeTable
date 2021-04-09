@@ -18,7 +18,6 @@ import java.sql.Connection;
 import java.util.HashMap;
 import javafx.util.Pair;
 import javax.swing.JButton;
-import student.YnS;
 import student.controller.YearSemController;
 import student.util.LoadTable;
 
