@@ -36,6 +36,8 @@ public class pnl_Student extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
+        btn_gp_gen = new javax.swing.JButton();
+        btn_sgp_gen = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -99,15 +101,39 @@ public class pnl_Student extends javax.swing.JPanel {
 
         jTabbedPane2.addTab("Add Details", panl_all_add_details);
 
+        btn_gp_gen.setText("Group Number Generate");
+        btn_gp_gen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_gp_genActionPerformed(evt);
+            }
+        });
+
+        btn_sgp_gen.setText("Sub Group Number Generate");
+        btn_sgp_gen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_sgp_genActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(315, 315, 315)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_gp_gen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_sgp_gen))
+                .addContainerGap(424, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addComponent(btn_gp_gen)
+                .addGap(73, 73, 73)
+                .addComponent(btn_sgp_gen)
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("ID Generates", jPanel6);
@@ -191,8 +217,31 @@ public class pnl_Student extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void btn_sgp_genActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sgp_genActionPerformed
+        jTabbedPane2.removeAll();
+        jTabbedPane2.addTab("ID Generates", new SubGrpIdGen());
+        jTabbedPane2.addTab("Add Details", panl_all_add_details);       
+        jTabbedPane2.addTab("View Details", jPanel7);           
+        jTabbedPane2.revalidate();
+        jTabbedPane2.repaint();
+        
+    }//GEN-LAST:event_btn_sgp_genActionPerformed
+
+    private void btn_gp_genActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gp_genActionPerformed
+       
+        jTabbedPane2.removeAll();
+        jTabbedPane2.addTab("ID Generates", new GrpIdGenerate());
+        jTabbedPane2.addTab("Add Details", panl_all_add_details);       
+        jTabbedPane2.addTab("View Details", jPanel7);           
+        jTabbedPane2.revalidate();
+        jTabbedPane2.repaint();
+        
+    }//GEN-LAST:event_btn_gp_genActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_gp_gen;
+    private javax.swing.JButton btn_sgp_gen;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

@@ -24,4 +24,11 @@ public class DegreeProController {
         return  dp.isCheckAS(degPro);
     }
     
+    public int updateHandleClick(int final_id, String deg_pro) throws SQLException{
+        return dp.update(final_id, deg_pro);
+    }
+    
+    public int deleteHandleClick(int final_id) throws SQLException{
+        return dp.delete(final_id);
+    }
 }

@@ -24,4 +24,11 @@ public class SubGrpController {
         return  sb.isCheckAS(sub_grp_num);
     }
     
+    public int updateHandleClick(int final_id, String yer_sem) throws SQLException{
+        return sb.update(final_id, yer_sem);
+    }
+    
+    public int deleteHandleClick(int final_id) throws SQLException{
+        return sb.delete(final_id);
+    }
 }
