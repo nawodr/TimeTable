@@ -219,7 +219,7 @@ public class pnl_Student extends javax.swing.JPanel {
 
     private void btn_sgp_genActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sgp_genActionPerformed
         jTabbedPane2.removeAll();
-        jTabbedPane2.addTab("ID Generates", new SubGrpIdGen());
+        jTabbedPane2.addTab("ID Generates", new SubGrpIdGenerate());
         jTabbedPane2.addTab("Add Details", panl_all_add_details);       
         jTabbedPane2.addTab("View Details", jPanel7);           
         jTabbedPane2.revalidate();
