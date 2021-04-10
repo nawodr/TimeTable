@@ -15,25 +15,29 @@ import java.sql.SQLException;
  *
  * @author RPsandeepa
  */
-public class SubGrpNum {
+public class TagModel {
     
     Connection connection = DBConnection.getConnection();
-
-    public int insert(String sub_grp_num) throws SQLException {
-
-        String query = "INSERT INTO SubGrpNumtbl (subGrpNum) VALUES (?)";
-
+    
+    public int insert(String tag_name, String tag_code, String tag) throws SQLException{
+        
+        String query = "INSERT INTO Tag (tagName, tagCode, relatedTag) VALUES (?, ?, ?)";
+        
         PreparedStatement ps = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
-        ps.setString(1, sub_grp_num);
+        ps.setString(1, tag_name);
+        ps.setString(2, tag_code);
+        ps.setString(3, tag);
         return ps.executeUpdate();
     }
-
-    public boolean isCheckAS(String as) throws SQLException {
+    
+    public boolean isCheckAS(String tag_name, String tag_code, String tag) throws SQLException {
 
         boolean temp = true;
         
-        PreparedStatement ps = connection.prepareStatement(" SELECT subGrpNum FROM SubGrpNumtbl WHERE subGrpNum = ? ");
-        ps.setString(1, as);
+        PreparedStatement ps = connection.prepareStatement(" SELECT tagName, tagCode, relatedTag FROM Tag WHERE tagId = ? ");
+        ps.setString(1, tag_name);
+        ps.setString(2, tag_code);
+        ps.setString(3, tag);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
@@ -45,13 +49,15 @@ public class SubGrpNum {
         return temp;
     }
     
-    public int update(int final_id, String sub_grp_num) throws SQLException{
+    public int update(int final_id, String tag_name, String tag_code, String tag) throws SQLException{
         
-        String query = "UPDATE SubGrpNumtbl SET subGrpNum=? WHERE idSubGrpNum=?";
+        String query = "UPDATE Tag SET tagName=?, tagCode=?, relatedTag=? WHERE tagId=?";
         
         PreparedStatement ps = connection.prepareStatement(query);
-        ps.setString(1, sub_grp_num);
-        ps.setInt(2, final_id);
+        ps.setString(1, tag_name);
+        ps.setString(2, tag_code);
+        ps.setString(3, tag);
+        ps.setInt(4, final_id);
         int x = ps.executeUpdate();      
         return x;
         
@@ -59,7 +65,7 @@ public class SubGrpNum {
     
     public int delete(int final_id) throws SQLException{
         
-        String query = "DELETE FROM SubGrpNumtbl WHERE idSubGrpNum=?";
+        String query = "DELETE FROM Tag WHERE tagId=?";
         
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setInt(1, final_id);

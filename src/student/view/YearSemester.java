@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import DB.DBConnection;
 import java.sql.Connection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import javafx.util.Pair;
 import javax.swing.JButton;
 import student.controller.YearSemController;
@@ -30,7 +31,7 @@ public class YearSemester extends javax.swing.JPanel {
     public YearSemester() {
         initComponents();
         errorMsg.setVisible(false);
-        id.setVisible(false);
+//        id.setVisible(false);
         showYnSList();
     }
 
@@ -42,50 +43,83 @@ public class YearSemester extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         txt_acd_yer_and_sem = new javax.swing.JTextField();
-        errorMsg = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
+        btn_back = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        errorMsg = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_year = new javax.swing.JTable();
-        btn_back = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         btn_delete_yer_and_sem = new javax.swing.JButton();
         btn_update_yer_sem = new javax.swing.JButton();
         btn_acd_yer_and_sem = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Academic Year And Semester");
+        jLabel1.setText("Selected ID");
 
-        errorMsg.setForeground(java.awt.Color.red);
-        errorMsg.setText("Error Message");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Academic Year And Semester");
 
+        txt_acd_yer_and_sem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txt_acd_yer_and_sem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_acd_yer_and_semActionPerformed(evt);
+            }
+        });
+
+        id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         id.setText("id");
+
+        btn_back.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_back.setText("Reset");
+        btn_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_backActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(java.awt.Color.red);
         jLabel2.setText("*");
 
+        errorMsg.setForeground(java.awt.Color.red);
+        errorMsg.setText("Error Message");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(errorMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(48, 48, 48)
-                        .addComponent(txt_acd_yer_and_sem, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(id)
-                .addGap(48, 48, 48))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addGap(4, 4, 4)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txt_acd_yer_and_sem, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_back)))))
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,12 +127,17 @@ public class YearSemester extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txt_acd_yer_and_sem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorMsg)
-                .addContainerGap(48, Short.MAX_VALUE))
+                    .addComponent(btn_back))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_acd_yer_and_sem)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
+                .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tbl_year.setModel(new javax.swing.table.DefaultTableModel(
@@ -108,21 +147,29 @@ public class YearSemester extends javax.swing.JPanel {
             new String [] {
                 "ID", "Academic Year And Semester"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_year.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_yearMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_year);
+        if (tbl_year.getColumnModel().getColumnCount() > 0) {
+            tbl_year.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tbl_year.getColumnModel().getColumn(1).setPreferredWidth(900);
+        }
 
-        btn_back.setText("Back");
-        btn_back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_backActionPerformed(evt);
-            }
-        });
+        jPanel2.setBackground(new java.awt.Color(155, 27, 27));
 
+        btn_delete_yer_and_sem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_delete_yer_and_sem.setText("Delete");
         btn_delete_yer_and_sem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +177,7 @@ public class YearSemester extends javax.swing.JPanel {
             }
         });
 
+        btn_update_yer_sem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_update_yer_sem.setText("Update");
         btn_update_yer_sem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +185,7 @@ public class YearSemester extends javax.swing.JPanel {
             }
         });
 
+        btn_acd_yer_and_sem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_acd_yer_and_sem.setText("Submit");
         btn_acd_yer_and_sem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,40 +193,77 @@ public class YearSemester extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_acd_yer_and_sem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_update_yer_sem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_delete_yer_and_sem)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_delete_yer_and_sem)
+                    .addComponent(btn_update_yer_sem)
+                    .addComponent(btn_acd_yer_and_sem))
+                .addGap(32, 32, 32))
+        );
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("Year And Semester Details");
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jLabel5.setText("   ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(293, 293, 293)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_acd_yer_and_sem)
-                        .addGap(40, 40, 40)
-                        .addComponent(btn_update_yer_sem)
-                        .addGap(38, 38, 38)
-                        .addComponent(btn_delete_yer_and_sem)
-                        .addGap(30, 30, 30)
-                        .addComponent(btn_back))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, Short.MAX_VALUE)))
-                .addContainerGap(354, Short.MAX_VALUE))
+                        .addGap(117, 117, 117)
+                        .addComponent(jLabel3)))
+                .addGap(9, 9, 9)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_delete_yer_and_sem)
-                    .addComponent(btn_back)
-                    .addComponent(btn_update_yer_sem)
-                    .addComponent(btn_acd_yer_and_sem))
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(jSeparator1))
+                        .addGap(11, 11, 11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -201,7 +287,7 @@ public class YearSemester extends javax.swing.JPanel {
                 }
 
             }
-
+            showYnSList();
         } catch (SQLException ex) {
 
 //            Logger.getLogger(Degree.class.getName()).log(Level.SEVERE, null, ex);
@@ -209,20 +295,26 @@ public class YearSemester extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(jPanel1, "Failed! MYSQL ERROR", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
-
+        showYnSList();
     }//GEN-LAST:event_btn_acd_yer_and_semActionPerformed
 
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
+
+        id.setText(" ");
+        txt_acd_yer_and_sem.setText("");
+        showYnSList();
+
         // TODO add your handling code here:
 //        jPanel1.removeAll();
 //        jPanel1.add(new pnl_Student());
 //        jPanel1.revalidate();
 //        jPanel1.repaint();
 
-
     }//GEN-LAST:event_btn_backActionPerformed
 
     private void tbl_yearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_yearMouseClicked
+
+        errorMsg.setVisible(false);
 
         int selectedRow = tbl_year.getSelectedRow();
         int Id = (int) tbl_year.getValueAt(selectedRow, 0);
@@ -235,70 +327,96 @@ public class YearSemester extends javax.swing.JPanel {
 
     private void btn_delete_yer_and_semActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delete_yer_and_semActionPerformed
 
-        String idYS = id.getText();
-        int final_id = Integer.parseInt(idYS);
+        errorMsg.setVisible(false);
 
-        int v = JOptionPane.showConfirmDialog(jPanel1, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+        int selectedRow = tbl_year.getSelectedRow();
 
-        if (v == JOptionPane.YES_OPTION) {
+        if (selectedRow != -1) {
 
-            try {
+            String idYS = id.getText();
+            int final_id = Integer.parseInt(idYS);
 
-                int i = yc.deleteHandleClick(final_id);
+            int v = JOptionPane.showConfirmDialog(jPanel1, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
 
-                if (i != 0) {
+            if (v == JOptionPane.YES_OPTION) {
+
+                try {
+
+                    int i = yc.deleteHandleClick(final_id);
+
+                    if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                    JOptionPane.showMessageDialog(jPanel1, "Successfully Deleted!");
-                    txt_acd_yer_and_sem.setText("");
-                    showYnSList();
+                        JOptionPane.showMessageDialog(jPanel1, "Successfully Deleted!");
+                        txt_acd_yer_and_sem.setText("");
+                        showYnSList();
 
-                } else {
-                    JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } catch (SQLException ex) {
+
+                    Logger.getLogger(YearSemester.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
 
-            } catch (SQLException ex) {
+            } else if (v == JOptionPane.NO_OPTION) {
 
-                Logger.getLogger(YearSemester.class.getName()).log(Level.SEVERE, null, ex);
+            } else {
 
             }
 
-        } else if (v == JOptionPane.NO_OPTION) {
-
         } else {
-
+            errorMsg.setText("Please Selected Row");
+            errorMsg.setVisible(true);
         }
-
+        showYnSList();
     }//GEN-LAST:event_btn_delete_yer_and_semActionPerformed
 
     private void btn_update_yer_semActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_update_yer_semActionPerformed
 
-        String idYS = id.getText();
-        int final_id = Integer.parseInt(idYS);
-
         try {
 
-            if (inputDataValidator() == true && allReady() == true) {
+            int selectedRow = tbl_year.getSelectedRow();
+
+            if (selectedRow != -1) {
 
                 errorMsg.setVisible(false);
 
-                String yer_sem = txt_acd_yer_and_sem.getText().trim().toUpperCase();
+                String idYS = id.getText();
+                int final_id = Integer.parseInt(idYS);
 
-                int i = yc.updateHandleClick(final_id, yer_sem);
+                if (inputDataValidator() == true && allReady() == true) {
+
+                    errorMsg.setVisible(false);
+
+                    String yer_sem = txt_acd_yer_and_sem.getText().trim().toUpperCase();
+
+                    int i = yc.updateHandleClick(final_id, yer_sem);
 //                System.out.println(i);
-                if (i != 0) {
+                    if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
-                    txt_acd_yer_and_sem.setText("");
-                    showYnSList();
-                } else {
-                    JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
+                        txt_acd_yer_and_sem.setText("");
+                        showYnSList();
+                    } else {
+                        JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
                 }
 
+            } else {
+                errorMsg.setText("Please Selected Row");
+                errorMsg.setVisible(true);
             }
-
+            showYnSList();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btn_update_yer_semActionPerformed
+
+    private void txt_acd_yer_and_semActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_acd_yer_and_semActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_acd_yer_and_semActionPerformed
 
     public boolean inputDataValidator() throws SQLException {
 
@@ -332,7 +450,7 @@ public class YearSemester extends javax.swing.JPanel {
     }
 
     public void showYnSList() {
-        HashMap hm = new HashMap();
+        LinkedHashMap hm = new LinkedHashMap();
         hm.put("idAcdYerAndSem", "int");
         hm.put("yerName", "String");
 
@@ -371,8 +489,13 @@ public class YearSemester extends javax.swing.JPanel {
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     public javax.swing.JTable tbl_year;
     private javax.swing.JTextField txt_acd_yer_and_sem;
     // End of variables declaration//GEN-END:variables

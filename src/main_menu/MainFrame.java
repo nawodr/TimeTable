@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package main_menu;
 
 import DB.DBConnection;
 import Location.frm_Location;
@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
 import menu.MenuItem;
 import menu.SplashScreen;
 import student.view.pnl_Student;
+import student.view.TagDetails;
 
 /**
  *
@@ -33,28 +34,26 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        
+
         execute();
         this.setExtendedState(MAXIMIZED_BOTH);
-        
-        
+
     }
 
-    private void execute(){
-       
+    private void execute() {
+
         ImageIcon iconWorkingDay = null;
         ImageIcon iconSubmenu = null;
         System.out.println("aaaa");
-        try{
-         iconWorkingDay = new ImageIcon(MainFrame.class.getResource("workingTime.png"));
-         iconSubmenu = new javax.swing.ImageIcon(getClass().getResource("/resource/426430-PE93QI-643.jpg"));
-         
-            
-        }catch(Exception e){
-           
+        try {
+            iconWorkingDay = new ImageIcon(MainFrame.class.getResource("workingTime.png"));
+            iconSubmenu = new javax.swing.ImageIcon(getClass().getResource("/resource/426430-PE93QI-643.jpg"));
+
+        } catch (Exception e) {
+
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,6 +127,7 @@ public class MainFrame extends javax.swing.JFrame {
         btn_student.setBackground(new java.awt.Color(185, 51, 63));
         btn_student.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_student.setText("Students");
+        btn_student.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_student.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_student.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,16 +138,19 @@ public class MainFrame extends javax.swing.JFrame {
         btn_workingDays.setBackground(new java.awt.Color(185, 51, 63));
         btn_workingDays.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_workingDays.setText("Working Days & Hours");
+        btn_workingDays.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_workingDays.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btn_module.setBackground(new java.awt.Color(185, 51, 63));
         btn_module.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_module.setText("Modules");
+        btn_module.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_module.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btn_lecturer.setBackground(new java.awt.Color(185, 51, 63));
         btn_lecturer.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_lecturer.setText("Lecturer");
+        btn_lecturer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_lecturer.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_lecturer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +161,7 @@ public class MainFrame extends javax.swing.JFrame {
         btn_location.setBackground(new java.awt.Color(185, 51, 63));
         btn_location.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_location.setText("Locations");
+        btn_location.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_location.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_location.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,22 +172,31 @@ public class MainFrame extends javax.swing.JFrame {
         btn_room.setBackground(new java.awt.Color(185, 51, 63));
         btn_room.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_room.setText("Room Allocate");
+        btn_room.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_room.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btn_session.setBackground(new java.awt.Color(185, 51, 63));
         btn_session.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_session.setText("Sessions");
+        btn_session.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_session.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btn_charts.setBackground(new java.awt.Color(185, 51, 63));
         btn_charts.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_charts.setText("Charts");
+        btn_charts.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_charts.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btn_tags.setBackground(new java.awt.Color(185, 51, 63));
         btn_tags.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_tags.setText("Tags");
+        btn_tags.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_tags.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_tags.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tagsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_menuLayout = new javax.swing.GroupLayout(pnl_menu);
         pnl_menu.setLayout(pnl_menuLayout);
@@ -239,7 +252,7 @@ public class MainFrame extends javax.swing.JFrame {
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setLayout(new java.awt.BorderLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/426430-PE93QI-643.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/130864-timetable.jpg"))); // NOI18N
         jLabel3.setMaximumSize(new java.awt.Dimension(500, 500));
         jLabel3.setMinimumSize(new java.awt.Dimension(500, 500));
         jLabel3.setPreferredSize(new java.awt.Dimension(500, 500));
@@ -251,7 +264,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_lecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lecturerActionPerformed
-        
+
     }//GEN-LAST:event_btn_lecturerActionPerformed
 
     private void btn_locationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_locationActionPerformed
@@ -260,13 +273,32 @@ public class MainFrame extends javax.swing.JFrame {
         panelBody.repaint();
         panelBody.revalidate();
     }//GEN-LAST:event_btn_locationActionPerformed
-
+    pnl_Student ps;
     private void btn_studentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_studentActionPerformed
+
         panelBody.removeAll();
-        panelBody.add(new pnl_Student());
+        if (ps == null) {
+            ps = new pnl_Student();
+            panelBody.add(ps);
+        } else {
+            panelBody.add(ps);
+        }
         panelBody.repaint();
         panelBody.revalidate();
     }//GEN-LAST:event_btn_studentActionPerformed
+TagDetails td = new TagDetails();
+    private void btn_tagsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tagsActionPerformed
+//        panelBody.removeAll();
+        panelBody.removeAll();
+        if (td == null) {
+            td = new TagDetails();
+            panelBody.add(td);
+        } else {
+            panelBody.add(td);
+        }
+        panelBody.repaint();
+        panelBody.revalidate();
+    }//GEN-LAST:event_btn_tagsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,9 +331,9 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         SplashScreen screen = new SplashScreen();
         screen.setVisible(true);
-     
+
         try {
-            for(int i =0;i<=100;i++){
+            for (int i = 0; i <= 100; i++) {
                 Thread.sleep(20);
                 screen.prg_bar.setValue(i);
             }
@@ -314,7 +346,7 @@ public class MainFrame extends javax.swing.JFrame {
                 new MainFrame().setVisible(true);
             }
         });
-        
+
         DBConnection.getConnection();
     }
 

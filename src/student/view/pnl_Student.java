@@ -5,7 +5,7 @@
  */
 package student.view;
 
-import Location.pnl_Location;
+import javax.swing.JPanel;
 
 /**
  *
@@ -29,111 +29,209 @@ public class pnl_Student extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         panl_all_add_details = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel6 = new javax.swing.JPanel();
-        btn_gp_gen = new javax.swing.JButton();
-        btn_sgp_gen = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jToggleButton5 = new javax.swing.JToggleButton();
+        jToggleButton7 = new javax.swing.JToggleButton();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
         jPanel7 = new javax.swing.JPanel();
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Academic Year And Semester");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jTabbedPane2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        buttonGroup1.add(jToggleButton1);
+        jToggleButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jToggleButton1.setText("Academic Year And Semester");
+        jToggleButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jToggleButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Degree Program");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jToggleButton2);
+        jToggleButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jToggleButton2.setText("Group Number");
+        jToggleButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jToggleButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Group Number");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jToggleButton3);
+        jToggleButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jToggleButton3.setText("Degree Program");
+        jToggleButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jToggleButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setText("Sub Group Number");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jToggleButton4);
+        jToggleButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jToggleButton4.setText("Sub Group Number");
+        jToggleButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jToggleButton4ActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(262, 262, 262))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 412, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout panl_all_add_detailsLayout = new javax.swing.GroupLayout(panl_all_add_details);
         panl_all_add_details.setLayout(panl_all_add_detailsLayout);
         panl_all_add_detailsLayout.setHorizontalGroup(
             panl_all_add_detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panl_all_add_detailsLayout.createSequentialGroup()
-                .addGap(350, 350, 350)
-                .addGroup(panl_all_add_detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(351, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(panl_all_add_detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1022, Short.MAX_VALUE)
+                    .addGroup(panl_all_add_detailsLayout.createSequentialGroup()
+                        .addComponent(jLayeredPane1)
+                        .addGap(2, 2, 2)))
+                .addGap(6, 6, 6))
         );
         panl_all_add_detailsLayout.setVerticalGroup(
             panl_all_add_detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panl_all_add_detailsLayout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jButton1)
-                .addGap(47, 47, 47)
-                .addComponent(jButton2)
-                .addGap(47, 47, 47)
-                .addComponent(jButton3)
-                .addGap(47, 47, 47)
-                .addComponent(jButton4)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLayeredPane1)
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("Add Details", panl_all_add_details);
 
-        btn_gp_gen.setText("Group Number Generate");
-        btn_gp_gen.addActionListener(new java.awt.event.ActionListener() {
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+        buttonGroup2.add(jToggleButton5);
+        jToggleButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jToggleButton5.setText("Group Number Generate");
+        jToggleButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_gp_genActionPerformed(evt);
+                jToggleButton5ActionPerformed(evt);
             }
         });
 
-        btn_sgp_gen.setText("Sub Group Number Generate");
-        btn_sgp_gen.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(jToggleButton7);
+        jToggleButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jToggleButton7.setText("Sub Group Number Generate");
+        jToggleButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_sgp_genActionPerformed(evt);
+                jToggleButton7ActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(766, 766, 766))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLayeredPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
+        jLayeredPane2.setLayout(jLayeredPane2Layout);
+        jLayeredPane2Layout.setHorizontalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jLayeredPane2Layout.setVerticalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 412, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(315, 315, 315)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_gp_gen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_sgp_gen))
-                .addContainerGap(424, Short.MAX_VALUE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1022, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLayeredPane2)
+                        .addGap(2, 2, 2)))
+                .addGap(8, 8, 8))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addComponent(btn_gp_gen)
-                .addGap(73, 73, 73)
-                .addComponent(btn_sgp_gen)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLayeredPane2)
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("ID Generates", jPanel6);
@@ -142,11 +240,11 @@ public class pnl_Student extends javax.swing.JPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
+            .addGap(0, 1038, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
+            .addGap(0, 495, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("View Details", jPanel7);
@@ -155,7 +253,9 @@ public class pnl_Student extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane2)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,93 +263,96 @@ public class pnl_Student extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-//    YearSemester add_year_and_sem = new YearSemester();
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    YearSemester yea;Degree dg;
+    Group gp;SubGroup sbg;
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+
+        if (yea == null) {
+            yea = new YearSemester();
+        }
+        setpanels(yea);        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+
+
+
+         if (dg == null) {
+            dg = new Degree();
+        }
+        setpanels(dg);
         // TODO add your handling code here:
-        
-        jTabbedPane2.removeAll();
-        jTabbedPane2.addTab("Add Details", new YearSemester());
-        jTabbedPane2.addTab("ID Generates", jPanel6);
-        jTabbedPane2.addTab("View Details", jPanel7);
-       
-        jTabbedPane2.revalidate();
-        jTabbedPane2.repaint();
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-//        
-        jTabbedPane2.removeAll();
-        jTabbedPane2.addTab("Add Details", new Degree());
-        jTabbedPane2.addTab("ID Generates", jPanel6);
-        jTabbedPane2.addTab("View Details", jPanel7);
-       
-        jTabbedPane2.revalidate();
-        jTabbedPane2.repaint();
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        
-        jTabbedPane2.removeAll();
-        jTabbedPane2.addTab("Add Details", new Group());
-        jTabbedPane2.addTab("ID Generates", jPanel6);
-        jTabbedPane2.addTab("View Details", jPanel7);
-       
-        jTabbedPane2.revalidate();
-        jTabbedPane2.repaint();
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
+          if (gp == null) {
+            gp = new Group();
+        }
+        setpanels(gp);
+              // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        
-        jTabbedPane2.removeAll();
-        jTabbedPane2.addTab("Add Details", new SubGroup());
-        jTabbedPane2.addTab("ID Generates", jPanel6);
-        jTabbedPane2.addTab("View Details", jPanel7);
-       
-        jTabbedPane2.revalidate();
-        jTabbedPane2.repaint();
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
 
-    private void btn_sgp_genActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sgp_genActionPerformed
-        jTabbedPane2.removeAll();
-        jTabbedPane2.addTab("ID Generates", new SubGrpIdGenerate());
-        jTabbedPane2.addTab("Add Details", panl_all_add_details);       
-        jTabbedPane2.addTab("View Details", jPanel7);           
-        jTabbedPane2.revalidate();
-        jTabbedPane2.repaint();
-        
-    }//GEN-LAST:event_btn_sgp_genActionPerformed
+         if (sbg == null) {
+            sbg = new SubGroup();
+        }
+        setpanels(sbg);
 
-    private void btn_gp_genActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gp_genActionPerformed
-       
-        jTabbedPane2.removeAll();
-        jTabbedPane2.addTab("ID Generates", new GrpIdGenerate());
-        jTabbedPane2.addTab("Add Details", panl_all_add_details);       
-        jTabbedPane2.addTab("View Details", jPanel7);           
-        jTabbedPane2.revalidate();
-        jTabbedPane2.repaint();
         
-    }//GEN-LAST:event_btn_gp_genActionPerformed
+    }//GEN-LAST:event_jToggleButton4ActionPerformed
+GrpIdGenerate yns;
+    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
+ 
+        if (yns == null) {
+            yns = new GrpIdGenerate();
+        }
+        setpanels2(yns);   
+
+    }//GEN-LAST:event_jToggleButton5ActionPerformed
+SubGrpIdGenerate sgi;
+    private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
+ 
+        if (sgi == null) {
+            sgi = new SubGrpIdGenerate();
+        }
+        setpanels2(sgi);   
+
+    }//GEN-LAST:event_jToggleButton7ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_gp_gen;
-    private javax.swing.JButton btn_sgp_gen;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    public static javax.swing.JLayeredPane jLayeredPane1;
+    public static javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
+    private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JToggleButton jToggleButton7;
     private javax.swing.JPanel panl_all_add_details;
     // End of variables declaration//GEN-END:variables
 
+    public static void setpanels(JPanel panel) {
+        jLayeredPane1.removeAll();
+        panel.setSize(jLayeredPane1.getSize());
+        jLayeredPane1.add(panel);
+        panel.setVisible(true);
+        jLayeredPane1.moveToFront(panel);
+    }
+    public static void setpanels2(JPanel panel) {
+        jLayeredPane2.removeAll();
+        panel.setSize(jLayeredPane2.getSize());
+        jLayeredPane2.add(panel);
+        panel.setVisible(true);
+        jLayeredPane2.moveToFront(panel);
+    }
 }
