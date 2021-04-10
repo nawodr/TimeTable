@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -53,7 +54,6 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         btn_generate = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
         btn_del = new javax.swing.JButton();
-        btn_back = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jCombo_yer_and_sem = new javax.swing.JComboBox<>();
@@ -64,6 +64,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         errorMsg = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         tbl_grp_num_gen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,16 +76,29 @@ public class GrpIdGenerate extends javax.swing.JPanel {
             new String [] {
                 "ID", "Group Number"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_grp_num_gen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_grp_num_genMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_grp_num_gen);
+        if (tbl_grp_num_gen.getColumnModel().getColumnCount() > 0) {
+            tbl_grp_num_gen.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tbl_grp_num_gen.getColumnModel().getColumn(1).setPreferredWidth(900);
+        }
 
         jPanel1.setBackground(new java.awt.Color(155, 27, 27));
 
+        btn_generate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_generate.setText("Generate");
         btn_generate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +106,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
             }
         });
 
+        btn_update.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_update.setText("Update");
         btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,14 +114,13 @@ public class GrpIdGenerate extends javax.swing.JPanel {
             }
         });
 
+        btn_del.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_del.setText("Delete");
         btn_del.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_delActionPerformed(evt);
             }
         });
-
-        btn_back.setText("Back");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,36 +129,43 @@ public class GrpIdGenerate extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_generate)
-                .addGap(132, 132, 132)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_update)
-                .addGap(122, 122, 122)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_del)
-                .addGap(115, 115, 115)
-                .addComponent(btn_back)
-                .addGap(45, 45, 45))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_back)
                     .addComponent(btn_del)
                     .addComponent(btn_update)
                     .addComponent(btn_generate))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(java.awt.Color.white);
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Academic Year And Semester");
 
+        jCombo_yer_and_sem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jCombo_yer_and_sem.setForeground(new java.awt.Color(255, 255, 255));
 
+        jCombo_deg_pro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        jCombo_grp_num.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Group Number");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Degree Program");
 
+        errorMsg.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         errorMsg.setForeground(java.awt.Color.red);
         errorMsg.setText("error");
 
@@ -155,24 +176,22 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
-                        .addGap(114, 114, 114)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jCombo_yer_and_sem, 0, 117, Short.MAX_VALUE)
+                            .addComponent(jCombo_yer_and_sem, 0, 188, Short.MAX_VALUE)
                             .addComponent(jCombo_deg_pro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jCombo_grp_num, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(id))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGap(49, 49, 49)
+                        .addComponent(id)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,39 +209,51 @@ public class GrpIdGenerate extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jCombo_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(errorMsg)
-                .addContainerGap())
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Group Id Details");
 
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(362, 362, 362)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel4)))
+                .addGap(12, 12, 12)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(407, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(530, 530, 530))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel4)
+                                .addGap(12, 12, 12)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(jSeparator1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -271,7 +302,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
             errorMsg.setText("Please Selected Row");
             errorMsg.setVisible(true);
         }
-
+showYnSList();
     }//GEN-LAST:event_btn_delActionPerformed
 
     private void btn_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generateActionPerformed
@@ -294,7 +325,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
                 } else {
                     JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
+showYnSList();
             }
 
         } catch (SQLException ex) {
@@ -362,7 +393,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
 
         } catch (Exception e) {
         }
-
+showYnSList();
     }//GEN-LAST:event_btn_updateActionPerformed
 
     public void yNsSelection() {
@@ -435,7 +466,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
     }
 
     public void showYnSList() {
-        HashMap hm = new HashMap();
+        LinkedHashMap hm = new LinkedHashMap();
         hm.put("idGrpNumGen", "int");
         hm.put("GrpNum", "String");
 
@@ -475,7 +506,6 @@ public class GrpIdGenerate extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_back;
     private javax.swing.JButton btn_del;
     private javax.swing.JButton btn_generate;
     private javax.swing.JButton btn_update;
@@ -491,6 +521,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tbl_grp_num_gen;
     // End of variables declaration//GEN-END:variables
 }

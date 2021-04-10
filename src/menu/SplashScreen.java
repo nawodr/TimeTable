@@ -5,6 +5,18 @@
  */
 package menu;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import org.jvnet.substance.SubstanceDefaultLookAndFeel;
+import org.jvnet.substance.painter.GradientWaveGradientPainter;
+import org.jvnet.substance.theme.SubstanceCremeTheme;
+import org.jvnet.substance.theme.SubstanceEbonyTheme;
+import org.jvnet.substance.theme.SubstanceOrangeTheme;
+import org.jvnet.substance.watermark.SubstanceCopperplateEngravingWatermark;
+import org.jvnet.substance.watermark.SubstanceWoodWatermark;
+
 /**
  *
  * @author Tiran Harsha
@@ -16,6 +28,30 @@ public class SplashScreen extends javax.swing.JFrame {
      */
     public SplashScreen() {
         initComponents();
+         
+        new Thread(new Runnable() {
+
+
+            @Override
+            public void run() {
+                for (int i = 0; i < 101; i++) {
+
+                    
+                    prg_bar.setValue(i);
+
+                    try {
+                        Thread.sleep(50);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                new main_menu.MainFrame().setVisible(true);
+                dispose();
+            }//
+        }).start();
     }
 
     /**
@@ -49,6 +85,11 @@ public class SplashScreen extends javax.swing.JFrame {
         prg_bar.setMinimumSize(new java.awt.Dimension(10, 10));
         prg_bar.setPreferredSize(new java.awt.Dimension(146, 10));
         prg_bar.setStringPainted(true);
+        prg_bar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                prg_barMouseClicked(evt);
+            }
+        });
         jPanel1.add(prg_bar, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -65,6 +106,12 @@ public class SplashScreen extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(515, 426));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+
+    private void prg_barMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prg_barMouseClicked
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prg_barMouseClicked
 
     /**
      * @param args the command line arguments
@@ -97,7 +144,18 @@ public class SplashScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SplashScreen().setVisible(true);
+                SplashScreen sp = new SplashScreen();
+                try {
+                    LookAndFeel look = new SubstanceDefaultLookAndFeel();
+                    UIManager.setLookAndFeel(look);
+                    SubstanceDefaultLookAndFeel.setCurrentTheme(new SubstanceOrangeTheme());
+                    SubstanceDefaultLookAndFeel.setCurrentWatermark(new SubstanceWoodWatermark());
+                    SubstanceDefaultLookAndFeel.setCurrentGradientPainter(new GradientWaveGradientPainter());
+                    sp.setDefaultLookAndFeelDecorated(true);
+                    sp.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -107,4 +165,6 @@ public class SplashScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JProgressBar prg_bar;
     // End of variables declaration//GEN-END:variables
+
+   
 }
