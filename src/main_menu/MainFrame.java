@@ -6,7 +6,7 @@
 package main_menu;
 
 import DB.DBConnection;
-import Location.frm_Location;
+//import Location.frm_Location;
 import Location.pnl_Location;
 
 import java.awt.Dimension;
@@ -22,7 +22,7 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import menu.MenuItem;
+//import menu.MenuItem;
 import menu.SplashScreen;
 import student.view.pnl_Student;
 import student.view.TagDetails;
@@ -417,7 +417,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         panelBody.removeAll();
-        panelBody.add(new pnl_Location());
+        try {
+            panelBody.add(new pnl_Location());
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         panelBody.repaint();
         panelBody.revalidate();
     }//GEN-LAST:event_jToggleButton6ActionPerformed
