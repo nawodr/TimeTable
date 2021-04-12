@@ -15,6 +15,7 @@ import org.jvnet.substance.theme.SubstanceCremeTheme;
 import org.jvnet.substance.theme.SubstanceEbonyTheme;
 import org.jvnet.substance.theme.SubstanceOrangeTheme;
 import org.jvnet.substance.watermark.SubstanceCopperplateEngravingWatermark;
+import org.jvnet.substance.watermark.SubstanceMetalWallWatermark;
 import org.jvnet.substance.watermark.SubstanceWoodWatermark;
 
 /**
@@ -149,7 +150,7 @@ public class SplashScreen extends javax.swing.JFrame {
                     LookAndFeel look = new SubstanceDefaultLookAndFeel();
                     UIManager.setLookAndFeel(look);
                     SubstanceDefaultLookAndFeel.setCurrentTheme(new SubstanceOrangeTheme());
-                    SubstanceDefaultLookAndFeel.setCurrentWatermark(new SubstanceWoodWatermark());
+                    SubstanceDefaultLookAndFeel.setCurrentWatermark(new SubstanceMetalWallWatermark());
                     SubstanceDefaultLookAndFeel.setCurrentGradientPainter(new GradientWaveGradientPainter());
                     sp.setDefaultLookAndFeelDecorated(true);
                     sp.setVisible(true);
