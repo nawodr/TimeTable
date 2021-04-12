@@ -8,6 +8,9 @@ package main_menu;
 import DB.DBConnection;
 import Location.frm_Location;
 import Location.pnl_Location;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
 //import Test.pnl_Student;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,6 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import menu.MenuItem;
@@ -34,9 +38,11 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-
+        date_time();
         execute();
-        this.setExtendedState(MAXIMIZED_BOTH);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screenSize);
 
     }
 
@@ -63,36 +69,62 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         panelHeader = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        scnd = new javax.swing.JLabel();
+        datee = new javax.swing.JLabel();
+        dayy = new javax.swing.JLabel();
+        timee = new javax.swing.JLabel();
         panelMenu = new javax.swing.JPanel();
         pnl_menu = new javax.swing.JPanel();
-        btn_student = new javax.swing.JButton();
-        btn_workingDays = new javax.swing.JButton();
-        btn_module = new javax.swing.JButton();
-        btn_lecturer = new javax.swing.JButton();
-        btn_location = new javax.swing.JButton();
-        btn_room = new javax.swing.JButton();
-        btn_session = new javax.swing.JButton();
-        btn_charts = new javax.swing.JButton();
-        btn_tags = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
+        jToggleButton5 = new javax.swing.JToggleButton();
+        jToggleButton6 = new javax.swing.JToggleButton();
+        jToggleButton7 = new javax.swing.JToggleButton();
+        jToggleButton8 = new javax.swing.JToggleButton();
+        jToggleButton9 = new javax.swing.JToggleButton();
         panelBody = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ABC Institute");
 
-        panelHeader.setBackground(new java.awt.Color(184, 39, 34));
+        panelHeader.setBackground(new java.awt.Color(0, 0, 0));
+        panelHeader.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("ABC Institute");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Time Table Management System");
+
+        scnd.setFont(new java.awt.Font("Comfortaa", 1, 18)); // NOI18N
+        scnd.setForeground(new java.awt.Color(204, 204, 204));
+        scnd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scnd.setText("55");
+
+        datee.setFont(new java.awt.Font("Comfortaa", 1, 18)); // NOI18N
+        datee.setForeground(new java.awt.Color(204, 204, 204));
+        datee.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        datee.setText("September 25,2019");
+
+        dayy.setFont(new java.awt.Font("Comfortaa", 1, 18)); // NOI18N
+        dayy.setForeground(new java.awt.Color(204, 204, 204));
+        dayy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dayy.setText("Wed");
+
+        timee.setFont(new java.awt.Font("Comfortaa", 1, 36)); // NOI18N
+        timee.setForeground(new java.awt.Color(204, 204, 204));
+        timee.setText("12.33");
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
@@ -100,101 +132,171 @@ public class MainFrame extends javax.swing.JFrame {
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelHeaderLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(dayy, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
+                    .addComponent(timee, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelHeaderLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(100, 100, 100)
+                        .addComponent(scnd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(datee, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelHeaderLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dayy, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timee, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelHeaderLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(scnd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelHeaderLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(datee, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelHeaderLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        getContentPane().add(panelHeader, java.awt.BorderLayout.PAGE_START);
 
         panelMenu.setPreferredSize(new java.awt.Dimension(250, 413));
         panelMenu.setRequestFocusEnabled(false);
 
-        pnl_menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(178, 48, 48), 2));
+        pnl_menu.setBackground(new java.awt.Color(102, 102, 102));
 
-        btn_student.setBackground(new java.awt.Color(185, 51, 63));
-        btn_student.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_student.setText("Students");
-        btn_student.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_student.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_student.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jToggleButton1);
+        jToggleButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_teacher_50px_2.png"))); // NOI18N
+        jToggleButton1.setText("Lecturer");
+        jToggleButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jToggleButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_teacher_50px_3.png"))); // NOI18N
+        jToggleButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_teacher_50px_3.png"))); // NOI18N
+        jToggleButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_teacher_50px_3.png"))); // NOI18N
+
+        buttonGroup1.add(jToggleButton2);
+        jToggleButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_student_registration_50px.png"))); // NOI18N
+        jToggleButton2.setText("Students");
+        jToggleButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jToggleButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_student_registration_50px_1.png"))); // NOI18N
+        jToggleButton2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_student_registration_50px_1.png"))); // NOI18N
+        jToggleButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_student_registration_50px_1.png"))); // NOI18N
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_studentActionPerformed(evt);
+                jToggleButton2ActionPerformed(evt);
             }
         });
 
-        btn_workingDays.setBackground(new java.awt.Color(185, 51, 63));
-        btn_workingDays.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_workingDays.setText("Working Days & Hours");
-        btn_workingDays.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_workingDays.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        btn_module.setBackground(new java.awt.Color(185, 51, 63));
-        btn_module.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_module.setText("Modules");
-        btn_module.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_module.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        btn_lecturer.setBackground(new java.awt.Color(185, 51, 63));
-        btn_lecturer.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_lecturer.setText("Lecturer");
-        btn_lecturer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_lecturer.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_lecturer.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jToggleButton3);
+        jToggleButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_clock_50px.png"))); // NOI18N
+        jToggleButton3.setText("Working Days");
+        jToggleButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jToggleButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_clock_50px_1.png"))); // NOI18N
+        jToggleButton3.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_clock_50px_1.png"))); // NOI18N
+        jToggleButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_clock_50px_1.png"))); // NOI18N
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_lecturerActionPerformed(evt);
+                jToggleButton3ActionPerformed(evt);
             }
         });
 
-        btn_location.setBackground(new java.awt.Color(185, 51, 63));
-        btn_location.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_location.setText("Locations");
-        btn_location.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_location.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_location.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jToggleButton4);
+        jToggleButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_book_50px.png"))); // NOI18N
+        jToggleButton4.setText("Modules");
+        jToggleButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jToggleButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_book_50px_1.png"))); // NOI18N
+        jToggleButton4.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_book_50px_1.png"))); // NOI18N
+        jToggleButton4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_book_50px_1.png"))); // NOI18N
+        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_locationActionPerformed(evt);
+                jToggleButton4ActionPerformed(evt);
             }
         });
 
-        btn_room.setBackground(new java.awt.Color(185, 51, 63));
-        btn_room.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_room.setText("Room Allocate");
-        btn_room.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_room.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        btn_session.setBackground(new java.awt.Color(185, 51, 63));
-        btn_session.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_session.setText("Sessions");
-        btn_session.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_session.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        btn_charts.setBackground(new java.awt.Color(185, 51, 63));
-        btn_charts.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_charts.setText("Charts");
-        btn_charts.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_charts.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        btn_tags.setBackground(new java.awt.Color(185, 51, 63));
-        btn_tags.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_tags.setText("Tags");
-        btn_tags.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_tags.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_tags.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jToggleButton5);
+        jToggleButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_room_50px_1.png"))); // NOI18N
+        jToggleButton5.setText("Room Allocate");
+        jToggleButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jToggleButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_room_50px_2.png"))); // NOI18N
+        jToggleButton5.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_room_50px_2.png"))); // NOI18N
+        jToggleButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_room_50px_2.png"))); // NOI18N
+        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tagsActionPerformed(evt);
+                jToggleButton5ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jToggleButton6);
+        jToggleButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_location_50px_1.png"))); // NOI18N
+        jToggleButton6.setText("Location");
+        jToggleButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jToggleButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_location_50px_2.png"))); // NOI18N
+        jToggleButton6.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_location_50px_2.png"))); // NOI18N
+        jToggleButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_location_50px_2.png"))); // NOI18N
+        jToggleButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton6ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jToggleButton7);
+        jToggleButton7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jToggleButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_all_out_50px.png"))); // NOI18N
+        jToggleButton7.setText("Sessions");
+        jToggleButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jToggleButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_all_out_50px_1.png"))); // NOI18N
+        jToggleButton7.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_all_out_50px_1.png"))); // NOI18N
+        jToggleButton7.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_all_out_50px_1.png"))); // NOI18N
+        jToggleButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton7ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jToggleButton8);
+        jToggleButton8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jToggleButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_chart_50px_1.png"))); // NOI18N
+        jToggleButton8.setText("Charts");
+        jToggleButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jToggleButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_chart_50px_2.png"))); // NOI18N
+        jToggleButton8.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_chart_50px_2.png"))); // NOI18N
+        jToggleButton8.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_chart_50px_2.png"))); // NOI18N
+        jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton8ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jToggleButton9);
+        jToggleButton9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jToggleButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_tags_50px.png"))); // NOI18N
+        jToggleButton9.setText("Tags");
+        jToggleButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jToggleButton9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_tags_50px_1.png"))); // NOI18N
+        jToggleButton9.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_tags_50px_1.png"))); // NOI18N
+        jToggleButton9.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_tags_50px_1.png"))); // NOI18N
+        jToggleButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton9ActionPerformed(evt);
             }
         });
 
@@ -202,54 +304,59 @@ public class MainFrame extends javax.swing.JFrame {
         pnl_menu.setLayout(pnl_menuLayout);
         pnl_menuLayout.setHorizontalGroup(
             pnl_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btn_student, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_workingDays, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-            .addComponent(btn_module, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-            .addComponent(btn_location, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-            .addComponent(btn_room, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-            .addComponent(btn_lecturer, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-            .addComponent(btn_session, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-            .addComponent(btn_charts, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-            .addComponent(btn_tags, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+            .addGroup(pnl_menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(jToggleButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(jToggleButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(jToggleButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(jToggleButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnl_menuLayout.setVerticalGroup(
             pnl_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_menuLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(btn_lecturer)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_student)
+                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_workingDays)
+                .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_module)
+                .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_room)
+                .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_location)
+                .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_session)
+                .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_charts)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_tags)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jToggleButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
         panelMenu.setLayout(panelMenuLayout);
         panelMenuLayout.setHorizontalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelMenuLayout.createSequentialGroup()
+                .addComponent(pnl_menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnl_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panelMenu, java.awt.BorderLayout.LINE_START);
-
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
+        panelBody.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelBody.setLayout(new java.awt.BorderLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/130864-timetable.jpg"))); // NOI18N
@@ -258,23 +365,31 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setPreferredSize(new java.awt.Dimension(500, 500));
         panelBody.add(jLabel3, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(panelBody, java.awt.BorderLayout.CENTER);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(panelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+                    .addComponent(panelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
-        setBounds(0, 0, 813, 535);
+        setBounds(0, 0, 1035, 704);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_lecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lecturerActionPerformed
-
-    }//GEN-LAST:event_btn_lecturerActionPerformed
-
-    private void btn_locationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_locationActionPerformed
-        panelBody.removeAll();
-        panelBody.add(new pnl_Location());
-        panelBody.repaint();
-        panelBody.revalidate();
-    }//GEN-LAST:event_btn_locationActionPerformed
     pnl_Student ps;
-    private void btn_studentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_studentActionPerformed
+    TagDetails td = new TagDetails();
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
 
         panelBody.removeAll();
         if (ps == null) {
@@ -285,10 +400,40 @@ public class MainFrame extends javax.swing.JFrame {
         }
         panelBody.repaint();
         panelBody.revalidate();
-    }//GEN-LAST:event_btn_studentActionPerformed
-TagDetails td = new TagDetails();
-    private void btn_tagsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tagsActionPerformed
-//        panelBody.removeAll();
+
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton4ActionPerformed
+
+    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton5ActionPerformed
+
+    private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
+        panelBody.removeAll();
+        panelBody.add(new pnl_Location());
+        panelBody.repaint();
+        panelBody.revalidate();
+    }//GEN-LAST:event_jToggleButton6ActionPerformed
+
+    private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton7ActionPerformed
+
+    private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton8ActionPerformed
+
+    
+//    pnl_Student ps;
+//    TagDetails td = new TagDetails();
+    private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
         panelBody.removeAll();
         if (td == null) {
             td = new TagDetails();
@@ -298,7 +443,7 @@ TagDetails td = new TagDetails();
         }
         panelBody.repaint();
         panelBody.revalidate();
-    }//GEN-LAST:event_btn_tagsActionPerformed
+    }//GEN-LAST:event_jToggleButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,21 +496,52 @@ TagDetails td = new TagDetails();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_charts;
-    private javax.swing.JButton btn_lecturer;
-    private javax.swing.JButton btn_location;
-    private javax.swing.JButton btn_module;
-    private javax.swing.JButton btn_room;
-    private javax.swing.JButton btn_session;
-    private javax.swing.JButton btn_student;
-    private javax.swing.JButton btn_tags;
-    private javax.swing.JButton btn_workingDays;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel datee;
+    private javax.swing.JLabel dayy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
+    private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JToggleButton jToggleButton6;
+    private javax.swing.JToggleButton jToggleButton7;
+    private javax.swing.JToggleButton jToggleButton8;
+    private javax.swing.JToggleButton jToggleButton9;
     public javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel pnl_menu;
+    private javax.swing.JLabel scnd;
+    private javax.swing.JLabel timee;
     // End of variables declaration//GEN-END:variables
+
+    public void date_time() {
+
+        SimpleDateFormat sd = new SimpleDateFormat("MMMMM dd,yyyy");
+        SimpleDateFormat sd1 = new SimpleDateFormat("EEE");
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                while (true) {
+                    java.util.Date d = new java.util.Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                    SimpleDateFormat hour = new SimpleDateFormat("HH");
+                    SimpleDateFormat sdfs = new SimpleDateFormat("ss");
+                    datee.setText(sd.format(d));
+                    dayy.setText(sd1.format(d));
+                    timee.setText(sdf.format(d));
+                    scnd.setText(sdfs.format(d));
+
+                }
+            }
+        }).start();
+    }
+
 }
