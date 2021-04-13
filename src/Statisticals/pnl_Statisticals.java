@@ -40,28 +40,28 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btn_Lec = new javax.swing.JButton();
         cmb_TotStud1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
+        btn_Room = new javax.swing.JButton();
         cmb_TotStud2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btn_Sub = new javax.swing.JButton();
         cmb_TotStud3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        btn_Std = new javax.swing.JButton();
         cmb_TotStud = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -82,11 +82,11 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Show Statistics");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_Lec.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_Lec.setText("Show Statistics");
+        btn_Lec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_LecActionPerformed(evt);
             }
         });
 
@@ -108,7 +108,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addComponent(cmb_TotStud1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 414, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btn_Lec)
                 .addGap(53, 53, 53))
             .addComponent(jScrollPane1)
         );
@@ -117,7 +117,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Lec, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(cmb_TotStud1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -142,11 +142,11 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setText("Show Statistics");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btn_Room.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_Room.setText("Show Statistics");
+        btn_Room.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_RoomActionPerformed(evt);
             }
         });
 
@@ -169,7 +169,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(cmb_TotStud2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(btn_Room)
                 .addGap(53, 53, 53))
         );
         jPanel5Layout.setVerticalGroup(
@@ -177,7 +177,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Room, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(cmb_TotStud2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,11 +202,11 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Show Statistics");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_Sub.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_Sub.setText("Show Statistics");
+        btn_Sub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_SubActionPerformed(evt);
             }
         });
 
@@ -229,7 +229,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(cmb_TotStud3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btn_Sub)
                 .addGap(53, 53, 53))
         );
         jPanel6Layout.setVerticalGroup(
@@ -237,7 +237,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Sub, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(cmb_TotStud3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -262,11 +262,11 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         ));
         jScrollPane4.setViewportView(jTable4);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Show Statistics");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_Std.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_Std.setText("Show Statistics");
+        btn_Std.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_StdActionPerformed(evt);
             }
         });
 
@@ -289,7 +289,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(cmb_TotStud, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btn_Std)
                 .addGap(53, 53, 53))
         );
         jPanel7Layout.setVerticalGroup(
@@ -297,7 +297,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Std, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(cmb_TotStud, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -321,7 +321,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_LecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LecActionPerformed
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(8, "1", "1");
         dataset.setValue(5, "2", "2");
@@ -339,9 +339,9 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_LecActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btn_RoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RoomActionPerformed
         // TODO add your handling code here:
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(11, "Lecture Hall", "Lecture Hall");
@@ -355,9 +355,9 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         frame.setSize(450, 350);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btn_RoomActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_SubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SubActionPerformed
         // TODO add your handling code here:
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(34, "", "");
@@ -370,9 +370,9 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         frame.setSize(450, 350);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_SubActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_StdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_StdActionPerformed
         // TODO add your handling code here:
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(501, "", "");
@@ -385,18 +385,18 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         frame.setSize(450, 350);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_StdActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Lec;
+    private javax.swing.JButton btn_Room;
+    private javax.swing.JButton btn_Std;
+    private javax.swing.JButton btn_Sub;
     private javax.swing.JLabel cmb_TotStud;
     private javax.swing.JLabel cmb_TotStud1;
     private javax.swing.JLabel cmb_TotStud2;
     private javax.swing.JLabel cmb_TotStud3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

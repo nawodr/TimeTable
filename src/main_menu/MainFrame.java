@@ -39,26 +39,25 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         date_time();
-        execute();
+//        execute();
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screenSize);
 
     }
 
-    private void execute() {
-
-        ImageIcon iconWorkingDay = null;
-        ImageIcon iconSubmenu = null;
-        System.out.println("aaaa");
-        try {
-            iconWorkingDay = new ImageIcon(MainFrame.class.getResource("workingTime.png"));
-            iconSubmenu = new javax.swing.ImageIcon(getClass().getResource("/resource/426430-PE93QI-643.jpg"));
-
-        } catch (Exception e) {
-
-        }
-    }
+//    private void execute() {
+//
+//        ImageIcon iconWorkingDay = null;
+//        ImageIcon iconSubmenu = null;
+//        try {
+//            iconWorkingDay = new ImageIcon(MainFrame.class.getResource("workingTime.png"));
+//            iconSubmenu = new javax.swing.ImageIcon(getClass().getResource("/resource/426430-PE93QI-643.jpg"));
+//
+//        } catch (Exception e) {
+//
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -388,6 +387,7 @@ public class MainFrame extends javax.swing.JFrame {
         setBounds(0, 0, 1035, 704);
     }// </editor-fold>//GEN-END:initComponents
     pnl_Student ps;
+    pnl_Location pl;
     TagDetails td = new TagDetails();
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
 
@@ -417,10 +417,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         panelBody.removeAll();
-        try {
-            panelBody.add(new pnl_Location());
-        } catch (SQLException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        if (pl == null) {
+            try {
+                pl = new pnl_Location();
+            } catch (SQLException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            panelBody.add(pl);
+        } else {
+            panelBody.add(pl);
         }
         panelBody.repaint();
         panelBody.revalidate();
