@@ -74,7 +74,7 @@ public class SplashScreen extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/05.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/zz.jpg"))); // NOI18N
         jLabel1.setLabelFor(jLabel1);
         jLabel1.setMaximumSize(new java.awt.Dimension(34, 350));
         jLabel1.setMinimumSize(new java.awt.Dimension(34, 350));

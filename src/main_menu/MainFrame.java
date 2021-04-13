@@ -6,26 +6,23 @@
 package main_menu;
 
 import DB.DBConnection;
-//import Location.frm_Location;
 import Location.pnl_Location;
-
+import WorkingDays.WorkingDaysandHours;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-//import Test.pnl_Student;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-//import menu.MenuItem;
+import javax.swing.JOptionPane;
 import menu.SplashScreen;
-import student.view.pnl_Student;
 import student.view.TagDetails;
+import student.view.pnl_Student;
 
 /**
  *
@@ -348,7 +345,7 @@ public class MainFrame extends javax.swing.JFrame {
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuLayout.createSequentialGroup()
                 .addComponent(pnl_menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,7 +356,7 @@ public class MainFrame extends javax.swing.JFrame {
         panelBody.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelBody.setLayout(new java.awt.BorderLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/130864-timetable.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/zzz.jpg"))); // NOI18N
         jLabel3.setMaximumSize(new java.awt.Dimension(500, 500));
         jLabel3.setMinimumSize(new java.awt.Dimension(500, 500));
         jLabel3.setPreferredSize(new java.awt.Dimension(500, 500));
@@ -381,7 +378,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+                    .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
                     .addComponent(panelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -403,8 +400,17 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
+    WorkingDaysandHours wh = new WorkingDaysandHours();
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-        // TODO add your handling code here:
+         panelBody.removeAll();
+        if (wh == null) {
+            wh = new WorkingDaysandHours();
+            panelBody.add(wh);
+        } else {
+            panelBody.add(wh);
+        }
+        panelBody.repaint();
+        panelBody.revalidate();
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
