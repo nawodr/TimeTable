@@ -44,9 +44,8 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         yNs_id.setVisible(false);
         dP_id.setVisible(false);
         gP_id.setVisible(false);
+        gid.setVisible(false);
         showYnSList();
-        int selectedRow = tbl_grp_num_gen.getSelectedRow();
-        System.out.println(selectedRow);
     }
 
     GrpIdGenerateCon gig = new GrpIdGenerateCon();
@@ -80,6 +79,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         yNs_id = new javax.swing.JLabel();
         dP_id = new javax.swing.JLabel();
         gP_id = new javax.swing.JLabel();
+        gid = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
@@ -211,6 +211,8 @@ public class GrpIdGenerate extends javax.swing.JPanel {
 
         gP_id.setText("jLabel7");
 
+        gid.setText("jLabel5");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -227,7 +229,11 @@ public class GrpIdGenerate extends javax.swing.JPanel {
                             .addComponent(id_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(id)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(id)
+                                .addGap(64, 64, 64)
+                                .addComponent(gid)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jCombo_yer_and_sem, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,7 +252,9 @@ public class GrpIdGenerate extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(id_lbl)
-                    .addComponent(id))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(id)
+                        .addComponent(gid)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -314,49 +322,95 @@ public class GrpIdGenerate extends javax.swing.JPanel {
 
     private void btn_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delActionPerformed
 
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps, smt;
         int selectedRow = tbl_grp_num_gen.getSelectedRow();
-
-        if (selectedRow != -1) {
-
-            String idYS = id_lbl.getText();
-            int final_id = Integer.parseInt(idYS);
-
-            int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
-
-            if (v == JOptionPane.YES_OPTION) {
-
-                try {
-
-                    int i = gig.deleteHandleClick(final_id);
-
-                    showYnSList();
-
-                    if (i != 0) {
-//                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                        JOptionPane.showMessageDialog(this, "Successfully Deleted!");
-//                    txt_deg_pro.setText("");
-
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                } catch (SQLException ex) {
-
-                    Logger.getLogger(YearSemester.class.getName()).log(Level.SEVERE, null, ex);
-
-                }
-
-            } else if (v == JOptionPane.NO_OPTION) {
+        String idGen = id.getText();
+        
+        
+        try {
+            
+            DefaultTableModel model = (DefaultTableModel) tbl_grp_num_gen.getModel();
+            
+            if (selectedRow == -1) {
+                errorMsg.setVisible(true);
+                errorMsg.setText("Select Group ID*");
 
             } else {
-
+            
+                errorMsg.setText("");
+                
+                int i = tbl_grp_num_gen.getSelectedRow();
+                TableModel mt = tbl_grp_num_gen.getModel();
+                gid.setText(mt.getValueAt(i, 1).toString());
+                
+                String queryDelGen = "DELETE FROM GroupNumGenerate WHERE idGrpNumGen=?";
+                ps = connection.prepareStatement(queryDelGen);
+                ps.setString(1, idGen);
+                ps.executeUpdate();
+                
+                String queryAllDet = "DELETE FROM all_details WHERE gId=? and sGid=?";
+                ps = connection.prepareStatement(queryAllDet);
+                ps.setString(1, gid.getText().toString());
+                ps.setString(2, "-");
+                ps.executeUpdate();
+                
+                showYnSList();
+                JOptionPane.showMessageDialog(this, "Successfully Deleted!");
+                
             }
-
-        } else {
-            errorMsg.setText("Please Selected Row");
-            errorMsg.setVisible(true);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        showYnSList();
+        
+        
+        
+        
+        
+        
+
+//        if (selectedRow != -1) {
+//
+//            String idYS = id_lbl.getText();
+//            int final_id = Integer.parseInt(idYS);
+//
+//            int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+//
+//            if (v == JOptionPane.YES_OPTION) {
+//
+//                try {
+//
+//                    int i = gig.deleteHandleClick(final_id);
+//
+//                    showYnSList();
+//
+//                    if (i != 0) {
+////                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
+//                        JOptionPane.showMessageDialog(this, "Successfully Deleted!");
+////                    txt_deg_pro.setText("");
+//
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+//                    }
+//
+//                } catch (SQLException ex) {
+//
+//                    Logger.getLogger(YearSemester.class.getName()).log(Level.SEVERE, null, ex);
+//
+//                }
+//
+//            } else if (v == JOptionPane.NO_OPTION) {
+//
+//            } else {
+//
+//            }
+//
+//        } else {
+//            errorMsg.setText("Please Selected Row");
+//            errorMsg.setVisible(true);
+//        }
+//        showYnSList();
     }//GEN-LAST:event_btn_delActionPerformed
 
     private void btn_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generateActionPerformed
@@ -475,10 +529,13 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         String third = val[9] + val[10];
         jCombo_grp_num.setSelectedItem(third);
 
+        TableModel mt = tbl_grp_num_gen.getModel();
+        gid.setText(mt.getValueAt(selectedRow, 1).toString());
+
     }//GEN-LAST:event_tbl_grp_num_genMouseClicked
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-
+        Connection connection = DBConnection.getConnection();
 //        try {
 //
 //            int selectedRow = tbl_grp_num_gen.getSelectedRow();
@@ -517,48 +574,60 @@ public class GrpIdGenerate extends javax.swing.JPanel {
 //        }
 //        showYnSList();
 
-
         int selectedRow = tbl_grp_num_gen.getSelectedRow();
-
+//        System.out.println(selectedRow);
         String newGenerateID = (jCombo_yer_and_sem.getSelectedItem().toString() + "." + jCombo_deg_pro.getSelectedItem().toString() + "." + jCombo_grp_num.getSelectedItem().toString());
 
         try {
-            
+
             DefaultTableModel model = (DefaultTableModel) tbl_grp_num_gen.getModel();
-//            Statement smt = connection.createStatement();
-            
-            PreparedStatement sp = null;
-            
-            if(selectedRow != -1){
+
+            PreparedStatement ps, smt;
+
+            if (selectedRow == -1) {
                 errorMsg.setVisible(true);
                 errorMsg.setText("Select Group ID*");
-                
-            
-            }else{
-                
+
+            } else {
+
                 errorMsg.setText("");
                 errorMsg.setVisible(false);
-                
+
                 TableModel mt = tbl_grp_num_gen.getModel();
-                id.setText(mt.getValueAt(selectedRow, 1).toString());
-                
-                sp.execute("UPDATE GroupNumGenerate SET GrpNum = '" + newGenerateID + "' WHERE idGrpNumGen = " + id);
-                sp.execute("UPDATE all_details SET gId = '" + newGenerateID + "' WHERE gId = '" + id.getText().toString() + "' AND sGid = '-' ");
+                gid.setText(mt.getValueAt(selectedRow, 1).toString());
+                String idx = gid.getText();
+//                System.out.println(idx);
+//                System.out.println(newGenerateID);
+
+                String queryUpGrpGen = "UPDATE GroupNumGenerate SET GrpNum=? WHERE idGrpNumGen=?";
+                ps = connection.prepareStatement(queryUpGrpGen);
+                ps.setString(1, newGenerateID);
+                ps.setString(2, id.getText().toString());
+                ps.executeUpdate();
+//                System.out.println(queryUpGrpGen);
+
+                String queryUpAllDetils = "UPDATE all_details SET gId=? WHERE gId=? AND sGid =?";
+                smt = connection.prepareStatement(queryUpAllDetils);
+                smt.setString(1, newGenerateID);
+                smt.setString(2, idx);
+                smt.setString(3, "-");
+                smt.executeUpdate();
+
                 model.setRowCount(0);
                 showYnSList();
-                
+
                 jCombo_yer_and_sem.setSelectedIndex(0);
                 jCombo_deg_pro.setSelectedIndex(0);
                 jCombo_grp_num.setSelectedIndex(0);
-                
-                JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
-            
+
+                JOptionPane.showMessageDialog(this, "Successfully Updated!");
+
             }
-            
+
         } catch (Exception e) {
             Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
         }
-        
+
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -686,6 +755,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
     private javax.swing.JLabel dP_id;
     private javax.swing.JLabel errorMsg;
     private javax.swing.JLabel gP_id;
+    private javax.swing.JLabel gid;
     private javax.swing.JLabel id;
     private javax.swing.JLabel id_lbl;
     private javax.swing.JButton jButton1;
