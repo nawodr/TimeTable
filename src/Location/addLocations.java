@@ -90,7 +90,6 @@ public class addLocations {
                 throw ex;
             }
         }
-        System.out.println(updateAns);
         return updateAns;
     }
     
@@ -197,13 +196,45 @@ public class addLocations {
     }
     
     /*
+     check whether Laction Building & Room is exist
+     */
+    public String getBuildingName(int Id) throws SQLException {
+        
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        String bName = null;
+        
+        try {
+            ps = connection.prepareStatement("Select building_Name FROM location WHERE Id = ?");
+
+            ps.setInt(1, Id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                bName = (rs.getString("building_Name"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+            try {
+                if(ps != null){
+                    ps.close();
+                }
+            } catch (Exception ex) {
+                throw ex;
+            }
+            
+        }
+        System.out.println(bName);
+        return bName;
+    }
+    /*
      Show Location List
      */
     public List<Locations> ShowLocationList() throws SQLException {
     
         Connection connection = DBConnection.getConnection();
         PreparedStatement ps = null;
-        List<Locations> CustomerList = new ArrayList();
+        List<Locations> LocationList = new ArrayList();
         
         try {
             ps = connection.prepareStatement("SELECT Id,building_Name,room_Name,room_Type,capacity FROM location ORDER BY Id");
@@ -222,7 +253,39 @@ public class addLocations {
                 
 
                 //add object to arraylist
-                CustomerList.add(locations);
+                LocationList.add(locations);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return LocationList;
+    }
+    
+    /*
+     Load Rooms
+     */
+    public List<String> LoadRooms() throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> CustomerList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT room_Name FROM location ORDER BY Id");
+            //excuite sql
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                CustomerList.add(rs.getString("room_Name"));
             }
         } catch (SQLException ex) {
             throw ex;
