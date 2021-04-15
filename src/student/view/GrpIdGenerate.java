@@ -10,11 +10,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import student.controller.GrpIdGenerateCon;
 import student.util.LoadTable;
 
@@ -23,6 +26,10 @@ import student.util.LoadTable;
  * @author RPsandeepa
  */
 public class GrpIdGenerate extends javax.swing.JPanel {
+
+    Connection connection;
+    PreparedStatement pstYns, pstDp, pstGno, pst, pst2;
+    ResultSet rs;
 
     /**
      * Creates new form GrpIdGenerate
@@ -33,8 +40,13 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         dNpSelection();
         gNnSelection();
         errorMsg.setVisible(false);
-        id.setVisible(false);
+        id_lbl.setVisible(true);
+        yNs_id.setVisible(false);
+        dP_id.setVisible(false);
+        gP_id.setVisible(false);
         showYnSList();
+        int selectedRow = tbl_grp_num_gen.getSelectedRow();
+        System.out.println(selectedRow);
     }
 
     GrpIdGenerateCon gig = new GrpIdGenerateCon();
@@ -54,6 +66,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         btn_generate = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
         btn_del = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jCombo_yer_and_sem = new javax.swing.JComboBox<>();
@@ -62,16 +75,17 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         errorMsg = new javax.swing.JLabel();
+        id_lbl = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
+        yNs_id = new javax.swing.JLabel();
+        dP_id = new javax.swing.JLabel();
+        gP_id = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
         tbl_grp_num_gen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Group Number"
@@ -122,12 +136,22 @@ public class GrpIdGenerate extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setText("Reset");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btn_generate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_update)
@@ -139,11 +163,15 @@ public class GrpIdGenerate extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_del)
-                    .addComponent(btn_update)
-                    .addComponent(btn_generate))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_del)
+                            .addComponent(btn_update)
+                            .addComponent(btn_generate))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel2.setBackground(java.awt.Color.white);
@@ -153,11 +181,13 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         jLabel1.setText("Academic Year And Semester");
 
         jCombo_yer_and_sem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jCombo_yer_and_sem.setForeground(new java.awt.Color(255, 255, 255));
+        jCombo_yer_and_sem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
 
         jCombo_deg_pro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCombo_deg_pro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
 
         jCombo_grp_num.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCombo_grp_num.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Group Number");
@@ -169,49 +199,73 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         errorMsg.setForeground(java.awt.Color.red);
         errorMsg.setText("error");
 
+        id_lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        id_lbl.setText("Selected Id");
+
+        id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         id.setText("id");
+
+        yNs_id.setText("jLabel5");
+
+        dP_id.setText("jLabel6");
+
+        gP_id.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(id_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jCombo_yer_and_sem, 0, 188, Short.MAX_VALUE)
-                            .addComponent(jCombo_deg_pro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jCombo_grp_num, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(49, 49, 49)
-                        .addComponent(id)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(id)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jCombo_yer_and_sem, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCombo_deg_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCombo_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(yNs_id, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(dP_id, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(gP_id, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(id_lbl)
+                    .addComponent(id))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jCombo_yer_and_sem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(id))
+                    .addComponent(yNs_id))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCombo_deg_pro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCombo_deg_pro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dP_id))
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jCombo_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jCombo_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gP_id))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorMsg)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -247,13 +301,13 @@ public class GrpIdGenerate extends javax.swing.JPanel {
                                 .addGap(11, 11, 11)
                                 .addComponent(jLabel4)
                                 .addGap(12, 12, 12)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
                             .addComponent(jSeparator1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -264,7 +318,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
 
         if (selectedRow != -1) {
 
-            String idYS = id.getText();
+            String idYS = id_lbl.getText();
             int final_id = Integer.parseInt(idYS);
 
             int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
@@ -302,35 +356,102 @@ public class GrpIdGenerate extends javax.swing.JPanel {
             errorMsg.setText("Please Selected Row");
             errorMsg.setVisible(true);
         }
-showYnSList();
+        showYnSList();
     }//GEN-LAST:event_btn_delActionPerformed
 
     private void btn_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generateActionPerformed
 
-        errorMsg.setVisible(false);
-
-        String groupId;
-
-        groupId = jCombo_yer_and_sem.getSelectedItem() + "." + jCombo_deg_pro.getSelectedItem() + "." + jCombo_grp_num.getSelectedItem();
-
+//        errorMsg.setVisible(false);
+//        String groupId;
+//
+//        groupId = jCombo_yer_and_sem.getSelectedItem() + "." + jCombo_deg_pro.getSelectedItem() + "." + jCombo_grp_num.getSelectedItem();
+//
+//        try {
+//
+//            if (inputDataValidator() == true && allReady() == true) {
+//
+//                int i = gig.addHandleClick(groupId);
+//                showYnSList();
+//                if (i != 0) {
+//                    JOptionPane.showMessageDialog(this, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
+//
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//                showYnSList();
+//            }
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         try {
+            DefaultTableModel model = (DefaultTableModel) tbl_grp_num_gen.getModel();
+            connection = DBConnection.getConnection();
 
-            if (inputDataValidator() == true && allReady() == true) {
+            if (jCombo_yer_and_sem.getSelectedItem().equals("Select") && jCombo_deg_pro.getSelectedItem().equals("Select") && jCombo_grp_num.getSelectedItem().equals("Select")) {
+                errorMsg.setText("Select Items*");
+                errorMsg.setVisible(true);
 
-                int i = gig.addHandleClick(groupId);
-                showYnSList();
-                if (i != 0) {
-                    JOptionPane.showMessageDialog(this, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                errorMsg.setText("");
+                errorMsg.setVisible(false);
 
-                } else {
-                    JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                model.addRow(new Object[]{jCombo_yer_and_sem.getSelectedItem().toString() + "." + jCombo_deg_pro.getSelectedItem().toString() + "." + jCombo_grp_num.getSelectedItem().toString()});
+
+                String getYnsQuery = "select idAcdYerAndSem from AcdYerAndSem where yerName = '" + jCombo_yer_and_sem.getSelectedItem().toString() + "'";
+                String getDpQuery = "select idDegPro from DegreePro where degName = '" + jCombo_deg_pro.getSelectedItem().toString() + "'";
+                String getGnoQuery = "select idGrp_num from GroupNum where grp_num = '" + jCombo_grp_num.getSelectedItem().toString() + "'";
+
+                pstYns = connection.prepareStatement(getYnsQuery);
+                rs = pstYns.executeQuery();
+                while (rs.next()) {
+                    yNs_id.setText(rs.getString("idAcdYerAndSem"));
                 }
-showYnSList();
+
+                pstDp = connection.prepareStatement(getDpQuery);
+                rs = pstDp.executeQuery();
+                while (rs.next()) {
+                    dP_id.setText(rs.getString("idDegPro"));
+                }
+                pstGno = connection.prepareStatement(getGnoQuery);
+                rs = pstGno.executeQuery();
+                while (rs.next()) {
+                    gP_id.setText(rs.getString("idGrp_num"));
+                }
+
+                String groupId = jCombo_yer_and_sem.getSelectedItem() + "." + jCombo_deg_pro.getSelectedItem() + "." + jCombo_grp_num.getSelectedItem();
+
+                String queryGpIdGen = "INSERT INTO GroupNumGenerate (GrpNum, yNsId, dpId, gnoId) VALUES (?, ?, ?, ?)";
+                pst = connection.prepareStatement(queryGpIdGen, PreparedStatement.RETURN_GENERATED_KEYS);
+                pst.setString(1, groupId);
+                pst.setString(2, yNs_id.getText());
+                pst.setString(3, dP_id.getText());
+                pst.setString(4, gP_id.getText());
+                pst.executeUpdate();
+
+                String queryAllDetails = "INSERT INTO all_details (yNs, dp, gNo, gId, sGid) VALUES (?, ?, ?, ?, ?)";
+                pst2 = connection.prepareStatement(queryAllDetails, PreparedStatement.RETURN_GENERATED_KEYS);
+                pst2.setString(1, jCombo_yer_and_sem.getSelectedItem().toString());
+                pst2.setString(2, jCombo_deg_pro.getSelectedItem().toString());
+                pst2.setString(3, jCombo_grp_num.getSelectedItem().toString());
+                pst2.setString(4, groupId);
+                pst2.setString(5, "-");
+                pst2.executeUpdate();
+
+                model.setRowCount(0);
+                showYnSList();
+
+                jCombo_yer_and_sem.setSelectedIndex(0);
+                jCombo_deg_pro.setSelectedIndex(0);
+                jCombo_grp_num.setSelectedIndex(0);
+
+                JOptionPane.showMessageDialog(this, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
         }
+
     }//GEN-LAST:event_btn_generateActionPerformed
 
     private void tbl_grp_num_genMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_grp_num_genMouseClicked
@@ -353,48 +474,101 @@ showYnSList();
 
         String third = val[9] + val[10];
         jCombo_grp_num.setSelectedItem(third);
+
     }//GEN-LAST:event_tbl_grp_num_genMouseClicked
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
 
+//        try {
+//
+//            int selectedRow = tbl_grp_num_gen.getSelectedRow();
+//
+//            if (selectedRow != -1) {
+//
+//                errorMsg.setVisible(false);
+//
+//                String idYS = id_lbl.getText();
+//                int final_id = Integer.parseInt(idYS);
+//
+//                if (inputDataValidator() == true && allReady() == true) {
+//
+//                    errorMsg.setVisible(false);
+//
+//                    String newSubId = jCombo_yer_and_sem.getSelectedItem() + "." + jCombo_deg_pro.getSelectedItem() + "." + jCombo_grp_num.getSelectedItem();
+//
+//                    int i = gig.updateHandleClick(final_id, newSubId);
+////                System.out.println(i);
+//                    if (i != 0) {
+////                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
+//                        JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
+//                        showYnSList();
+//                    } else {
+//                        JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+//                    }
+//
+//                }
+//
+//            } else {
+//                errorMsg.setText("Please Selected Row");
+//                errorMsg.setVisible(true);
+//            }
+//
+//        } catch (Exception e) {
+//        }
+//        showYnSList();
+
+
+        int selectedRow = tbl_grp_num_gen.getSelectedRow();
+
+        String newGenerateID = (jCombo_yer_and_sem.getSelectedItem().toString() + "." + jCombo_deg_pro.getSelectedItem().toString() + "." + jCombo_grp_num.getSelectedItem().toString());
+
         try {
-
-            int selectedRow = tbl_grp_num_gen.getSelectedRow();
-
-            if (selectedRow != -1) {
-
-                errorMsg.setVisible(false);
-
-                String idYS = id.getText();
-                int final_id = Integer.parseInt(idYS);
-
-                if (inputDataValidator() == true && allReady() == true) {
-
-                    errorMsg.setVisible(false);
-
-                    String newSubId = jCombo_yer_and_sem.getSelectedItem() + "." + jCombo_deg_pro.getSelectedItem() + "." + jCombo_grp_num.getSelectedItem();
-
-                    int i = gig.updateHandleClick(final_id, newSubId);
-//                System.out.println(i);
-                    if (i != 0) {
-//                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                        JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
-                        showYnSList();
-                    } else {
-                        JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                }
-
-            } else {
-                errorMsg.setText("Please Selected Row");
+            
+            DefaultTableModel model = (DefaultTableModel) tbl_grp_num_gen.getModel();
+//            Statement smt = connection.createStatement();
+            
+            PreparedStatement sp = null;
+            
+            if(selectedRow != -1){
                 errorMsg.setVisible(true);
+                errorMsg.setText("Select Group ID*");
+                
+            
+            }else{
+                
+                errorMsg.setText("");
+                errorMsg.setVisible(false);
+                
+                TableModel mt = tbl_grp_num_gen.getModel();
+                id.setText(mt.getValueAt(selectedRow, 1).toString());
+                
+                sp.execute("UPDATE GroupNumGenerate SET GrpNum = '" + newGenerateID + "' WHERE idGrpNumGen = " + id);
+                sp.execute("UPDATE all_details SET gId = '" + newGenerateID + "' WHERE gId = '" + id.getText().toString() + "' AND sGid = '-' ");
+                model.setRowCount(0);
+                showYnSList();
+                
+                jCombo_yer_and_sem.setSelectedIndex(0);
+                jCombo_deg_pro.setSelectedIndex(0);
+                jCombo_grp_num.setSelectedIndex(0);
+                
+                JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
+            
             }
-
+            
         } catch (Exception e) {
+            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
         }
-showYnSList();
+        
     }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        id.setText(" ");
+//        txt_deg_pro.setText("");
+        jCombo_yer_and_sem.setSelectedIndex(0);
+        jCombo_deg_pro.setSelectedIndex(0);
+        jCombo_grp_num.setSelectedIndex(0);
+        showYnSList();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void yNsSelection() {
         PreparedStatement pst;
@@ -509,8 +683,12 @@ showYnSList();
     private javax.swing.JButton btn_del;
     private javax.swing.JButton btn_generate;
     private javax.swing.JButton btn_update;
+    private javax.swing.JLabel dP_id;
     private javax.swing.JLabel errorMsg;
+    private javax.swing.JLabel gP_id;
     private javax.swing.JLabel id;
+    private javax.swing.JLabel id_lbl;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jCombo_deg_pro;
     private javax.swing.JComboBox<String> jCombo_grp_num;
     private javax.swing.JComboBox<String> jCombo_yer_and_sem;
@@ -523,5 +701,6 @@ showYnSList();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tbl_grp_num_gen;
+    private javax.swing.JLabel yNs_id;
     // End of variables declaration//GEN-END:variables
 }

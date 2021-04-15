@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/RPsandeepa/Documents/GitHub/TimeTable/src/student/controller/TagCon.java</file>
-            <file>file:/C:/Users/RPsandeepa/Documents/GitHub/TimeTable/src/student/model/TagModel.java</file>
-            <file>file:/C:/Users/RPsandeepa/Documents/GitHub/TimeTable/src/student/view/TagDetails.java</file>
+            <file>file:/C:/Users/RPsandeepa/Documents/GitHub/TimeTable/src/student/view/GrpIdGenerate.java</file>
+            <file>file:/C:/Users/RPsandeepa/Documents/GitHub/TimeTable/src/student/model/GroupNumGenerate.java</file>
+            <file>file:/C:/Users/RPsandeepa/Documents/GitHub/TimeTable/src/student/controller/GrpIdGenerateCon.java</file>
+            <file>file:/C:/Users/RPsandeepa/Documents/GitHub/TimeTable/src/student/view/Degree.java</file>
         </group>
     </open-files>
 </project-private>
