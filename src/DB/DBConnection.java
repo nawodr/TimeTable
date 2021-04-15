@@ -21,7 +21,13 @@ public class DBConnection {
             Class.forName("org.sqlite.JDBC");                 
             Connection con = DriverManager.getConnection("jdbc:sqlite:db.db");
             
-            System.out.println("Connection Succesfull");
+//            System.out.println("Connection Succesfull");
+
+            if(con == null || con.isClosed()){
+                Class.forName("org.sqlite.JDBC");                 
+                con = DriverManager.getConnection("jdbc:sqlite:db.db");
+                System.out.println("Connection Succesfull");
+            }
             
             return con;
             
