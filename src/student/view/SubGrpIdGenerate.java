@@ -15,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import student.controller.SubGrpIdGenCont;
 import student.util.LoadTable;
 
@@ -27,11 +28,14 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
     /**
      * Creates new form SubGrpIdGen
      */
+    PreparedStatement pst, pstg, psGetAll, psUpAll;
+    ResultSet rs;
+
     public SubGrpIdGenerate() {
         initComponents();
         yNsSelection();
         errorMsg.setVisible(false);
-        id.setVisible(false);
+        id.setVisible(true);
         showYnSList();
         sGnSelection();
     }
@@ -51,9 +55,11 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         errorMsg = new javax.swing.JLabel();
-        id = new javax.swing.JLabel();
+        id_lbl = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        id = new javax.swing.JLabel();
+        gId_id = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_sub_id_gen = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -62,6 +68,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
         btn_add = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
         btn_delete = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jPanel1.setBackground(java.awt.Color.white);
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -70,62 +77,75 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
         jLabel1.setText("Group Number");
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
 
         errorMsg.setForeground(java.awt.Color.red);
         errorMsg.setText("error");
 
-        id.setText("id");
+        id_lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        id_lbl.setText("Selected Id");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Sub Group Number");
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+
+        id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        id.setText("Id");
+
+        gId_id.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(77, 77, 77)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(id_lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jComboBox2, 0, 142, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(id)
-                        .addGap(30, 30, 30))))
+                            .addComponent(jLabel2)
+                            .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(gId_id)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(45, 45, 45))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(id_lbl)
+                    .addComponent(id))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(id))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(errorMsg)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(errorMsg)
+                    .addComponent(gId_id))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         tbl_sub_id_gen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Sub Group Number"
@@ -187,12 +207,22 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setText("Reset");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_add)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_update)
@@ -207,7 +237,8 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_delete)
                     .addComponent(btn_update)
-                    .addComponent(btn_add))
+                    .addComponent(btn_add)
+                    .addComponent(jButton1))
                 .addGap(36, 36, 36))
         );
 
@@ -240,7 +271,8 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -251,28 +283,100 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
 
         errorMsg.setVisible(false);
 
-        String subId;
-
-        subId = jComboBox1.getSelectedItem() + "." + jComboBox2.getSelectedItem();
-
+//        String subId;
+//
+//        subId = jComboBox1.getSelectedItem() + "." + jComboBox2.getSelectedItem();
+//
+//        try {
+//
+//            if (inputDataValidator() == true && allReady() == true) {
+//
+//                int i = sig.addHandleClick(subId);
+//                showYnSList();
+//                if (i != 0) {
+//                    JOptionPane.showMessageDialog(this, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
+//
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//
+//            }
+//showYnSList();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         try {
 
-            if (inputDataValidator() == true && allReady() == true) {
+            DefaultTableModel model = (DefaultTableModel) tbl_sub_id_gen.getModel();
+            Connection connection = DBConnection.getConnection();
 
-                int i = sig.addHandleClick(subId);
-                showYnSList();
-                if (i != 0) {
-                    JOptionPane.showMessageDialog(this, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
+            if (jComboBox1.getSelectedItem().equals("Select") && jComboBox2.getSelectedItem().equals("Select")) {
+                errorMsg.setText("Select Items*");
+                errorMsg.setVisible(true);
+            } else {
 
-                } else {
-                    JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                errorMsg.setText("");
+                errorMsg.setVisible(false);
+                String selectedGid = jComboBox1.getSelectedItem().toString();
+
+                String getGIdQuery = "select idGrpNumGen from GroupNumGenerate where GrpNum=?";
+                pstg = connection.prepareStatement(getGIdQuery);
+                pstg.setString(1, selectedGid);
+//                rs = pstg.executeUpdate();
+                rs = pstg.executeQuery();
+                while (rs.next()) {
+                    gId_id.setText(rs.getString("idGrpNumGen"));
                 }
 
+                model.addRow(new Object[]{jComboBox1.getSelectedItem().toString() + "." + jComboBox2.getSelectedItem().toString()});
+
+                String generateSID = (jComboBox1.getSelectedItem().toString() + "." + jComboBox2.getSelectedItem().toString());
+
+                String queryAddSubGen = "INSERT INTO SubGrpGenerate (sGno, SubGrpGenName, gId) VALUES (?,?,?)";
+                pst = connection.prepareStatement(queryAddSubGen);
+                pst.setString(1, jComboBox2.getSelectedItem().toString());
+                pst.setString(2, generateSID);
+                pst.setString(3, gId_id.getText());
+                pst.executeUpdate();
+                model.setRowCount(0);
+                pst.close();
+                
+                String queryGetAllDeta = "select sGid from all_details where gId =?";
+                psGetAll = connection.prepareStatement(queryGetAllDeta);
+                psGetAll.setString(1, jComboBox1.getSelectedItem().toString());
+                rs = psGetAll.executeQuery();
+//                System.out.println(generateSID);
+                String ck_sGid="";
+                
+                while (rs.next()) {
+                    ck_sGid = rs.getString("sGid");
+                }
+//                System.out.println(ck_sGid);
+                if (ck_sGid.equals("-")) {
+                    
+                    String queryUpAllDeta = "UPDATE all_details SET sGid=? where gId=?";
+                    psUpAll = connection.prepareStatement(queryUpAllDeta);
+                    psUpAll.setString(1, generateSID);
+                    psUpAll.setString(2, jComboBox1.getSelectedItem().toString());
+                    psUpAll.executeQuery();
+                    
+                }else{
+                
+                }
+                
+                jComboBox1.setSelectedIndex(0);
+                jComboBox2.setSelectedIndex(0);
+                showYnSList();
+
+                JOptionPane.showMessageDialog(null, "Inserting Successful!");
+                
             }
-showYnSList();
-        } catch (SQLException ex) {
-            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
         }
+
 
     }//GEN-LAST:event_btn_addActionPerformed
 
@@ -283,7 +387,7 @@ showYnSList();
     private void tbl_sub_id_genMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sub_id_genMouseClicked
 
         errorMsg.setVisible(false);
-        
+
         int selectedRow = tbl_sub_id_gen.getSelectedRow();
 //        System.out.println(selectedRow);
         int Id = (int) tbl_sub_id_gen.getValueAt(selectedRow, 0);
@@ -311,7 +415,7 @@ showYnSList();
 
                 errorMsg.setVisible(false);
 
-                String idYS = id.getText();
+                String idYS = id_lbl.getText();
                 int final_id = Integer.parseInt(idYS);
 
                 if (inputDataValidator() == true && allReady() == true) {
@@ -339,55 +443,64 @@ showYnSList();
 
         } catch (Exception e) {
         }
-showYnSList();
+        showYnSList();
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
-        
+
         int selectedRow = tbl_sub_id_gen.getSelectedRow();
 
         if (selectedRow != -1) {
 
-            String idYS = id.getText();
-        int final_id = Integer.parseInt(idYS);
+            String idYS = id_lbl.getText();
+            int final_id = Integer.parseInt(idYS);
 
-        int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+            int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
 
-        if (v == JOptionPane.YES_OPTION) {
+            if (v == JOptionPane.YES_OPTION) {
 
-            try {
+                try {
 
-                int i = sig.deleteHandleClick(final_id);
+                    int i = sig.deleteHandleClick(final_id);
 
-                showYnSList();
+                    showYnSList();
 
-                if (i != 0) {
+                    if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                    JOptionPane.showMessageDialog(this, "Successfully Deleted!");
+                        JOptionPane.showMessageDialog(this, "Successfully Deleted!");
 //                    txt_deg_pro.setText("");
 
-                } else {
-                    JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } catch (SQLException ex) {
+
+                    Logger.getLogger(YearSemester.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
 
-            } catch (SQLException ex) {
+            } else if (v == JOptionPane.NO_OPTION) {
 
-                Logger.getLogger(YearSemester.class.getName()).log(Level.SEVERE, null, ex);
+            } else {
 
             }
-
-        } else if (v == JOptionPane.NO_OPTION) {
-
-        } else {
-
-        }
 
         } else {
             errorMsg.setText("Please Selected Row");
             errorMsg.setVisible(true);
         }
-        showYnSList();       
+        showYnSList();
     }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        id.setText(" ");
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        showYnSList();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void yNsSelection() {
         PreparedStatement pst;
@@ -480,7 +593,10 @@ showYnSList();
     private javax.swing.JButton btn_delete;
     private javax.swing.JButton btn_update;
     private javax.swing.JLabel errorMsg;
+    private javax.swing.JLabel gId_id;
     private javax.swing.JLabel id;
+    private javax.swing.JLabel id_lbl;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
