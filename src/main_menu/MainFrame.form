@@ -46,7 +46,7 @@
               <Component id="panelHeader" min="-2" pref="91" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="panelMenu" pref="564" max="32767" attributes="0"/>
+                  <Component id="panelMenu" pref="572" max="32767" attributes="0"/>
                   <Component id="panelBody" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -202,7 +202,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="pnl_menu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

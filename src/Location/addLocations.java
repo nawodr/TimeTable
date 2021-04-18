@@ -5,6 +5,7 @@
  */
 package Location;
 
+import Location.Locations;
 import DB.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -195,6 +196,7 @@ public class addLocations {
         return isAvailable;
     }
     
+    
     /*
      check whether Laction Building & Room is exist
      */
@@ -276,7 +278,7 @@ public class addLocations {
     
         Connection connection = DBConnection.getConnection();
         PreparedStatement ps = null;
-        List<String> CustomerList = new ArrayList();
+        List<String> roomList = new ArrayList();
         
         try {
             ps = connection.prepareStatement("SELECT room_Name FROM location ORDER BY Id");
@@ -285,7 +287,7 @@ public class addLocations {
 
             while (rs.next()) {
                 // create objct & set db value
-                CustomerList.add(rs.getString("room_Name"));
+                roomList.add(rs.getString("room_Name"));
             }
         } catch (SQLException ex) {
             throw ex;
@@ -298,7 +300,114 @@ public class addLocations {
                     throw ex;
                 }
         }
-        return CustomerList;
+        return roomList;
     }
+    
+    /*
+     Load Rooms
+     */
+    public List<String> LoadRooms(String type) throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> roomList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT room_Name FROM location where room_Type = ? ORDER BY Id");
+            //excuite sql
+            ps.setString(1, type);
+            ResultSet rs = ps.executeQuery();
 
+            while (rs.next()) {
+                // create objct & set db value
+                roomList.add(rs.getString("room_Name"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return roomList;
+    }
+    
+    /*
+     Load Tags
+     */
+    public List<String> LoadTagId() throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> tagList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT tagId FROM Tag ORDER BY tagId");
+            //excuite sql
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                tagList.add(rs.getString("tagId"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return tagList;
+    }
+    
+    /*
+    Get Customer Specified by Customer Code
+     */
+//    public CustomerModel getCustomerById(String Customer_Code) throws SQLException {
+//        
+//        Connection connection = DB.getConnection();
+//        PreparedStatement ps = null;
+//        ResultSet rs = null;
+//        
+//        CustomerModel customer = new CustomerModel();
+//        
+//        try {
+//            ps = connection.prepareStatement("SELECT Customer_Code,Phone_Num,Name,Address1,Address2,Address3,Tel,Email FROM customer WHERE Customer_Code = ?");
+//
+//            //excuite sql
+//            ps.setString(1, Customer_Code);
+//            rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                // get db value
+//                customer.setPhoneNumber(rs.getString("Phone_Num"));
+//                customer.setName(rs.getString("Name"));
+//                customer.setAddress1(rs.getString("Address1"));
+//                customer.setAddress2(rs.getString("Address2"));
+//                customer.setAddress3(rs.getString("Address3"));
+//                customer.setTel(rs.getString("Tel"));
+//                customer.setEmail(rs.getString("Email"));
+//                customer.setCode(rs.getString("Customer_Code"));
+//            }
+//        } catch (SQLException ex) {
+//                throw ex;
+//        }finally {
+//            try {
+//                if(ps != null){
+//                    ps.close();
+//                }
+//            } catch (Exception ex) {
+//                throw ex;
+//            }  
+//        }
+//        return customer;
+//    }
 }
