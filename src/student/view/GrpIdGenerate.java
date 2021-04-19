@@ -326,49 +326,48 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         PreparedStatement ps, smt;
         int selectedRow = tbl_grp_num_gen.getSelectedRow();
         String idGen = id.getText();
-        
-        
-        try {
-            
-            DefaultTableModel model = (DefaultTableModel) tbl_grp_num_gen.getModel();
-            
-            if (selectedRow == -1) {
-                errorMsg.setVisible(true);
-                errorMsg.setText("Select Group ID*");
 
-            } else {
-            
-                errorMsg.setText("");
-                
-                int i = tbl_grp_num_gen.getSelectedRow();
-                TableModel mt = tbl_grp_num_gen.getModel();
-                gid.setText(mt.getValueAt(i, 1).toString());
-                
-                String queryDelGen = "DELETE FROM GroupNumGenerate WHERE idGrpNumGen=?";
-                ps = connection.prepareStatement(queryDelGen);
-                ps.setString(1, idGen);
-                ps.executeUpdate();
-                
-                String queryAllDet = "DELETE FROM all_details WHERE gId=? and sGid=?";
-                ps = connection.prepareStatement(queryAllDet);
-                ps.setString(1, gid.getText().toString());
-                ps.setString(2, "-");
-                ps.executeUpdate();
-                
-                showYnSList();
-                JOptionPane.showMessageDialog(this, "Successfully Deleted!");
-                
+        int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+
+        if (v == JOptionPane.YES_OPTION) {
+
+            try {
+
+                DefaultTableModel model = (DefaultTableModel) tbl_grp_num_gen.getModel();
+
+                if (selectedRow == -1) {
+                    errorMsg.setVisible(true);
+                    errorMsg.setText("Select Group ID*");
+
+                } else {
+
+                    errorMsg.setText("");
+
+                    int i = tbl_grp_num_gen.getSelectedRow();
+                    TableModel mt = tbl_grp_num_gen.getModel();
+                    gid.setText(mt.getValueAt(i, 1).toString());
+
+                    String queryDelGen = "DELETE FROM GroupNumGenerate WHERE idGrpNumGen=?";
+                    ps = connection.prepareStatement(queryDelGen);
+                    ps.setString(1, idGen);
+                    ps.executeUpdate();
+
+                    String queryAllDet = "DELETE FROM all_details WHERE gId=? and sGid=?";
+                    ps = connection.prepareStatement(queryAllDet);
+                    ps.setString(1, gid.getText().toString());
+                    ps.setString(2, "-");
+                    ps.executeUpdate();
+
+                    showYnSList();
+                    JOptionPane.showMessageDialog(this, "Successfully Deleted!");
+
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
             }
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+
         }
-        
-        
-        
-        
-        
-        
 
 //        if (selectedRow != -1) {
 //
@@ -489,7 +488,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
                 pst2.setString(2, jCombo_deg_pro.getSelectedItem().toString());
                 pst2.setString(3, jCombo_grp_num.getSelectedItem().toString());
                 pst2.setString(4, groupId);
-                pst2.setString(5, "-");
+                pst2.setString(5, "");
                 pst2.executeUpdate();
 
                 model.setRowCount(0);
@@ -610,7 +609,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
                 smt = connection.prepareStatement(queryUpAllDetils);
                 smt.setString(1, newGenerateID);
                 smt.setString(2, idx);
-                smt.setString(3, "-");
+                smt.setString(3, "");
                 smt.executeUpdate();
 
                 model.setRowCount(0);
