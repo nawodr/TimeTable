@@ -5,7 +5,9 @@
  */
 package student.view;
 
+import java.util.LinkedHashMap;
 import javax.swing.JPanel;
+import student.util.LoadTable;
 
 /**
  *
@@ -18,6 +20,7 @@ public class pnl_Student extends javax.swing.JPanel {
      */
     public pnl_Student() {
         initComponents();
+        showYnSList();
     }
 
     /**
@@ -45,6 +48,11 @@ public class pnl_Student extends javax.swing.JPanel {
         jToggleButton7 = new javax.swing.JToggleButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jPanel7 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_all_details = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jTabbedPane2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
@@ -127,7 +135,7 @@ public class pnl_Student extends javax.swing.JPanel {
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGap(0, 431, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout panl_all_add_detailsLayout = new javax.swing.GroupLayout(panl_all_add_details);
@@ -208,7 +216,7 @@ public class pnl_Student extends javax.swing.JPanel {
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGap(0, 431, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -236,15 +244,71 @@ public class pnl_Student extends javax.swing.JPanel {
 
         jTabbedPane2.addTab("ID Generates", jPanel6);
 
+        tbl_all_details.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Year And Sem", "Degree Program", "Group Number", "Group ID", "Sub Group ID"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbl_all_details);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jScrollPane1)
+                .addGap(58, 58, 58))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(468, 468, 468)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(186, 186, 186))
+        );
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Student All Details");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1038, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(417, 417, 417)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(456, 456, 456))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 475, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("View Details", jPanel7);
@@ -263,8 +327,10 @@ public class pnl_Student extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    YearSemester yea;Degree dg;
-    Group gp;SubGroup sbg;
+    YearSemester yea;
+    Degree dg;
+    Group gp;
+    SubGroup sbg;
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
 
         if (yea == null) {
@@ -275,9 +341,7 @@ public class pnl_Student extends javax.swing.JPanel {
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
 
-
-
-         if (dg == null) {
+        if (dg == null) {
             dg = new Degree();
         }
         setpanels(dg);
@@ -286,51 +350,66 @@ public class pnl_Student extends javax.swing.JPanel {
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
 
-          if (gp == null) {
+        if (gp == null) {
             gp = new Group();
         }
         setpanels(gp);
-              // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
 
-         if (sbg == null) {
+        if (sbg == null) {
             sbg = new SubGroup();
         }
         setpanels(sbg);
 
-        
+
     }//GEN-LAST:event_jToggleButton4ActionPerformed
-GrpIdGenerate yns;
+    GrpIdGenerate yns;
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
- 
+
         if (yns == null) {
             yns = new GrpIdGenerate();
         }
-        setpanels2(yns);   
+        setpanels2(yns);
 
     }//GEN-LAST:event_jToggleButton5ActionPerformed
-SubGrpIdGenerate sgi;
+    SubGrpIdGenerate sgi;
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
- 
+
         if (sgi == null) {
             sgi = new SubGrpIdGenerate();
         }
-        setpanels2(sgi);   
+        setpanels2(sgi);
 
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
+    public void showYnSList() {
+        LinkedHashMap hm = new LinkedHashMap();
+        hm.put("id", "int");
+        hm.put("yNs", "String");
+        hm.put("dp", "String");
+        hm.put("gNo", "String");
+        hm.put("gId", "String");
+        hm.put("sGid", "String");
+
+        new LoadTable(tbl_all_details, "Select * from all_details", hm);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     public static javax.swing.JLayeredPane jLayeredPane1;
     public static javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
@@ -339,6 +418,7 @@ SubGrpIdGenerate sgi;
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton7;
     private javax.swing.JPanel panl_all_add_details;
+    private javax.swing.JTable tbl_all_details;
     // End of variables declaration//GEN-END:variables
 
     public static void setpanels(JPanel panel) {
@@ -348,6 +428,7 @@ SubGrpIdGenerate sgi;
         panel.setVisible(true);
         jLayeredPane1.moveToFront(panel);
     }
+
     public static void setpanels2(JPanel panel) {
         jLayeredPane2.removeAll();
         panel.setSize(jLayeredPane2.getSize());

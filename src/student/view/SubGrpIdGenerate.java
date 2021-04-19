@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import student.controller.SubGrpIdGenCont;
 import student.util.LoadTable;
 
@@ -28,7 +29,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
     /**
      * Creates new form SubGrpIdGen
      */
-    PreparedStatement pst, pstg, psGetAll, psUpAll;
+    PreparedStatement pst, pstg, psGetAll, psUpAll, smt1, smt2, smt3, smt4, smt5, smt6, smt7, upsmt1, upsmt2;
     ResultSet rs;
 
     public SubGrpIdGenerate() {
@@ -36,6 +37,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
         yNsSelection();
         errorMsg.setVisible(false);
         id.setVisible(true);
+        gId_id.setVisible(false);
         showYnSList();
         sGnSelection();
     }
@@ -60,6 +62,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
         id = new javax.swing.JLabel();
         gId_id = new javax.swing.JLabel();
+        sgid = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_sub_id_gen = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -96,6 +99,8 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
 
         gId_id.setText("jLabel4");
 
+        sgid.setText("jLabel4");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -107,13 +112,15 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
                         .addComponent(id_lbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109))
+                        .addGap(63, 63, 63)
+                        .addComponent(sgid)
+                        .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(6, 6, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(gId_id)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -125,9 +132,11 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(id_lbl)
-                    .addComponent(id))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(id_lbl)
+                        .addComponent(id))
+                    .addComponent(sgid))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -340,40 +349,104 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
                 pst.executeUpdate();
                 model.setRowCount(0);
                 pst.close();
-                
+
                 String queryGetAllDeta = "select sGid from all_details where gId =?";
                 psGetAll = connection.prepareStatement(queryGetAllDeta);
                 psGetAll.setString(1, jComboBox1.getSelectedItem().toString());
                 rs = psGetAll.executeQuery();
 //                System.out.println(generateSID);
-                String ck_sGid="";
-                
+                String ck_sGid = null;
+
                 while (rs.next()) {
                     ck_sGid = rs.getString("sGid");
                 }
 //                System.out.println(ck_sGid);
-                if (ck_sGid.equals("-")) {
-                    
+                if (ck_sGid.isEmpty()) {
+
+                    System.out.println(ck_sGid);
                     String queryUpAllDeta = "UPDATE all_details SET sGid=? where gId=?";
                     psUpAll = connection.prepareStatement(queryUpAllDeta);
                     psUpAll.setString(1, generateSID);
                     psUpAll.setString(2, jComboBox1.getSelectedItem().toString());
-                    psUpAll.executeQuery();
-                    
-                }else{
-                
+                    psUpAll.executeUpdate();
+
+                } else {
+
+                    String q1 = "select yNsId from GroupNumGenerate where grpNum=?";
+                    smt1 = connection.prepareStatement(q1);
+                    smt1.setString(1, jComboBox1.getSelectedItem().toString());
+                    ResultSet rs1 = smt1.executeQuery();
+                    String rs_q1 = "";
+                    while (rs1.next()) {
+                        rs_q1 = rs1.getString("yNsId");
+                    }
+
+                    String q2 = "select yerName from AcdYerAndSem where idAcdYerAndSem=?";
+                    smt2 = connection.prepareStatement(q2);
+                    smt2.setString(1, rs_q1);
+                    ResultSet rs2 = smt2.executeQuery();
+                    String yNs = "";
+                    while (rs2.next()) {
+                        yNs = rs2.getString("yerName");
+                    }
+
+                    String q3 = "select dpId from GroupNumGenerate where grpNum=?";
+                    smt3 = connection.prepareStatement(q3);
+                    smt3.setString(1, jComboBox1.getSelectedItem().toString());
+                    ResultSet rs3 = smt3.executeQuery();
+                    String rs_q2 = "";
+                    while (rs3.next()) {
+                        rs_q2 = rs3.getString("dpId");
+                    }
+
+                    String q4 = "select degName from DegreePro where idDegPro=?";
+                    smt4 = connection.prepareStatement(q4);
+                    smt4.setString(1, rs_q2);
+                    ResultSet rs4 = smt4.executeQuery();
+                    String dp = "";
+                    while (rs4.next()) {
+                        dp = rs4.getString("degName");
+                    }
+
+                    String q5 = "select gnoId from GroupNumGenerate where grpNum=?";
+                    smt5 = connection.prepareStatement(q5);
+                    smt5.setString(1, jComboBox1.getSelectedItem().toString());
+                    ResultSet rs5 = smt5.executeQuery();
+                    String rs_q3 = "";
+                    while (rs5.next()) {
+                        rs_q3 = rs5.getString("gnoId");
+                    }
+
+                    String q6 = "select grp_num from GroupNum where idGrp_num=?";
+                    smt6 = connection.prepareStatement(q6);
+                    smt6.setString(1, rs_q3);
+                    ResultSet rs6 = smt6.executeQuery();
+                    String gNo = "";
+                    while (rs6.next()) {
+                        gNo = rs6.getString("grp_num");
+                    }
+
+                    String queryAddAllDeta = "INSERT INTO all_details (yNs, dp, gNo, gId, sGid) VALUES (?, ?, ?, ?, ?)";
+                    smt7 = connection.prepareStatement(queryAddAllDeta);
+                    smt7.setString(1, yNs);
+                    smt7.setString(2, dp);
+                    smt7.setString(3, gNo);
+                    smt7.setString(4, jComboBox1.getSelectedItem().toString());
+                    smt7.setString(5, generateSID);
+                    smt7.executeUpdate();
+
                 }
-                
+
                 jComboBox1.setSelectedIndex(0);
                 jComboBox2.setSelectedIndex(0);
                 showYnSList();
 
                 JOptionPane.showMessageDialog(null, "Inserting Successful!");
-                
+
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+//            JOptionPane.showMessageDialog(null, e);
             Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
         }
 
@@ -403,47 +476,101 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
         String second = val[12] + val[13];
         jComboBox2.setSelectedItem(second);
 
+        TableModel mt = tbl_sub_id_gen.getModel();
+        sgid.setText(mt.getValueAt(selectedRow, 1).toString());
     }//GEN-LAST:event_tbl_sub_id_genMouseClicked
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
 
+//        try {
+        //
+        //            int selectedRow = tbl_sub_id_gen.getSelectedRow();
+        //
+        //            if (selectedRow != -1) {
+        //
+        //                errorMsg.setVisible(false);
+        //
+        //                String idYS = id_lbl.getText();
+        //                int final_id = Integer.parseInt(idYS);
+        //
+        //                if (inputDataValidator() == true && allReady() == true) {
+        //
+        //                    errorMsg.setVisible(false);
+        //
+        //                    String newSubId = jComboBox1.getSelectedItem() + "." + jComboBox2.getSelectedItem();
+        //
+        //                    int i = sig.updateHandleClick(final_id, newSubId);
+        ////                System.out.println(i);
+        //                    if (i != 0) {
+        ////                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
+        //                        JOptionPane.showMessageDialog(this, "Successfully Updated!");
+        //                        showYnSList();
+        //                    } else {
+        //                        JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+        //                    }
+        //
+        //                }
+        //
+        //            } else {
+        //                errorMsg.setText("Please Selected Row");
+        //                errorMsg.setVisible(true);
+        //            }
+        //
+        //        } catch (Exception e) {
+        //        }
+        //        showYnSList();
+        int selectedRow = tbl_sub_id_gen.getSelectedRow();
+        String sId = id.getText().toString();
+        String newGenerateID = (jComboBox1.getSelectedItem().toString() + "." + jComboBox2.getSelectedItem().toString());
+
         try {
 
-            int selectedRow = tbl_sub_id_gen.getSelectedRow();
+            DefaultTableModel model = (DefaultTableModel) tbl_sub_id_gen.getModel();
+            Connection connection = DBConnection.getConnection();
 
-            if (selectedRow != -1) {
-
-                errorMsg.setVisible(false);
-
-                String idYS = id_lbl.getText();
-                int final_id = Integer.parseInt(idYS);
-
-                if (inputDataValidator() == true && allReady() == true) {
-
-                    errorMsg.setVisible(false);
-
-                    String newSubId = jComboBox1.getSelectedItem() + "." + jComboBox2.getSelectedItem();
-
-                    int i = sig.updateHandleClick(final_id, newSubId);
-//                System.out.println(i);
-                    if (i != 0) {
-//                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                        JOptionPane.showMessageDialog(this, "Successfully Updated!");
-                        showYnSList();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                }
+            if (selectedRow == -1) {
+                errorMsg.setVisible(true);
+                errorMsg.setText("Select Sub Group ID*");
 
             } else {
-                errorMsg.setText("Please Selected Row");
+                
+                
                 errorMsg.setVisible(true);
+                errorMsg.setText("");
+                
+                TableModel mt = tbl_sub_id_gen.getModel();
+//                id.setText(mt.getValueAt(selectedRow, 1).toString());
+                
+                
+                String queryUpSubGrpGen = "UPDATE SubGrpGenerate SET SubGrpGenName=? WHERE idSubGrpGen=?";
+                upsmt1 = connection.prepareStatement(queryUpSubGrpGen);
+                upsmt1.setString(1, newGenerateID);
+                upsmt1.setString(2, id.getText().toString());
+                upsmt1.executeUpdate();
+//                System.out.println(queryUpGrpGen);
+
+                String queryUpAllDetils = "UPDATE all_details SET sGid=? WHERE sGid=?";
+                upsmt2 = connection.prepareStatement(queryUpAllDetils);
+                upsmt2.setString(1, newGenerateID);
+                upsmt2.setString(2, sgid.getText().toString());            
+                upsmt2.executeUpdate();
+                
+//                System.out.println(sId);
+                
+                model.setRowCount(0);
+                showYnSList();
+                
+                jComboBox1.setSelectedIndex(0);
+                jComboBox2.setSelectedIndex(0);
+                
+                JOptionPane.showMessageDialog(this, "Record Updated!");
+                
             }
 
         } catch (Exception e) {
+            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
         }
-        showYnSList();
+
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
@@ -606,6 +733,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel sgid;
     private javax.swing.JTable tbl_sub_id_gen;
     // End of variables declaration//GEN-END:variables
 }

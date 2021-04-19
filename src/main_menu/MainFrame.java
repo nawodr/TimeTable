@@ -7,6 +7,7 @@ package main_menu;
 
 import DB.DBConnection;
 import Location.pnl_Location;
+import Session.addConsecutiveSession;
 import WorkingDays.WorkingDaysandHours;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -433,7 +434,12 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton6ActionPerformed
 
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
-        // TODO add your handling code here:
+        
+        panelBody.removeAll();
+        panelBody.add(new addConsecutiveSession());
+        panelBody.repaint();
+        panelBody.revalidate();
+        
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
