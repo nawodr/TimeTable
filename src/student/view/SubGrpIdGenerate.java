@@ -29,7 +29,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
     /**
      * Creates new form SubGrpIdGen
      */
-    PreparedStatement pst, pstg, psGetAll, psUpAll, smt1, smt2, smt3, smt4, smt5, smt6, smt7, upsmt1, upsmt2;
+    PreparedStatement pst, pstg, psGetAll, psUpAll, smt1, smt2, smt3, smt4, smt5, smt6, smt7, upsmt1, upsmt2, delsmt1, delsmt2;
     ResultSet rs;
 
     public SubGrpIdGenerate() {
@@ -40,6 +40,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
         gId_id.setVisible(false);
         showYnSList();
         sGnSelection();
+        sgid.setVisible(false);
     }
 
     SubGrpIdGenCont sig = new SubGrpIdGenCont();
@@ -533,15 +534,13 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
                 errorMsg.setText("Select Sub Group ID*");
 
             } else {
-                
-                
+
                 errorMsg.setVisible(true);
                 errorMsg.setText("");
-                
+
                 TableModel mt = tbl_sub_id_gen.getModel();
 //                id.setText(mt.getValueAt(selectedRow, 1).toString());
-                
-                
+
                 String queryUpSubGrpGen = "UPDATE SubGrpGenerate SET SubGrpGenName=? WHERE idSubGrpGen=?";
                 upsmt1 = connection.prepareStatement(queryUpSubGrpGen);
                 upsmt1.setString(1, newGenerateID);
@@ -552,19 +551,18 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
                 String queryUpAllDetils = "UPDATE all_details SET sGid=? WHERE sGid=?";
                 upsmt2 = connection.prepareStatement(queryUpAllDetils);
                 upsmt2.setString(1, newGenerateID);
-                upsmt2.setString(2, sgid.getText().toString());            
+                upsmt2.setString(2, sgid.getText().toString());
                 upsmt2.executeUpdate();
-                
+
 //                System.out.println(sId);
-                
                 model.setRowCount(0);
                 showYnSList();
-                
+
                 jComboBox1.setSelectedIndex(0);
                 jComboBox2.setSelectedIndex(0);
-                
+
                 JOptionPane.showMessageDialog(this, "Record Updated!");
-                
+
             }
 
         } catch (Exception e) {
@@ -575,49 +573,96 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
 
+//        int selectedRow = tbl_sub_id_gen.getSelectedRow();
+//
+//        if (selectedRow != -1) {
+//
+//            String idYS = id_lbl.getText();
+//            int final_id = Integer.parseInt(idYS);
+//
+//            int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+//
+//            if (v == JOptionPane.YES_OPTION) {
+//
+//                try {
+//
+//                    int i = sig.deleteHandleClick(final_id);
+//
+//                    showYnSList();
+//
+//                    if (i != 0) {
+////                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
+//                        JOptionPane.showMessageDialog(this, "Successfully Deleted!");
+////                    txt_deg_pro.setText("");
+//
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+//                    }
+//
+//                } catch (SQLException ex) {
+//
+//                    Logger.getLogger(YearSemester.class.getName()).log(Level.SEVERE, null, ex);
+//
+//                }
+//
+//            } else if (v == JOptionPane.NO_OPTION) {
+//
+//            } else {
+//
+//            }
+//
+//        } else {
+//            errorMsg.setText("Please Selected Row");
+//            errorMsg.setVisible(true);
+//        }
+//        showYnSList();
         int selectedRow = tbl_sub_id_gen.getSelectedRow();
+        String sId = id.getText().toString();
 
-        if (selectedRow != -1) {
+        int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
 
-            String idYS = id_lbl.getText();
-            int final_id = Integer.parseInt(idYS);
+        if (v == JOptionPane.YES_OPTION) {
+            
+            try {
 
-            int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+            DefaultTableModel model = (DefaultTableModel) tbl_sub_id_gen.getModel();
 
-            if (v == JOptionPane.YES_OPTION) {
+            Connection connection = DBConnection.getConnection();
 
-                try {
-
-                    int i = sig.deleteHandleClick(final_id);
-
-                    showYnSList();
-
-                    if (i != 0) {
-//                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                        JOptionPane.showMessageDialog(this, "Successfully Deleted!");
-//                    txt_deg_pro.setText("");
-
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                } catch (SQLException ex) {
-
-                    Logger.getLogger(YearSemester.class.getName()).log(Level.SEVERE, null, ex);
-
-                }
-
-            } else if (v == JOptionPane.NO_OPTION) {
+            if (selectedRow == -1) {
+                errorMsg.setVisible(true);
+                errorMsg.setText("Select Sub Group ID*");
 
             } else {
+                errorMsg.setText("");
+
+                TableModel mt = tbl_sub_id_gen.getModel();
+                sgid.setText(mt.getValueAt(selectedRow, 1).toString());
+
+                String q1 = "DELETE FROM SubGrpGenerate WHERE idSubGrpGen=?";
+                delsmt1 = connection.prepareStatement(q1);
+                delsmt1.setString(1, sId);
+                delsmt1.executeUpdate();
+
+                String q2 = "DELETE FROM all_details WHERE sGid=?";
+                delsmt2 = connection.prepareStatement(q2);
+                delsmt2.setString(1, sgid.getText().toString());
+                delsmt2.executeUpdate();
+
+                model.setRowCount(0);
+                showYnSList();
+                JOptionPane.showMessageDialog(this, "Record Deleted!");
 
             }
 
-        } else {
-            errorMsg.setText("Please Selected Row");
-            errorMsg.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        showYnSList();
+            
+        } else {
+        }
+
+
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
