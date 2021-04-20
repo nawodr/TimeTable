@@ -6,7 +6,9 @@
 package main_menu;
 
 import DB.DBConnection;
+import Lecture.View.pnl_Lecture;
 import Location.pnl_Location;
+import Module.View.pnl_Module;
 import Session.addConsecutiveSession;
 import WorkingDays.WorkingDaysandHours;
 import java.awt.Dimension;
@@ -177,6 +179,11 @@ public class MainFrame extends javax.swing.JFrame {
         jToggleButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_teacher_50px_3.png"))); // NOI18N
         jToggleButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_teacher_50px_3.png"))); // NOI18N
         jToggleButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_teacher_50px_3.png"))); // NOI18N
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButton2);
         jToggleButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -346,7 +353,7 @@ public class MainFrame extends javax.swing.JFrame {
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuLayout.createSequentialGroup()
                 .addComponent(pnl_menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,7 +386,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+                    .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
                     .addComponent(panelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -415,7 +422,14 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
-        // TODO add your handling code here:
+        panelBody.removeAll();
+        try {
+            panelBody.add(new pnl_Module());
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        panelBody.repaint();
+        panelBody.revalidate();
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
@@ -460,6 +474,22 @@ public class MainFrame extends javax.swing.JFrame {
         panelBody.repaint();
         panelBody.revalidate();
     }//GEN-LAST:event_jToggleButton9ActionPerformed
+Lecture.View.pnl_Lecture ld; 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        panelBody.removeAll();
+        if (ld == null) {
+            try {
+                ld = new pnl_Lecture();
+            } catch (SQLException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            panelBody.add(ld);
+        } else {
+            panelBody.add(ld);
+        }
+        panelBody.repaint();
+        panelBody.revalidate();
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
