@@ -39,6 +39,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         SubGroupSelection();
         txt_csSelectionId.setVisible(false);
         txt_csSelectedId.setVisible(false);
+        txt_error_cs.setVisible(false);
         showConsecutiveSessionNList();
     }
 
