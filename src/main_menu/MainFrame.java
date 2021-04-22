@@ -10,6 +10,8 @@ import Lecture.View.pnl_Lecture;
 import Location.pnl_Location;
 import Module.View.pnl_Module;
 import Session.addConsecutiveSession;
+import Session.addParallelSession;
+import Session.pnl_Session;
 import WorkingDays.WorkingDaysandHours;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -410,7 +412,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     WorkingDaysandHours wh = new WorkingDaysandHours();
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-         panelBody.removeAll();
+        panelBody.removeAll();
         if (wh == null) {
             wh = new WorkingDaysandHours();
             panelBody.add(wh);
@@ -448,19 +450,22 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton6ActionPerformed
 
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
-        
+
+//        panelBody.removeAll();
+//        panelBody.add(new addConsecutiveSession());
+//        panelBody.repaint();
+//        panelBody.revalidate();
         panelBody.removeAll();
-        panelBody.add(new addConsecutiveSession());
+        panelBody.add(new pnl_Session());
         panelBody.repaint();
         panelBody.revalidate();
-        
+
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton8ActionPerformed
 
-    
 //    pnl_Student ps;
 //    TagDetails td = new TagDetails();
     private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
@@ -474,7 +479,7 @@ public class MainFrame extends javax.swing.JFrame {
         panelBody.repaint();
         panelBody.revalidate();
     }//GEN-LAST:event_jToggleButton9ActionPerformed
-Lecture.View.pnl_Lecture ld; 
+    Lecture.View.pnl_Lecture ld;
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         panelBody.removeAll();
         if (ld == null) {
