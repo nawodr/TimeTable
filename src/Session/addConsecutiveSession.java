@@ -174,7 +174,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         });
         jScrollPane6.setViewportView(tbl_cs);
 
-        jPanel5.setBackground(new java.awt.Color(155, 27, 27));
+        jPanel5.setBackground(java.awt.Color.darkGray);
 
         btn_deletecs.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_deletecs.setText("Delete");

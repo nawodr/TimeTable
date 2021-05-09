@@ -153,7 +153,7 @@ public class YearSemester extends javax.swing.JPanel {
             tbl_year.getColumnModel().getColumn(1).setPreferredWidth(900);
         }
 
-        jPanel2.setBackground(new java.awt.Color(155, 27, 27));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
         btn_delete_yer_and_sem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_delete_yer_and_sem.setText("Delete");

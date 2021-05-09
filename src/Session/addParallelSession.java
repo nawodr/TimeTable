@@ -26,7 +26,7 @@ import student.view.GrpIdGenerate;
 public class addParallelSession extends javax.swing.JPanel {
 
     Connection connection = DBConnection.getConnection();
-    PreparedStatement pst, pst1;
+    PreparedStatement pst, pst1, pst2, pst3, pst4, pst5;
     ResultSet rs;
     String finalTags = null;
     String sessID = null;
@@ -41,6 +41,8 @@ public class addParallelSession extends javax.swing.JPanel {
         txt_psSelectionId.setVisible(false);
         txt_psSelectedId.setVisible(false);
         txt_id.setVisible(false);
+        txt_error_cs.setVisible(false);
+        showParallelSessionNList();
     }
 
     /**
@@ -73,6 +75,7 @@ public class addParallelSession extends javax.swing.JPanel {
         jScrollPane6 = new javax.swing.JScrollPane();
         tbl_ps = new javax.swing.JTable();
         txt_id = new javax.swing.JTextField();
+        txt_error_cs = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -126,9 +129,19 @@ public class addParallelSession extends javax.swing.JPanel {
 
         btn_select.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_select.setText("Add");
+        btn_select.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_selectActionPerformed(evt);
+            }
+        });
 
         btn_remove.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_remove.setText("Remove");
+        btn_remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_removeActionPerformed(evt);
+            }
+        });
 
         txt_error_selection.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_error_selection.setForeground(new java.awt.Color(255, 51, 51));
@@ -136,6 +149,11 @@ public class addParallelSession extends javax.swing.JPanel {
 
         btn_set.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_set.setText("Set");
+        btn_set.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_setActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Academic Year And Sem");
@@ -172,10 +190,15 @@ public class addParallelSession extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel8.setBackground(new java.awt.Color(155, 27, 27));
+        jPanel8.setBackground(new java.awt.Color(0, 0, 0));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -220,6 +243,8 @@ public class addParallelSession extends javax.swing.JPanel {
             }
         });
         jScrollPane6.setViewportView(tbl_ps);
+
+        txt_error_cs.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -266,7 +291,9 @@ public class addParallelSession extends javax.swing.JPanel {
                 .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6)
-                .addGap(170, 170, 170))
+                .addGap(18, 18, 18)
+                .addComponent(txt_error_cs)
+                .addGap(118, 118, 118))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,13 +324,19 @@ public class addParallelSession extends javax.swing.JPanel {
                 .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 164, Short.MAX_VALUE)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 164, Short.MAX_VALUE)
+                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(txt_error_cs)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -350,6 +383,126 @@ public class addParallelSession extends javax.swing.JPanel {
         showSessionNList(year);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selectActionPerformed
+
+        if (txt_psSelectionId.getText().equals("")) {
+
+            txt_error_selection.setText("Select First*");
+        } else {
+            txt_error_selection.setText("");
+            String selected_id = txt_psSelectionId.getText();
+            showSelectedSessionNList(selected_id);
+        }
+
+    }//GEN-LAST:event_btn_selectActionPerformed
+
+    private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
+
+        if (txt_psSelectedId.getText().equals("")) {
+
+            txt_error_selection.setText("Select First*");
+        } else {
+            txt_error_selection.setText("");
+            DefaultTableModel model = (DefaultTableModel) tbl_psSelected.getModel();
+            model.removeRow(Integer.parseInt(txt_psSelectedId.getText()) - 1);
+        }
+
+    }//GEN-LAST:event_btn_removeActionPerformed
+
+    private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
+
+        try {
+
+            DefaultTableModel model = (DefaultTableModel) tbl_psSelected.getModel();
+            DefaultTableModel model2 = (DefaultTableModel) tbl_ps.getModel();
+
+            if (tbl_psSelected.getRowCount() == 0) {
+
+                txt_error_selection.setText("Select Sessions First*");
+            } else {
+
+                txt_error_selection.setText("");
+
+                TagCreator();
+
+                String sessionList[] = sessID.split(",");
+                boolean lock = false;
+                Parrlist = getParallelSessionNList();
+
+                for (int x = 0; x < sessionList.length; x++) {
+
+                    for (int i = 0; i < Parrlist.size(); i++) {
+                        String sessionList2[] = Parrlist.get(i).getSessionID().split(",");
+
+                        for (int a = 0; a < sessionList2.length; a++) {
+                            if (sessionList[x].equals(sessionList2[a])) {
+                                lock = true;
+                            }
+                        }
+                    }
+                }
+
+                if (lock) {
+                    txt_error_selection.setText("This Sessions Already Exist");
+                } else {
+
+                    String q1 = "insert into sp2_parallel_session (yNs,session,sessionID) values (?,?,?)";
+                    pst4 = connection.prepareStatement(q1);
+                    pst4.setString(1, selection_y.getSelectedItem().toString());
+                    pst4.setString(2, finalTags);
+                    pst4.setString(3, sessID);
+
+                    pst4.executeUpdate();
+                    model.setRowCount(0);
+                    model2.setRowCount(0);
+                    showParallelSessionNList();
+                    txt_id.setText("");
+
+                    JOptionPane.showMessageDialog(null, "Inserting Successful!");
+
+                }
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }//GEN-LAST:event_btn_setActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+
+        if (v == JOptionPane.YES_OPTION) {
+
+            try {
+
+                DefaultTableModel model = (DefaultTableModel) tbl_ps.getModel();
+
+                if (txt_id.getText().equals("")) {
+                    txt_error_cs.setText("Select First*");
+                } else {
+                    txt_error_cs.setText("");
+
+                    String id = txt_id.getText();
+
+                    String q2 = "DELETE FROM sp2_parallel_session WHERE id=?";
+                    pst5 = connection.prepareStatement(q2);
+                    pst5.setString(1, id);
+                    pst5.executeUpdate();
+                    model.setRowCount(0);
+                    showParallelSessionNList();
+                    txt_id.setText("");
+                    JOptionPane.showMessageDialog(this, "Deleted");
+                }
+
+            } catch (Exception e) {
+                Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void YearSelection() {
 
@@ -421,19 +574,19 @@ public class addParallelSession extends javax.swing.JPanel {
     public ArrayList<sessionDetails> getSessionNList(String year) {
         ArrayList<sessionDetails> list = new ArrayList<sessionDetails>();
         try {
-            
+
             ResultSet rs1;
 
-            String q1 = "select * from session where group_id LIKE '"+year+"%'";
+            String q1 = "select * from session where group_id LIKE '" + year + "%'";
             pst1 = connection.prepareStatement(q1);
-                  
+
             rs1 = pst1.executeQuery();
             sessionDetails sDetails;
- 
+
             while (rs1.next()) {
-               
+
                 sDetails = new sessionDetails(rs1.getInt("id"), rs1.getString("subject"), rs1.getString("tag"), rs1.getString("group_id"));
-                
+
                 list.add(sDetails);
 //                System.out.println(sDetails.getId());
 //                System.out.println(sDetails.getsGid());
@@ -444,6 +597,111 @@ public class addParallelSession extends javax.swing.JPanel {
             Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
         }
         return list;
+    }
+
+    public void showSelectedSessionNList(String id) {
+        ArrayList<sessionDetails> list = getselectedSessionNList(id);
+        DefaultTableModel model = (DefaultTableModel) tbl_psSelected.getModel();
+        Object[] row = new Object[4];
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getsGid();
+            row[2] = list.get(i).getSession();
+            row[3] = list.get(i).gettag();
+
+            model.addRow(row);
+        }
+    }
+
+    public ArrayList<sessionDetails> getselectedSessionNList(String id) {
+
+        ArrayList<sessionDetails> list = new ArrayList<sessionDetails>();
+
+        try {
+            ResultSet rs2;
+
+            String querry = "select * from session where id = ?";
+            pst2 = connection.prepareStatement(querry);
+            pst2.setString(1, id);
+
+            rs2 = pst2.executeQuery();
+            sessionDetails sDetails;
+
+            while (rs2.next()) {
+                sDetails = new sessionDetails(rs2.getInt("id"), rs2.getString("subject"), rs2.getString("tag"), rs2.getString("group_id"));
+                list.add(sDetails);
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        return list;
+    }
+
+    public void TagCreator() {
+
+        DefaultTableModel model = (DefaultTableModel) tbl_psSelected.getModel();
+        int x = tbl_psSelected.getRowCount();
+
+        String[] tags = new String[x];
+        String[] newtags = new String[x];
+        String[] sub = new String[x];
+
+        newtags[0] = model.getValueAt(0, 2).toString();
+        tags[0] = model.getValueAt(0, 3).toString();
+        sessID = model.getValueAt(0, 0).toString();
+
+        int i = 1;
+
+        while (x != i) {
+            sub[i] = model.getValueAt(i, 2).toString();
+            tags[i] = model.getValueAt(i, 3).toString();
+            newtags[i] = '(' + newtags[i - 1] + ',' + tags[i - 1] + ')' + ',' + '(' + sub[i] + ',' + tags[i] + ')';
+            finalTags = newtags[i];
+            sessID = sessID.concat("," + model.getValueAt(i, 0).toString());
+            i++;
+        }
+
+    }
+
+    public ArrayList<ParallelSession> getParallelSessionNList() {
+        ArrayList<ParallelSession> list = new ArrayList<ParallelSession>();
+
+        try {
+
+            String querry = "select * from sp2_parallel_session";
+
+            pst3 = connection.prepareStatement(querry);
+            rs = pst3.executeQuery();
+
+            ParallelSession ParallelSession;
+
+            while (rs.next()) {
+                ParallelSession = new ParallelSession(rs.getInt("id"), rs.getString("yNs"), rs.getString("session"), rs.getString("sessionID"));
+                list.add(ParallelSession);
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        return list;
+
+    }
+
+    public void showParallelSessionNList() {
+        ArrayList<ParallelSession> list = getParallelSessionNList();
+        DefaultTableModel model = (DefaultTableModel) tbl_ps.getModel();
+        Object[] row = new Object[4];
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getyNs();
+            row[2] = list.get(i).getSession();
+            row[3] = list.get(i).getSessionID();
+
+            model.addRow(row);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -464,6 +722,7 @@ public class addParallelSession extends javax.swing.JPanel {
     private javax.swing.JTable tbl_ps;
     private javax.swing.JTable tbl_psSelected;
     private javax.swing.JTable tbl_psSelection;
+    private javax.swing.JLabel txt_error_cs;
     private javax.swing.JLabel txt_error_selection;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_psSelectedId;
