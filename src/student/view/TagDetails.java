@@ -152,7 +152,7 @@ public class TagDetails extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel3.setBackground(new java.awt.Color(155, 27, 27));
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton4.setText("Submit");

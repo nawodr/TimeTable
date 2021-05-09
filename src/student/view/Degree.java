@@ -146,7 +146,7 @@ public class Degree extends javax.swing.JPanel {
             tbl_deg_por.getColumnModel().getColumn(1).setPreferredWidth(900);
         }
 
-        jPanel2.setBackground(new java.awt.Color(155, 27, 27));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
         btn_deg_pro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_deg_pro.setText("submit");

@@ -154,7 +154,7 @@ public class SubGroup extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Sub Group Details");
 
-        jPanel2.setBackground(new java.awt.Color(155, 27, 27));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
         btn_sub_grp_num.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_sub_grp_num.setText("Submit");

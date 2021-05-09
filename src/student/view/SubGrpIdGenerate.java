@@ -186,7 +186,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jPanel3.setBackground(new java.awt.Color(155, 27, 27));
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
         btn_add.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_add.setText("Generate");

@@ -110,7 +110,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
             tbl_grp_num_gen.getColumnModel().getColumn(1).setPreferredWidth(900);
         }
 
-        jPanel1.setBackground(new java.awt.Color(155, 27, 27));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         btn_generate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_generate.setText("Generate");
