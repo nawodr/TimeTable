@@ -22,6 +22,7 @@ public class pnl_Session extends javax.swing.JPanel {
     
     addConsecutiveSession ac;
     addParallelSession ap;
+    addNonOverlapping an;
     
     public pnl_Session() {
         initComponents();
@@ -80,7 +81,12 @@ public class pnl_Session extends javax.swing.JPanel {
         });
 
         btn_overlap.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_overlap.setText("OverLap");
+        btn_overlap.setText("Non Overlapping");
+        btn_overlap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_overlapActionPerformed(evt);
+            }
+        });
 
         jToggleButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jToggleButton1.setText("Not");
@@ -91,13 +97,13 @@ public class pnl_Session extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addComponent(btn_consective, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(btn_consective, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(57, 57, 57)
-                .addComponent(btn_parallel, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(btn_parallel, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                 .addGap(63, 63, 63)
-                .addComponent(btn_overlap, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(btn_overlap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(41, 41, 41)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                 .addGap(122, 122, 122))
         );
         jPanel3Layout.setVerticalGroup(
@@ -165,6 +171,13 @@ public class pnl_Session extends javax.swing.JPanel {
         }
         setpanels(ap); 
     }//GEN-LAST:event_btn_parallelActionPerformed
+
+    private void btn_overlapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_overlapActionPerformed
+        if (an == null) {
+            an = new addNonOverlapping();
+        }
+        setpanels(an);
+    }//GEN-LAST:event_btn_overlapActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

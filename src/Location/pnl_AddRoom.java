@@ -78,7 +78,7 @@ public class pnl_AddRoom extends javax.swing.JPanel {
     public Boolean validateData() {
 
         int capacity = Integer.parseInt(txt_capacity.getText());
-        if (cmb_buildingName.getSelectedItem().toString().isBlank()) {
+        if (cmb_buildingName.getSelectedItem().toString().isEmpty()) {
             lbl_Error.setVisible(true);
             lbl_Error.setText("Please Select Building Name");
             cmb_buildingName.grabFocus();

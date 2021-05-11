@@ -96,13 +96,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="btn_consective" pref="153" max="32767" attributes="0"/>
+                          <Component id="btn_consective" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                          <Component id="btn_parallel" pref="153" max="32767" attributes="0"/>
+                          <Component id="btn_parallel" pref="143" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                          <Component id="btn_overlap" pref="153" max="32767" attributes="0"/>
+                          <Component id="btn_overlap" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="jToggleButton1" pref="153" max="32767" attributes="0"/>
+                          <Component id="jToggleButton1" pref="143" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -150,8 +150,11 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="OverLap"/>
+                    <Property name="text" type="java.lang.String" value="Non Overlapping"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_overlapActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JToggleButton" name="jToggleButton1">
                   <Properties>
