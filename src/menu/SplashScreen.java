@@ -82,6 +82,7 @@ public class SplashScreen extends javax.swing.JFrame {
         jLabel1.setPreferredSize(new java.awt.Dimension(34, 350));
         jPanel1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
+        prg_bar.setForeground(new java.awt.Color(204, 0, 0));
         prg_bar.setMaximumSize(new java.awt.Dimension(32767, 10));
         prg_bar.setMinimumSize(new java.awt.Dimension(10, 10));
         prg_bar.setPreferredSize(new java.awt.Dimension(146, 10));
