@@ -124,42 +124,6 @@ public class addLocations {
     }
     
     /*
-     check whether customer is exist by id
-     */
-    public boolean isExist(int Id) throws SQLException {
-        
-        Connection connection = DBConnection.getConnection();
-        PreparedStatement ps = null;
-        
-        boolean isAvailable = false;
-        
-        try {
-            ps = connection.prepareStatement("Select Id FROM location WHERE Id = ?");
-
-            ps.setInt(1, Id);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                if (rs.getString("Id").isEmpty()) {
-                    isAvailable = true;
-                }
-            }
-        } catch (SQLException ex) {
-            throw ex;
-        }finally {
-            try {
-                if(ps != null){
-                    ps.close();
-                }
-            } catch (Exception ex) {
-                throw ex;
-            }
-            
-        }
-        return isAvailable;
-    }
-
-    
-    /*
      check whether Laction Building & Room is exist
      */
     public boolean isExistLocation(String bName, String rName) throws SQLException {
@@ -194,6 +158,7 @@ public class addLocations {
         }
         return isAvailable;
     }
+    
     
     /*
      check whether Laction Building & Room is exist
@@ -276,7 +241,7 @@ public class addLocations {
     
         Connection connection = DBConnection.getConnection();
         PreparedStatement ps = null;
-        List<String> CustomerList = new ArrayList();
+        List<String> roomList = new ArrayList();
         
         try {
             ps = connection.prepareStatement("SELECT room_Name FROM location ORDER BY Id");
@@ -285,7 +250,7 @@ public class addLocations {
 
             while (rs.next()) {
                 // create objct & set db value
-                CustomerList.add(rs.getString("room_Name"));
+                roomList.add(rs.getString("room_Name"));
             }
         } catch (SQLException ex) {
             throw ex;
@@ -298,7 +263,334 @@ public class addLocations {
                     throw ex;
                 }
         }
-        return CustomerList;
+        return roomList;
+    }
+    
+    /*
+     Load Rooms
+     */
+    public List<String> LoadRooms(String type) throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> roomList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT room_Name FROM location where room_Type = ? ORDER BY Id");
+            //excuite sql
+            ps.setString(1, type);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                roomList.add(rs.getString("room_Name"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return roomList;
+    }
+    
+    /*
+     Load Tags
+     */
+    public List<String> LoadTagId() throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> tagList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT tagId FROM Tag ORDER BY tagId");
+            //excuite sql
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                tagList.add(rs.getString("tagId"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return tagList;
+    }
+    
+    /*
+     Load Session id
+     */
+    public List<String> LoadSessionId() throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> sessionIdList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT id FROM session ORDER BY id");
+            //excuite sql
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                sessionIdList.add(rs.getString("id"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return sessionIdList;
+    }
+    
+    /*
+     Load Rooms Acording to student count
+     */
+    public List<String> LoadRoomsByCapacity(int stdCount, String type) throws SQLException {
+    
+        System.out.println(stdCount);
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> roomList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT room_Name FROM location where capacity >= ? AND room_Type = ? ORDER BY Id");
+            //excuite sql
+            ps.setInt(1, stdCount);
+            ps.setString(2, type);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                roomList.add(rs.getString("room_Name"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return roomList;
+    }
+    
+    public int getstdCountById(int id) throws Exception{
+         Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null; 
+        int stdCount = 0;
+        try {
+            ps = connection.prepareStatement("SELECT stu_count FROM session where id = ?");
+            //excuite sql
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                stdCount = Integer.parseInt(rs.getString("stu_count"));
+            }
+
+        } catch    // create objct & set db value
+             (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return stdCount;
+    }
+    
+    /*
+     Load Session id
+     */
+    public List<String> LoadGroupId() throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> groupIdList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT gId,sGid FROM all_details ORDER BY id");
+            //excuite sql
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                groupIdList.add(rs.getString("gId"));
+                groupIdList.add(rs.getString("sGid"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return groupIdList;
+    }
+    
+    /*
+     Load All Lecturer id
+     */
+    public List<String> LoadLecturerId() throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> groupIdList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT id FROM Lecture ORDER BY id");
+            //excuite sql
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                groupIdList.add(rs.getString("id"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return groupIdList;
     }
 
+    /*
+     check whether any location is exist by passing  query,id & Column name
+     */
+    public boolean isExist(String Id, String query, String colName) throws SQLException {
+        
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        
+        boolean isAvailable = false;
+        int col = 0;
+        
+        try {
+            ps = connection.prepareStatement(query);
+
+            ps.setString(1, Id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if (!rs.getString(colName).isEmpty()) {
+                isAvailable = true;
+            }
+//                
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+            try {
+                if(ps != null){
+                    ps.close();
+                }
+            } catch (Exception ex) {
+                throw ex;
+            }
+            
+        }
+        return isAvailable;
+    }
+
+    /*
+     Load Tags
+     */
+    public List<String> LoadBuiling() throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> BuilingList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT name FROM building_Details ORDER BY id");
+            //excuite sql
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                BuilingList.add(rs.getString("name"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return BuilingList;
+    }
+    //getting total row count by passing query and colName
+    public String getRowCount(String query, String colName) throws Exception{
+        String totLec = null;
+        try {
+            PreparedStatement ps = null;
+            Connection connection = DBConnection.getConnection();
+
+            ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                totLec = rs.getString(colName);
+            }
+        } catch (Exception e) {
+            throw(e); 
+        }     
+        return totLec;
+    }
+    
+    public String getLabCount(String query, String colName) throws Exception{
+        String totLec = null;
+        try {
+            PreparedStatement ps = null;
+            Connection connection = DBConnection.getConnection();
+
+            ps = connection.prepareStatement("SELECT COUNT(Id) as count FROM location WHERE room_Type = 'Labarotaory'");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                totLec = rs.getString(colName);
+            }
+        } catch (Exception e) {
+            throw(e); 
+        }     
+        return totLec;
+    }
 }

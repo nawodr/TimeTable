@@ -901,7 +901,7 @@ public final class pnl_Location extends javax.swing.JPanel {
         
         int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
           if(res == 0) {
-             deleteLocation();
+//             deleteLocation();
           }
     }//GEN-LAST:event_cus_delete1ActionPerformed
 
@@ -973,7 +973,7 @@ public final class pnl_Location extends javax.swing.JPanel {
 
     private void cus_delete1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cus_delete1KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            deleteLocation();
+//            deleteLocation();
         }
     }//GEN-LAST:event_cus_delete1KeyPressed
 
@@ -1215,23 +1215,23 @@ public final class pnl_Location extends javax.swing.JPanel {
         }
     }
     
-    public void deleteLocation(){
-        int lId = Integer.parseInt(lbl_Id.getText());
-        try {
-                if (addLoc.isExist(lId)) {
-                JOptionPane.showMessageDialog(null, "Location doesn't exist!", "Validation", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (addLoc.DeleteLocation(lId) > 0) {
-                JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
-                refreshData();
-                resetForm();
-            }
-            
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(pnl_Location.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void deleteLocation(){
+//        int lId = Integer.parseInt(lbl_Id.getText());
+//        try {
+//                if (addLoc.isExist(lId)) {
+//                JOptionPane.showMessageDialog(null, "Location doesn't exist!", "Validation", JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//            if (addLoc.DeleteLocation(lId) > 0) {
+//                JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+//                refreshData();
+//                resetForm();
+//            }
+//            
+//           
+//        } catch (SQLException ex) {
+//            Logger.getLogger(pnl_Location.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     
 }
