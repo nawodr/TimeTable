@@ -514,7 +514,7 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
         try {
 //            int cap = addLoc.getstdCountById(Integer.parseInt(tag));
             /*
-            Show Customers to All Fieled
+            Show Session to All Fieled
             */
             loadSessionToFields(tag);
             int cap = Integer.parseInt(txt_StudntCount.getText());
@@ -550,7 +550,7 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
         try {
             if(addLoc.isExist(sessionId,query,colName)){
                 
-                JOptionPane.showMessageDialog(null, "This Tag Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "This Session Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
             }else{
                 ps = connection.prepareStatement("INSERT INTO session_Location (session_Id,subject,sub_code,tag,tag_duration,group_id,subgroup_id,stu_count,room) VALUES (?,?,?,?,?,?,?,?,?)");
                 

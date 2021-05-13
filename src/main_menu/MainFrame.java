@@ -8,12 +8,12 @@ package main_menu;
 import DB.DBConnection;
 import Lecture.View.pnl_Lecture;
 import Location.pnl_Location;
-import Location.pnl_Location1;
+import Location.pnl_Location;
 import Module.View.pnl_Module;
 import Session.addConsecutiveSession;
 import Session.addParallelSession;
 import Session.pnl_Session;
-import Statisticals.pnl_Statisticals2;
+import Statisticals.pnl_Statisticals;
 import WorkingDays.WorkingDaysandHours;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -443,7 +443,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         panelBody.removeAll();
         try {
-            panelBody.add(new pnl_Location1());
+            panelBody.add(new pnl_Location());
         } catch (SQLException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -467,7 +467,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
         panelBody.removeAll();
         try {
-            panelBody.add(new pnl_Statisticals2());
+            panelBody.add(new pnl_Statisticals());
         } catch (Exception ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
