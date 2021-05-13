@@ -593,4 +593,36 @@ public class addLocations {
         }     
         return totLec;
     }
+    
+    /*
+     Load Session id
+     */
+    public List<String> LoadModuleCode() throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> moduleIdList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT mcode FROM Module ORDER BY id");
+            //excuite sql
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                moduleIdList.add(rs.getString("mcode"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return moduleIdList;
+    }
 }
