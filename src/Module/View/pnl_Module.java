@@ -6,8 +6,12 @@
 package Module.View;
 
 
+import DB.DBConnection;
 import Module.Model.ModuleModel;
 import Module.Controller.ModuleController;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.util.List;
@@ -30,8 +34,10 @@ public class pnl_Module extends javax.swing.JPanel {
 //        lbl_id.setVisible(false);
         initComponents();
         showModuleList();
+        resetForm();
         
         txt_id.setVisible(false);
+        lbl_Error.setVisible(false);
     }
 
     public void refreshData(){
@@ -42,6 +48,24 @@ public class pnl_Module extends javax.swing.JPanel {
         } catch (Exception e) {
         }
     }
+    
+      public void resetForm() {
+          
+        txt_id.setText("");
+        cmb_offeredyear.setSelectedItem("");
+        cmb_offeredsem.setSelectedItem("");
+        txt_mname.setText("");
+        txt_mcode.setText("");   
+        cmp_lec.setSelectedItem("");
+        cmb_thrs.setSelectedItem("");
+        cmp_labhrs.setSelectedItem("");
+        cmp_evahrs.setSelectedItem("");
+   
+        
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,11 +90,10 @@ public class pnl_Module extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_module = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_submit = new javax.swing.JButton();
+        btn_clear = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_delete = new javax.swing.JButton();
         cmb_offeredyear = new javax.swing.JComboBox<>();
         cmb_offeredsem = new javax.swing.JComboBox<>();
         txt_mname = new javax.swing.JTextField();
@@ -80,6 +103,7 @@ public class pnl_Module extends javax.swing.JPanel {
         cmp_labhrs = new javax.swing.JComboBox<>();
         cmp_evahrs = new javax.swing.JComboBox<>();
         txt_id = new javax.swing.JLabel();
+        lbl_Error = new javax.swing.JLabel();
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
@@ -135,35 +159,33 @@ public class pnl_Module extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbl_module);
 
-        jPanel4.setBackground(new java.awt.Color(155, 27, 27));
+        jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_submit.setText("Submit");
+        btn_submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_submitActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Clear");
-
-        jButton4.setText("Update");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btn_clear.setText("Clear");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_clearActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Delete");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btn_updateActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Refresh");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_delete.setText("Delete");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_deleteActionPerformed(evt);
             }
         });
 
@@ -172,34 +194,36 @@ public class pnl_Module extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(jButton1)
-                .addGap(53, 53, 53)
-                .addComponent(jButton3)
-                .addGap(41, 41, 41)
-                .addComponent(jButton4)
+                .addGap(70, 70, 70)
+                .addComponent(btn_submit)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addGap(32, 32, 32)
-                .addComponent(jButton2)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(btn_clear)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_update)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_delete)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton2))
+                    .addComponent(btn_submit)
+                    .addComponent(btn_clear)
+                    .addComponent(btn_update)
+                    .addComponent(btn_delete))
                 .addGap(26, 26, 26))
         );
 
         cmb_offeredyear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year 1", "Year 2", "Year 3", "Year 4" }));
 
         cmb_offeredsem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semester 1", "Semester 2" }));
+        cmb_offeredsem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_offeredsemActionPerformed(evt);
+            }
+        });
 
         txt_mname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,8 +240,18 @@ public class pnl_Module extends javax.swing.JPanel {
         cmp_lec.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10" }));
 
         cmb_thrs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07" }));
+        cmb_thrs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_thrsActionPerformed(evt);
+            }
+        });
 
         cmp_labhrs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07" }));
+        cmp_labhrs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmp_labhrsActionPerformed(evt);
+            }
+        });
 
         cmp_evahrs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07" }));
         cmp_evahrs.addActionListener(new java.awt.event.ActionListener() {
@@ -226,98 +260,108 @@ public class pnl_Module extends javax.swing.JPanel {
             }
         });
 
+        lbl_Error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_Error.setForeground(new java.awt.Color(255, 51, 51));
+        lbl_Error.setText("jLabel10");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmb_offeredyear, 0, 186, Short.MAX_VALUE)
-                    .addComponent(cmb_offeredsem, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_mname)
-                    .addComponent(txt_mcode))
-                .addGap(83, 83, 83)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmp_evahrs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(50, 50, 50)
-                        .addComponent(cmp_lec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7))
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmb_thrs, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmp_labhrs, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(202, 202, 202)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(208, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(txt_id)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lbl_Error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(36, 36, 36))
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel3))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_mcode, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_offeredsem, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_offeredyear, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_mname, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(101, 101, 101)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmp_evahrs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cmp_lec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmp_labhrs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmb_thrs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(292, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(txt_id)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cmb_offeredyear, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmp_lec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmb_thrs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(cmb_offeredsem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(cmp_lec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addComponent(cmb_offeredsem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmb_thrs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(txt_id)
-                        .addGap(7, 7, 7)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel6)
-                            .addComponent(cmb_offeredyear, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_mname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(cmp_labhrs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel8)
+                            .addComponent(cmp_evahrs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_mname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_mcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmp_evahrs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(34, 34, 34)
+                            .addComponent(jLabel3))))
+                .addGap(21, 21, 21)
+                .addComponent(lbl_Error)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -330,7 +374,7 @@ public class pnl_Module extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
+                .addGap(0, 42, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,16 +401,23 @@ public class pnl_Module extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_submitActionPerformed
         // TODO add your handling code  
         ModuleController module = new ModuleController();
         try {
-            module.addModule(CreateModule());
+            if(validateData()){
+            
+           if(module.addModule(CreateModule()) != 0){
+               JOptionPane.showMessageDialog(null, "Module Added Successful!", "ADD Module", JOptionPane.INFORMATION_MESSAGE);
+               refreshData();
+            
+           }
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(jPanel1, "Failed! MYSQL ERROR", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_submitActionPerformed
 
     
     private void txt_mnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_mnameActionPerformed
@@ -380,10 +431,6 @@ public class pnl_Module extends javax.swing.JPanel {
     private void cmp_evahrsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmp_evahrsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmp_evahrsActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            refreshData();
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tbl_moduleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_moduleMouseClicked
         DefaultTableModel mdl = (DefaultTableModel) tbl_module.getModel();
@@ -411,7 +458,7 @@ public class pnl_Module extends javax.swing.JPanel {
         
     }//GEN-LAST:event_tbl_moduleMouseClicked
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
 
         ModuleController mod = new ModuleController();
         int lId = Integer.parseInt(txt_id.getText());
@@ -432,9 +479,9 @@ public class pnl_Module extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(pnl_Module.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btn_deleteActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         
         String customerCode = (String) cmb_offeredyear.getSelectedItem();
 
@@ -443,7 +490,8 @@ public class pnl_Module extends javax.swing.JPanel {
                mdl.updateModel(updateModule());
                showModuleList();
                refreshData();
-               JOptionPane.showMessageDialog(null, "Module Added Successful!", "Update", JOptionPane.INFORMATION_MESSAGE);
+               resetForm();
+               JOptionPane.showMessageDialog(null, "Module Update Successful!", "Update", JOptionPane.INFORMATION_MESSAGE);
                
         } catch (Exception e) {
             Logger.getLogger(pnl_Module.class
@@ -451,7 +499,24 @@ public class pnl_Module extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Check your update module code", "Validation", JOptionPane.ERROR_MESSAGE);
             return;
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+        resetForm();
+        refreshData();
+    }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void cmb_thrsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_thrsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_thrsActionPerformed
+
+    private void cmb_offeredsemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_offeredsemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_offeredsemActionPerformed
+
+    private void cmp_labhrsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmp_labhrsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmp_labhrsActionPerformed
 
  
     
@@ -480,17 +545,16 @@ public class pnl_Module extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_clear;
+    private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_submit;
+    private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cmb_offeredsem;
     private javax.swing.JComboBox<String> cmb_offeredyear;
     private javax.swing.JComboBox<String> cmb_thrs;
     private javax.swing.JComboBox<String> cmp_evahrs;
     private javax.swing.JComboBox<String> cmp_labhrs;
     private javax.swing.JComboBox<String> cmp_lec;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -505,6 +569,7 @@ public class pnl_Module extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lbl_Error;
     private javax.swing.JTable tbl_module;
     private javax.swing.JLabel txt_id;
     private javax.swing.JTextField txt_mcode;
@@ -562,6 +627,106 @@ public void showModuleList() throws SQLException{
         return md;
 
 }
+    
+           /*
+     check whether any location is exist by passing  query,id & Column name
+     */
+    public boolean isExist(String name, String id, String query, String colName) throws SQLException {
+        
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        
+        boolean isAvailable = false;
+        int col = 0;
+        
+        try {
+            ps = connection.prepareStatement(query);
+
+            ps.setString(1, name);
+            ps.setString(2, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if (!rs.getString(colName).isEmpty()) {
+                isAvailable = true;
+            }
+//                
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+            try {
+                if(ps != null){
+                    ps.close();
+                }
+            } catch (Exception ex) {
+                throw ex;
+            }
+            
+        }
+        return isAvailable;
+    }
+    
+    public Boolean validateData() {
+
+
+        if (cmb_offeredyear.getSelectedItem().toString().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select Offered Year");
+            cmb_offeredyear.grabFocus();
+            return false;
+        }
+        if (cmb_offeredsem.getSelectedItem().toString().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select Offered Semester");
+            cmb_offeredsem.grabFocus();
+            return false;
+        }
+        
+        if (txt_mname.getText().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Enter Module Name");
+            txt_mname.grabFocus();
+            return false;
+        }
+        
+        if (txt_mcode.getText().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Enter Module Code");
+            txt_mcode.grabFocus();
+            return false;
+        }
+        
+        if (cmp_lec.getSelectedItem().toString().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select No of Lecture Hours ");
+            cmp_lec.grabFocus();
+            return false;
+        }
+        
+        if (cmb_thrs.getSelectedItem().toString().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select No Of Tutorial Hours");
+            cmb_thrs.grabFocus();
+            return false;
+        }
+         if (cmp_labhrs.getSelectedItem().toString().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select No Of Lab Hours");
+            cmp_labhrs.grabFocus();
+            return false;
+        }
+          if (cmp_evahrs.getSelectedItem().toString().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select Evaluation Hours");
+            cmp_evahrs.grabFocus();
+            return false;
+        }
+        
+       
+           
+        return true;
+         
+    }
 }
 
 
