@@ -23,6 +23,7 @@ public class pnl_Session2 extends javax.swing.JPanel {
     addConsecutiveSession ac;
     addParallelSession ap;
     addNonOverlapping an;
+    NotAvailableTimeView anas;
     
     public pnl_Session2() {
         initComponents();
@@ -90,6 +91,11 @@ public class pnl_Session2 extends javax.swing.JPanel {
 
         jToggleButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jToggleButton1.setText("Not");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -178,6 +184,10 @@ public class pnl_Session2 extends javax.swing.JPanel {
         }
         setpanels(an);
     }//GEN-LAST:event_btn_overlapActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

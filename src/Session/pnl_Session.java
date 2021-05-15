@@ -26,6 +26,7 @@ public class pnl_Session extends javax.swing.JPanel {
     addConsecutiveSession ac;
     addParallelSession ap;
     addNonOverlapping an;
+    NotAvailableTimeView anas;
     
     // Add Session Start
     SessionController controller = new SessionController();
@@ -175,7 +176,7 @@ public class pnl_Session extends javax.swing.JPanel {
         contentTabbedPane = new javax.swing.JTabbedPane();
         sessionPanel = new javax.swing.JPanel();
         searchTextField = new javax.swing.JTextField();
-        searchComboBox = new javax.swing.JComboBox<>();
+        searchComboBox = new javax.swing.JComboBox<String>();
         searchButton = new javax.swing.JButton();
         sessionScrollPane = new javax.swing.JScrollPane();
         sessionTable = new javax.swing.JTable();
@@ -188,20 +189,20 @@ public class pnl_Session extends javax.swing.JPanel {
         lecturersTagButton = new javax.swing.JButton();
         groupSubjectButton = new javax.swing.JButton();
         step1Panel = new javax.swing.JPanel();
-        lecturerComboBox = new javax.swing.JComboBox<>();
+        lecturerComboBox = new javax.swing.JComboBox<String>();
         lecturerLabel = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
         tagLabel = new javax.swing.JLabel();
-        tagComboBox = new javax.swing.JComboBox<>();
+        tagComboBox = new javax.swing.JComboBox<String>();
         selectedLecturerLabel = new javax.swing.JLabel();
         selectedLabel = new javax.swing.JLabel();
         nextButton = new javax.swing.JButton();
         clear1Button = new javax.swing.JButton();
         step2Panel = new javax.swing.JPanel();
-        groupComboBox = new javax.swing.JComboBox<>();
+        groupComboBox = new javax.swing.JComboBox<String>();
         groupLabel = new javax.swing.JLabel();
         noOfStudentLabel = new javax.swing.JLabel();
-        subjectComboBox = new javax.swing.JComboBox<>();
+        subjectComboBox = new javax.swing.JComboBox<String>();
         subjectLabel = new javax.swing.JLabel();
         durationLabel = new javax.swing.JLabel();
         noOfStudentTextField = new javax.swing.JTextField();
@@ -234,7 +235,7 @@ public class pnl_Session extends javax.swing.JPanel {
         searchTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         searchComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Session ID", "Subject", "Student Group", "Tag" }));
+        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Session ID", "Subject", "Student Group", "Tag" }));
         searchComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchComboBoxActionPerformed(evt);
@@ -412,7 +413,7 @@ public class pnl_Session extends javax.swing.JPanel {
         step1Panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Step 1", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         lecturerComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        lecturerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Lecturer" }));
+        lecturerComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Lecturer" }));
         lecturerComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lecturerComboBoxActionPerformed(evt);
@@ -438,7 +439,7 @@ public class pnl_Session extends javax.swing.JPanel {
         tagLabel.setText("Tag");
 
         tagComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        tagComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Tag" }));
+        tagComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Tag" }));
         tagComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tagComboBoxActionPerformed(evt);
@@ -529,12 +530,12 @@ public class pnl_Session extends javax.swing.JPanel {
         );
 
         contentPanel.add(step1Panel);
-        step1Panel.setBounds(10, 50, 950, 376);
+        step1Panel.setBounds(10, 50, 950, 378);
 
         step2Panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Step 2", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         groupComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        groupComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Group" }));
+        groupComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Group" }));
         groupComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 groupComboBoxActionPerformed(evt);
@@ -548,7 +549,7 @@ public class pnl_Session extends javax.swing.JPanel {
         noOfStudentLabel.setText("No of Student");
 
         subjectComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        subjectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Subject" }));
+        subjectComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Subject" }));
         subjectComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subjectComboBoxActionPerformed(evt);
@@ -678,7 +679,7 @@ public class pnl_Session extends javax.swing.JPanel {
         );
 
         contentPanel.add(step2Panel);
-        step2Panel.setBounds(10, 50, 952, 376);
+        step2Panel.setBounds(10, 50, 956, 376);
 
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
@@ -740,6 +741,11 @@ public class pnl_Session extends javax.swing.JPanel {
 
         jToggleButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jToggleButton1.setText("Not");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1120,6 +1126,14 @@ public class pnl_Session extends javax.swing.JPanel {
         }
         setpanels(an);
     }//GEN-LAST:event_btn_overlapActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        
+                if (anas == null) {
+            anas = new NotAvailableTimeView();
+        }
+        setpanels(anas);
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
