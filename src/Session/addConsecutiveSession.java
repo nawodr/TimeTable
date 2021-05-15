@@ -72,6 +72,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         selection_sId = new javax.swing.JComboBox<>();
         txt_error_cs = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -214,6 +215,8 @@ public class addConsecutiveSession extends javax.swing.JPanel {
 
         selection_sId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
 
+        txt_error_cs.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_error_cs.setForeground(new java.awt.Color(204, 0, 0));
         txt_error_cs.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -226,17 +229,20 @@ public class addConsecutiveSession extends javax.swing.JPanel {
                 .addGap(101, 101, 101)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(334, 334, 334))
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(jScrollPane6)
+                .addGap(140, 140, 140)
+                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txt_error_cs)
-                .addGap(151, 151, 151))
+                .addComponent(jScrollPane6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -301,21 +307,28 @@ public class addConsecutiveSession extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                        .addGap(2, 2, 2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(txt_error_cs)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(33, 33, 33)
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_error_cs)))
+                        .addGap(33, 33, 33)))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_csMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_csMouseClicked
         // TODO add your handling code here:
+        txt_error_cs.setVisible(false);
+
         int i = tbl_cs.getSelectedRow();
         TableModel model = tbl_cs.getModel();
         txt_id.setText(model.getValueAt(i, 0).toString());
@@ -335,6 +348,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_csSelectionMouseClicked
 
     private void btn_selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selectActionPerformed
+
         if (txt_csSelectionId.getText().equals("")) {
 
             txt_error_selection.setText("Select First*");
@@ -343,23 +357,27 @@ public class addConsecutiveSession extends javax.swing.JPanel {
             String selected_id = txt_csSelectionId.getText();
             showSelectedSessionNList(selected_id);
         }
+
+        txt_csSelectionId.setText("");
     }//GEN-LAST:event_btn_selectActionPerformed
 
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
-        if (txt_csSelectedId.getText().equals("")) {
+        if (txt_id.getText().equals("")) {
 
             txt_error_selection.setText("Select First*");
         } else {
             txt_error_selection.setText("");
             DefaultTableModel model = (DefaultTableModel) tbl_csSelected.getModel();
-            model.removeRow(Integer.parseInt(txt_csSelectedId.getText()) - 1);
+            model.removeRow(Integer.parseInt(txt_id.getText()));
         }
+        txt_id.setText("");
     }//GEN-LAST:event_btn_removeActionPerformed
 
     private void tbl_csSelectedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_csSelectedMouseClicked
         int i = tbl_csSelected.getSelectedRow();
         TableModel model = tbl_csSelection.getModel();
-        txt_id.setText(model.getValueAt(i, 0).toString());
+//        txt_id.setText(model.getValueAt(i, 0).toString());
+        txt_id.setText(String.valueOf(i));
         txt_csSelectedId.setText(model.getValueAt(i, 0).toString());
     }//GEN-LAST:event_tbl_csSelectedMouseClicked
 
@@ -422,41 +440,37 @@ public class addConsecutiveSession extends javax.swing.JPanel {
 
     private void btn_deletecsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deletecsActionPerformed
 
-        int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
-        
-        if (v == JOptionPane.YES_OPTION) {
-        
-            try {
+        try {
 
             DefaultTableModel model = (DefaultTableModel) tbl_cs.getModel();
 
             if (txt_id.getText().equals("")) {
-
                 txt_error_cs.setText("Select First*");
+                txt_error_cs.setVisible(true);
+
             } else {
-                txt_error_cs.setText("");
+                int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+                if (v == JOptionPane.YES_OPTION) {
 
-                String id = txt_id.getText();
+                    //txt_error_cs.setText("");
+                    String id = txt_id.getText();
 
-                String q2 = "DELETE FROM sp2_consecutive_session WHERE id=?";
-                pst5 = connection.prepareStatement(q2);
-                pst5.setString(1, id);
-                pst5.executeUpdate();
-                model.setRowCount(0);
-                showConsecutiveSessionNList();
-                txt_id.setText("");
-                JOptionPane.showMessageDialog(this, "Deleted");
+                    String q2 = "DELETE FROM sp2_consecutive_session WHERE id=?";
+                    pst5 = connection.prepareStatement(q2);
+                    pst5.setString(1, id);
+                    pst5.executeUpdate();
+                    model.setRowCount(0);
+                    showConsecutiveSessionNList();
+                    txt_id.setText("");
+                    JOptionPane.showMessageDialog(this, "Deleted");
 
+                }
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-            
-        }else{
-        
-        }       
-
+        txt_id.setText("");
     }//GEN-LAST:event_btn_deletecsActionPerformed
 
     public ArrayList<sessionDetails> getselectedSessionNList(String id) {
@@ -610,6 +624,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
