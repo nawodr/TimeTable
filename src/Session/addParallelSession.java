@@ -244,6 +244,8 @@ public class addParallelSession extends javax.swing.JPanel {
         });
         jScrollPane6.setViewportView(tbl_ps);
 
+        txt_error_cs.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_error_cs.setForeground(new java.awt.Color(255, 0, 0));
         txt_error_cs.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -291,9 +293,11 @@ public class addParallelSession extends javax.swing.JPanel {
                 .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6)
-                .addGap(18, 18, 18)
-                .addComponent(txt_error_cs)
-                .addGap(118, 118, 118))
+                .addGap(170, 170, 170))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,19 +328,15 @@ public class addParallelSession extends javax.swing.JPanel {
                 .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 163, Short.MAX_VALUE)
-                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(38, 38, 38))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(txt_error_cs)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 154, Short.MAX_VALUE)
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -353,12 +353,14 @@ public class addParallelSession extends javax.swing.JPanel {
 
         int i = tbl_psSelected.getSelectedRow();
         TableModel model = tbl_psSelection.getModel();
-        txt_id.setText(model.getValueAt(i, 0).toString());
+        //txt_id.setText(model.getValueAt(i, 0).toString());
+        txt_id.setText(String.valueOf(i));
         txt_psSelectedId.setText(model.getValueAt(i, 0).toString());
     }//GEN-LAST:event_tbl_psSelectedMouseClicked
 
     private void tbl_psMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_psMouseClicked
         // TODO add your handling code here:
+        txt_error_cs.setVisible(false);
         int i = tbl_ps.getSelectedRow();
         TableModel model = tbl_ps.getModel();
         txt_id.setText(model.getValueAt(i, 0).toString());
@@ -393,20 +395,20 @@ public class addParallelSession extends javax.swing.JPanel {
             String selected_id = txt_psSelectionId.getText();
             showSelectedSessionNList(selected_id);
         }
-
+        txt_psSelectionId.setText("");
     }//GEN-LAST:event_btn_selectActionPerformed
 
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
 
-        if (txt_psSelectedId.getText().equals("")) {
+        if (txt_id.getText().equals("")) {
 
             txt_error_selection.setText("Select First*");
         } else {
             txt_error_selection.setText("");
             DefaultTableModel model = (DefaultTableModel) tbl_psSelected.getModel();
-            model.removeRow(Integer.parseInt(txt_psSelectedId.getText()) - 1);
+            model.removeRow(Integer.parseInt(txt_id.getText()));
         }
-
+        txt_id.setText("");
     }//GEN-LAST:event_btn_removeActionPerformed
 
     private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
@@ -471,17 +473,19 @@ public class addParallelSession extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+        try {
 
-        if (v == JOptionPane.YES_OPTION) {
+            DefaultTableModel model = (DefaultTableModel) tbl_ps.getModel();
 
-            try {
+            if (txt_id.getText().equals("")) {
+                txt_error_cs.setText("Select First*");
+                txt_error_cs.setVisible(true);
 
-                DefaultTableModel model = (DefaultTableModel) tbl_ps.getModel();
+            } else {
 
-                if (txt_id.getText().equals("")) {
-                    txt_error_cs.setText("Select First*");
-                } else {
+                int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+
+                if (v == JOptionPane.YES_OPTION) {
                     txt_error_cs.setText("");
 
                     String id = txt_id.getText();
@@ -495,12 +499,13 @@ public class addParallelSession extends javax.swing.JPanel {
                     txt_id.setText("");
                     JOptionPane.showMessageDialog(this, "Deleted");
                 }
-
-            } catch (Exception e) {
-                Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
             }
+
+        } catch (Exception e) {
+            Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
         }
 
+        txt_id.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public void YearSelection() {

@@ -219,6 +219,8 @@ public class addNonOverlapping extends javax.swing.JPanel {
         txt_error_selection.setForeground(new java.awt.Color(255, 51, 51));
         txt_error_selection.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        txt_error_cs.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_error_cs.setForeground(java.awt.Color.red);
         txt_error_cs.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -250,21 +252,13 @@ public class addNonOverlapping extends javax.swing.JPanel {
                 .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(88, 88, 88)
                 .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3)
                 .addGap(18, 18, 18)
-                .addComponent(txt_error_cs)
-                .addGap(86, 86, 86))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(404, 404, 404)
-                .addComponent(txt_error_selection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(409, 409, 409))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane3)
+                .addGap(26, 26, 26)
+                .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -272,6 +266,14 @@ public class addNonOverlapping extends javax.swing.JPanel {
                 .addComponent(selection_sId, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(404, 404, 404)
+                .addComponent(txt_error_selection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(409, 409, 409))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -304,24 +306,29 @@ public class addNonOverlapping extends javax.swing.JPanel {
                         .addComponent(btn_remove, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_set)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
+                        .addComponent(txt_error_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(txt_error_cs)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)))
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txt_error_cs, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(33, 33, 33)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -333,7 +340,7 @@ public class addNonOverlapping extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
-        
+
         try {
 
             DefaultTableModel model = (DefaultTableModel) tbl_csSelected.getModel();
@@ -386,7 +393,7 @@ public class addNonOverlapping extends javax.swing.JPanel {
 
         } catch (Exception e) {
         }
-        
+
     }//GEN-LAST:event_btn_setActionPerformed
 
     public void showNonOverlappingSessionNList() {
@@ -402,7 +409,7 @@ public class addNonOverlapping extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
-    
+
     public ArrayList<NonOverlappingSession> getNonOverlappingSessionNList() {
         ArrayList<NonOverlappingSession> list = new ArrayList<>();
         try {
@@ -421,7 +428,7 @@ public class addNonOverlapping extends javax.swing.JPanel {
         }
         return list;
     }
-    
+
     public void TagCreator() {
         DefaultTableModel model = (DefaultTableModel) tbl_csSelected.getModel();
         int x = tbl_csSelected.getRowCount();
@@ -440,8 +447,9 @@ public class addNonOverlapping extends javax.swing.JPanel {
             i++;
         }
     }
-    
+
     private void btn_selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selectActionPerformed
+
         if (txt_csSelectionId.getText().equals("")) {
 
             txt_error_selection.setText("Select First*");
@@ -450,6 +458,8 @@ public class addNonOverlapping extends javax.swing.JPanel {
             String selected_id = txt_csSelectionId.getText();
             showSelectedSessionNList(selected_id);
         }
+
+        txt_csSelectionId.setText("");
     }//GEN-LAST:event_btn_selectActionPerformed
 
     private void tbl_csSelectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_csSelectionMouseClicked
@@ -461,62 +471,65 @@ public class addNonOverlapping extends javax.swing.JPanel {
     private void tbl_csSelectedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_csSelectedMouseClicked
         int i = tbl_csSelected.getSelectedRow();
         TableModel model = tbl_csSelection.getModel();
-        txt_id.setText(model.getValueAt(i, 0).toString());
+        //txt_id.setText(model.getValueAt(i, 0).toString());
+        txt_id.setText(String.valueOf(i));
         txt_csSelectedId.setText(model.getValueAt(i, 0).toString());
     }//GEN-LAST:event_tbl_csSelectedMouseClicked
 
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
-        if (txt_csSelectedId.getText().equals("")) {
-
+        if (txt_id.getText().equals("")) {
             txt_error_selection.setText("Select First*");
         } else {
             txt_error_selection.setText("");
             DefaultTableModel model = (DefaultTableModel) tbl_csSelected.getModel();
-            model.removeRow(Integer.parseInt(txt_csSelectedId.getText()) - 1);
+            model.removeRow(Integer.parseInt(txt_id.getText()));
         }
+        txt_id.setText("");
     }//GEN-LAST:event_btn_removeActionPerformed
 
     private void tbl_csMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_csMouseClicked
+        txt_error_cs.setVisible(false);
         int i = tbl_cs.getSelectedRow();
         TableModel model = tbl_cs.getModel();
         txt_id.setText(model.getValueAt(i, 0).toString());
     }//GEN-LAST:event_tbl_csMouseClicked
 
     private void delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionPerformed
-        int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
-        
-        if (v == JOptionPane.YES_OPTION) {
-        
-            try {
+
+        try {
 
             DefaultTableModel model = (DefaultTableModel) tbl_cs.getModel();
 
             if (txt_id.getText().equals("")) {
 
                 txt_error_cs.setText("Select First*");
+                txt_error_cs.setVisible(true);
+
             } else {
-                txt_error_cs.setText("");
 
-                String id = txt_id.getText();
+                int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+                if (v == JOptionPane.YES_OPTION) {
 
-                String q2 = "DELETE FROM sp2_nonoverlapping_session WHERE id=?";
-                pst5 = connection.prepareStatement(q2);
-                pst5.setString(1, id);
-                pst5.executeUpdate();
-                model.setRowCount(0);
-                showNonOverlappingSessionNList();
-                txt_id.setText("");
-                JOptionPane.showMessageDialog(this, "Deleted");
+                    txt_error_cs.setText("");
 
+                    String id = txt_id.getText();
+
+                    String q2 = "DELETE FROM sp2_nonoverlapping_session WHERE id=?";
+                    pst5 = connection.prepareStatement(q2);
+                    pst5.setString(1, id);
+                    pst5.executeUpdate();
+                    model.setRowCount(0);
+                    showNonOverlappingSessionNList();
+                    txt_id.setText("");
+                    JOptionPane.showMessageDialog(this, "Deleted");
+
+                }
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-            
-        }else{
-        
-        }
+        txt_id.setText("");
     }//GEN-LAST:event_delActionPerformed
 
     public void showSelectedSessionNList(String id) {
@@ -531,7 +544,7 @@ public class addNonOverlapping extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
-    
+
     public ArrayList<sessionDetails> getselectedSessionNList(String id) {
         ArrayList<sessionDetails> list = new ArrayList<sessionDetails>();
         try {
@@ -551,7 +564,7 @@ public class addNonOverlapping extends javax.swing.JPanel {
         }
         return list;
     }
-    
+
     public void SubGroupSelection() {
         try {
 
@@ -587,7 +600,7 @@ public class addNonOverlapping extends javax.swing.JPanel {
     public ArrayList<sessionDetails> getSessionNList(String sGid) {
 
         ArrayList<sessionDetails> list = new ArrayList<sessionDetails>();
-        
+
         try {
             String querry = "select * from session where group_id =?";
             pst1 = connection.prepareStatement(querry);
