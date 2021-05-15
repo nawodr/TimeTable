@@ -5,9 +5,14 @@
  */
 package Lecture.View;
 
+import DB.DBConnection;
 import Lecture.Controller.LectureController;
 import Lecture.Model.LectureModel;
 import Module.View.pnl_Module;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,10 +33,13 @@ public class pnl_Lecture extends javax.swing.JPanel {
      * @throws java.sql.SQLException
      */
     public pnl_Lecture() throws SQLException {
-        initComponents();
+       initComponents();
        showLecureList();
+       resetForm();
+       refreshData();
        
        txt_id.setVisible(false);
+       lbl_Error.setVisible(false);
     }
     
     
@@ -89,14 +97,14 @@ public class pnl_Lecture extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_lec = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btn_Submit = new javax.swing.JButton();
+        btn_clear = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_delete = new javax.swing.JButton();
         txt_rank = new javax.swing.JTextField();
         txt_id = new javax.swing.JLabel();
+        lbl_Error = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
@@ -127,6 +135,12 @@ public class pnl_Lecture extends javax.swing.JPanel {
         cmb_Faculty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_FacultyActionPerformed(evt);
+            }
+        });
+
+        txt_EmpId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_EmpIdKeyPressed(evt);
             }
         });
 
@@ -170,42 +184,33 @@ public class pnl_Lecture extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbl_lec);
 
-        jPanel4.setBackground(new java.awt.Color(155, 27, 27));
+        jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_Submit.setText("Submit");
+        btn_Submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_SubmitActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Genaerate Rank");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_clear.setText("Clear");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_clearActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Clear");
-
-        jButton4.setText("Update");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_updateActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Delete");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btn_delete.setText("Delete");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("Refresh");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_deleteActionPerformed(evt);
             }
         });
 
@@ -214,35 +219,42 @@ public class pnl_Lecture extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jButton2)
-                .addGap(25, 25, 25)
-                .addComponent(jButton1)
+                .addGap(64, 64, 64)
+                .addComponent(btn_Submit)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(btn_clear)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(btn_update)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addComponent(btn_delete)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(btn_Submit)
+                    .addComponent(btn_clear)
+                    .addComponent(btn_update)
+                    .addComponent(btn_delete))
                 .addGap(26, 26, 26))
         );
 
         txt_id.setText("id");
+
+        lbl_Error.setBackground(new java.awt.Color(255, 51, 51));
+        lbl_Error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_Error.setForeground(new java.awt.Color(255, 51, 51));
+        lbl_Error.setText("jLabel5");
+
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
+        jButton2.setText("Genaerate Rank");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -254,43 +266,48 @@ public class pnl_Lecture extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jScrollPane1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(txt_id)
+                        .addGap(53, 53, 53)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(txt_id)
-                                .addGap(53, 53, 53)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3))
-                                        .addGap(28, 28, 28)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_EmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cmb_Faculty, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cmb_Department, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txt_EmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(57, 57, 57)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(28, 28, 28)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmb_Center, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmb_Building)
-                                    .addComponent(cmb_level)
-                                    .addComponent(txt_Rank, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmb_center, 0, 151, Short.MAX_VALUE)
-                                    .addComponent(cmb_buildings, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmb_le, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txt_rank)))
+                                    .addComponent(txt_EmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmb_Faculty, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmb_Department, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(202, 202, 202)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 129, Short.MAX_VALUE)))
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_EmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmb_Center, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_Building)
+                            .addComponent(cmb_level)
+                            .addComponent(txt_Rank, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmb_center, 0, 151, Short.MAX_VALUE)
+                            .addComponent(cmb_buildings, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmb_le, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_rank))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(12, 12, 12))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(305, 305, 305)
+                        .addComponent(lbl_Error, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(290, 290, 290))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,13 +336,16 @@ public class pnl_Lecture extends javax.swing.JPanel {
                         .addComponent(cmb_buildings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cmb_le, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
+                        .addGap(23, 23, 23)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmb_Department, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_Rank)
                             .addComponent(txt_rank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
-                .addGap(34, 34, 34)
+                            .addComponent(jLabel4)
+                            .addComponent(jButton2))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_Error)
+                .addGap(9, 9, 9)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -342,7 +362,7 @@ public class pnl_Lecture extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 28, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,15 +397,21 @@ public class pnl_Lecture extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_EmpNameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SubmitActionPerformed
         LectureController lec = new LectureController();
+        
         try {
-            lec.addLecture(CreateLecture());
+            if(validateData()){
+            if(lec.addLecture(CreateLecture()) != 0){
+                JOptionPane.showMessageDialog(null, "Lecture Added Successful!", "Add Lecturer", JOptionPane.INFORMATION_MESSAGE);
+                refreshData();
+            }
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(jPanel1, "Failed! MYSQL ERROR", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_SubmitActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -423,21 +449,20 @@ public class pnl_Lecture extends javax.swing.JPanel {
        
     }//GEN-LAST:event_tbl_lecMouseClicked
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-           refreshData();
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         
-  String customerCode = (String) txt_EmpId.getText();
+         String customerCode = (String) txt_EmpId.getText();
 
         try {
+            if (validateData()) {
+                
             LectureController ldl = new LectureController();
                ldl.updateLecture(updateLecture());
                showLecureList();
                refreshData();
-               JOptionPane.showMessageDialog(null, "Lecture Added Successful!", "Update", JOptionPane.INFORMATION_MESSAGE);
-               
+               resetForm();
+               JOptionPane.showMessageDialog(null, "Lecture Update Successful!", "Update", JOptionPane.INFORMATION_MESSAGE);
+          }     
         } catch (Exception e) {
             Logger.getLogger(pnl_Module.class
                 .getName()).log(Level.SEVERE, null, e);
@@ -445,9 +470,9 @@ public class pnl_Lecture extends javax.swing.JPanel {
             return;
         }
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btn_updateActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         
         LectureController mod = new LectureController();
         int lId = Integer.parseInt(txt_id.getText());
@@ -470,7 +495,33 @@ public class pnl_Lecture extends javax.swing.JPanel {
         }
       
         
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+        resetForm();
+        refreshData();
+    }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void txt_EmpIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_EmpIdKeyPressed
+               String cap = txt_EmpId.getText();
+        int length = cap.length();
+        char c = evt.getKeyChar();
+
+        if(c >= '0' && c <= '9'){
+            if(length <7){
+                txt_EmpId.setEditable(true);
+            } else{
+                txt_EmpId.setEditable(false);
+            }
+        }
+        else {
+            if(evt.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode() == KeyEvent.VK_DELETE){
+                txt_EmpId.setEditable(true);
+            }else{
+                txt_EmpId.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_txt_EmpIdKeyPressed
 
     
     private LectureModel CreateLecture() {
@@ -497,6 +548,10 @@ public class pnl_Lecture extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Submit;
+    private javax.swing.JButton btn_clear;
+    private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_update;
     private javax.swing.JLabel cmb_Building;
     private javax.swing.JLabel cmb_Center;
     private javax.swing.JComboBox<String> cmb_Department;
@@ -505,12 +560,7 @@ public class pnl_Lecture extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cmb_center;
     private javax.swing.JComboBox<String> cmb_le;
     private javax.swing.JLabel cmb_level;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -521,6 +571,7 @@ public class pnl_Lecture extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lbl_Error;
     private javax.swing.JTable tbl_lec;
     private javax.swing.JTextField txt_EmpId;
     private javax.swing.JTextField txt_EmpName;
@@ -580,6 +631,102 @@ public class pnl_Lecture extends javax.swing.JPanel {
         return ld;
 
 }
+       
+       
+           /*
+     check whether any location is exist by passing  query,id & Column name
+     */
+    public boolean isExist(String name, String id, String query, String colName) throws SQLException {
+        
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        
+        boolean isAvailable = false;
+        int col = 0;
+        
+        try {
+            ps = connection.prepareStatement(query);
+
+            ps.setString(1, name);
+            ps.setString(2, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if (!rs.getString(colName).isEmpty()) {
+                isAvailable = true;
+            }
+//                
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+            try {
+                if(ps != null){
+                    ps.close();
+                }
+            } catch (Exception ex) {
+                throw ex;
+            }
+            
+        }
+        return isAvailable;
+    }
     
-    
+    public Boolean validateData() {
+
+
+        if (txt_EmpName.getText().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Enter Employee Name");
+            txt_EmpName.grabFocus();
+            return false;
+        }
+        
+        if (txt_EmpId.getText().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Enter Employee ID");
+            txt_EmpId.grabFocus();
+            return false;
+        }
+        if (cmb_Faculty.getSelectedItem().toString().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select Faculty");
+            cmb_Faculty.grabFocus();
+            return false;
+        }
+        if (cmb_Department.getSelectedItem().toString().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select Department");
+            cmb_Department.grabFocus();
+            return false;
+        }
+        
+        if (cmb_center.getSelectedItem().toString().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select Center");
+            cmb_center.grabFocus();
+            return false;
+        }
+         if (cmb_buildings.getSelectedItem().toString().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select Building");
+            cmb_buildings.grabFocus();
+            return false;
+        }
+          if (cmb_le.getSelectedItem().toString().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select Level");
+            cmb_le.grabFocus();
+            return false;
+        }
+        
+        if (txt_rank.getText().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Genarate Rank");
+            txt_rank.grabFocus();
+            return false;
+        }
+           
+        return true;
+         
+    }
 }
