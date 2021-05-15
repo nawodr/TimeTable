@@ -58,7 +58,7 @@ public final class pnl_Location extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonGroup = new javax.swing.ButtonGroup();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        btn_notAvailableLocation = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         tBtn_Building = new javax.swing.JToggleButton();
@@ -75,8 +75,8 @@ public final class pnl_Location extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
 
-        jTabbedPane1.setBackground(new java.awt.Color(153, 153, 153));
-        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_notAvailableLocation.setBackground(new java.awt.Color(153, 153, 153));
+        btn_notAvailableLocation.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jPanel9.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -145,7 +145,7 @@ public final class pnl_Location extends javax.swing.JPanel {
                 .addComponent(LpanelBody1))
         );
 
-        jTabbedPane1.addTab("Buildings & Rooms", jPanel7);
+        btn_notAvailableLocation.addTab("Buildings & Rooms", jPanel7);
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -251,7 +251,7 @@ public final class pnl_Location extends javax.swing.JPanel {
                 .addComponent(LpanelBody))
         );
 
-        jTabbedPane1.addTab("Reserve Rooms", jPanel3);
+        btn_notAvailableLocation.addTab("Reserve Rooms", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -266,7 +266,7 @@ public final class pnl_Location extends javax.swing.JPanel {
             .addGap(0, 814, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Consecutive", jPanel4);
+        btn_notAvailableLocation.addTab("Consecutive", jPanel4);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -281,17 +281,17 @@ public final class pnl_Location extends javax.swing.JPanel {
             .addGap(0, 814, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Not Available Time", jPanel1);
+        btn_notAvailableLocation.addTab("Not Available Time", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(btn_notAvailableLocation)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(btn_notAvailableLocation)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -383,6 +383,7 @@ public final class pnl_Location extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JLayeredPane LpanelBody;
     private static javax.swing.JLayeredPane LpanelBody1;
+    private javax.swing.JTabbedPane btn_notAvailableLocation;
     private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
@@ -390,7 +391,6 @@ public final class pnl_Location extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;

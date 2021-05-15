@@ -56,13 +56,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              <Component id="workingScrollPane" min="-2" pref="682" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                               <Component id="workingTitleLabel" min="-2" pref="395" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                              <Component id="workingScrollPane" min="-2" pref="682" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -118,9 +118,9 @@
                               <Component id="resetButton" min="-2" pref="93" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="44" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanel1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -169,7 +169,7 @@
                                   <Component id="submitButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="resetButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                              <EmptySpace min="102" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
@@ -179,8 +179,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="jPanel1" min="-2" pref="66" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -480,22 +479,22 @@
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="500" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -512,10 +511,10 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel4">
+            <Container class="javax.swing.JPanel" name="jPanel1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1b" green="1b" red="9b" type="rgb"/>
+                  <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
                 </Property>
               </Properties>
 
@@ -525,21 +524,21 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="workingEditButton" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="workingRemoveButton" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="workingEditButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                               <Component id="workingRemoveButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -631,20 +630,19 @@
                                       </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       <Component id="timeResetButton" min="-2" pref="93" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="endMinutesComboBox" min="-2" pref="115" max="-2" attributes="0"/>
                                           <Component id="startMinutesComboBox" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                                           <Component id="startMinutesLabel" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="207" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="175" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -992,7 +990,7 @@
             <Container class="javax.swing.JPanel" name="jPanel5">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1b" green="1b" red="9b" type="rgb"/>
+                  <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
                 </Property>
               </Properties>
 
@@ -1046,7 +1044,7 @@
                 <Component class="javax.swing.JButton" name="timeEditButton">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="1b" green="1b" red="9b" type="rgb"/>
+                      <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="18" style="1"/>
