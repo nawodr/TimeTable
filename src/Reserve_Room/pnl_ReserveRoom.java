@@ -551,7 +551,7 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
 
         jToggleButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jToggleButton6.setText("Not Available Time");
+        jToggleButton6.setText("Not Available Location");
         jToggleButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jToggleButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -604,7 +604,7 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
                 .addComponent(LpanelBody1))
         );
 
-        jTabbedPane1.addTab("Not Available Time", pnl_NotAvailable);
+        jTabbedPane1.addTab("Not Available Location", pnl_NotAvailable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
