@@ -58,25 +58,15 @@ public final class pnl_Location extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonGroup = new javax.swing.ButtonGroup();
-        btn_notAvailableLocation = new javax.swing.JTabbedPane();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         tBtn_Building = new javax.swing.JToggleButton();
         tBtn_Room = new javax.swing.JToggleButton();
         LpanelBody1 = new javax.swing.JLayeredPane();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        LpanelBody = new javax.swing.JLayeredPane();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
 
-        btn_notAvailableLocation.setBackground(new java.awt.Color(153, 153, 153));
-        btn_notAvailableLocation.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTabbedPane1.setBackground(new java.awt.Color(153, 153, 153));
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jPanel9.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -145,216 +135,22 @@ public final class pnl_Location extends javax.swing.JPanel {
                 .addComponent(LpanelBody1))
         );
 
-        btn_notAvailableLocation.addTab("Buildings & Rooms", jPanel7);
-
-        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
-
-        jToggleButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jToggleButton1.setText("Add Room For Session");
-        jToggleButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
-        jToggleButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jToggleButton2.setText("Add Room For Lecturer");
-        jToggleButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
-            }
-        });
-
-        jToggleButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jToggleButton3.setText("Add Room For Subject");
-        jToggleButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton3ActionPerformed(evt);
-            }
-        });
-
-        jToggleButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jToggleButton4.setText("Add Room For Tag");
-        jToggleButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton4ActionPerformed(evt);
-            }
-        });
-
-        jToggleButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jToggleButton5.setText("Add Room For Group");
-        jToggleButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout LpanelBodyLayout = new javax.swing.GroupLayout(LpanelBody);
-        LpanelBody.setLayout(LpanelBodyLayout);
-        LpanelBodyLayout.setHorizontalGroup(
-            LpanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        LpanelBodyLayout.setVerticalGroup(
-            LpanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 755, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(LpanelBody)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LpanelBody))
-        );
-
-        btn_notAvailableLocation.addTab("Reserve Rooms", jPanel3);
-
-        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1154, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 814, Short.MAX_VALUE)
-        );
-
-        btn_notAvailableLocation.addTab("Consecutive", jPanel4);
-
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1154, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 814, Short.MAX_VALUE)
-        );
-
-        btn_notAvailableLocation.addTab("Not Available Time", jPanel1);
+        jTabbedPane1.addTab("Buildings & Rooms", jPanel7);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btn_notAvailableLocation)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btn_notAvailableLocation)
+            .addComponent(jTabbedPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    pnl_TagRoom tagR;
-    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
-        if (tagR == null) {
-            try {
-                tagR = new pnl_TagRoom();
-            } catch (SQLException ex) {
-                Logger.getLogger(pnl_TagRoom.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } 
-            setpanels(tagR);
-    }//GEN-LAST:event_jToggleButton4ActionPerformed
-    pnl_SubjectRoom subR;
-    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-
-         if (subR == null) {
-             try {
-                 subR = new pnl_SubjectRoom();
-             } catch (SQLException ex) {
-                 Logger.getLogger(pnl_Location.class.getName()).log(Level.SEVERE, null, ex);
-             }
-        } 
-            setpanels(subR);
-    }//GEN-LAST:event_jToggleButton3ActionPerformed
-    pnl_LecRoom lecR;
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        if (lecR == null) {
-            try {
-                lecR = new pnl_LecRoom();
-            } catch (SQLException ex) {
-                Logger.getLogger(pnl_LecRoom.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } 
-            setpanels(lecR);
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
-    pnl_SessionRoom sr;
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-       
-        if (sr == null) {
-            try {
-                sr = new pnl_SessionRoom();
-            } catch (SQLException ex) {
-                Logger.getLogger(pnl_SessionRoom.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } 
-            setpanels(sr);
-        
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
+    pnl_TagRoom tagR;    pnl_SubjectRoom subR;    pnl_LecRoom lecR;    pnl_SessionRoom sr;
     pnl_GroupRoom grpR;
-    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
-        if (grpR == null) {
-            try {
-                grpR = new pnl_GroupRoom();
-            } catch (SQLException ex) {
-                Logger.getLogger(pnl_GroupRoom.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } 
-            setpanels(grpR);
-    }//GEN-LAST:event_jToggleButton5ActionPerformed
-
     pnl_AddBuilding bulding;
     private void tBtn_BuildingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tBtn_BuildingActionPerformed
         if (bulding == null) {
@@ -381,35 +177,16 @@ public final class pnl_Location extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JLayeredPane LpanelBody;
     private static javax.swing.JLayeredPane LpanelBody1;
-    private javax.swing.JTabbedPane btn_notAvailableLocation;
     private javax.swing.ButtonGroup buttonGroup;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToggleButton tBtn_Building;
     private javax.swing.JToggleButton tBtn_Room;
     // End of variables declaration//GEN-END:variables
 
    
-    
-    public static void setpanels(JPanel panel) {
-        LpanelBody.removeAll();
-        panel.setSize(LpanelBody.getSize());
-        LpanelBody.add(panel);
-        panel.setVisible(true);
-        LpanelBody.moveToFront(panel);
-    }
-    
     public static void setpanels2(JPanel panel) {
         LpanelBody1.removeAll();
         panel.setSize(LpanelBody1.getSize());

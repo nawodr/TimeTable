@@ -453,7 +453,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel addPanel;
+    public javax.swing.JPanel addPanel;
     private javax.swing.JButton clearButton;
     private com.toedter.calendar.JDateChooser dateDateChooser;
     private javax.swing.JLabel dateLabel;

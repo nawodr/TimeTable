@@ -21,39 +21,58 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLabel9" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel9" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane3" min="-2" pref="649" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="lbl_Id" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel9" min="-2" pref="268" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <Component id="jPanel9" min="-2" pref="291" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Component id="jLabel9" min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="lbl_Id" min="-2" pref="28" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel9" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="lbl_Id" min="-2" pref="28" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jPanel9" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jScrollPane3" pref="393" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" min="-2" pref="393" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jSeparator1" pref="427" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
@@ -73,8 +92,8 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="0">
-                <Column editable="false" title="Session Id" type="java.lang.Integer"/>
-                <Column editable="false" title="Subject" type="java.lang.String"/>
+                <Column editable="false" title="Building Id" type="java.lang.Integer"/>
+                <Column editable="false" title="Name" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -116,7 +135,7 @@
     <Container class="javax.swing.JPanel" name="jPanel6">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="99" red="99" type="rgb"/>
+          <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="alignmentY" type="float" value="0.0"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -270,16 +289,13 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txt_buildingName" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="txt_buildingName" min="-2" pref="127" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                   <Component id="lbl_Rtype1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lbl_Error" min="-2" pref="252" max="-2" attributes="0"/>
-              </Group>
+              <Component id="lbl_Error" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -301,7 +317,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="lbl_Error" min="-2" pref="28" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
@@ -345,6 +361,11 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="lbl_Id">
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+      <Properties>
+        <Property name="orientation" type="int" value="1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

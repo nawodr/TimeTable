@@ -10,6 +10,7 @@ import Lecture.View.pnl_Lecture;
 import Location.pnl_Location;
 import Location.pnl_Location;
 import Module.View.pnl_Module;
+import Reserve_Room.pnl_ReserveRoom;
 import Session.addConsecutiveSession;
 import Session.addParallelSession;
 import Session.pnl_Session;
@@ -437,7 +438,14 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
-        // TODO add your handling code here:
+        panelBody.removeAll();
+        try {
+            panelBody.add(new pnl_ReserveRoom());
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        panelBody.repaint();
+        panelBody.revalidate();
     }//GEN-LAST:event_jToggleButton5ActionPerformed
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed

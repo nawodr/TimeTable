@@ -47,9 +47,11 @@ public class pnl_TagRoom extends javax.swing.JPanel {
         txt_TagCode.setText("");
         txt_Tag.setText("");
         cmb_Room.setSelectedItem("");
+        lbl_Error.setVisible(false);
     }
 
     public void refreshData() throws SQLException{
+        lbl_Error.setVisible(false);
         try {
             for (int i = 0; i < 5; i++) {
                 DefaultTableCellRenderer Renderer = new DefaultTableCellRenderer();
@@ -84,7 +86,7 @@ public class pnl_TagRoom extends javax.swing.JPanel {
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        lbl_Error3 = new javax.swing.JLabel();
+        lbl_Error = new javax.swing.JLabel();
         lbl_Rtype3 = new javax.swing.JLabel();
         lbl_Id3 = new javax.swing.JLabel();
         cmb_Room = new javax.swing.JComboBox<>();
@@ -150,9 +152,9 @@ public class pnl_TagRoom extends javax.swing.JPanel {
         jLabel41.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel41.setText(":");
 
-        lbl_Error3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lbl_Error3.setForeground(new java.awt.Color(255, 0, 0));
-        lbl_Error3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_Error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_Error.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_Error.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         cmb_Room.setToolTipText("");
 
@@ -191,10 +193,7 @@ public class pnl_TagRoom extends javax.swing.JPanel {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(lbl_Error3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -234,6 +233,9 @@ public class pnl_TagRoom extends javax.swing.JPanel {
                             .addGap(18, 18, 18)
                             .addComponent(cmb_Room, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addComponent(lbl_Error, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,7 +274,7 @@ public class pnl_TagRoom extends javax.swing.JPanel {
                     .addComponent(jLabel41)
                     .addComponent(cmb_Room, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_Error3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbl_Error, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -280,7 +282,7 @@ public class pnl_TagRoom extends javax.swing.JPanel {
         jLabel9.setText("Add Room For a Tag");
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jPanel8.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel8.setBackground(new java.awt.Color(0, 0, 0));
         jPanel8.setAlignmentY(0.0F);
         jPanel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -376,10 +378,9 @@ public class pnl_TagRoom extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -389,9 +390,11 @@ public class pnl_TagRoom extends javax.swing.JPanel {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(94, 94, 94))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -452,15 +455,19 @@ public class pnl_TagRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_cmb_TagActionPerformed
 
     private void btn_Add2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Add2ActionPerformed
-        PreparedStatement ps = null;
-        Connection connection = DBConnection.getConnection();
-
-        String tagId = cmb_Tag.getSelectedItem().toString();
-        String query = "Select Id FROM tag_Location WHERE id = ?";
-        String colName = "Id";
         
         try {
-            if(!addLoc.isExist(tagId,query,colName)){
+            PreparedStatement ps = null;
+            Connection connection = DBConnection.getConnection();
+
+            String tagId = cmb_Tag.getSelectedItem().toString();
+            String query = "Select id FROM tag_Location WHERE id = ?";
+            String colName = "id";
+            if (txt_TagName.getText().isEmpty()) {
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Module Code");
+                cmb_Tag.grabFocus();
+            }else if(!addLoc.isExist(tagId,query,colName)){
                 
                 JOptionPane.showMessageDialog(null, "This Tag Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
             }else{
@@ -475,11 +482,11 @@ public class pnl_TagRoom extends javax.swing.JPanel {
 
                 ps.executeUpdate();
             
-            JOptionPane.showMessageDialog(null, "Location Added Successfully For Tag", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
+                JOptionPane.showMessageDialog(null, "Location Added Successfully For Tag", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                showYnSList();
             }
-            } catch (SQLException ex) {
-            
+        } catch (SQLException ex) {
+            Logger.getLogger(pnl_TagRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_Add2ActionPerformed
 
@@ -489,58 +496,70 @@ public class pnl_TagRoom extends javax.swing.JPanel {
 
     private void cus_Update3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Update3ActionPerformed
         // TODO add your handling code here:
-        PreparedStatement ps = null;
-        Connection connection = DBConnection.getConnection();
-        int tagId = Integer.parseInt(cmb_Tag.getSelectedItem().toString());
-        
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
         
         try {
-            
-                ps = connection.prepareStatement("UPDATE tag_Location SET tag_Name = ?, tag_Code = ?, related_Tag = ?, room_Name = ? WHERE id = ?");
-                
-                // set db value
-                
-                ps.setString(1, txt_TagName.getText());
-                ps.setString(2, txt_TagCode.getText());
-                ps.setString(3, txt_Tag.getText());
-                ps.setString(4, cmb_Room.getSelectedItem().toString());
-                ps.setInt(5, tagId);
+            PreparedStatement ps = null;
+            Connection connection = DBConnection.getConnection();
+            String tagId = cmb_Tag.getSelectedItem().toString();
+            String query = "Select id FROM tag_Location WHERE id = ?";
+            String colName = "id";
+            if (!addLoc.isExist(tagId,query,colName)) {
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Row you Want To Update");
+            } else{
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                if(res == 0) {
 
-                ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Location Update Successfully For Tag", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
-            
-            
+                    ps = connection.prepareStatement("UPDATE tag_Location SET tag_Name = ?, tag_Code = ?, related_Tag = ?, room_Name = ? WHERE id = ?");
+
+                    // set db value
+
+                    ps.setString(1, txt_TagName.getText());
+                    ps.setString(2, txt_TagCode.getText());
+                    ps.setString(3, txt_Tag.getText());
+                    ps.setString(4, cmb_Room.getSelectedItem().toString());
+                    ps.setInt(5, Integer.parseInt(cmb_Tag.getSelectedItem().toString()));
+
+                    ps.executeUpdate();
+
+                    JOptionPane.showMessageDialog(null, "Location Update Successfully For Tag", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                    showYnSList();
+                }
+            }
         } catch (SQLException ex) {
-            
+            Logger.getLogger(pnl_TagRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
+        
     }//GEN-LAST:event_cus_Update3ActionPerformed
 
     private void cus_delete3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_delete3ActionPerformed
-        // TODO add your handling code here:
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
-        Connection connection = DBConnection.getConnection();
-        PreparedStatement ps = null;
-        
-        int tagId = Integer.parseInt(cmb_Tag.getSelectedItem().toString());
-        
         try {
-            ps = connection.prepareStatement("DELETE FROM tag_Location WHERE id = ?");
-            ps.setInt(1, tagId);
-            ps.executeUpdate();
-            showYnSList();
-            resetForm();
-            JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
-        
+            String tagId = cmb_Tag.getSelectedItem().toString();
+            String query = "Select id FROM tag_Location WHERE id = ?";
+            String colName = "id";
+            
+            if (!addLoc.isExist(tagId,query,colName)) {
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Row you Want To Delete");
+            } else{
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                if(res == 0) {
+                    Connection connection = DBConnection.getConnection();
+                    PreparedStatement ps = null;
+
+
+                    ps = connection.prepareStatement("DELETE FROM tag_Location WHERE id = ?");
+                    ps.setInt(1, Integer.parseInt(cmb_Tag.getSelectedItem().toString()));
+                    ps.executeUpdate();
+                    showYnSList();
+                    resetForm();
+                    JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
         } catch (SQLException ex) {
-           
+            Logger.getLogger(pnl_TagRoom.class.getName()).log(Level.SEVERE, null, ex);
         }  
-        }
+        
     }//GEN-LAST:event_cus_delete3ActionPerformed
 
 
@@ -566,7 +585,7 @@ public class pnl_TagRoom extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lbl_Error3;
+    private javax.swing.JLabel lbl_Error;
     private javax.swing.JLabel lbl_Id3;
     private javax.swing.JLabel lbl_Rtype3;
     private javax.swing.JTable tbl_TagLoc;

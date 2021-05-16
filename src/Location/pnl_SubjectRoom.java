@@ -41,10 +41,12 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
         txt_Name.setText("");
         txt_Year.setText("");
         txt_Sem.setText("");
-        cmb_Room.setSelectedItem("");        
+        cmb_Room.setSelectedItem("");    
+        lbl_Error.setVisible(false);
     }
     
     public void refreshData() throws SQLException{
+        lbl_Error.setVisible(false);
         try {
             showYnSList();
             
@@ -78,7 +80,7 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
         jLabel38 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        lbl_Error3 = new javax.swing.JLabel();
+        lbl_Error = new javax.swing.JLabel();
         lbl_Rtype3 = new javax.swing.JLabel();
         lbl_Id3 = new javax.swing.JLabel();
         cmb_ModuleCode = new javax.swing.JComboBox<>();
@@ -150,9 +152,9 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
         jLabel41.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel41.setText(":");
 
-        lbl_Error3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lbl_Error3.setForeground(new java.awt.Color(255, 0, 0));
-        lbl_Error3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_Error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_Error.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_Error.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         cmb_ModuleCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,7 +187,7 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +230,7 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
                         .addComponent(txt_Year, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(lbl_Error3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_Error, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -271,7 +273,7 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
                     .addComponent(jLabel41)
                     .addComponent(cmb_Room, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbl_Error3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_Error, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -280,7 +282,7 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
         jLabel9.setText("Add Room For Session ");
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jPanel6.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel6.setBackground(new java.awt.Color(0, 0, 0));
         jPanel6.setAlignmentY(0.0F);
         jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel6.setPreferredSize(new java.awt.Dimension(1005, 60));
@@ -374,11 +376,12 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3)
+                        .addGap(27, 27, 27)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11))
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE))
                 .addContainerGap())
@@ -389,9 +392,11 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(96, 96, 96))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -446,7 +451,11 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
         String query = "Select code FROM module_Location WHERE code = ?";
         String colName = "code";
         try {
-            if(addLoc.isExist(moduleId,query,colName)){
+            if (txt_Name.getText().isEmpty()) {
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Module Code");
+                cmb_ModuleCode.grabFocus();
+            }else if(addLoc.isExist(moduleId,query,colName)){
                 
                 JOptionPane.showMessageDialog(null, "This Module Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
             }else{
@@ -464,64 +473,75 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Location Added Successfully For Module", "Add Location", JOptionPane.INFORMATION_MESSAGE);
             showYnSList();
             }
-            } catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(pnl_SubjectRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_AddActionPerformed
 
     private void cus_Update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Update1ActionPerformed
-         PreparedStatement ps = null;
-        Connection connection = DBConnection.getConnection();
-//        int locationId = 0;
-        String moduleCode = cmb_ModuleCode.getSelectedItem().toString();
-        
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
         
         try {
+            PreparedStatement ps = null;
+            Connection connection = DBConnection.getConnection();
+            String moduleCode = cmb_ModuleCode.getSelectedItem().toString();
+            String query = "Select code FROM module_Location WHERE code = ?";
+            String colName = "code";
+            if (!addLoc.isExist(moduleCode,query,colName)) {
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Row you Want To Update");
+            } else{
+            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+            if(res == 0) {
             
-            ps = connection.prepareStatement("UPDATE module_Location SET name = ?, year = ?, semester = ?, room = ? WHERE code = ?");
+                ps = connection.prepareStatement("UPDATE module_Location SET name = ?, year = ?, semester = ?, room = ? WHERE code = ?");
 
-            // set db value
+                // set db value
 
-            ps.setString(1, txt_Name.getText());
-            ps.setString(2, txt_Year.getText());
-            ps.setString(3, txt_Sem.getText());
-            ps.setString(4, cmb_Room.getSelectedItem().toString());
-            ps.setString(5, moduleCode);
+                ps.setString(1, txt_Name.getText());
+                ps.setString(2, txt_Year.getText());
+                ps.setString(3, txt_Sem.getText());
+                ps.setString(4, cmb_Room.getSelectedItem().toString());
+                ps.setString(5, moduleCode);
 
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Location Update Successfully For Module", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
-            
-            
+                ps.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, "Location Update Successfully For Module", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                showYnSList();
+            }
+            }    
         } catch (SQLException ex) {
             Logger.getLogger(pnl_SubjectRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
+        
     }//GEN-LAST:event_cus_Update1ActionPerformed
 
     private void cus_delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_delete1ActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
-        Connection connection = DBConnection.getConnection();
-        PreparedStatement ps = null;
-        
-            String moduleCode = cmb_ModuleCode.getSelectedItem().toString();
         
         try {
-            ps = connection.prepareStatement("DELETE FROM module_Location WHERE code = ?");
-            ps.setString(1, moduleCode);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
-            resetForm();
+            String moduleCode = cmb_ModuleCode.getSelectedItem().toString();
+            String query = "Select code FROM module_Location WHERE code = ?";
+            String colName = "code";
             
+            if (!addLoc.isExist(moduleCode,query,colName)) {
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Row you Want To Delete");
+            } else{
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                if(res == 0) {
+                    Connection connection = DBConnection.getConnection();
+                    PreparedStatement ps = null;
+
+                    ps = connection.prepareStatement("DELETE FROM module_Location WHERE code = ?");
+                    ps.setString(1, moduleCode);
+                    ps.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+                    showYnSList();
+                    resetForm();
+                }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(pnl_SubjectRoom.class.getName()).log(Level.SEVERE, null, ex);
         }  
-        }
     }//GEN-LAST:event_cus_delete1ActionPerformed
 
 
@@ -547,7 +567,7 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lbl_Error3;
+    private javax.swing.JLabel lbl_Error;
     private javax.swing.JLabel lbl_Id3;
     private javax.swing.JLabel lbl_Rtype3;
     private javax.swing.JTable tbl_Subject;

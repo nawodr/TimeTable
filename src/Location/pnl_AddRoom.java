@@ -111,6 +111,7 @@ public class pnl_AddRoom extends javax.swing.JPanel {
             txt_capacity.grabFocus();
             return false;
         }
+        
         return true;
          
     }
@@ -300,7 +301,7 @@ public class pnl_AddRoom extends javax.swing.JPanel {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addComponent(lbl_Id1)
@@ -338,7 +339,7 @@ public class pnl_AddRoom extends javax.swing.JPanel {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jPanel6.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel6.setBackground(new java.awt.Color(0, 0, 0));
         jPanel6.setAlignmentY(0.0F);
         jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel6.setPreferredSize(new java.awt.Dimension(1005, 60));
@@ -447,18 +448,19 @@ public class pnl_AddRoom extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,12 +468,17 @@ public class pnl_AddRoom extends javax.swing.JPanel {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(23, 23, 23))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(206, 206, 206))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jSeparator1)
+                        .addGap(3, 3, 3)))
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -479,10 +486,11 @@ public class pnl_AddRoom extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_Id)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbl_Id)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -509,12 +517,17 @@ public class pnl_AddRoom extends javax.swing.JPanel {
 
     private void cus_Update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Update1ActionPerformed
 
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
-            try {
-                updateLocation();
-            } catch (SQLException ex) {
-                Logger.getLogger(pnl_Location.class.getName()).log(Level.SEVERE, null, ex);
+        if (lbl_Id.getText().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select Row you Want To Update");
+        }else{
+            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Room",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);        
+            if(res == 0) {
+                try {
+                    updateLocation();
+                } catch (SQLException ex) {
+                    Logger.getLogger(pnl_AddRoom.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }//GEN-LAST:event_cus_Update1ActionPerformed
@@ -524,16 +537,20 @@ public class pnl_AddRoom extends javax.swing.JPanel {
             try {
                 updateLocation();
             } catch (SQLException ex) {
-                Logger.getLogger(pnl_Location.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(pnl_AddRoom.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_cus_Update1KeyPressed
 
     private void cus_delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_delete1ActionPerformed
-
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
-            deleteLocation();
+        if (lbl_Id.getText().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select Row you Want To Delete");
+        }else{
+            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Room",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+            if(res == 0) {
+                deleteLocation();
+        }
         }
     }//GEN-LAST:event_cus_delete1ActionPerformed
 
@@ -557,13 +574,7 @@ public class pnl_AddRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_cus_Exit1ActionPerformed
 
     private void txt_capacityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_capacityKeyPressed
-        //        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            //            if (txt_capacity.getText().isEmpty()) {
-                //                txt_capacity.grabFocus();
-                //            } else {
-                //                btn_Add.grabFocus();
-                //            }
-            //        }
+        
         String cap = txt_capacity.getText();
         int length = cap.length();
         char c = evt.getKeyChar();
@@ -582,7 +593,13 @@ public class pnl_AddRoom extends javax.swing.JPanel {
                 txt_capacity.setEditable(false);
             }
         }
-
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (txt_capacity.getText().isEmpty()) {
+                    txt_capacity.grabFocus();
+            } else {
+                btn_Add.grabFocus();
+            }
+        }
     }//GEN-LAST:event_txt_capacityKeyPressed
 
     private void radio_labActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio_labActionPerformed
@@ -636,7 +653,6 @@ public class pnl_AddRoom extends javax.swing.JPanel {
     */
      private void saveLocation() {
          Locations locations = new Locations();
-         
          try {
             if (validateData()) {
                 
@@ -654,11 +670,11 @@ public class pnl_AddRoom extends javax.swing.JPanel {
                     String id = Integer.toString(addLoc.addLocations(locations));//get auto increment id
                     lbl_Id.setText(id);
                     refreshData();
-                    JOptionPane.showMessageDialog(this, "Customer Added Successfully", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Room Added Successfully", "Add Room", JOptionPane.INFORMATION_MESSAGE);
                     
                 }
                 else{
-                    JOptionPane.showMessageDialog(this, "This Building Name & Room Name Already Used", "Add Location", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "This Building Name & Room Name Already Used", "Add Room", JOptionPane.ERROR_MESSAGE);
                     cmb_buildingName.grabFocus();
                 }
             }
@@ -674,7 +690,6 @@ public class pnl_AddRoom extends javax.swing.JPanel {
         String bName = cmb_buildingName.getSelectedItem().toString();
         String rName = txt_roomName.getText();
         int id = Integer.parseInt(lbl_Id.getText());
-//        String b = addLoc.getBuildingName(id);
         
         try {
             if (validateData()) {
@@ -707,8 +722,7 @@ public class pnl_AddRoom extends javax.swing.JPanel {
             }
             
         } catch (Exception e) {
-            Logger.getLogger(pnl_Location.class
-                .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(pnl_AddRoom.class.getName()).log(Level.SEVERE, null, e);
             JOptionPane.showMessageDialog(null, "Check your update Location code", "Validation", JOptionPane.ERROR_MESSAGE);
             
         }
