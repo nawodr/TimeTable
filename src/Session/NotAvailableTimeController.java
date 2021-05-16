@@ -225,7 +225,7 @@ public class NotAvailableTimeController {
             
             String dataArray[][] = new String[count][8];
             
-            String sql2 = "SELECT id, lecturer, session, group, subGroup, date, start, end FROM notAvailableTime";
+            String sql2 = "SELECT id, lecturer, session, stuGroup, subGroup, date, start, end FROM notAvailableTime";
             pst = con.prepareStatement(sql2);
             rs = pst.executeQuery();
             
@@ -236,7 +236,7 @@ public class NotAvailableTimeController {
                 dataArray[i][0] = rs.getString("id");
                 dataArray[i][1] = rs.getString("lecturer");
                 dataArray[i][2] = rs.getString("session");
-                dataArray[i][3] = rs.getString("group");
+                dataArray[i][3] = rs.getString("stuGroup");
                 dataArray[i][4] = rs.getString("subGroup");
                 dataArray[i][5] = rs.getString("date");
                 dataArray[i][6] = rs.getString("start");
@@ -280,13 +280,103 @@ public class NotAvailableTimeController {
         }        
     }
     
+    public boolean validateDuplicate(String value, String date, int startHour, int endHour, int startMinute, int endMinute, int type) {
+        
+        try {
+			
+            boolean isValid = true;
+            int startTimeHour = 0;
+            int endTimeHour = 0;
+            int startTimeMinute = 0;
+            int endTimeMinute = 0;
+	
+            String sql = null;
+            
+            switch (type) {
+                case 0:
+                    sql = "SELECT start, end FROM notAvailableTime WHERE lecturer = '" + value + "' AND date = '" + date + "'";
+                    break;
+				
+                case 1:
+                    sql = "SELECT start, end FROM notAvailableTime WHERE session = '" + value + "' AND date = '" + date + "'";
+                    break;
+				
+                case 2:
+                    sql = "SELECT start, end FROM notAvailableTime WHERE group = '" + value + "' AND date = '" + date + "'";
+                    break;
+				
+                case 3:
+                    sql = "SELECT start, end FROM notAvailableTime WHERE subGroup = '" + value + "' AND date = '" + date + "'";
+                    break;
+				
+                default:
+                    sql = "SELECT start, end FROM notAvailableTime";
+                    break;
+            }
+	
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+			
+            while(rs.next()) {
+				
+                String st = rs.getString("start");
+                String et = rs.getString("end");
+                
+                String startTime[] = st.split("\\:");
+                String endTime[] = et.split("\\:"); 
+		
+                startTimeHour = Integer.parseInt(startTime[0]);
+		startTimeMinute = Integer.parseInt(startTime[1]);
+		endTimeHour = Integer.parseInt(endTime[0]);
+		endTimeMinute = Integer.parseInt(endTime[1]);
+		
+            }
+	
+            if(startTimeHour != 0) {
+                
+                if((startHour == startTimeHour) && (startMinute == startTimeMinute)) {
+
+                    isValid = false;
+
+                }
+
+                else if((startTimeHour < startHour) && (endTimeHour > startHour)) {
+
+                    isValid = false;
+
+                }
+
+                else {
+
+                    isValid = true;
+
+                }
+            }
+            
+            else {
+            
+                isValid = true;
+                
+            }
+	
+            return isValid;
+		
+        }
+	
+        catch(Exception e) {
+	
+            return false;
+	
+        }
+    }
+	
     public boolean insertNotAvailableTime(NotAvailableTimeModel model) {
     
         boolean success;
         
         try {
-            
-            String sql = "INSERT INTO notAvailableTime(id, lecturer, session, group, subGroup, date, start, end) VALUES('" + createId() + "', " + model.getLecturer() + "', '" + model.getSession() + "', '" + model.getGroup() + "', '" + model.getSubGroup() + "', '" + model.getDate() + "', '" + model.getStartTime() + "', '" + model.getEndTime() + "')";
+          
+            String sql = "INSERT INTO notAvailableTime(id, lecturer, session, stuGroup, subGroup, date, start, end) VALUES('" + createId() + "', '" + model.getLecturer() + "', '" + model.getSession() + "', '" + model.getGroup() + "', '" + model.getSubGroup() + "', '" + model.getDate() + "', '" + model.getStartTime() + "', '" + model.getEndTime() + "')";
             pst = con.prepareStatement(sql);
             pst.execute();
             

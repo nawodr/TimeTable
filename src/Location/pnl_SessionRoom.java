@@ -96,7 +96,7 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
         jLabel22 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        cmb_Id = new javax.swing.JComboBox<>();
+        cmb_Id = new javax.swing.JComboBox<String>();
         jLabel10 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         txt_Sub = new javax.swing.JTextField();
@@ -106,7 +106,7 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
         txt_Tag = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        cmb_Room = new javax.swing.JComboBox<>();
+        cmb_Room = new javax.swing.JComboBox<String>();
         txt_StudntCount = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -239,7 +239,7 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
                     .addComponent(cus_delete1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cus_New1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cus_Exit1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));

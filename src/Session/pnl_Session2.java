@@ -23,7 +23,7 @@ public class pnl_Session2 extends javax.swing.JPanel {
     addConsecutiveSession ac;
     addParallelSession ap;
     addNonOverlapping an;
-    NotAvailableTimeView anas;
+    //NotAvailableTimeView anas;
     
     public pnl_Session2() {
         initComponents();
