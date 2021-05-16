@@ -8,7 +8,12 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
 
     NotAvailableTimeController controller = new NotAvailableTimeController();
     NotAvailableTimeModel model = new NotAvailableTimeModel();
-    
+
+    boolean isLecturer = false;
+    boolean isSession = false;
+    boolean isGroup = false;
+    boolean isSubGroup = false;
+        
     String id;
     String lecturer;
     String session;
@@ -27,10 +32,10 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
     }
     
     public void clearAddFields() {
-        
+
         addPanel.setVisible(true);
         managePanel.setVisible(false);
-        
+
         controller.loadNotAvailableTable(timeTable);
         controller.loadLecturerCombo(lecturerComboBox);
         controller.loadSessionCombo(sessionComboBox);
@@ -40,16 +45,16 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         controller.loadMinutesCombo(startMinutesComboBox);
         controller.loadHoursCombo(endHoursComboBox);
         controller.loadMinutesCombo(endMinutesComboBox);
-        
+
         Date currentDate = new Date();
         dateDateChooser.setDate(currentDate);
-        
+
         clearVariable();
-        
+
     }
-    
+
     public void clearVariable() {
-    
+
         id = "";
         lecturer = "";
         session = "";
@@ -58,48 +63,188 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         date = "";
         startTime = "";
         endTime = "";
-        
+
     }
-    
+
     public void setValue() {
-        
-        if((lecturer.equals("")) || (lecturer.equals("Select Lecturer")) || (lecturer.isEmpty())) {
-        
+
+        if ((lecturer.equals("")) || (lecturer.equals("Select Lecturer")) || (lecturer.isEmpty())) {
+
             lecturer = "";
-            
-        }
-        
-        else {
-        
+            isLecturer = false;
+
+        } else {
+
             String lec[] = lecturer.split("-");
             lecturer = lec[0];
+            isLecturer = true;
+
+        }
+
+        if ((session.equals("")) || (session.equals("Select Session")) || (session.isEmpty())) {
+
+            session = "";
+            isSession = false;
+            
+
+        } else {
+
+            String ses[] = session.split("-");
+            session = ses[0];
+            isSession = true;
             
         }
-        
-        if((session.equals("")) || (session.equals("Select Session")) || (session.isEmpty())) {
-        
-            session = "";
+
+        if ((group.equals("")) || (group.equals("Select Group")) || (group.isEmpty())) {
+
+            group = "";
+            isGroup = false;
             
         }
         
         else {
         
-            String ses[] = session.split("-");
-            session = ses[0];
+            isGroup = true;
             
         }
-        
-        if((group.equals("")) || (group.equals("Select Group")) || (group.isEmpty())) {
-        
-            group = "";
-            
-        }
-        
-        if((subGroup.equals("")) || (subGroup.equals("Select Sub Group")) || (subGroup.isEmpty())) {
-        
+
+        if ((subGroup.equals("")) || (subGroup.equals("Select Sub Group")) || (subGroup.isEmpty())) {
+
             subGroup = "";
+            isSubGroup = false;
+                    
+        }
+        
+        else {
+        
+            isSubGroup = true;
             
-        }        
+        }
+    }
+
+    public boolean validateValue() {
+        
+        boolean isValid = true;
+        
+        if((lecturer.equals("")) && (session.equals("")) && (group.equals("")) && (subGroup.equals(""))) {
+        
+            isValid = false;
+            
+        }
+        
+        else if((date.equals("")) || (date == null) || (date.isEmpty())) {
+        
+            isValid = false;
+            
+        }
+        
+        else if((startTime.equals("")) || (startTime.equals("0:00")) || (startTime.isEmpty())) {
+        
+            isValid = false;
+            
+        }
+        
+        else if((endTime.equals("")) || (endTime.equals("0:00")) || (endTime.isEmpty())) {
+        
+            isValid = false;
+            
+        }
+		
+        else {
+	
+            int startHour = Integer.parseInt(startHoursComboBox.getSelectedItem().toString());
+            int startMinute = Integer.parseInt(startMinutesComboBox.getSelectedItem().toString());
+            int endHour = Integer.parseInt(endHoursComboBox.getSelectedItem().toString());
+            int endMinute = Integer.parseInt(endMinutesComboBox.getSelectedItem().toString());
+
+            int hoursRang = endHour - startHour;
+            int minutesRang = endMinute - startMinute;
+
+            if(hoursRang <= -1) {
+
+                isValid = false;
+
+            }
+
+            else if(hoursRang == 0) {
+
+                if(minutesRang <= 0) {
+
+                    isValid = false;
+
+                }
+				
+                else {
+					
+                    if(isLecturer) {
+
+                        isValid = controller.validateDuplicate(lecturer, date, startHour, endHour, startMinute, endMinute, 0);
+
+                    }
+			
+                    else if(isSession) {
+
+                        isValid = controller.validateDuplicate(session, date, startHour, endHour, startMinute, endMinute, 1);
+
+                    }
+
+                    else if(isGroup) {
+
+                        isValid = controller.validateDuplicate(group, date, startHour, endHour, startMinute, endMinute, 2);
+
+                    }
+
+                    else if(isSubGroup) {
+
+                        isValid = controller.validateDuplicate(subGroup, date, startHour, endHour, startMinute, endMinute, 3);
+
+                    }
+
+                    else {
+
+                        isValid = false;
+
+                    }
+
+                }
+            }
+
+            else {
+
+                if(isLecturer) {
+
+                    isValid = controller.validateDuplicate(lecturer, date, startHour, endHour, startMinute, endMinute, 0);
+
+                }
+		
+                else if(isSession) {
+
+                    isValid = controller.validateDuplicate(session, date, startHour, endHour, startMinute, endMinute, 1);
+
+                }
+
+                else if(isGroup) {
+
+                    isValid = controller.validateDuplicate(group, date, startHour, endHour, startMinute, endMinute, 2);
+
+                }
+
+                else if(isSubGroup) {
+
+                    isValid = controller.validateDuplicate(subGroup, date, startHour, endHour, startMinute, endMinute, 3);
+
+                }
+
+                else {
+
+                    isValid = false;
+
+                }	
+            }
+        }
+		
+        return isValid;
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -119,15 +264,15 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         submitButton = new javax.swing.JButton();
         viewButton = new javax.swing.JButton();
         lecturerLabel = new javax.swing.JLabel();
-        lecturerComboBox = new javax.swing.JComboBox<String>();
         sessionLabel = new javax.swing.JLabel();
-        sessionComboBox = new javax.swing.JComboBox<String>();
-        groupComboBox = new javax.swing.JComboBox<String>();
         groupLabel = new javax.swing.JLabel();
-        subGroupComboBox = new javax.swing.JComboBox<String>();
         subGroupLabel = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
         dateDateChooser = new com.toedter.calendar.JDateChooser();
+        lecturerComboBox = new javax.swing.JComboBox<String>();
+        sessionComboBox = new javax.swing.JComboBox<String>();
+        groupComboBox = new javax.swing.JComboBox<String>();
+        subGroupComboBox = new javax.swing.JComboBox<String>();
         managePanel = new javax.swing.JPanel();
         deleteButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
@@ -218,43 +363,11 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         lecturerLabel.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         lecturerLabel.setText("Lecturer");
 
-        lecturerComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        lecturerComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Lecturer" }));
-        lecturerComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lecturerComboBoxActionPerformed(evt);
-            }
-        });
-
         sessionLabel.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         sessionLabel.setText("Session");
 
-        sessionComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        sessionComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Session" }));
-        sessionComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sessionComboBoxActionPerformed(evt);
-            }
-        });
-
-        groupComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        groupComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Group" }));
-        groupComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                groupComboBoxActionPerformed(evt);
-            }
-        });
-
         groupLabel.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         groupLabel.setText("Group");
-
-        subGroupComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        subGroupComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Sub Group" }));
-        subGroupComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subGroupComboBoxActionPerformed(evt);
-            }
-        });
 
         subGroupLabel.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         subGroupLabel.setText("Sub Group");
@@ -266,6 +379,74 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         dateDateChooser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         dateDateChooser.setPreferredSize(new java.awt.Dimension(195, 25));
 
+        lecturerComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        lecturerComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Lecturer" }));
+        lecturerComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                lecturerComboBoxPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        lecturerComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lecturerComboBoxActionPerformed(evt);
+            }
+        });
+
+        sessionComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        sessionComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Session" }));
+        sessionComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                sessionComboBoxPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        sessionComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sessionComboBoxActionPerformed(evt);
+            }
+        });
+
+        groupComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        groupComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Group" }));
+        groupComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                groupComboBoxPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        groupComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                groupComboBoxActionPerformed(evt);
+            }
+        });
+
+        subGroupComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        subGroupComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Sub Group" }));
+        subGroupComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                subGroupComboBoxPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        subGroupComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subGroupComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
         addPanelLayout.setHorizontalGroup(
@@ -275,82 +456,81 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
                     .addGroup(addPanelLayout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(subGroupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lecturerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sessionLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(groupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lecturerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sessionComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(subGroupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(groupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(125, 125, 125)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(endLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(startLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(addPanelLayout.createSequentialGroup()
-                                .addComponent(subGroupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(subGroupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addPanelLayout.createSequentialGroup()
-                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(addPanelLayout.createSequentialGroup()
-                                            .addComponent(lecturerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(lecturerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
-                                            .addComponent(sessionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(sessionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(addPanelLayout.createSequentialGroup()
-                                        .addComponent(groupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(groupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(125, 125, 125)
                                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(endLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(startLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                                    .addComponent(endHoursComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(hoursLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(startHoursComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 112, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(addPanelLayout.createSequentialGroup()
-                                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(endHoursComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(hoursLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(startHoursComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 112, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(startMinutesComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(minutesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                            .addComponent(endMinutesComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addComponent(dateDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))))
+                                    .addComponent(startMinutesComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(minutesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                    .addComponent(endMinutesComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(dateDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
                     .addGroup(addPanelLayout.createSequentialGroup()
                         .addGap(404, 404, 404)
                         .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
         addPanelLayout.setVerticalGroup(
             addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(minutesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hoursLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lecturerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lecturerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startHoursComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startMinutesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sessionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sessionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(endHoursComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(endMinutesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(endLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(minutesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hoursLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lecturerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(startHoursComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(startLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(startMinutesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sessionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(endHoursComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(endMinutesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(endLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(groupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(subGroupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
+                        .addComponent(lecturerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(sessionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(groupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(groupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(dateDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subGroupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(subGroupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(subGroupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(82, 82, 82)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,7 +539,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         );
 
         contentPanel.add(addPanel);
-        addPanel.setBounds(0, 0, 1080, 600);
+        addPanel.setBounds(0, 0, 1136, 640);
 
         managePanel.setBackground(new java.awt.Color(255, 255, 255));
         managePanel.setPreferredSize(new java.awt.Dimension(1136, 640));
@@ -446,7 +626,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         managePanelLayout.setVerticalGroup(
             managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -464,7 +644,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         );
 
         contentPanel.add(managePanel);
-        managePanel.setBounds(0, 0, 1080, 620);
+        managePanel.setBounds(0, 0, 1136, 640);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -496,7 +676,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
 
-        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         lecturer = lecturerComboBox.getSelectedItem().toString();
         session = sessionComboBox.getSelectedItem().toString();
@@ -508,23 +688,24 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
 
         setValue();
 
-        if((!date.isEmpty()) && (!date.equals("")) && (date != null)) {
+        if (validateValue()) {
 
             model = new NotAvailableTimeModel(lecturer, session, group, subGroup, date, startTime, endTime);
 
-            if(controller.insertNotAvailableTime(model)) {
+            if (controller.insertNotAvailableTime(model)) {
 
-                clearAddFields();
+                //clearAddFields();
 
             }
-
+            
             else {
 
                 JOptionPane.showMessageDialog(this, "Can not insert this record. Plases try again later.");
 
+                
             }
-        }
-
+        } 
+        
         else {
 
             JOptionPane.showMessageDialog(this, "Invalid details.");
@@ -540,58 +721,6 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         controller.loadNotAvailableTable(timeTable);
 
     }//GEN-LAST:event_viewButtonActionPerformed
-
-    private void lecturerComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lecturerComboBoxActionPerformed
-
-        String value = lecturerComboBox.getSelectedItem().toString();
-
-        if(!value.equals("Select Lecturer")) {
-
-            controller.loadSessionCombo(sessionComboBox);
-            controller.loadGroupCombo(groupComboBox);
-            controller.loadSubGroupCombo(subGroupComboBox);
-
-        }
-    }//GEN-LAST:event_lecturerComboBoxActionPerformed
-
-    private void sessionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sessionComboBoxActionPerformed
-
-        String value = sessionComboBox.getSelectedItem().toString();
-
-        if(!value.equals("Select Session")) {
-
-            controller.loadLecturerCombo(lecturerComboBox);
-            controller.loadGroupCombo(groupComboBox);
-            controller.loadSubGroupCombo(subGroupComboBox);
-
-        }
-    }//GEN-LAST:event_sessionComboBoxActionPerformed
-
-    private void groupComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupComboBoxActionPerformed
-
-        String value = groupComboBox.getSelectedItem().toString();
-
-        if(!value.equals("Select Group")) {
-
-            controller.loadLecturerCombo(lecturerComboBox);
-            controller.loadSessionCombo(sessionComboBox);
-            controller.loadSubGroupCombo(subGroupComboBox);
-
-        }
-    }//GEN-LAST:event_groupComboBoxActionPerformed
-
-    private void subGroupComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subGroupComboBoxActionPerformed
-
-        String value = subGroupComboBox.getSelectedItem().toString();
-
-        if(!value.equals("Select Sub Group")) {
-
-            controller.loadLecturerCombo(lecturerComboBox);
-            controller.loadSessionCombo(sessionComboBox);
-            controller.loadGroupCombo(groupComboBox);
-
-        }
-    }//GEN-LAST:event_subGroupComboBoxActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
 
@@ -639,6 +768,74 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         controller.loadNotAvailableTable(timeTable);
 
     }//GEN-LAST:event_refreshButtonActionPerformed
+
+    private void lecturerComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_lecturerComboBoxPopupMenuWillBecomeInvisible
+
+        String value = lecturerComboBox.getSelectedItem().toString();
+
+        if (!value.equals("Select Lecturer")) {
+
+            controller.loadSessionCombo(sessionComboBox);
+            controller.loadGroupCombo(groupComboBox);
+            controller.loadSubGroupCombo(subGroupComboBox);
+
+        }
+    }//GEN-LAST:event_lecturerComboBoxPopupMenuWillBecomeInvisible
+
+    private void lecturerComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lecturerComboBoxActionPerformed
+
+    }//GEN-LAST:event_lecturerComboBoxActionPerformed
+
+    private void sessionComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_sessionComboBoxPopupMenuWillBecomeInvisible
+
+        String value = sessionComboBox.getSelectedItem().toString();
+
+        if (!value.equals("Select Session")) {
+
+            controller.loadLecturerCombo(lecturerComboBox);
+            controller.loadGroupCombo(groupComboBox);
+            controller.loadSubGroupCombo(subGroupComboBox);
+
+        }
+    }//GEN-LAST:event_sessionComboBoxPopupMenuWillBecomeInvisible
+
+    private void sessionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sessionComboBoxActionPerformed
+
+    }//GEN-LAST:event_sessionComboBoxActionPerformed
+
+    private void groupComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_groupComboBoxPopupMenuWillBecomeInvisible
+
+        String value = groupComboBox.getSelectedItem().toString();
+
+        if (!value.equals("Select Group")) {
+
+            controller.loadLecturerCombo(lecturerComboBox);
+            controller.loadSessionCombo(sessionComboBox);
+            controller.loadSubGroupCombo(subGroupComboBox);
+
+        }
+    }//GEN-LAST:event_groupComboBoxPopupMenuWillBecomeInvisible
+
+    private void groupComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupComboBoxActionPerformed
+
+    }//GEN-LAST:event_groupComboBoxActionPerformed
+
+    private void subGroupComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_subGroupComboBoxPopupMenuWillBecomeInvisible
+
+        String value = subGroupComboBox.getSelectedItem().toString();
+
+        if (!value.equals("Select Sub Group")) {
+
+            controller.loadLecturerCombo(lecturerComboBox);
+            controller.loadSessionCombo(sessionComboBox);
+            controller.loadGroupCombo(groupComboBox);
+
+        }
+    }//GEN-LAST:event_subGroupComboBoxPopupMenuWillBecomeInvisible
+
+    private void subGroupComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subGroupComboBoxActionPerformed
+
+    }//GEN-LAST:event_subGroupComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -160,9 +160,9 @@ public class NotAvailableLocationController {
                
                 dataArray[i][0] = rs.getString("id");
                 dataArray[i][1] = rs.getString("room");
-                dataArray[i][5] = rs.getString("date");
-                dataArray[i][6] = rs.getString("start");
-                dataArray[i][7] = rs.getString("end"); 
+                dataArray[i][2] = rs.getString("date");
+                dataArray[i][3] = rs.getString("start");
+                dataArray[i][4] = rs.getString("end"); 
                 
                 i++;
                 
@@ -199,13 +199,81 @@ public class NotAvailableLocationController {
         }        
     }
     
+    public boolean validateDuplicate(String room, String date, int startHour, int endHour, int startMinute, int endMinute) {
+        
+        try {
+            
+            boolean isValid = true;
+            int startTimeHour = 0;
+            int endTimeHour = 0;
+            int startTimeMinute = 0;
+            int endTimeMinute = 0;
+
+            String sql = "SELECT start, end FROM notAvailableLocation WHERE room = '" + room + "' AND date = '" + date + "'";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            while(rs.next()) {
+
+                String st = rs.getString("start");
+                String et = rs.getString("end");
+                
+                String startTime[] = st.split("\\:");
+                String endTime[] = et.split("\\:"); 
+
+		startTimeHour = Integer.parseInt(startTime[0]);
+		startTimeMinute = Integer.parseInt(startTime[1]);
+		endTimeHour = Integer.parseInt(endTime[0]);
+		endTimeMinute = Integer.parseInt(endTime[1]);
+	                
+            }
+		
+            if(startTimeHour != 0) {
+                
+                if((startHour == startTimeHour) && (startMinute == startTimeMinute)) {
+
+                    isValid = false;
+
+                }
+
+                else if((startTimeHour < startHour) && (endTimeHour > startHour)) {
+
+                    isValid = false;
+
+                }
+
+                else {
+
+                    isValid = true;
+
+                }
+            }
+            
+            else {
+            
+                isValid = true;
+                
+            }
+            
+            return isValid;
+        
+        }
+        
+        catch(Exception e) {
+        
+            System.err.println(e);
+            return false;
+            
+        }
+    }
+	
     public boolean insertNotAvailableLocation(NotAvailableLocationModel model) {
     
         boolean success;
         
         try {
             
-            String sql = "INSERT INTO notAvailableLocation(id, room, date, start, end) VALUES('" + createId() + "', " + model.getRoom() + "', '" + model.getDate() + "', '" + model.getStartTime() + "', '" + model.getEndTime() + "')";
+            String sql = "INSERT INTO notAvailableLocation(id, room, date, start, end) VALUES('" + createId() + "', '" + model.getRoom() + "', '" + model.getDate() + "', '" + model.getStartTime() + "', '" + model.getEndTime() + "')";
             pst = con.prepareStatement(sql);
             pst.execute();
             
