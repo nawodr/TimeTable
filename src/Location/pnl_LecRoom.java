@@ -38,6 +38,7 @@ public class pnl_LecRoom extends javax.swing.JPanel {
     }
 
     public void refreshData() throws SQLException{
+        lbl_Error.setVisible(false);
         try {
             showYnSList();
             
@@ -54,6 +55,7 @@ public class pnl_LecRoom extends javax.swing.JPanel {
         txt_Faculty.setText("");
         txt_Building.setText("");
         cmb_Room.setSelectedItem("");
+        lbl_Error.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,6 +86,7 @@ public class pnl_LecRoom extends javax.swing.JPanel {
         jLabel40 = new javax.swing.JLabel();
         txt_Name = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
+        lbl_Error = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         btn_Add = new javax.swing.JButton();
@@ -170,12 +173,16 @@ public class pnl_LecRoom extends javax.swing.JPanel {
         jLabel42.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel42.setText(":");
 
+        lbl_Error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_Error.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_Error.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,6 +223,9 @@ public class pnl_LecRoom extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_Building, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addComponent(lbl_Error, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +237,7 @@ public class pnl_LecRoom extends javax.swing.JPanel {
                             .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel38)
                             .addComponent(cmb_Id, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                         .addComponent(lbl_Id3)
                         .addGap(27, 27, 27)))
@@ -237,22 +247,23 @@ public class pnl_LecRoom extends javax.swing.JPanel {
                     .addComponent(txt_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_Rtype3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_Faculty, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel42))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44)
                     .addComponent(txt_Building, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel41)
                     .addComponent(cmb_Room, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+                .addGap(22, 22, 22)
+                .addComponent(lbl_Error, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -260,7 +271,7 @@ public class pnl_LecRoom extends javax.swing.JPanel {
         jLabel9.setText("Add Room For a Lecturer");
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jPanel6.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel6.setBackground(new java.awt.Color(0, 0, 0));
         jPanel6.setAlignmentY(0.0F);
         jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -352,15 +363,16 @@ public class pnl_LecRoom extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,10 +380,10 @@ public class pnl_LecRoom extends javax.swing.JPanel {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 116, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -422,7 +434,11 @@ public class pnl_LecRoom extends javax.swing.JPanel {
         String colName = "id";
         
         try {
-            if(addLoc.isExist(lecId,query,colName)){
+            if (txt_Name.getText().isEmpty()) {
+            lbl_Error.setVisible(true);
+            lbl_Error.setText("Please Select Lecturer Id");
+            cmb_Id.grabFocus();
+        }else if(addLoc.isExist(lecId,query,colName)){
                 
                 JOptionPane.showMessageDialog(null, "This Tag Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
             }else{
@@ -437,67 +453,78 @@ public class pnl_LecRoom extends javax.swing.JPanel {
 
                 ps.executeUpdate();
             
-            JOptionPane.showMessageDialog(null, "Location Added Successfully For Lecturer", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
+                JOptionPane.showMessageDialog(null, "Location Added Successfully For Lecturer", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                showYnSList();
             }
-            } catch (SQLException ex) {
-            Logger.getLogger(pnl_SessionRoom.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(pnl_LecRoom.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_btn_AddActionPerformed
 
     private void cus_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_UpdateActionPerformed
-        PreparedStatement ps = null;
-        Connection connection = DBConnection.getConnection();
-        int lecId = Integer.parseInt(cmb_Id.getSelectedItem().toString());
         
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
         
         try {
-            
-                ps = connection.prepareStatement("UPDATE lecturer_Location SET name = ?, faculty = ?, building = ?, room = ? WHERE id = ?");
-                
-                // set db value
-                
-                ps.setString(1, txt_Name.getText());
-                ps.setString(2, txt_Faculty.getText());
-                ps.setString(3, txt_Building.getText());
-                ps.setString(4, cmb_Room.getSelectedItem().toString());
-                ps.setInt(5, lecId);
+            PreparedStatement ps = null;
+            Connection connection = DBConnection.getConnection();
+            String lecId = cmb_Id.getSelectedItem().toString();
+            String query = "Select id FROM lecturer_Location WHERE id = ?";
+            String colName = "id";
+            if (!addLoc.isExist(lecId,query,colName)) {
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Row you Want To Update");
+            } else{
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                if(res == 0) {
+                    ps = connection.prepareStatement("UPDATE lecturer_Location SET name = ?, faculty = ?, building = ?, room = ? WHERE id = ?");
 
-                ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Location Update Successfully For Lecturer", "Update Location", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
-            
-            
+                    // set db value
+                    ps.setString(1, txt_Name.getText());
+                    ps.setString(2, txt_Faculty.getText());
+                    ps.setString(3, txt_Building.getText());
+                    ps.setString(4, cmb_Room.getSelectedItem().toString());
+                    ps.setInt(5, Integer.parseInt(cmb_Id.getSelectedItem().toString()));
+
+                    ps.executeUpdate();
+
+                    JOptionPane.showMessageDialog(null, "Location Update Successfully For Lecturer", "Update Location", JOptionPane.INFORMATION_MESSAGE);
+                    showYnSList();
+                }
+            }   
         } catch (SQLException ex) {
-            
-        }
+            Logger.getLogger(pnl_LecRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cus_UpdateActionPerformed
 
     private void cus_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_deleteActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
-        Connection connection = DBConnection.getConnection();
-        PreparedStatement ps = null;
-        
-        int tagId = Integer.parseInt(cmb_Id.getSelectedItem().toString());
         
         try {
-            ps = connection.prepareStatement("DELETE FROM lecturer_Location WHERE id = ?");
-            ps.setInt(1, tagId);
-            ps.executeUpdate();
-            showYnSList();
-            resetForm();
-            
-            JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
-        
+            String tagId = cmb_Id.getSelectedItem().toString();
+            String query = "Select id FROM lecturer_Location WHERE id = ?";
+            String colName = "id";
+            if (!addLoc.isExist(tagId,query,colName)) {
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Row you Want To Delete");
+            } else{
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                if(res == 0) {
+                    Connection connection = DBConnection.getConnection();
+                    PreparedStatement ps = null;
+
+                    
+                    ps = connection.prepareStatement("DELETE FROM lecturer_Location WHERE id = ?");
+                    ps.setInt(1, Integer.parseInt(cmb_Id.getSelectedItem().toString()));
+                    ps.executeUpdate();
+                    showYnSList();
+                    resetForm();
+
+                    JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
         } catch (SQLException ex) {
-           
+           Logger.getLogger(pnl_LecRoom.class.getName()).log(Level.SEVERE, null, ex);
         }  
-        }
+        
     }//GEN-LAST:event_cus_deleteActionPerformed
 
     private void cus_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_NewActionPerformed
@@ -535,6 +562,7 @@ public class pnl_LecRoom extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lbl_Error;
     private javax.swing.JLabel lbl_Id3;
     private javax.swing.JLabel lbl_Rtype3;
     private javax.swing.JTable tbl_Lecturer;

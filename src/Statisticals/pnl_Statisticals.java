@@ -374,7 +374,15 @@ public class pnl_Statisticals extends javax.swing.JPanel {
             new String [] {
                 "ID", "Employee Id", "Employee Name", "Faculty", "Department", "Center", "Building", "Level", "Rank"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane6.setViewportView(tbl_lec);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -542,8 +550,8 @@ public class pnl_Statisticals extends javax.swing.JPanel {
                             .addComponent(jLabel48)
                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -588,7 +596,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, true, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -745,13 +753,6 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         if (tbl_module.getColumnModel().getColumnCount() > 0) {
             tbl_module.getColumnModel().getColumn(0).setPreferredWidth(15);
             tbl_module.getColumnModel().getColumn(1).setPreferredWidth(45);
-            tbl_module.getColumnModel().getColumn(2).setHeaderValue("Offered Sem");
-            tbl_module.getColumnModel().getColumn(3).setHeaderValue("Module Name");
-            tbl_module.getColumnModel().getColumn(4).setHeaderValue("Module Code");
-            tbl_module.getColumnModel().getColumn(5).setHeaderValue("Total Lec Hrs");
-            tbl_module.getColumnModel().getColumn(6).setHeaderValue("Total Tute Hrs");
-            tbl_module.getColumnModel().getColumn(7).setHeaderValue("Total Lab hrs");
-            tbl_module.getColumnModel().getColumn(8).setHeaderValue("Total Evalution Hrs");
         }
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -890,7 +891,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         dataset.setValue(lecRoomCount, "Lecture Hall", "Lecture Hall");
         dataset.setValue(labCount, "Laboratory", "Laboratory");
         
-        JFreeChart chart = ChartFactory.createBarChart("Locations", "Building Type", "Number Of Rooms", dataset, PlotOrientation.VERTICAL, true, true, true);
+        JFreeChart chart = ChartFactory.createBarChart3D("Locations", "Building Type", "Number Of Rooms", dataset, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.BLACK);
         
@@ -914,7 +915,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         dataset.setValue(TotSubCountYear3, "Year3", "Year3");
         dataset.setValue(TotSubCountYear4, "Year4", "Year4");
         
-        JFreeChart chart = ChartFactory.createBarChart("Subjects", "Year", "Count", dataset, PlotOrientation.VERTICAL, true, true, true);
+        JFreeChart chart = ChartFactory.createBarChart3D("Subjects", "Year", "Count", dataset, PlotOrientation.VERTICAL, true, true, true);
         CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.BLACK);
         
@@ -938,7 +939,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         dataset.setValue(TotStdCountY3, "Year 3", "Year 3");
         dataset.setValue(TotStdCountY4, "Year 4", "Year 4");
         
-        JFreeChart chart = ChartFactory.createBarChart("Students", "Student", "Count", dataset, PlotOrientation.VERTICAL, true, true, true);
+        JFreeChart chart = ChartFactory.createBarChart3D("Students", "Student", "Count", dataset, PlotOrientation.VERTICAL, true, true, true);
         CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.BLACK);
         
@@ -966,7 +967,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         dataset.setValue(LecurerCount5, "5", "5");
         dataset.setValue(LecurerCount6, "6", "6");
 
-        JFreeChart chart = ChartFactory.createBarChart("Lecturers", "Rank Number", "Count", dataset, PlotOrientation.VERTICAL, true, true, true);
+        JFreeChart chart = ChartFactory.createBarChart3D("Lecturers", "Rank Number", "Count", dataset, PlotOrientation.VERTICAL, true, true, true);
         CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.BLACK);
 
@@ -1108,5 +1109,23 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         hm.put("evahrs", "int");
 
         new LoadTable(tbl_module, "Select * from Module", hm);
+    }
+    
+    //getting total row count by passing query and colName
+    public String getRowCount(String query, String colName) throws Exception{
+        String totLec = null;
+        try {
+            PreparedStatement ps = null;
+            Connection connection = DBConnection.getConnection();
+
+            ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                totLec = rs.getString(colName);
+            }
+        } catch (Exception e) {
+            throw(e); 
+        }     
+        return totLec;
     }
 }

@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -37,7 +39,7 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
     public void refreshData() throws SQLException{
         try {
             showYnSList();
-            
+            lbl_Error.setVisible(false);
             DefaultComboBoxModel cmbMdl;
             cmbMdl = new DefaultComboBoxModel(new addLocations().LoadGroupId().toArray());
             cmb_GrpId.setModel(cmbMdl);
@@ -54,6 +56,7 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
     public void resetForm(){
         cmb_GrpId.setSelectedItem("");
         cmb_Room.setSelectedItem("");
+        lbl_Error.setVisible(false);
     }
 
     /**
@@ -74,6 +77,7 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         cmb_GrpId = new javax.swing.JComboBox<>();
+        lbl_Error = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_GrpLocation = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
@@ -102,53 +106,65 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel43.setText(":");
 
+        lbl_Error.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_Error.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_Error.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel41)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel41)
+                                .addGap(265, 265, 265)
+                                .addComponent(lbl_Id3))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(cmb_Room, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(371, 371, 371)
-                                .addComponent(lbl_Id3)
-                                .addGap(107, 107, 107)
-                                .addComponent(lbl_Rtype3)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cmb_Room, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(120, 120, 120))))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel43)
                         .addGap(18, 18, 18)
-                        .addComponent(cmb_GrpId, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(cmb_GrpId, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(107, 107, 107)
+                .addComponent(lbl_Rtype3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addComponent(lbl_Error, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lbl_Id3)
-                .addGap(27, 27, 27)
-                .addComponent(lbl_Rtype3)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel43)
-                    .addComponent(cmb_GrpId, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel41)
-                    .addComponent(cmb_Room, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(lbl_Rtype3))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel43)
+                            .addComponent(cmb_GrpId, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel41)
+                            .addComponent(cmb_Room, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(lbl_Error, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tbl_GrpLocation.setModel(new javax.swing.table.DefaultTableModel(
@@ -181,7 +197,7 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tbl_GrpLocation);
 
-        jPanel6.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel6.setBackground(new java.awt.Color(0, 0, 0));
         jPanel6.setAlignmentY(0.0F);
         jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel6.setPreferredSize(new java.awt.Dimension(1005, 60));
@@ -283,10 +299,10 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,8 +355,8 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Location Added Successfully For group", "Add Location", JOptionPane.INFORMATION_MESSAGE);
             showYnSList();
             }
-            } catch (SQLException ex) {
-            
+        } catch (SQLException ex) {
+            Logger.getLogger(pnl_GroupRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_AddActionPerformed
 
@@ -348,50 +364,60 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
         PreparedStatement ps = null;
         Connection connection = DBConnection.getConnection();
         String GrpId = cmb_GrpId.getSelectedItem().toString();
-        
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
-        
+        String query = "Select group_Id FROM group_Location WHERE group_Id = ?";
+        String colName = "group_Id";
         try {
-            
+            if (!addLoc.isExist(GrpId,query,colName)) {
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Row you Want To Update");
+            } else{
+            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+            if(res == 0) {
                 ps = connection.prepareStatement("UPDATE group_Location SET room = ? WHERE group_Id = ?");
-                
+
                 // set db value
                 ps.setString(1, cmb_Room.getSelectedItem().toString());
                 ps.setString(2, GrpId);
 
                 ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Location Update Successfully For Group", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
-            
-            
+
+                JOptionPane.showMessageDialog(null, "Location Update Successfully For Group", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                showYnSList();
+            }
+        } 
         } catch (SQLException ex) {
-            
+            Logger.getLogger(pnl_GroupRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
+        
     }//GEN-LAST:event_cus_UpdateActionPerformed
 
     private void cus_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_deleteActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
-        Connection connection = DBConnection.getConnection();
-        PreparedStatement ps = null;
-        
-            String GrpId = cmb_GrpId.getSelectedItem().toString();
-        
         try {
-            ps = connection.prepareStatement("DELETE FROM group_Location WHERE group_Id = ?");
-            ps.setString(1, GrpId);
-            ps.executeUpdate();
-            showYnSList();
-            resetForm();
-            JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
-        
-        } catch (SQLException ex) {
-           
-        }  
+            String GrpId = cmb_GrpId.getSelectedItem().toString();
+            String query = "Select group_Id FROM group_Location WHERE group_Id = ?";
+            String colName = "group_Id";
+            
+            if (!addLoc.isExist(GrpId,query,colName)) {
+                    lbl_Error.setVisible(true);
+                    lbl_Error.setText("Please Select Row you Want To Delete");
+            } else{
+            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+            if(res == 0) {
+                Connection connection = DBConnection.getConnection();
+                PreparedStatement ps = null;
+                ps = connection.prepareStatement("DELETE FROM group_Location WHERE group_Id = ?");
+                ps.setString(1, GrpId);
+                ps.executeUpdate();
+                showYnSList();
+                resetForm();
+                JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
+        } catch (SQLException ex) {
+           Logger.getLogger(pnl_GroupRoom.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        
     }//GEN-LAST:event_cus_deleteActionPerformed
 
     private void cus_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_NewActionPerformed
@@ -423,6 +449,7 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lbl_Error;
     private javax.swing.JLabel lbl_Id3;
     private javax.swing.JLabel lbl_Rtype3;
     private javax.swing.JTable tbl_GrpLocation;

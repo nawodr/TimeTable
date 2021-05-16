@@ -625,4 +625,36 @@ public class addLocations {
         }
         return moduleIdList;
     }
+    
+    /*
+     Load Consecutive Session id
+     */
+    public List<Integer> LoadConSessionId() throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<Integer> sessionIdList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT id FROM sp2_consecutive_session ORDER BY id");
+            //excuite sql
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                sessionIdList.add(rs.getInt("id"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return sessionIdList;
+    }
 }
