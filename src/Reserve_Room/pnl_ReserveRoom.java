@@ -131,13 +131,13 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        cmb_Id1 = new javax.swing.JComboBox<>();
+        cmb_Id1 = new javax.swing.JComboBox<String>();
         txt_grp1 = new javax.swing.JTextField();
         txt_ConSessions = new javax.swing.JTextField();
         txt_SessionId = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
-        cmb_Room1 = new javax.swing.JComboBox<>();
+        cmb_Room1 = new javax.swing.JComboBox<String>();
         lbl_Error = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Consecutive = new javax.swing.JTable();
@@ -550,6 +550,7 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
 
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
 
+        jToggleButton6.setBackground(java.awt.Color.black);
         jToggleButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jToggleButton6.setText("Not Available Location");
         jToggleButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -564,9 +565,9 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(939, 939, 939))
+                .addContainerGap()
+                .addComponent(jToggleButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 1143, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
