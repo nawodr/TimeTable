@@ -167,23 +167,29 @@ public class SessionController {
                 dataArray[i][7] = rs.getString("stu_count");
                 dataArray[i][8] = rs.getString("tag");
                 dataArray[i][9] = rs.getString("tag_duration");
-                            
-                String sql3 = "SELECT S.lId, L.empname FROM sessionLec S, Lecture L WHERE S.sId = '" + rs.getString("id") + "' AND S.lId = L.empid";
-                pst = con.prepareStatement(sql3);
-                rs = pst.executeQuery();
-            
-                int k = 1;
-                
-                while(rs.next()) {
-               
-                    dataArray[i][k] = rs.getString("lId") + "-" + rs.getString("empname");                                
-                
-                    k++;
-                    
-                }
-            
+                           
                 i++;
                 
+            }
+            
+            if(dataArray.length > 0) {
+            
+                for(int r = 0; r < dataArray.length; r++) {
+                
+                    String sql3 = "SELECT S.lId, L.empname FROM sessionLec S, Lecture L WHERE S.sId = '" + dataArray[r][0] + "' AND S.lId = L.empid";
+                    pst = con.prepareStatement(sql3);
+                    rs = pst.executeQuery();
+
+                    int k = 1;
+
+                    while(rs.next()) {
+
+                        dataArray[r][k] = rs.getString("lId") + "-" + rs.getString("empname");                                
+
+                        k++;
+
+                    }
+                }
             }
             
             String col[] = {"ID", "Lecturer 1", "Lecturer 2", "Lecturer 3", "Subject Code", "Subject Name", "Group Id", "No of Student", "Tag", "Duration"};

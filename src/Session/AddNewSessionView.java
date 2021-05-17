@@ -3,7 +3,7 @@ package Session;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
-public class SessionView extends javax.swing.JPanel {
+public class AddNewSessionView extends javax.swing.JPanel {
 
     SessionController controller = new SessionController();
     SessionModel model = new SessionModel();
@@ -21,7 +21,7 @@ public class SessionView extends javax.swing.JPanel {
     String stu_count;
     String tag_duration;
     
-    public SessionView() {
+    public AddNewSessionView() {
         
         initComponents();
         
@@ -29,6 +29,17 @@ public class SessionView extends javax.swing.JPanel {
         
     }
 
+    public AddNewSessionView(SessionModel newModel, boolean isForUpdate) {
+        
+        model = newModel;
+        isUpdate = isForUpdate;
+        
+        initComponents();
+        
+        clearAddFields();
+        
+    }
+    
     public void clearAddFields() {
         
         lecturersTagButton.setBackground(new Color(255, 255, 255));
@@ -37,7 +48,6 @@ public class SessionView extends javax.swing.JPanel {
         step1Panel.setVisible(true);
         step2Panel.setVisible(false);
         
-        controller.loadSessionTable(sessionTable);
         controller.loadLecturerCombo(lecturerComboBox);
         controller.loadTagCombo(tagComboBox);
         controller.loadGroupCombo(groupComboBox, isLabTag());
@@ -139,18 +149,6 @@ public class SessionView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contentTabbedPane = new javax.swing.JTabbedPane();
-        sessionPanel = new javax.swing.JPanel();
-        searchTextField = new javax.swing.JTextField();
-        searchComboBox = new javax.swing.JComboBox<>();
-        searchButton = new javax.swing.JButton();
-        refreshtButton = new javax.swing.JButton();
-        viewButton = new javax.swing.JButton();
-        updateButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
-        sessionScrollPane = new javax.swing.JScrollPane();
-        sessionTable = new javax.swing.JTable();
-        addPanel = new javax.swing.JPanel();
         contentPanel = new javax.swing.JPanel();
         lecturersTagButton = new javax.swing.JButton();
         groupSubjectButton = new javax.swing.JButton();
@@ -177,160 +175,6 @@ public class SessionView extends javax.swing.JPanel {
         clear2Button = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         submitButton = new javax.swing.JButton();
-
-        contentTabbedPane.setBackground(new java.awt.Color(255, 255, 255));
-        contentTabbedPane.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        contentTabbedPane.setOpaque(true);
-        contentTabbedPane.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                contentTabbedPaneMouseClicked(evt);
-            }
-        });
-
-        sessionPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        searchTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        searchComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Session ID", "Subject", "Student Group", "Tag" }));
-        searchComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchComboBoxActionPerformed(evt);
-            }
-        });
-
-        searchButton.setBackground(new java.awt.Color(0, 51, 51));
-        searchButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        searchButton.setForeground(new java.awt.Color(255, 255, 255));
-        searchButton.setText("Search");
-        searchButton.setBorder(null);
-        searchButton.setFocusable(false);
-        searchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButtonActionPerformed(evt);
-            }
-        });
-
-        refreshtButton.setBackground(new java.awt.Color(255, 153, 0));
-        refreshtButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        refreshtButton.setForeground(new java.awt.Color(255, 255, 255));
-        refreshtButton.setText("Refresh");
-        refreshtButton.setBorder(null);
-        refreshtButton.setFocusable(false);
-        refreshtButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshtButtonActionPerformed(evt);
-            }
-        });
-
-        viewButton.setBackground(new java.awt.Color(0, 153, 204));
-        viewButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        viewButton.setForeground(new java.awt.Color(255, 255, 255));
-        viewButton.setText("View");
-        viewButton.setBorder(null);
-        viewButton.setFocusable(false);
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
-            }
-        });
-
-        updateButton.setBackground(new java.awt.Color(255, 102, 0));
-        updateButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        updateButton.setForeground(new java.awt.Color(255, 255, 255));
-        updateButton.setText("Update");
-        updateButton.setBorder(null);
-        updateButton.setFocusable(false);
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
-            }
-        });
-
-        deleteButton.setBackground(new java.awt.Color(153, 0, 51));
-        deleteButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteButton.setText("Delete");
-        deleteButton.setBorder(null);
-        deleteButton.setFocusable(false);
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
-
-        sessionTable.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
-        sessionTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "colum 1", "colum 2", "colum 3", "colum 4", "colum 5"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        sessionTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sessionTableMouseClicked(evt);
-            }
-        });
-        sessionScrollPane.setViewportView(sessionTable);
-
-        javax.swing.GroupLayout sessionPanelLayout = new javax.swing.GroupLayout(sessionPanel);
-        sessionPanel.setLayout(sessionPanelLayout);
-        sessionPanelLayout.setHorizontalGroup(
-            sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sessionPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sessionPanelLayout.createSequentialGroup()
-                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(sessionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(refreshtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(184, Short.MAX_VALUE))
-        );
-        sessionPanelLayout.setVerticalGroup(
-            sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sessionPanelLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(refreshtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sessionPanelLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(sessionPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(sessionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-
-        contentTabbedPane.addTab("Manage Sessions", sessionPanel);
-
-        addPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         contentPanel.setLayout(null);
 
@@ -399,7 +243,7 @@ public class SessionView extends javax.swing.JPanel {
         selectedLecturerLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         selectedLecturerLabel.setText("Selected Lecturer(s)");
 
-        selectedLabel.setBackground(new java.awt.Color(204, 204, 204));
+        selectedLabel.setBackground(new java.awt.Color(255, 255, 255));
         selectedLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         selectedLabel.setOpaque(true);
 
@@ -631,134 +475,20 @@ public class SessionView extends javax.swing.JPanel {
         contentPanel.add(step2Panel);
         step2Panel.setBounds(10, 50, 952, 376);
 
-        javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
-        addPanel.setLayout(addPanelLayout);
-        addPanelLayout.setHorizontalGroup(
-            addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 994, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
-        );
-        addPanelLayout.setVerticalGroup(
-            addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(255, Short.MAX_VALUE))
-        );
-
-        contentTabbedPane.addTab("Add New Session", addPanel);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentTabbedPane)
+            .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 994, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void searchComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchComboBoxActionPerformed
-
-        searchButton.setEnabled(true);
-    }//GEN-LAST:event_searchComboBoxActionPerformed
-
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-
-        String value = searchTextField.getText().trim();
-        int type = searchComboBox.getSelectedIndex();
-
-        controller.searchSession(sessionTable, value, type);
-
-    }//GEN-LAST:event_searchButtonActionPerformed
-
-    private void refreshtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshtButtonActionPerformed
-
-        controller.loadSessionTable(sessionTable);
-        searchTextField.setText("");
-        searchComboBox.setSelectedIndex(0);
-
-    }//GEN-LAST:event_refreshtButtonActionPerformed
-
-    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-
-        if(id != -99) {
-
-            contentTabbedPane.setSelectedIndex(1);
-            submitButton.setEnabled(false);
-            clear1Button.setEnabled(false);
-            clear2Button.setEnabled(false);
-
-            selectedLabel.setText(lecturers);
-            tagComboBox.setSelectedItem(tag);
-            groupComboBox.setSelectedItem(group_id);
-            subjectComboBox.setSelectedItem(sub_code + "-" + subject);
-            noOfStudentTextField.setText(stu_count);
-            durationTextField.setText(tag_duration);
-
-        }
-
-        else {
-
-            JOptionPane.showMessageDialog(this, "Please select record.");
-
-        }
-    }//GEN-LAST:event_viewButtonActionPerformed
-
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-
-        if(id != -99) {
-
-            contentTabbedPane.setSelectedIndex(1);
-            isUpdate = true;
-            submitButton.setText("Update");
-            submitButton.setEnabled(true);
-            clear1Button.setEnabled(true);
-            clear2Button.setEnabled(true);
-
-            selectedLabel.setText(lecturers);
-            tagComboBox.setSelectedItem(tag);
-            groupComboBox.setSelectedItem(group_id);
-            subjectComboBox.setSelectedItem(sub_code + "-" + subject);
-            noOfStudentTextField.setText(stu_count);
-            durationTextField.setText(tag_duration);
-
-        }
-
-        else {
-
-            JOptionPane.showMessageDialog(this, "Please select record.");
-
-        }
-    }//GEN-LAST:event_updateButtonActionPerformed
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-
-        if(id != -99) {
-
-            if(controller.deleteSession(id)) {
-
-                controller.loadSessionTable(sessionTable);
-
-            }
-
-            else {
-
-                JOptionPane.showMessageDialog(this, "Can not delete this record. Plases try again later.");
-
-            }
-        }
-
-        else {
-
-            JOptionPane.showMessageDialog(this, "Please select record.");
-
-        }
-    }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void lecturersTagButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lecturersTagButtonActionPerformed
 
@@ -890,7 +620,7 @@ public class SessionView extends javax.swing.JPanel {
             String sub[] = subjectComboBox.getSelectedItem().toString().split("-");
 
             sub_code = sub[0];
-            subject = sub[1];
+            subject = sub[0];
 
             if(isUpdate) {
 
@@ -919,9 +649,7 @@ public class SessionView extends javax.swing.JPanel {
                 if(controller.insertSession(model)) {
 
                     clearAddFields();
-                    contentTabbedPane.setSelectedIndex(0);
-                    controller.loadSessionTable(sessionTable);
-
+                   
                 }
 
                 else {
@@ -939,38 +667,13 @@ public class SessionView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 
-    private void contentTabbedPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentTabbedPaneMouseClicked
-
-    }//GEN-LAST:event_contentTabbedPaneMouseClicked
-
-    private void sessionTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sessionTableMouseClicked
-
-        clearVariable();
-
-        int r = sessionTable.getSelectedRow();
-
-        id = Integer.parseInt(sessionTable.getValueAt(r, 0).toString());
-        lecturers = sessionTable.getValueAt(r, 1).toString() + "  " + sessionTable.getValueAt(r, 2).toString() + "  " + sessionTable.getValueAt(r, 3).toString();
-        sub_code = sessionTable.getValueAt(r, 4).toString();
-        subject = sessionTable.getValueAt(r, 5).toString();
-        group_id = sessionTable.getValueAt(r, 6).toString();
-        subgroup_id = sessionTable.getValueAt(r, 6).toString();
-        stu_count = sessionTable.getValueAt(r, 7).toString();
-        tag = sessionTable.getValueAt(r, 8).toString();
-        tag_duration = sessionTable.getValueAt(r, 9).toString();
-        
-    }//GEN-LAST:event_sessionTableMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
-    private javax.swing.JPanel addPanel;
     private javax.swing.JButton backButton;
     private javax.swing.JButton clear1Button;
     private javax.swing.JButton clear2Button;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JTabbedPane contentTabbedPane;
-    private javax.swing.JButton deleteButton;
     private javax.swing.JLabel durationLabel;
     private javax.swing.JTextField durationTextField;
     private javax.swing.JComboBox<String> groupComboBox;
@@ -983,15 +686,8 @@ public class SessionView extends javax.swing.JPanel {
     private javax.swing.JButton nextButton;
     private javax.swing.JLabel noOfStudentLabel;
     private javax.swing.JTextField noOfStudentTextField;
-    private javax.swing.JButton refreshtButton;
-    private javax.swing.JButton searchButton;
-    private javax.swing.JComboBox<String> searchComboBox;
-    private javax.swing.JTextField searchTextField;
     private javax.swing.JLabel selectedLabel;
     private javax.swing.JLabel selectedLecturerLabel;
-    private javax.swing.JPanel sessionPanel;
-    private javax.swing.JScrollPane sessionScrollPane;
-    private javax.swing.JTable sessionTable;
     private javax.swing.JPanel step1Panel;
     private javax.swing.JPanel step2Panel;
     private javax.swing.JComboBox<String> subjectComboBox;
@@ -999,7 +695,5 @@ public class SessionView extends javax.swing.JPanel {
     private javax.swing.JButton submitButton;
     private javax.swing.JComboBox<String> tagComboBox;
     private javax.swing.JLabel tagLabel;
-    private javax.swing.JButton updateButton;
-    private javax.swing.JButton viewButton;
     // End of variables declaration//GEN-END:variables
 }

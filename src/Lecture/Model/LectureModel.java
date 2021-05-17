@@ -18,7 +18,7 @@ public class LectureModel {
     private String center;
     private String building;
     private int level;
-    private int rank;
+    private String rank;
 
     public int getId() {
         return id;
@@ -84,11 +84,11 @@ public class LectureModel {
         this.level = level;
     }
 
-    public int getRank() {
+    public String getRank() {
         return rank;
     }
 
-    public void setRank(int rank) {
+    public void setRank(String rank) {
         this.rank = rank;
     }
 
