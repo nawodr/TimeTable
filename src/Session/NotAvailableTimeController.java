@@ -302,7 +302,7 @@ public class NotAvailableTimeController {
                     break;
 				
                 case 2:
-                    sql = "SELECT start, end FROM notAvailableTime WHERE group = '" + value + "' AND date = '" + date + "'";
+                    sql = "SELECT start, end FROM notAvailableTime WHERE stuGroup = '" + value + "' AND date = '" + date + "'";
                     break;
 				
                 case 3:
