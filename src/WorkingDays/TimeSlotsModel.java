@@ -3,6 +3,7 @@ package WorkingDays;
 public class TimeSlotsModel {
     
     int id;
+    String date;
     String start;
     String end;
     int slotType;
@@ -10,17 +11,19 @@ public class TimeSlotsModel {
     public TimeSlotsModel() {
     }
 
-    public TimeSlotsModel(String start, String end, int slotType) {
-      
+    public TimeSlotsModel(String date, String start, String end, int slotType) {
+              
+        this.date = date;
         this.start = start;
         this.end = end;
         this.slotType = slotType;
     
     }
 
-    public TimeSlotsModel(int id, String start, String end, int slotType) {
+    public TimeSlotsModel(int id, String date, String start, String end, int slotType) {
     
         this.id = id;
+        this.date = date;
         this.start = start;
         this.end = end;
         this.slotType = slotType;
@@ -37,6 +40,18 @@ public class TimeSlotsModel {
      
         this.id = id;
    
+    }
+
+    public String getDate() {
+        
+        return date;
+    
+    }
+
+    public void setDate(String date) {
+    
+        this.date = date;
+    
     }
 
     public String getStart() {

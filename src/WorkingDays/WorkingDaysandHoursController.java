@@ -193,9 +193,9 @@ public class WorkingDaysandHoursController {
             }
             
             int idList[][] = new int[count][2];
-            String dataArray[][] = new String[count][4];
+            String dataArray[][] = new String[count][5];
             
-            String sql2 = "SELECT id, start, end, slotType FROM timeslots";
+            String sql2 = "SELECT id, date, start, end, slotType FROM timeslots";
             pst = con.prepareStatement(sql2);
             rs = pst.executeQuery();
             
@@ -204,8 +204,9 @@ public class WorkingDaysandHoursController {
             while(rs.next()) {
                
                 dataArray[i][0] = String.valueOf(i + 1);
-                dataArray[i][1] = rs.getString("start");
-                dataArray[i][2] = rs.getString("end");
+                dataArray[i][1] = rs.getString("date");
+                dataArray[i][2] = rs.getString("start");
+                dataArray[i][3] = rs.getString("end");
                 
                 idList[i][0] = Integer.parseInt(rs.getString("id"));
                 idList[i][1] = Integer.parseInt(rs.getString("slotType"));       
@@ -214,7 +215,7 @@ public class WorkingDaysandHoursController {
                 
             }
             
-            String col[] = {"#", "Start", "End"};
+            String col[] = {"#", "Date", "Start", "End"};
 
             DefaultTableModel model = new DefaultTableModel(dataArray, col) {
 
@@ -233,6 +234,7 @@ public class WorkingDaysandHoursController {
             
             jTable.getColumnModel().getColumn(1);
             jTable.getColumnModel().getColumn(2);
+            jTable.getColumnModel().getColumn(3);
             
             return idList;
             
@@ -244,6 +246,95 @@ public class WorkingDaysandHoursController {
             return null;
             
         }        
+    }
+    
+    public boolean validateDuplicate(String date, int startHour, int endHour, int startMinute, int endMinute) {
+        
+        try {
+            
+            boolean isValid = true;
+            
+            int count = 0;
+            
+            String sql1 = "SELECT COUNT(id) AS count FROM timeslots WHERE date = '" + date + "'";
+            pst = con.prepareStatement(sql1);
+            rs = pst.executeQuery();
+
+            while(rs.next()) {
+            
+                count = Integer.parseInt(rs.getString("count"));
+                                
+            }
+            
+            int startTimeHour[] =  new int[count];
+            int endTimeHour[] =  new int[count];
+            int startTimeMinute[] =  new int[count];
+            int endTimeMinute = 0;
+
+            String sql = "SELECT start, end FROM timeslots WHERE date = '" + date + "'";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            int i = 0;
+            
+            while(rs.next()) {
+
+                System.err.println(rs.getString("start"));
+                String st = rs.getString("start");
+                String et = rs.getString("end");
+                
+                String startTime[] = st.split("\\:");
+                String endTime[] = et.split("\\:"); 
+
+		startTimeHour[i] = Integer.parseInt(startTime[0]);
+		startTimeMinute[i] = Integer.parseInt(startTime[1]);
+		endTimeHour[i] = Integer.parseInt(endTime[0]);
+		endTimeMinute = Integer.parseInt(endTime[1]);
+	                
+                i++;
+                
+            }
+		
+            if(startTimeHour.length > 0) {
+                
+                for(int k = 0; k < count; k++) {
+                
+                    if((startHour == startTimeHour[k]) && (startMinute == startTimeMinute[k])) {
+
+                        isValid = false;
+
+                    }
+
+                    else if((startTimeHour[k] < startHour) && (endTimeHour[k] > startHour)) {
+
+                        isValid = false;
+
+                    }
+
+                    else {
+
+                        isValid = true;
+
+                    }
+                }
+            }
+            
+            else {
+            
+                isValid = true;
+                
+            }
+            
+            return isValid;
+        
+        }
+        
+        catch(Exception e) {
+        
+            System.err.println(e);
+            return false;
+            
+        }
     }
     
     public boolean insertWorkingDays(WorkingDaysModel workingDaysModel) {
@@ -277,7 +368,7 @@ public class WorkingDaysandHoursController {
         
         try {
             
-            String sql = "INSERT INTO timeslots(start, end, slotType) VALUES('" + timeSlotsModel.getStart() + "', '" + timeSlotsModel.getEnd() + "', '" + timeSlotsModel.getSlotType() + "')";
+            String sql = "INSERT INTO timeslots(date, start, end, slotType) VALUES('" + timeSlotsModel.getDate() + "', '" + timeSlotsModel.getStart() + "', '" + timeSlotsModel.getEnd() + "', '" + timeSlotsModel.getSlotType() + "')";
             pst = con.prepareStatement(sql);
             pst.execute();
             
@@ -327,7 +418,7 @@ public class WorkingDaysandHoursController {
         
         try {
             
-            String sql = "UPDATE timeslots SET start = '" + timeSlotsModel.getStart() + "', end = '" + timeSlotsModel.getEnd() + "', slotType = '" + timeSlotsModel.getSlotType() + "' WHERE id = '" + timeSlotsModel.getId() + "'";
+            String sql = "UPDATE timeslots SET date = '" + timeSlotsModel.getDate() + "', start = '" + timeSlotsModel.getStart() + "', end = '" + timeSlotsModel.getEnd() + "', slotType = '" + timeSlotsModel.getSlotType() + "' WHERE id = '" + timeSlotsModel.getId() + "'";
             pst = con.prepareStatement(sql);
             pst.execute();
             
