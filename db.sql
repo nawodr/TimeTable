@@ -1,380 +1,277 @@
+DROP TABLE IF EXISTS AcdYerAndSem;
 
-
-DROP TABLE IF EXISTS academic_year_and_semester;
-
-CREATE TABLE academic_year_and_semester (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  yNs varchar(45) DEFAULT NULL
+CREATE TABLE 'AcdYerAndSem' (
+	'idAcdYerAndSem'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'yerName'	INTEGER
 );
 
 
-DROP TABLE IF EXISTS `all_details`;
-
-CREATE TABLE `all_details` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `yNs` varchar(45) DEFAULT NULL,
-  `dp` varchar(45) DEFAULT NULL,
-  `gNo` varchar(10) DEFAULT NULL,
-  `gId` varchar(45) DEFAULT NULL,
-  `sGid` varchar(45) DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `building`;
-
-CREATE TABLE `building` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `name` varchar(20) DEFAULT NULL
-) ;
-
-
-
-INSERT INTO `building` (name) VALUES ('New Building');
-INSERT INTO `building` (name) VALUES ('Main Building');
-INSERT INTO `building` (name) VALUES ('Business Building');
-INSERT INTO `building` (name) VALUES ('Engineering Building');
-
-DROP TABLE IF EXISTS `center`;
-
-CREATE TABLE `center` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `name` varchar(50)
-) ;
-
-
-
-INSERT INTO `center` (name) VALUES ('Kandy');
-INSERT INTO `center` (name) VALUES ('Malabe');
-INSERT INTO `center` (name) VALUES ('Jaffna');
-INSERT INTO `center` (name) VALUES ('Metro');
-
-
-DROP TABLE IF EXISTS `degree_program`;
-
-CREATE TABLE `degree_program` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `dp` varchar(45) DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `faculty`;
-
-CREATE TABLE `faculty` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `name` varchar(50) 
-) ;
-
-
-
-INSERT INTO `faculty` (name) VALUES ('Computing');
-INSERT INTO `faculty` (name) VALUES ('Business');
-INSERT INTO `faculty` (name) VALUES ('Engineering');
-
-
-DROP TABLE IF EXISTS `department`;
-
-CREATE TABLE `department` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `name` varchar(50) ,
-  `faculty` INTEGER ,
- 
-  CONSTRAINT `id` FOREIGN KEY (`faculty`) REFERENCES `faculty` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ;
-
-
-INSERT INTO `department` (name,faculty) VALUES ('Information Technology',1);
-INSERT INTO `department` (name,faculty) VALUES ('Software Engineering',1);
-INSERT INTO `department` (name,faculty) VALUES ('Cyber Security',1);
-INSERT INTO `department` (name,faculty) VALUES ('Business1',2);
-INSERT INTO `department` (name,faculty) VALUES ('Engineering1',3);
-INSERT INTO `department` (name,faculty) VALUES ('Engineering2',3);
-
-
-DROP TABLE IF EXISTS `generated_group_id`;
-
-CREATE TABLE `generated_group_id` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `gId` varchar(45) DEFAULT NULL,
-  `yNsId` varchar(10) DEFAULT NULL,
-  `dpId` varchar(10) DEFAULT NULL,
-  `gnoId` varchar(10) DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `generated_sub_group_id`;
-
-CREATE TABLE `generated_sub_group_id` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `sGno` varchar(10) DEFAULT NULL,
-  `sGid` varchar(50) DEFAULT NULL,
-  `gId` varchar(10) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `group_number`;
-
-CREATE TABLE `group_number` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `gNo` varchar(45) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `lecturer`;
-
-CREATE TABLE `lecturer` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `emp_id` varchar(45) DEFAULT NULL,
-  `faculty` varchar(45) DEFAULT NULL,
-  `department` varchar(45) DEFAULT NULL,
-  `center` varchar(45) DEFAULT NULL,
-  `building` varchar(45) DEFAULT NULL,
-  `level` varchar(45) DEFAULT NULL,
-  `rank` varchar(45) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `level`;
-
-CREATE TABLE `level` (
-  `id` INTEGER PRIMARY KEY,
-  `name` varchar(20) 
-) ;
-
-
-INSERT INTO `level` VALUES (1,'1');
-INSERT INTO `level` VALUES (2,'2');
-INSERT INTO `level` VALUES (3,'3');
-INSERT INTO `level` VALUES (4,'4');
-INSERT INTO `level` VALUES (5,'5');
-INSERT INTO `level` VALUES (6,'6');
-INSERT INTO `level` VALUES (7,'7');
-
-DROP TABLE IF EXISTS `reservedrooms`;
-
-CREATE TABLE `reservedrooms` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `room` varchar(10) DEFAULT NULL,
-  `stime` varchar(10) DEFAULT NULL,
-  `etime` varchar(10) DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `room`;
-
-CREATE TABLE `room` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `building` varchar(50) DEFAULT NULL,
-  `type` varchar(20) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `roomsforatag`;
-
-CREATE TABLE `roomsforatag` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `tag` varchar(10) DEFAULT NULL,
-  `room` varchar(10) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `roomsforconssession`;
-
-CREATE TABLE `roomsforconssession` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `room` varchar(10) DEFAULT NULL,
-  `consSession` varchar(10) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `roomsforgroup`;
-
-CREATE TABLE `roomsforgroup` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `room` varchar(10) DEFAULT NULL,
-  `groups` varchar(20) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `roomsforlecturer`;
-
-CREATE TABLE `roomsforlecturer` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `room` varchar(10) DEFAULT NULL,
-  `lecturer` varchar(50) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `roomsforsession`;
-
-CREATE TABLE `roomsforsession` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `room` varchar(10) DEFAULT NULL,
-  `session` varchar(10) DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `roomssubtags`;
-
-CREATE TABLE `roomssubtags` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `tag` varchar(10) DEFAULT NULL,
-  `room` varchar(10) DEFAULT NULL,
-  `subject` varchar(50) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `session`;
-
-CREATE TABLE `session` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `subject` varchar(20) DEFAULT NULL,
-  `sub_code` varchar(20) DEFAULT NULL,
-  `tag` varchar(10) DEFAULT NULL,
-  `tag_duration` INTEGER DEFAULT NULL,
-  `group_id` varchar(20) DEFAULT NULL,
-  `subgroup_id` varchar(20) DEFAULT NULL,
-  `stu_count` INTEGER DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `session_lec`;
-
-CREATE TABLE `session_lec` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `session_id` INTEGER DEFAULT NULL,
-  `lec_id` varchar(20) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `sp2_consecutive_session`;
-
-CREATE TABLE `sp2_consecutive_session` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `sGid` varchar(10) DEFAULT NULL,
-  `cSession` varchar(10) DEFAULT NULL,
-  `sessionID` varchar(20) DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `sp2_group_wise`;
-
-CREATE TABLE `sp2_group_wise` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `gId` varchar(10) DEFAULT NULL,
-  `day` varchar(20) DEFAULT NULL,
-  `time_from` char(5) DEFAULT NULL,
-  `time_to` char(5) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `sp2_lecturers_wise`;
-
-CREATE TABLE `sp2_lecturers_wise` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `lecName` varchar(50) DEFAULT NULL,
-  `lecId` varchar(10) DEFAULT NULL,
-  `day` varchar(10) DEFAULT NULL,
-  `time_from` char(5) DEFAULT NULL,
-  `time_to` char(5) DEFAULT NULL
-) ;
-
-
-
-DROP TABLE IF EXISTS `sp2_parallel_session`;
-
-CREATE TABLE `sp2_parallel_session` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `yNs` varchar(10) DEFAULT NULL,
-  `session` varchar(10) DEFAULT NULL,
-  `sessionID` varchar(20) DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `sp2_session_wise`;
-
-CREATE TABLE `sp2_session_wise` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `session` varchar(10) DEFAULT NULL,
-  `day` varchar(10) DEFAULT NULL,
-  `time_from` char(5) DEFAULT NULL,
-  `time_to` char(5) DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `sp2_sub_group_wise`;
-
-CREATE TABLE `sp2_sub_group_wise` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `sGid` varchar(10) DEFAULT NULL,
-  `day` varchar(10) DEFAULT NULL,
-  `time_from` char(5) DEFAULT NULL,
-  `time_to` char(5) DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `sub_group_number`;
-
-CREATE TABLE `sub_group_number` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `sGno` INTEGER DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `subject`;
-
-CREATE TABLE `subject` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `offered_year` varchar(2) DEFAULT NULL,
-  `offered_semester` varchar(2) DEFAULT NULL,
-  `subject_name` varchar(50) DEFAULT NULL,
-  `subject_code` varchar(7) DEFAULT NULL,
-  `lec_hr` varchar(2) DEFAULT NULL,
-  `tute_hr` varchar(2) DEFAULT NULL,
-  `lab_hr` varchar(2) DEFAULT NULL,
-  `eva_hr` varchar(2) DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `tag`;
-
-CREATE TABLE `tag` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `tag` varchar(45) DEFAULT NULL,
-  `tagCode` varchar(45) DEFAULT NULL,
-  `relatedTag` varchar(45) DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `work_day_hour`;
-
-CREATE TABLE `work_day_hour` (
-  `id` INTEGER PRIMARY KEY,
-  `days_no` INTEGER DEFAULT NULL,
-  `days` varchar(100) DEFAULT NULL,
-  `hour` INTEGER DEFAULT NULL,
-  `mins` INTEGER DEFAULT NULL,
-  `slot_type` INTEGER DEFAULT NULL
-) ;
-
-
-DROP TABLE IF EXISTS `work_day_hour_days`;
-
-CREATE TABLE `work_day_hour_days` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `parentID` INTEGER  DEFAULT '0',
-  `day` varchar(20) DEFAULT NULL,
-  CONSTRAINT `fk1` FOREIGN KEY (`parentID`) REFERENCES `work_day_hour` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ;
+DROP TABLE IF EXISTS 'DegreePro';
+
+CREATE TABLE 'DegreePro' (
+	'idDegPro'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'degName'	TEXT
+);
+
+DROP TABLE IF EXISTS 'GroupNum';
+
+CREATE TABLE 'GroupNum' (
+	'idGrp_num'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'grp_num'	TEXT
+);
+
+DROP TABLE IF EXISTS 'GroupNumGenerate';
+
+CREATE TABLE 'GroupNumGenerate' (
+	'idGrpNumGen'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'GrpNum'	TEXT,
+	'yNsId'	TEXT,
+	'dpId'	TEXT,
+	'gnoId'	TEXT
+);
+
+DROP TABLE IF EXISTS 'Lecture';
+
+CREATE TABLE 'Lecture' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'empid'	INTEGER,
+	'empname'	TEXT,
+	'faculty'	TEXT,
+	'department'	TEXT,
+	'center'	TEXT,
+	'building'	TEXT,
+	'level'	INTEGER,
+	'rank'	TEXT
+);
+
+
+DROP TABLE IF EXISTS 'Module';
+
+CREATE TABLE 'Module' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'offeredyear'	TEXT,
+	'offeredsem'	TEXT,
+	'mname'	TEXT,
+	'mcode'	TEXT,
+	'lechrs'	INTEGER,
+	'thrs'	INTEGER,
+	'labhrs'	INTEGER,
+	'evahrs'	INTEGER
+);
+
+DROP TABLE IF EXISTS 'Student';
+
+CREATE TABLE 'Student' (
+	'idStudent'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'id'	INTEGER
+);
+
+DROP TABLE IF EXISTS 'SubGrpGenerate';
+
+CREATE TABLE 'SubGrpGenerate' (
+	'idSubGrpGen'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'SubGrpGenName'	TEXT,
+	'sGno'	TEXT,
+	'gId'	TEXT
+);
+
+DROP TABLE IF EXISTS 'SubGrpNumtbl';
+
+CREATE TABLE 'SubGrpNumtbl' (
+	'idSubGrpNum'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'subGrpNum'	TEXT
+);
+
+DROP TABLE IF EXISTS 'Tag';
+
+CREATE TABLE 'Tag' (
+	'tagId'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'tagName'	TEXT,
+	'tagCode'	TEXT,
+	'relatedTag'	TEXT
+);
+
+DROP TABLE IF EXISTS 'all_details';
+
+CREATE TABLE 'all_details' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'yNs'	TEXT,
+	'dp'	TEXT,
+	'gNo'	TEXT,
+	'gId'	TEXT,
+	'sGid'	TEXT
+);
+
+DROP TABLE IF EXISTS 'building_Details';
+
+CREATE TABLE 'building_Details' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'name'	TEXT
+);
+
+
+DROP TABLE IF EXISTS 'consecutive_Location';
+
+CREATE TABLE 'consecutive_Location' (
+	'cons_Id'	INTEGER,
+	'grp_Id'	TEXT,
+	'cons_Sessions'	TEXT,
+	'session_Id'	TEXT,
+	'room'	TEXT
+);
+
+DROP TABLE IF EXISTS 'group_Location';
+
+CREATE TABLE 'group_Location' (
+	'group_Id'	TEXT NOT NULL,
+	'room'	TEXT,
+	PRIMARY KEY('group_Id')
+);
+
+DROP TABLE IF EXISTS 'lecturer_Location';
+
+CREATE TABLE 'lecturer_Location' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'name'	TEXT,
+	'faculty'	TEXT,
+	'building'	TEXT,
+	'room'	TEXT
+);
+
+DROP TABLE IF EXISTS 'location';
+
+CREATE TABLE 'location' (
+	'Id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'building_Name'	TEXT,
+	'room_Name'	TEXT,
+	'room_Type'	TEXT,
+	'capacity'	INTEGER
+);
+
+DROP TABLE IF EXISTS module_Location;
+
+CREATE TABLE 'module_Location' (
+	'code'	TEXT,
+	'name'	TEXT,
+	'year'	TEXT,
+	'semester'	TEXT,
+	'room'	TEXT,
+	PRIMARY KEY('code')
+);
+
+DROP TABLE IF EXISTS notAvailableLocation;
+
+CREATE TABLE 'notAvailableLocation' (
+	'id'	TEXT,
+	'room'	TEXT,
+	'date'	TEXT,
+	'start'	TEXT,
+	'end'	TEXT,
+	PRIMARY KEY('id')
+);
+
+DROP TABLE IF EXISTS notAvailableTime;
+
+CREATE TABLE 'notAvailableTime' (
+	'id'	TEXT,
+	'lecturer'	TEXT,
+	'session'	TEXT,
+	'stuGroup'	TEXT,
+	'subGroup'	TEXT,
+	'date'	TEXT,
+	'start'	TEXT,
+	'end'	TEXT,
+	PRIMARY KEY('id')
+);
+
+DROP TABLE IF EXISTS session;
+
+CREATE TABLE 'session' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'subject'	TEXT DEFAULT NULL,
+	'sub_code'	TEXT DEFAULT NULL,
+	'tag'	TEXT DEFAULT NULL,
+	'tag_duration'	TEXT DEFAULT NULL,
+	'group_id'	TEXT DEFAULT NULL,
+	'subgroup_id'	TEXT DEFAULT NULL,
+	'stu_count'	TEXT DEFAULT NULL
+);
+
+DROP TABLE IF EXISTS sessionLec;
+
+CREATE TABLE 'sessionLec' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'sId'	TEXT,
+	'lId'	TEXT
+);
+
+DROP TABLE IF EXISTS session_Location;
+
+CREATE TABLE 'session_Location' (
+	'session_Id'	INTEGER,
+	'subject'	TEXT,
+	'sub_code'	TEXT,
+	'tag'	TEXT,
+	'tag_duration'	TEXT,
+	'group_id'	TEXT,
+	'subgroup_id'	TEXT,
+	'stu_count'	TEXT,
+	'room'	TEXT
+);
+
+DROP TABLE IF EXISTS sp2_consecutive_session;
+
+CREATE TABLE 'sp2_consecutive_session' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'sGid'	TEXT,
+	'cSession'	TEXT,
+	'sessionID'	TEXT
+);
+
+DROP TABLE IF EXISTS sp2_nonoverlapping_session;
+
+CREATE TABLE 'sp2_nonoverlapping_session' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'sGid'	TEXT,
+	'cSession'	TEXT,
+	'SessionID'	TEXT
+);
+
+DROP TABLE IF EXISTS sp2_parallel_session;
+
+CREATE TABLE 'sp2_parallel_session' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'yNs'	TEXT,
+	'session'	TEXT,
+	'sessionID'	TEXT
+);
+
+
+DROP TABLE IF EXISTS tag_Location;
+
+CREATE TABLE 'tag_Location' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'tag_Name'	TEXT,
+	'tag_Code'	TEXT,
+	'related_Tag'	TEXT,
+	'room_Name'	TEXT
+);
+
+
+DROP TABLE IF EXISTS timeslots;
+
+CREATE TABLE 'timeslots' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'start'	TEXT,
+	'end'	TEXT,
+	'slotType'	INTEGER
+);
+
+DROP TABLE IF EXISTS workingDays;
+
+CREATE TABLE 'workingDays' (
+	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'noOfWorkingDays'	INTEGER,
+	'workingDays'	TEXT,
+	'workingHours'	TEXT
+);

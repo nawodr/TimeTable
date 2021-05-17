@@ -43,7 +43,7 @@ public class LectureController {
             ps.setString(5, lecture.getCenter());
             ps.setString(6, lecture.getBuilding());
             ps.setInt(7, lecture.getLevel());
-            ps.setInt(8, lecture.getRank());
+            ps.setString(8, lecture.getRank());
             
             lectureId = ps.executeUpdate();
             
@@ -83,7 +83,7 @@ public class LectureController {
             ps.setString(5, lecture.getCenter());
             ps.setString(6, lecture.getBuilding());
             ps.setInt(7, lecture.getLevel());
-            ps.setInt(8, lecture.getRank());
+            ps.setString(8, lecture.getRank());
             ps.setInt(9, lecture.getId());
             
             updatelecture = ps.executeUpdate();
@@ -161,7 +161,7 @@ public class LectureController {
                 lec.setCenter(rs.getString("center"));
                lec.setBuilding(rs.getString("building"));
                lec.setLevel(rs.getInt("level"));
-                lec.setRank(rs.getInt("rank"));
+                lec.setRank(rs.getString("rank"));
 
                 //add object to arraylist
                 LectureList.add(lec);
@@ -178,6 +178,38 @@ public class LectureController {
                 }
         }
         return LectureList;
+    }
+    
+   /*
+     Load Tags
+     */
+    public List<String> LoadBuiling() throws SQLException {
+    
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement ps = null;
+        List<String> BuilingList = new ArrayList();
+        
+        try {
+            ps = connection.prepareStatement("SELECT name FROM building_Details ORDER BY id");
+            //excuite sql
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // create objct & set db value
+                BuilingList.add(rs.getString("name"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }finally {
+                try {
+                    if(ps != null){
+                        ps.close();
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+        }
+        return BuilingList;
     }
 }
 
