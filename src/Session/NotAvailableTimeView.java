@@ -33,9 +33,6 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
     
     public void clearAddFields() {
 
-        addPanel.setVisible(true);
-        managePanel.setVisible(false);
-
         controller.loadNotAvailableTable(timeTable);
         controller.loadLecturerCombo(lecturerComboBox);
         controller.loadSessionCombo(sessionComboBox);
@@ -161,13 +158,13 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
             int minutesRang = endMinute - startMinute;
 
             if(hoursRang <= -1) {
-
+                
                 isValid = false;
 
             }
 
             else if(hoursRang == 0) {
-
+                
                 if(minutesRang <= 0) {
 
                     isValid = false;
@@ -175,7 +172,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
                 }
 				
                 else {
-					
+			
                     if(isLecturer) {
 
                         isValid = controller.validateDuplicate(lecturer, date, startHour, endHour, startMinute, endMinute, 0);
@@ -189,7 +186,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
                     }
 
                     else if(isGroup) {
-
+        
                         isValid = controller.validateDuplicate(group, date, startHour, endHour, startMinute, endMinute, 2);
 
                     }
@@ -224,7 +221,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
                 }
 
                 else if(isGroup) {
-
+                
                     isValid = controller.validateDuplicate(group, date, startHour, endHour, startMinute, endMinute, 2);
 
                 }
@@ -251,7 +248,6 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contentPanel = new javax.swing.JPanel();
         addPanel = new javax.swing.JPanel();
         startLabel = new javax.swing.JLabel();
         endLabel = new javax.swing.JLabel();
@@ -262,7 +258,6 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         hoursLabel = new javax.swing.JLabel();
         minutesLabel = new javax.swing.JLabel();
         submitButton = new javax.swing.JButton();
-        viewButton = new javax.swing.JButton();
         lecturerLabel = new javax.swing.JLabel();
         sessionLabel = new javax.swing.JLabel();
         groupLabel = new javax.swing.JLabel();
@@ -272,20 +267,13 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         lecturerComboBox = new javax.swing.JComboBox<String>();
         sessionComboBox = new javax.swing.JComboBox<String>();
         groupComboBox = new javax.swing.JComboBox<String>();
-        subGroupComboBox = new javax.swing.JComboBox<String>();
-        managePanel = new javax.swing.JPanel();
-        deleteButton = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
-        titleLabel = new javax.swing.JLabel();
         timeScrollPane = new javax.swing.JScrollPane();
         timeTable = new javax.swing.JTable();
+        subGroupComboBox = new javax.swing.JComboBox<String>();
         refreshButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        contentPanel.setBackground(new java.awt.Color(255, 255, 255));
-        contentPanel.setPreferredSize(new java.awt.Dimension(1136, 640));
-        contentPanel.setLayout(null);
 
         addPanel.setBackground(new java.awt.Color(255, 255, 255));
         addPanel.setPreferredSize(new java.awt.Dimension(1136, 640));
@@ -345,18 +333,6 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitButtonActionPerformed(evt);
-            }
-        });
-
-        viewButton.setBackground(new java.awt.Color(155, 27, 27));
-        viewButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        viewButton.setForeground(new java.awt.Color(255, 255, 255));
-        viewButton.setText("View");
-        viewButton.setBorder(null);
-        viewButton.setFocusable(false);
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
             }
         });
 
@@ -430,6 +406,30 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
             }
         });
 
+        timeTable.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        timeTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "colum 1", "colum 2", "colum 3", "colum 4", "colum 5"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        timeTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                timeTableMouseClicked(evt);
+            }
+        });
+        timeScrollPane.setViewportView(timeTable);
+
         subGroupComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         subGroupComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Sub Group" }));
         subGroupComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
@@ -447,6 +447,30 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
             }
         });
 
+        refreshButton.setBackground(new java.awt.Color(155, 27, 27));
+        refreshButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        refreshButton.setForeground(new java.awt.Color(255, 255, 255));
+        refreshButton.setText("Refresh");
+        refreshButton.setBorder(null);
+        refreshButton.setFocusable(false);
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setBackground(new java.awt.Color(155, 27, 27));
+        deleteButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setText("Delete");
+        deleteButton.setBorder(null);
+        deleteButton.setFocusable(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
         addPanelLayout.setHorizontalGroup(
@@ -454,50 +478,57 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
             .addGroup(addPanelLayout.createSequentialGroup()
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addPanelLayout.createSequentialGroup()
-                        .addGap(103, 103, 103)
+                        .addGap(138, 138, 138)
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(subGroupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lecturerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sessionLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(groupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lecturerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sessionComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(subGroupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(groupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(125, 125, 125)
-                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(endLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(startLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(addPanelLayout.createSequentialGroup()
+                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(addPanelLayout.createSequentialGroup()
+                                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(subGroupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lecturerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(sessionLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(groupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lecturerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(sessionComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(subGroupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(groupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(102, 102, 102)))
+                                .addGap(125, 125, 125)
                                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(endHoursComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(hoursLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(startHoursComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 112, Short.MAX_VALUE))
+                                    .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(endLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(startLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(startMinutesComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(minutesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                    .addComponent(endMinutesComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(dateDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
+                                    .addGroup(addPanelLayout.createSequentialGroup()
+                                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(endHoursComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(hoursLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(startHoursComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(startMinutesComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(minutesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(endMinutesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(dateDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(timeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(addPanelLayout.createSequentialGroup()
-                        .addGap(404, 404, 404)
-                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(447, 447, 447)
+                        .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(232, Short.MAX_VALUE))
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         addPanelLayout.setVerticalGroup(
             addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -531,130 +562,26 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
                         .addComponent(groupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(subGroupComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(82, 82, 82)
+                .addGap(18, 18, 18)
+                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(timeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(265, 265, 265))
-        );
-
-        contentPanel.add(addPanel);
-        addPanel.setBounds(0, 0, 1136, 640);
-
-        managePanel.setBackground(new java.awt.Color(255, 255, 255));
-        managePanel.setPreferredSize(new java.awt.Dimension(1136, 640));
-
-        deleteButton.setBackground(new java.awt.Color(155, 27, 27));
-        deleteButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteButton.setText("Delete");
-        deleteButton.setBorder(null);
-        deleteButton.setFocusable(false);
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
-
-        backButton.setBackground(new java.awt.Color(155, 27, 27));
-        backButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        backButton.setForeground(new java.awt.Color(255, 255, 255));
-        backButton.setText("Back");
-        backButton.setBorder(null);
-        backButton.setFocusable(false);
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-
-        titleLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("Manage Not Available Times");
-
-        timeTable.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
-        timeTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "colum 1", "colum 2", "colum 3", "colum 4", "colum 5"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        timeTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                timeTableMouseClicked(evt);
-            }
-        });
-        timeScrollPane.setViewportView(timeTable);
-
-        refreshButton.setBackground(new java.awt.Color(155, 27, 27));
-        refreshButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        refreshButton.setForeground(new java.awt.Color(255, 255, 255));
-        refreshButton.setText("Refresh");
-        refreshButton.setBorder(null);
-        refreshButton.setFocusable(false);
-        refreshButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout managePanelLayout = new javax.swing.GroupLayout(managePanel);
-        managePanel.setLayout(managePanelLayout);
-        managePanelLayout.setHorizontalGroup(
-            managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(managePanelLayout.createSequentialGroup()
-                .addGroup(managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(managePanelLayout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addGroup(managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(timeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 931, Short.MAX_VALUE)))
-                    .addGroup(managePanelLayout.createSequentialGroup()
-                        .addGap(388, 388, 388)
-                        .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
-        managePanelLayout.setVerticalGroup(
-            managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(timeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(199, 199, 199))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
-
-        contentPanel.add(managePanel);
-        managePanel.setBounds(0, 0, 1136, 640);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1096, Short.MAX_VALUE)
+            .addComponent(addPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1189, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+            .addComponent(addPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -694,80 +621,23 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
 
             if (controller.insertNotAvailableTime(model)) {
 
-                //clearAddFields();
+                clearAddFields();
 
             }
-            
+
             else {
 
                 JOptionPane.showMessageDialog(this, "Can not insert this record. Plases try again later.");
 
-                
             }
-        } 
-        
+        }
+
         else {
 
             JOptionPane.showMessageDialog(this, "Invalid details.");
 
         }
     }//GEN-LAST:event_submitButtonActionPerformed
-
-    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-
-        addPanel.setVisible(false);
-        managePanel.setVisible(true);
-
-        controller.loadNotAvailableTable(timeTable);
-
-    }//GEN-LAST:event_viewButtonActionPerformed
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-
-        if((!id.isEmpty()) && (!id.equals(""))) {
-
-            if(controller.deleteNotAvailableTime(id)) {
-
-                controller.loadNotAvailableTable(timeTable);
-
-            }
-
-            else {
-
-                JOptionPane.showMessageDialog(this, "Can not delete this record. Plases try again later.");
-
-            }
-        }
-
-        else {
-
-            JOptionPane.showMessageDialog(this, "Please select record.");
-
-        }
-    }//GEN-LAST:event_deleteButtonActionPerformed
-
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-
-        addPanel.setVisible(true);
-        managePanel.setVisible(false);
-
-    }//GEN-LAST:event_backButtonActionPerformed
-
-    private void timeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timeTableMouseClicked
-
-        clearVariable();
-
-        int r = timeTable.getSelectedRow();
-
-        id = timeTable.getValueAt(r, 0).toString();
-
-    }//GEN-LAST:event_timeTableMouseClicked
-
-    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
-
-        controller.loadNotAvailableTable(timeTable);
-
-    }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void lecturerComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_lecturerComboBoxPopupMenuWillBecomeInvisible
 
@@ -820,6 +690,15 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
 
     }//GEN-LAST:event_groupComboBoxActionPerformed
 
+    private void timeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timeTableMouseClicked
+
+        clearVariable();
+
+        int r = timeTable.getSelectedRow();
+
+        id = timeTable.getValueAt(r, 0).toString();
+    }//GEN-LAST:event_timeTableMouseClicked
+
     private void subGroupComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_subGroupComboBoxPopupMenuWillBecomeInvisible
 
         String value = subGroupComboBox.getSelectedItem().toString();
@@ -837,11 +716,43 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
 
     }//GEN-LAST:event_subGroupComboBoxActionPerformed
 
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+
+        controller.loadNotAvailableTable(timeTable);
+    }//GEN-LAST:event_refreshButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+
+        if((!id.isEmpty()) && (!id.equals(""))) {
+
+            int k = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove this record?");
+
+            if(k == 0) {
+
+                if(controller.deleteNotAvailableTime(id)) {
+
+                    controller.loadNotAvailableTable(timeTable);
+
+                }
+
+                else {
+
+                    JOptionPane.showMessageDialog(this, "Can not delete this record. Plases try again later.");
+
+                }
+            }
+        }
+
+        else {
+
+            JOptionPane.showMessageDialog(this, "Please select record.");
+
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addPanel;
-    private javax.swing.JButton backButton;
-    private javax.swing.JPanel contentPanel;
     private com.toedter.calendar.JDateChooser dateDateChooser;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JButton deleteButton;
@@ -853,7 +764,6 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
     private javax.swing.JLabel hoursLabel;
     private javax.swing.JComboBox<String> lecturerComboBox;
     private javax.swing.JLabel lecturerLabel;
-    private javax.swing.JPanel managePanel;
     private javax.swing.JLabel minutesLabel;
     private javax.swing.JButton refreshButton;
     private javax.swing.JComboBox<String> sessionComboBox;
@@ -866,8 +776,6 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
     private javax.swing.JButton submitButton;
     private javax.swing.JScrollPane timeScrollPane;
     private javax.swing.JTable timeTable;
-    private javax.swing.JLabel titleLabel;
-    private javax.swing.JButton viewButton;
     // End of variables declaration//GEN-END:variables
    
 }
