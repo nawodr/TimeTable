@@ -369,7 +369,7 @@ public class pnl_AddBuilding extends javax.swing.JPanel {
             PreparedStatement ps = null;
             Connection connection = DBConnection.getConnection();
     
-            String buildingId = lbl_Id.getText();
+            String buildingId = txt_buildingName.getText();
             String query = "Select name FROM building_Details WHERE name = ?";
             String colName = "name";
             if (lbl_Id.getText().isEmpty()) {

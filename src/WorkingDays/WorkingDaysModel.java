@@ -6,25 +6,36 @@ public class WorkingDaysModel {
     int noOfWorkingDays;
     String workingDays;
     String workingHours;
+    String workingMin;
+    
+    public String getWorkingMin() {
+        return workingMin;
+    }
+
+    public void setWorkingMin(String workingMin) {
+        this.workingMin = workingMin;
+    }
+    
 
     public WorkingDaysModel() {
     }
 
-    public WorkingDaysModel(int noOfWorkingDays, String workingDays, String workingHours) {
+    public WorkingDaysModel(int noOfWorkingDays, String workingDays, String workingHours, String workingMin) {
       
         this.noOfWorkingDays = noOfWorkingDays;
         this.workingDays = workingDays;
         this.workingHours = workingHours;
+        this.workingMin = workingMin;
    
     }
 
-    public WorkingDaysModel(int id, int noOfWorkingDays, String workingDays, String workingHours) {
+    public WorkingDaysModel(int id, int noOfWorkingDays, String workingDays, String workingHours, String workingMin) {
  
         this.id = id;
         this.noOfWorkingDays = noOfWorkingDays;
         this.workingDays = workingDays;
         this.workingHours = workingHours;
-   
+        this.workingMin = workingMin;
     }
 
     public int getId() {

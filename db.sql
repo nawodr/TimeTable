@@ -273,5 +273,6 @@ CREATE TABLE 'workingDays' (
 	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
 	'noOfWorkingDays'	INTEGER,
 	'workingDays'	TEXT,
-	'workingHours'	TEXT
+	'workingHours'	TEXT,
+    'workingMin'	TEXT
 );

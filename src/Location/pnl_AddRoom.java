@@ -62,23 +62,23 @@ public class pnl_AddRoom extends javax.swing.JPanel {
             DefaultComboBoxModel cmbMdl;
             cmbMdl = new DefaultComboBoxModel(new addLocations().LoadBuiling().toArray());
             cmb_buildingName.setModel(cmbMdl);
-            cmb_buildingName.setSelectedItem("");
+            cmb_buildingName.setSelectedIndex(0);
         } catch (Exception e) {
         }
     }
     public void resetForm() {
-        cmb_buildingName.setSelectedItem("");
+        cmb_buildingName.setSelectedIndex(0);
         txt_roomName.setText("");
         radio_lecHall.setSelected(true);
         txt_capacity.setText("");
+        lbl_Error.setVisible(false);
         
         
     }
 
     public Boolean validateData() {
 
-        int capacity = Integer.parseInt(txt_capacity.getText());
-        if (cmb_buildingName.getSelectedItem().toString().isEmpty()) {
+        if (cmb_buildingName.getSelectedItem().toString().equals("Select")) {
             lbl_Error.setVisible(true);
             lbl_Error.setText("Please Select Building Name");
             cmb_buildingName.grabFocus();
@@ -104,7 +104,7 @@ public class pnl_AddRoom extends javax.swing.JPanel {
             txt_capacity.grabFocus();
             return false;
         }
-        
+        int capacity = Integer.parseInt(txt_capacity.getText());
         if (capacity <= 0 || capacity >150) {
             lbl_Error.setVisible(true);
             lbl_Error.setText("Maximum Room Capacity is 150");
@@ -258,6 +258,8 @@ public class pnl_AddRoom extends javax.swing.JPanel {
             }
         });
 
+        cmb_buildingName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -276,16 +278,20 @@ public class pnl_AddRoom extends javax.swing.JPanel {
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addComponent(jLabel4)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(10, 10, 10)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
-                            .addComponent(radio_lecHall, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(radio_lab))
-                        .addComponent(txt_capacity, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txt_roomName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cmb_buildingName, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmb_buildingName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_roomName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(radio_lecHall, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(radio_lab)))))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
@@ -309,7 +315,7 @@ public class pnl_AddRoom extends javax.swing.JPanel {
                         .addComponent(lbl_Rtype)
                         .addGap(148, 148, 148))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGap(126, 126, 126)
                                 .addComponent(jLabel4))
@@ -329,10 +335,13 @@ public class pnl_AddRoom extends javax.swing.JPanel {
                                     .addComponent(radio_lecHall)
                                     .addComponent(radio_lab)
                                     .addComponent(jLabel3))
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addGap(11, 11, 11)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txt_capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(13, 13, 13)
                         .addComponent(lbl_Error, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -459,7 +468,7 @@ public class pnl_AddRoom extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         jPanel2Layout.setVerticalGroup(
@@ -477,7 +486,7 @@ public class pnl_AddRoom extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jSeparator1)
                         .addGap(3, 3, 3)))
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -657,10 +666,9 @@ public class pnl_AddRoom extends javax.swing.JPanel {
             if (validateData()) {
                 
                 int capacity = Integer.parseInt(txt_capacity.getText()); //cast txt_capacity to Integer
-                String bName = cmb_buildingName.getSelectedItem().toString();
                 String rName = txt_roomName.getText();
                 
-                if(!addLoc.isExistLocation(bName, rName)){
+                if(!addLoc.isExistLocation(rName)){
                     
                     locations.setBuilding_Name(cmb_buildingName.getSelectedItem().toString().trim());
                     locations.setRoom_Name(txt_roomName.getText().trim());
@@ -679,22 +687,20 @@ public class pnl_AddRoom extends javax.swing.JPanel {
                 }
             }
             } catch (Exception e) {
-                Logger.getLogger(pnl_Location.class
-                    .getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(pnl_Location.class.getName()).log(Level.SEVERE, null, e);
                 JOptionPane.showMessageDialog(null, "Check Your Add Location Code", "Validation", JOptionPane.ERROR_MESSAGE);
                 
             }
     }
      
       private void updateLocation() throws SQLException{
-        String bName = cmb_buildingName.getSelectedItem().toString();
         String rName = txt_roomName.getText();
         int id = Integer.parseInt(lbl_Id.getText());
         
         try {
             if (validateData()) {
                 //Check Location Whether Exist
-                if (addLoc.isExistLocation(bName, rName)) {
+                if (addLoc.isExistLocation(rName)) {
                     JOptionPane.showMessageDialog(null, "This Location Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
                     cmb_buildingName.grabFocus();
                 }else{
