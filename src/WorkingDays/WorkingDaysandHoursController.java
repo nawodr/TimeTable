@@ -343,7 +343,7 @@ public class WorkingDaysandHoursController {
         
         try {
             
-            String sql = "INSERT INTO workingdays(noOfWorkingDays, workingDays, workingHours) VALUES('" + workingDaysModel.getNoOfWorkingDays() + "', '" + workingDaysModel.getWorkingDays() + "', '" + workingDaysModel.getWorkingHours() + "')";
+            String sql = "INSERT INTO workingdays(noOfWorkingDays, workingDays, workingHours, workingMin) VALUES('" + workingDaysModel.getNoOfWorkingDays() + "', '" + workingDaysModel.getWorkingDays() + "', '" + workingDaysModel.getWorkingHours() + "', '" + workingDaysModel.getWorkingMin()+ "')";
             pst = con.prepareStatement(sql);
             pst.execute();
             
@@ -393,7 +393,7 @@ public class WorkingDaysandHoursController {
         
         try {
             
-            String sql = "UPDATE workingdays SET noOfWorkingDays = '" + workingDaysModel.getNoOfWorkingDays() + "', workingDays = '" + workingDaysModel.getWorkingDays() + "', workingHours = '" + workingDaysModel.getWorkingHours() + "' WHERE id = '" + workingDaysModel.getId() + "'";
+            String sql = "UPDATE workingdays SET noOfWorkingDays = '" + workingDaysModel.getNoOfWorkingDays() + "', workingDays = '" + workingDaysModel.getWorkingDays() + "', workingHours = '" + workingDaysModel.getWorkingHours() +  "', workingMin = '" + workingDaysModel.getWorkingMin()+ "' WHERE id = '" + workingDaysModel.getId() + "'";
             pst = con.prepareStatement(sql);
             pst.execute();
             

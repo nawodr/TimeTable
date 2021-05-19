@@ -1052,8 +1052,8 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         
         int noOfDays = Integer.parseInt(noOfDaysComboBox.getSelectedItem().toString());
         String workingDaysText = (monday + tuesday + wednesday + thursday + friday + saturday + sunday).trim().replaceAll(" ", ", ");
-        String workingTime = hoursComboBox.getSelectedItem().toString() + " Hrs " + minutesComboBox.getSelectedItem().toString() + " Min";
-        
+        String workingHrs= hoursComboBox.getSelectedItem().toString();
+        String workingMin = minutesComboBox.getSelectedItem().toString();
         if(count == noOfDays) {
             
             isValid = true;
@@ -1068,7 +1068,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         
         if(isValid) {
         
-            workingDaysModel = new WorkingDaysModel(noOfDays, workingDaysText, workingTime);
+            workingDaysModel = new WorkingDaysModel(noOfDays, workingDaysText, workingHrs, workingMin);
           
             if(controller.insertWorkingDays(workingDaysModel)) {
             
@@ -1157,8 +1157,8 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
 
             int noOfDays = Integer.parseInt(noOfDaysComboBox.getSelectedItem().toString());
             String workingDaysText = (monday + tuesday + wednesday + thursday + friday + saturday + sunday).trim().replaceAll(" ", ", ");
-            String workingTime = hoursComboBox.getSelectedItem().toString() + " Hrs " + minutesComboBox.getSelectedItem().toString() + " Min";
-
+            String workingHrs= hoursComboBox.getSelectedItem().toString();
+            String workingMin = minutesComboBox.getSelectedItem().toString();
             if(count == noOfDays) {
 
                 isValid = true;
@@ -1173,7 +1173,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
 
             if(isValid) {
 
-                workingDaysModel = new WorkingDaysModel(workingIdList[index - 1], noOfDays, workingDaysText, workingTime);
+                workingDaysModel = new WorkingDaysModel(workingIdList[index - 1], noOfDays, workingDaysText, workingHrs, workingMin);
 
                 if(controller.updateWorkingDays(workingDaysModel)) {
 

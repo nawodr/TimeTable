@@ -126,7 +126,7 @@ public class addLocations {
     /*
      check whether Laction Building & Room is exist
      */
-    public boolean isExistLocation(String bName, String rName) throws SQLException {
+    public boolean isExistLocation(String rName) throws SQLException {
         
         Connection connection = DBConnection.getConnection();
         PreparedStatement ps = null;
@@ -134,10 +134,9 @@ public class addLocations {
         boolean isAvailable = false;
         
         try {
-            ps = connection.prepareStatement("Select building_Name,room_Name FROM location WHERE building_Name = ? AND room_Name = ?");
+            ps = connection.prepareStatement("Select building_Name,room_Name FROM location WHERE room_Name = ?");
 
-            ps.setString(1, bName);
-            ps.setString(2, rName);
+            ps.setString(1, rName);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if (!(rs.getString("building_Name").isEmpty() && rs.getString("room_Name").isEmpty())) {
