@@ -43,11 +43,11 @@ public class Group extends javax.swing.JPanel {
 
         pan = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txt_grp_num = new javax.swing.JTextField();
         id = new javax.swing.JLabel();
         errorMsg = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        txt_grp_num = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_grp_num = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -64,8 +64,6 @@ public class Group extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Group Number");
 
-        txt_grp_num.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         id.setText("id");
 
@@ -78,6 +76,8 @@ public class Group extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Selected ID");
+
+        txt_grp_num.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "01", "02", "03", "04", "05", "06", "07", "08", "09" }));
 
         javax.swing.GroupLayout panLayout = new javax.swing.GroupLayout(pan);
         pan.setLayout(panLayout);
@@ -97,8 +97,8 @@ public class Group extends javax.swing.JPanel {
                         .addGap(45, 45, 45)
                         .addGroup(panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(22, 22, Short.MAX_VALUE))
+                            .addComponent(txt_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(80, 80, Short.MAX_VALUE))
         );
         panLayout.setVerticalGroup(
             panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,12 +108,14 @@ public class Group extends javax.swing.JPanel {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                     .addComponent(id))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panLayout.createSequentialGroup()
+                        .addComponent(txt_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2))
                     .addGroup(panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
-                        .addComponent(jLabel2))
-                    .addComponent(txt_grp_num))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)))
+                .addGap(12, 12, 12)
                 .addComponent(errorMsg)
                 .addGap(44, 44, 44))
         );
@@ -259,12 +261,12 @@ public class Group extends javax.swing.JPanel {
 
                 errorMsg.setVisible(false);
 
-                String grp_num = txt_grp_num.getText().trim();
+                String grp_num = txt_grp_num.getSelectedItem().toString();
 
                 int i = gc.addHandleClick(grp_num);
                 if (i != 0) {
                     JOptionPane.showMessageDialog(jLabel1, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
-                    txt_grp_num.setText("");
+                    txt_grp_num.setSelectedItem("Select");
                     showYnSList();
                 } else {
                     JOptionPane.showMessageDialog(jLabel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -291,7 +293,7 @@ public class Group extends javax.swing.JPanel {
         String valueAt = (String) tbl_grp_num.getValueAt(selectedRow, 1);
         String valuId = String.valueOf(Id);
         id.setText(valuId);
-        txt_grp_num.setText(valueAt);
+        txt_grp_num.setSelectedItem(valueAt);
 
     }//GEN-LAST:event_tbl_grp_numMouseClicked
 
@@ -312,14 +314,14 @@ public class Group extends javax.swing.JPanel {
 
                     errorMsg.setVisible(false);
 
-                    String grp_num = txt_grp_num.getText().trim().toUpperCase();
+                    String grp_num = txt_grp_num.getSelectedItem().toString();
 
                     int i = gc.updateHandleClick(final_id, grp_num);
 //                System.out.println(i);
                     if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
                         JOptionPane.showMessageDialog(jLabel1, "Successfully Updated!");
-                        txt_grp_num.setText("");
+                        txt_grp_num.setSelectedItem("Select");
                         showYnSList();
                     } else {
                         JOptionPane.showMessageDialog(jLabel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -359,7 +361,7 @@ public class Group extends javax.swing.JPanel {
                     if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
                         JOptionPane.showMessageDialog(jLabel1, "Successfully Deleted!");
-                        txt_grp_num.setText("");
+                        txt_grp_num.setSelectedItem("Select");
                         showYnSList();
 
                     } else {
@@ -388,7 +390,7 @@ public class Group extends javax.swing.JPanel {
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
 
         id.setText(" ");
-        txt_grp_num.setText("");
+        txt_grp_num.setSelectedItem("Select");
         showYnSList();
         
     }//GEN-LAST:event_btn_backActionPerformed
@@ -403,9 +405,9 @@ public class Group extends javax.swing.JPanel {
 
     public boolean inputDataValidator() throws SQLException {
 
-        String degPro = txt_grp_num.getText().toString();
+        String degPro = txt_grp_num.getSelectedItem().toString();
 
-        if (degPro.isEmpty()) {
+        if (degPro.equals("Select")) {
             errorMsg.setText("Group Number is Required.");
             errorMsg.setVisible(true);
             return false;
@@ -415,7 +417,7 @@ public class Group extends javax.swing.JPanel {
 
     public boolean allReady() {
 
-        String degPro = txt_grp_num.getText().toString().toUpperCase();
+        String degPro = txt_grp_num.getSelectedItem().toString().toUpperCase();
 
         try {
             if (!gc.getAllReady(degPro)) {
@@ -449,6 +451,6 @@ public class Group extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel pan;
     private javax.swing.JTable tbl_grp_num;
-    public static javax.swing.JTextField txt_grp_num;
+    private javax.swing.JComboBox<String> txt_grp_num;
     // End of variables declaration//GEN-END:variables
 }

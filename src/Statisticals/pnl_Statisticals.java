@@ -242,7 +242,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         jLabel6.setText("Total Registered Rooms");
 
         btn_Rooms.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_Rooms.setText("Show Statistics");
+        btn_Rooms.setText("Show Chart");
         btn_Rooms.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_RoomsActionPerformed(evt);
@@ -320,10 +320,10 @@ public class pnl_Statisticals extends javax.swing.JPanel {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
-                                .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                                 .addComponent(jLabel30)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                                 .addComponent(txt_TotLecRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(290, 290, 290))
                             .addGroup(jPanel5Layout.createSequentialGroup()
@@ -448,7 +448,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         txt_AsLec.setText("6");
 
         btn_Std1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_Std1.setText("Show Statistics");
+        btn_Std1.setText("Show Chart");
         btn_Std1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_Std1ActionPerformed(evt);
@@ -501,7 +501,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
                                 .addComponent(jLabel52)
                                 .addGap(6, 6, 6)
                                 .addComponent(txt_AsLec, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 72, Short.MAX_VALUE)))
+                                .addGap(0, 95, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -558,13 +558,11 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Registered Lectures", jPanel1);
@@ -575,7 +573,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         jLabel8.setText("Total Registered Student Groups");
 
         btn_Std.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_Std.setText("Show Statistics");
+        btn_Std.setText("Show Chart");
         btn_Std.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_StdActionPerformed(evt);
@@ -668,7 +666,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
                         .addComponent(jLabel58)
                         .addGap(6, 6, 6)
                         .addComponent(txt_Year4Std, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(334, Short.MAX_VALUE))
+                        .addContainerGap(364, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -721,7 +719,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         jLabel7.setText("Total Registered Subjects");
 
         btn_Module.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_Module.setText("Show Statistics");
+        btn_Module.setText("Show Chart");
         btn_Module.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ModuleActionPerformed(evt);
@@ -795,7 +793,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel15)
@@ -873,11 +871,11 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -893,7 +891,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         
         JFreeChart chart = ChartFactory.createBarChart3D("Locations", "Building Type", "Number Of Rooms", dataset, PlotOrientation.VERTICAL, true, true, false);
         CategoryPlot p = chart.getCategoryPlot();
-        p.setRangeGridlinePaint(Color.BLACK);
+        //p.setRangeGridlinePaint(Color.BLACK);
         
         ChartFrame frame = new ChartFrame("Bar chart for Registered Rooms",chart);
         frame.setSize(450, 350);
@@ -917,7 +915,7 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         
         JFreeChart chart = ChartFactory.createBarChart3D("Subjects", "Year", "Count", dataset, PlotOrientation.VERTICAL, true, true, true);
         CategoryPlot p = chart.getCategoryPlot();
-        p.setRangeGridlinePaint(Color.BLACK);
+        //p.setRangeGridlinePaint(Color.BLACK);
         
         ChartFrame frame = new ChartFrame("Bar chart for Registered Modules",chart);
         frame.setSize(450, 350);

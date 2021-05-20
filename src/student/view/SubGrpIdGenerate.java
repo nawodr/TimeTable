@@ -442,7 +442,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
                 jComboBox2.setSelectedIndex(0);
                 showYnSList();
 
-                JOptionPane.showMessageDialog(null, "Inserting Successful!");
+                JOptionPane.showMessageDialog(this, "Inserting Successful!");
 
             }
 
