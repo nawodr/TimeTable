@@ -144,12 +144,13 @@ public class SessionView extends javax.swing.JPanel {
         searchTextField = new javax.swing.JTextField();
         searchComboBox = new javax.swing.JComboBox<>();
         searchButton = new javax.swing.JButton();
-        refreshtButton = new javax.swing.JButton();
-        viewButton = new javax.swing.JButton();
-        updateButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
         sessionScrollPane = new javax.swing.JScrollPane();
         sessionTable = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        refreshtButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
+        viewButton = new javax.swing.JButton();
         addPanel = new javax.swing.JPanel();
         contentPanel = new javax.swing.JPanel();
         lecturersTagButton = new javax.swing.JButton();
@@ -199,9 +200,7 @@ public class SessionView extends javax.swing.JPanel {
             }
         });
 
-        searchButton.setBackground(new java.awt.Color(0, 51, 51));
         searchButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        searchButton.setForeground(new java.awt.Color(255, 255, 255));
         searchButton.setText("Search");
         searchButton.setBorder(null);
         searchButton.setFocusable(false);
@@ -211,55 +210,7 @@ public class SessionView extends javax.swing.JPanel {
             }
         });
 
-        refreshtButton.setBackground(new java.awt.Color(255, 153, 0));
-        refreshtButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        refreshtButton.setForeground(new java.awt.Color(255, 255, 255));
-        refreshtButton.setText("Refresh");
-        refreshtButton.setBorder(null);
-        refreshtButton.setFocusable(false);
-        refreshtButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshtButtonActionPerformed(evt);
-            }
-        });
-
-        viewButton.setBackground(new java.awt.Color(0, 153, 204));
-        viewButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        viewButton.setForeground(new java.awt.Color(255, 255, 255));
-        viewButton.setText("View");
-        viewButton.setBorder(null);
-        viewButton.setFocusable(false);
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
-            }
-        });
-
-        updateButton.setBackground(new java.awt.Color(255, 102, 0));
-        updateButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        updateButton.setForeground(new java.awt.Color(255, 255, 255));
-        updateButton.setText("Update");
-        updateButton.setBorder(null);
-        updateButton.setFocusable(false);
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
-            }
-        });
-
-        deleteButton.setBackground(new java.awt.Color(153, 0, 51));
-        deleteButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteButton.setText("Delete");
-        deleteButton.setBorder(null);
-        deleteButton.setFocusable(false);
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
-
-        sessionTable.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        sessionTable.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
         sessionTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -283,10 +234,80 @@ public class SessionView extends javax.swing.JPanel {
         });
         sessionScrollPane.setViewportView(sessionTable);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        refreshtButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        refreshtButton.setText("Refresh");
+        refreshtButton.setBorder(null);
+        refreshtButton.setFocusable(false);
+        refreshtButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshtButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deleteButton.setText("Delete");
+        deleteButton.setBorder(null);
+        deleteButton.setFocusable(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        updateButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        updateButton.setText("Update");
+        updateButton.setBorder(null);
+        updateButton.setFocusable(false);
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
+        viewButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        viewButton.setText("View");
+        viewButton.setBorder(null);
+        viewButton.setFocusable(false);
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(refreshtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(refreshtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout sessionPanelLayout = new javax.swing.GroupLayout(sessionPanel);
         sessionPanel.setLayout(sessionPanelLayout);
         sessionPanelLayout.setHorizontalGroup(
             sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(sessionPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,13 +318,7 @@ public class SessionView extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(sessionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(refreshtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
         sessionPanelLayout.setVerticalGroup(
             sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,20 +327,11 @@ public class SessionView extends javax.swing.JPanel {
                 .addGroup(sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(refreshtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(sessionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sessionPanelLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(sessionPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(sessionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(sessionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 301, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         contentTabbedPane.addTab("Manage Sessions", sessionPanel);
@@ -977,6 +983,7 @@ public class SessionView extends javax.swing.JPanel {
     private javax.swing.JLabel groupLabel;
     private javax.swing.JButton groupSubjectButton;
     private javax.swing.JLabel hrsLabel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> lecturerComboBox;
     private javax.swing.JLabel lecturerLabel;
     private javax.swing.JButton lecturersTagButton;
