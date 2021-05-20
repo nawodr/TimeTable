@@ -46,11 +46,11 @@ public class SubGroup extends javax.swing.JPanel {
         tbl_sub_grp = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txt_sub_grp_num = new javax.swing.JTextField();
         id = new javax.swing.JLabel();
         errorMsg = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        txt_sub_grp_num = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn_sub_grp_num = new javax.swing.JButton();
@@ -61,10 +61,7 @@ public class SubGroup extends javax.swing.JPanel {
 
         tbl_sub_grp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Sub Group Number"
@@ -108,6 +105,8 @@ public class SubGroup extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Selected ID");
 
+        txt_sub_grp_num.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,8 +127,8 @@ public class SubGroup extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_sub_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(82, Short.MAX_VALUE))))
+                            .addComponent(txt_sub_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(95, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,12 +139,13 @@ public class SubGroup extends javax.swing.JPanel {
                         .addGap(4, 4, 4)
                         .addComponent(jLabel4))
                     .addComponent(id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txt_sub_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_sub_grp_num, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addComponent(errorMsg)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -262,12 +262,12 @@ public class SubGroup extends javax.swing.JPanel {
 
             if (inputDataValidator() == true && allReady() == true) {
 
-                String sub_grp_num = txt_sub_grp_num.getText().trim();
+                String sub_grp_num = txt_sub_grp_num.getSelectedItem().toString();
 
                 int i = sb.addHandleClick(sub_grp_num);
                 if (i != 0) {
                     JOptionPane.showMessageDialog(jPanel1, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
-                    txt_sub_grp_num.setText("");
+                    txt_sub_grp_num.setSelectedItem("Select");
                     showYnSList();
                 } else {
                     JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -302,14 +302,14 @@ showYnSList();
 
                     errorMsg.setVisible(false);
 
-                    String sub_grp_num = txt_sub_grp_num.getText().trim().toUpperCase();
+                    String sub_grp_num = txt_sub_grp_num.getSelectedItem().toString();
 
                     int i = sb.updateHandleClick(final_id, sub_grp_num);
 //                System.out.println(i);
                     if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
                         JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
-                        txt_sub_grp_num.setText("");
+                        txt_sub_grp_num.setSelectedItem("Select");
                         showYnSList();
                     } else {
                         JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -351,7 +351,7 @@ showYnSList();
                     if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
                         JOptionPane.showMessageDialog(jPanel1, "Successfully Deleted!");
-                        txt_sub_grp_num.setText("");
+                        txt_sub_grp_num.setSelectedItem("Select");
 
                     } else {
                         JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -385,14 +385,14 @@ showYnSList();
         String valueAt = (String) tbl_sub_grp.getValueAt(selectedRow, 1);
         String valuId = String.valueOf(Id);
         id.setText(valuId);
-        txt_sub_grp_num.setText(valueAt);
+        txt_sub_grp_num.setSelectedItem(valueAt);
 
     }//GEN-LAST:event_tbl_sub_grpMouseClicked
 
     private void btn_back_deg1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_back_deg1ActionPerformed
         
         id.setText(" ");
-        txt_sub_grp_num.setText("");
+        txt_sub_grp_num.setSelectedItem("Select");
         showYnSList();
 
         
@@ -408,9 +408,9 @@ showYnSList();
 
     public boolean inputDataValidator() throws SQLException {
 
-        String degPro = txt_sub_grp_num.getText().toString();
+        String degPro = txt_sub_grp_num.getSelectedItem().toString();
 
-        if (degPro.isEmpty()) {
+        if (degPro.equals("Select")) {
             errorMsg.setText("Sub Group Number is Required.");
             errorMsg.setVisible(true);
             return false;
@@ -420,7 +420,7 @@ showYnSList();
 
     public boolean allReady() {
 
-        String degPro = txt_sub_grp_num.getText().toString().toUpperCase();
+        String degPro = txt_sub_grp_num.getSelectedItem().toString();
 
         try {
             if (!sb.getAllReady(degPro)) {
@@ -454,6 +454,6 @@ showYnSList();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tbl_sub_grp;
-    public static javax.swing.JTextField txt_sub_grp_num;
+    private javax.swing.JComboBox<String> txt_sub_grp_num;
     // End of variables declaration//GEN-END:variables
 }

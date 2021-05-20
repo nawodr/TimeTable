@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import student.controller.TagCon;
 import student.util.LoadTable;
-import static student.view.Group.txt_grp_num;
+
 
 /**
  *
@@ -98,7 +98,7 @@ public class TagDetails extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Related Tag");
 
-        jCombo_tag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lecture", "Tutorial", "Practical" }));
+        jCombo_tag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Lecture", "Tutorial", "Practical", "Evalution" }));
 
         id.setText("id");
 
@@ -290,7 +290,9 @@ public class TagDetails extends javax.swing.JPanel {
                 if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
                     JOptionPane.showMessageDialog(jLabel1, "Successfully Updated!");
-                    txt_grp_num.setText("");
+                    txt_tag_name.setText("");
+                    txt_tag_code.setText("");
+                    jCombo_tag.setSelectedItem("Select");
                     showYnSList();
                 } else {
                     JOptionPane.showMessageDialog(jLabel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);

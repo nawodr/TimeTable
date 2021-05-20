@@ -56,7 +56,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         ImageIcon iconWorkingDay = null;
         ImageIcon iconSubmenu = null;
-        System.out.println("aaaa");
+        //System.out.println("aaaa");
         try {
             iconWorkingDay = new ImageIcon(MainFrame.class.getResource("workingTime.png"));
             iconSubmenu = new javax.swing.ImageIcon(getClass().getResource("/resource/426430-PE93QI-643.jpg"));
@@ -314,13 +314,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jToggleButton10);
         jToggleButton10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jToggleButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_tags_50px.png"))); // NOI18N
+        jToggleButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_clock_50px.png"))); // NOI18N
         jToggleButton10.setText("Timetable");
         jToggleButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jToggleButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jToggleButton10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_tags_50px_1.png"))); // NOI18N
-        jToggleButton10.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_tags_50px_1.png"))); // NOI18N
-        jToggleButton10.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_tags_50px_1.png"))); // NOI18N
+        jToggleButton10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_clock_50px_1.png"))); // NOI18N
+        jToggleButton10.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_clock_50px_1.png"))); // NOI18N
+        jToggleButton10.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main_menu/icons8_clock_50px_1.png"))); // NOI18N
         jToggleButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton10ActionPerformed(evt);

@@ -147,17 +147,17 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         locationTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         roomLabel = new javax.swing.JLabel();
-        roomComboBox = new javax.swing.JComboBox<String>();
+        roomComboBox = new javax.swing.JComboBox<>();
         dateDateChooser = new com.toedter.calendar.JDateChooser();
         dateLabel = new javax.swing.JLabel();
         hoursLabel = new javax.swing.JLabel();
         minutesLabel = new javax.swing.JLabel();
-        startMinutesComboBox = new javax.swing.JComboBox<String>();
-        endMinutesComboBox = new javax.swing.JComboBox<String>();
-        endHoursComboBox = new javax.swing.JComboBox<String>();
+        startMinutesComboBox = new javax.swing.JComboBox<>();
+        endMinutesComboBox = new javax.swing.JComboBox<>();
+        endHoursComboBox = new javax.swing.JComboBox<>();
         startLabel = new javax.swing.JLabel();
         endLabel = new javax.swing.JLabel();
-        startHoursComboBox = new javax.swing.JComboBox<String>();
+        startHoursComboBox = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         refreshButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
@@ -173,7 +173,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("Add Location");
 
-        locationTable.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        locationTable.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         locationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -203,7 +203,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         roomLabel.setText("Room");
 
         roomComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        roomComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Room" }));
+        roomComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Room" }));
         roomComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roomComboBoxActionPerformed(evt);
@@ -226,7 +226,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         minutesLabel.setText("Minutes");
 
         startMinutesComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        startMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
+        startMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
         startMinutesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startMinutesComboBoxActionPerformed(evt);
@@ -234,7 +234,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         });
 
         endMinutesComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        endMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
+        endMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
         endMinutesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endMinutesComboBoxActionPerformed(evt);
@@ -242,7 +242,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         });
 
         endHoursComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        endHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
+        endHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1" }));
         endHoursComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endHoursComboBoxActionPerformed(evt);
@@ -256,7 +256,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         endLabel.setText("End");
 
         startHoursComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        startHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
+        startHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1" }));
         startHoursComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startHoursComboBoxActionPerformed(evt);
@@ -430,7 +430,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
                     .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -440,7 +440,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
             .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1190, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(addPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1178, Short.MAX_VALUE))
+                .addComponent(addPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -44,10 +44,10 @@ public class YearSemester extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txt_acd_yer_and_sem = new javax.swing.JTextField();
         id = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         errorMsg = new javax.swing.JLabel();
+        txt_acd_yer_and_sem = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_year = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -68,13 +68,6 @@ public class YearSemester extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Academic Year And Semester");
 
-        txt_acd_yer_and_sem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txt_acd_yer_and_sem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_acd_yer_and_semActionPerformed(evt);
-            }
-        });
-
         id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         id.setText("id");
 
@@ -84,6 +77,8 @@ public class YearSemester extends javax.swing.JPanel {
 
         errorMsg.setForeground(java.awt.Color.red);
         errorMsg.setText("Error Message");
+
+        txt_acd_yer_and_sem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Y1.S1", "Y1.S2", "Y2.S1", "Y2.S2", "Y3.S1", "Y3.S2", "Y4.S1", "Y4.Y2" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,8 +99,9 @@ public class YearSemester extends javax.swing.JPanel {
                                 .addComponent(jLabel2)
                                 .addGap(4, 4, 4)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_acd_yer_and_sem, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_acd_yer_and_sem, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,11 +112,10 @@ public class YearSemester extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_acd_yer_and_sem)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_acd_yer_and_sem, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
@@ -259,7 +254,7 @@ public class YearSemester extends javax.swing.JPanel {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -272,12 +267,12 @@ public class YearSemester extends javax.swing.JPanel {
 
                 errorMsg.setVisible(false);
 
-                String yer_sem = txt_acd_yer_and_sem.getText().trim().toUpperCase();
+                String yer_sem = txt_acd_yer_and_sem.getSelectedItem().toString();
                 showYnSList();
                 int i = yc.addHandleClick(yer_sem);
                 if (i != 0) {
                     JOptionPane.showMessageDialog(jPanel1, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
-                    txt_acd_yer_and_sem.setText("");
+                    txt_acd_yer_and_sem.setSelectedItem("Select");
 
                 } else {
                     JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -298,7 +293,7 @@ public class YearSemester extends javax.swing.JPanel {
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
 
         id.setText(" ");
-        txt_acd_yer_and_sem.setText("");
+        txt_acd_yer_and_sem.setSelectedItem("Select");
         showYnSList();
 
         // TODO add your handling code here:
@@ -318,7 +313,7 @@ public class YearSemester extends javax.swing.JPanel {
         String valueAt = (String) tbl_year.getValueAt(selectedRow, 1);
         String valuId = String.valueOf(Id);
         id.setText(valuId);
-        txt_acd_yer_and_sem.setText(valueAt);
+        txt_acd_yer_and_sem.setSelectedItem(valueAt);
 
     }//GEN-LAST:event_tbl_yearMouseClicked
 
@@ -344,7 +339,7 @@ public class YearSemester extends javax.swing.JPanel {
                     if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
                         JOptionPane.showMessageDialog(jPanel1, "Successfully Deleted!");
-                        txt_acd_yer_and_sem.setText("");
+                        txt_acd_yer_and_sem.setSelectedItem("Select");
                         showYnSList();
 
                     } else {
@@ -387,14 +382,14 @@ public class YearSemester extends javax.swing.JPanel {
 
                     errorMsg.setVisible(false);
 
-                    String yer_sem = txt_acd_yer_and_sem.getText().trim().toUpperCase();
+                    String yer_sem = txt_acd_yer_and_sem.getSelectedItem().toString();
 
                     int i = yc.updateHandleClick(final_id, yer_sem);
 //                System.out.println(i);
                     if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
                         JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
-                        txt_acd_yer_and_sem.setText("");
+                        txt_acd_yer_and_sem.setSelectedItem("Select");
                         showYnSList();
                     } else {
                         JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -411,15 +406,11 @@ public class YearSemester extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btn_update_yer_semActionPerformed
 
-    private void txt_acd_yer_and_semActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_acd_yer_and_semActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_acd_yer_and_semActionPerformed
-
     public boolean inputDataValidator() throws SQLException {
 
-        String degPro = txt_acd_yer_and_sem.getText().toString();
+        String degPro = txt_acd_yer_and_sem.getSelectedItem().toString();
 
-        if (degPro.isEmpty()) {
+        if (degPro.equals("Select")) {
             errorMsg.setText("Academic Year And Semester is Required.");
             errorMsg.setVisible(true);
             return false;
@@ -429,7 +420,7 @@ public class YearSemester extends javax.swing.JPanel {
 
     public boolean allReady() {
 
-        String degPro = txt_acd_yer_and_sem.getText().toString().toUpperCase();
+        String degPro = txt_acd_yer_and_sem.getSelectedItem().toString().toUpperCase();
 
         try {
             if (!yc.getAllReady(degPro)) {
@@ -494,7 +485,7 @@ public class YearSemester extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JTable tbl_year;
-    private javax.swing.JTextField txt_acd_yer_and_sem;
+    private javax.swing.JComboBox<String> txt_acd_yer_and_sem;
     // End of variables declaration//GEN-END:variables
 
 }

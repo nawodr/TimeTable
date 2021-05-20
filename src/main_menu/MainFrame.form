@@ -549,7 +549,7 @@
                   <Font name="Tahoma" size="18" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/main_menu/icons8_tags_50px.png"/>
+                  <Image iconType="3" name="/main_menu/icons8_clock_50px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Timetable"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -557,13 +557,13 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/main_menu/icons8_tags_50px_1.png"/>
+                  <Image iconType="3" name="/main_menu/icons8_clock_50px_1.png"/>
                 </Property>
                 <Property name="rolloverSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/main_menu/icons8_tags_50px_1.png"/>
+                  <Image iconType="3" name="/main_menu/icons8_clock_50px_1.png"/>
                 </Property>
                 <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/main_menu/icons8_tags_50px_1.png"/>
+                  <Image iconType="3" name="/main_menu/icons8_clock_50px_1.png"/>
                 </Property>
               </Properties>
               <Events>

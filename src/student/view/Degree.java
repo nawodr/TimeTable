@@ -43,11 +43,11 @@ public class Degree extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txt_deg_pro = new javax.swing.JTextField();
         errorMsg = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        txt_deg_pro = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_deg_por = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -64,8 +64,6 @@ public class Degree extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Degree Program");
 
-        txt_deg_pro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
         errorMsg.setForeground(java.awt.Color.red);
         errorMsg.setText("error");
 
@@ -78,6 +76,8 @@ public class Degree extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Selected ID");
+
+        txt_deg_pro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "IT", "SE", "CS", "BM", "EN", "CN" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,9 +96,9 @@ public class Degree extends javax.swing.JPanel {
                             .addComponent(jLabel4))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_deg_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_deg_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,11 +112,11 @@ public class Degree extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(txt_deg_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_deg_pro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorMsg)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(81, 81, 81))
         );
 
         tbl_deg_por.setModel(new javax.swing.table.DefaultTableModel(
@@ -261,12 +261,12 @@ public class Degree extends javax.swing.JPanel {
 
                 errorMsg.setVisible(false);
 
-                String deg_pro = txt_deg_pro.getText().trim().toUpperCase();
+                String deg_pro = txt_deg_pro.getSelectedItem().toString();
                 showYnSList();
                 int i = dp.btn_deg_proHandleClick(deg_pro);
                 if (i != 0) {
                     JOptionPane.showMessageDialog(jPanel1, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
-                    txt_deg_pro.setText("");
+                    txt_deg_pro.setSelectedItem("Select");
 
                 } else {
                     JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -291,7 +291,7 @@ showYnSList();
         String valueAt = (String) tbl_deg_por.getValueAt(selectedRow, 1);
         String valuId = String.valueOf(Id);
         id.setText(valuId);
-        txt_deg_pro.setText(valueAt);
+        txt_deg_pro.setSelectedItem(valueAt);
 
     }//GEN-LAST:event_tbl_deg_porMouseClicked
 
@@ -312,14 +312,14 @@ showYnSList();
 
                     errorMsg.setVisible(false);
 
-                    String deg_pro = txt_deg_pro.getText().trim().toUpperCase();
+                    String deg_pro = txt_deg_pro.getSelectedItem().toString();
 
                     int i = dp.updateHandleClick(final_id, deg_pro);
 //                System.out.println(i);
                     if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
                         JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
-                        txt_deg_pro.setText("");
+                        txt_deg_pro.setSelectedItem("Select");
                         showYnSList();
                     } else {
                         JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -361,7 +361,7 @@ showYnSList();
                 if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
                     JOptionPane.showMessageDialog(jPanel1, "Successfully Deleted!");
-                    txt_deg_pro.setText("");
+                    txt_deg_pro.setSelectedItem("Select");
 
                 } else {
                     JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -389,7 +389,7 @@ showYnSList();
     private void btn_back_deg1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_back_deg1ActionPerformed
         
         id.setText(" ");
-        txt_deg_pro.setText("");
+        txt_deg_pro.setSelectedItem("Select");
         showYnSList();
 
         
@@ -405,9 +405,9 @@ showYnSList();
 
     public boolean inputDataValidator() throws SQLException {
 
-        String degPro = txt_deg_pro.getText().toString();
+        String degPro = txt_deg_pro.getSelectedItem().toString();
 
-        if (degPro.isEmpty()) {
+        if (degPro.equals("Select")) {
             errorMsg.setText("Degree Program is Required.");
             errorMsg.setVisible(true);
             return false;
@@ -417,7 +417,7 @@ showYnSList();
 
     public boolean allReady() {
 
-        String degPro = txt_deg_pro.getText().toString().toUpperCase();
+        String degPro = txt_deg_pro.getSelectedItem().toString();
 
         try {
             if (!dp.getAllReady(degPro)) {
@@ -451,6 +451,6 @@ showYnSList();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tbl_deg_por;
-    private javax.swing.JTextField txt_deg_pro;
+    private javax.swing.JComboBox<String> txt_deg_pro;
     // End of variables declaration//GEN-END:variables
 }
