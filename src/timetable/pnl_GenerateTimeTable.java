@@ -32,15 +32,18 @@ public class pnl_GenerateTimeTable extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        txt_TimetableName = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_TimetableName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_TimetableName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_TimetableNameActionPerformed(evt);
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Generate Timetable");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -53,57 +56,74 @@ public class pnl_GenerateTimeTable extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Timetable Name");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_TimetableName, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jButton1)
-                .addContainerGap(712, Short.MAX_VALUE))
+                .addContainerGap(600, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(474, Short.MAX_VALUE))
+                    .addComponent(txt_TimetableName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(473, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Generater generater1 = new Generater();
+        Generater generater = new Generater();
+        String  name = txt_TimetableName.getText();
         try {
-            generater1.loadData();
+            if(name.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Please Enter Timetable Name.","Genarate Timetable",JOptionPane.ERROR_MESSAGE);
+                txt_TimetableName.grabFocus();
+            }else{
+                generater.loadData(name);
+                JOptionPane.showMessageDialog(this, "Timetable Generated.","Timetable",JOptionPane.INFORMATION_MESSAGE);
+                txt_TimetableName.setText("");
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(pnl_GenerateTimeTable.class.getName()).log(Level.SEVERE, null, ex);
         }
             
-            JOptionPane.showMessageDialog(this, "Timetable Generated.","Timetable",JOptionPane.DEFAULT_OPTION);
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        Generater generater1 = new Generater();
-        try {
-            generater1.loadData();
-        } catch (IOException ex) {
-            Logger.getLogger(pnl_GenerateTimeTable.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-            JOptionPane.showMessageDialog(this, "Timetable Generated.","Timetable",JOptionPane.DEFAULT_OPTION);
+//        Generater generater1 = new Generater();
+//        String  name = txt_TimetableName.getText();
+//        try {
+//            generater1.loadData(name);
+//        } catch (IOException ex) {
+//            Logger.getLogger(pnl_GenerateTimeTable.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//            
+//            JOptionPane.showMessageDialog(this, "Timetable Generated.","Timetable",JOptionPane.DEFAULT_OPTION);
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_TimetableNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_TimetableNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_TimetableNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel1;
+    public javax.swing.JTextField txt_TimetableName;
     // End of variables declaration//GEN-END:variables
 }
