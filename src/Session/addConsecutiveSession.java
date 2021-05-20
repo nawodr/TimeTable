@@ -377,7 +377,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
         TableModel model = tbl_csSelection.getModel();
 //        txt_id.setText(model.getValueAt(i, 0).toString());
         txt_id.setText(String.valueOf(i));
-        txt_csSelectedId.setText(model.getValueAt(i, 0).toString());
+        //txt_csSelectedId.setText(model.getValueAt(i, 0).toString());
     }//GEN-LAST:event_tbl_csSelectedMouseClicked
 
     private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
