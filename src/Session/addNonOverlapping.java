@@ -340,52 +340,58 @@ public class addNonOverlapping extends javax.swing.JPanel {
 
         try {
 
-            DefaultTableModel model = (DefaultTableModel) tbl_csSelected.getModel();
-            DefaultTableModel model2 = (DefaultTableModel) tbl_cs.getModel();
-
-            if (tbl_csSelected.getRowCount() == 0) {
-                txt_error_selection.setText("Select Sessions First*");
+            if (tbl_csSelected.getRowCount() < 2) {
+                JOptionPane.showMessageDialog(null, "Please Add Two or More Session", "Add Non Overlap Session", JOptionPane.ERROR_MESSAGE);
             } else {
-                txt_error_selection.setText("");
 
-                TagCreator();
+                DefaultTableModel model = (DefaultTableModel) tbl_csSelected.getModel();
+                DefaultTableModel model2 = (DefaultTableModel) tbl_cs.getModel();
 
-                String sessionList[] = sessID.split(",");
-                boolean lock = false;
-                Conseclist = getNonOverlappingSessionNList();
+                if (tbl_csSelected.getRowCount() == 0) {
+                    txt_error_selection.setText("Select Sessions First*");
+                } else {
+                    txt_error_selection.setText("");
 
-                for (int x = 0; x < sessionList.length; x++) {
+                    TagCreator();
 
-                    for (int i = 0; i < Conseclist.size(); i++) {
-                        String sessionList2[] = Conseclist.get(i).getSessionID().split(",");
+                    String sessionList[] = sessID.split(",");
+                    boolean lock = false;
+                    Conseclist = getNonOverlappingSessionNList();
 
-                        for (int a = 0; a < sessionList2.length; a++) {
-                            if (sessionList[x].equals(sessionList2[a])) {
-                                lock = true;
+                    for (int x = 0; x < sessionList.length; x++) {
+
+                        for (int i = 0; i < Conseclist.size(); i++) {
+                            String sessionList2[] = Conseclist.get(i).getSessionID().split(",");
+
+                            for (int a = 0; a < sessionList2.length; a++) {
+                                if (sessionList[x].equals(sessionList2[a])) {
+                                    lock = true;
+                                }
                             }
                         }
                     }
+
+                    if (lock) {
+                        txt_error_selection.setText("This Sessions Already Exist");
+                    } else {
+
+                        String q1 = "insert into sp2_nonoverlapping_session (sGid,cSession,sessionID) values (?,?,?)";
+                        pst4 = connection.prepareStatement(q1);
+                        pst4.setString(1, selection_sId.getSelectedItem().toString());
+                        pst4.setString(2, finalTags);
+                        pst4.setString(3, sessID);
+
+                        pst4.executeUpdate();
+
+                        model.setRowCount(0);
+                        model2.setRowCount(0);
+                        showNonOverlappingSessionNList();
+                        txt_id.setText("");
+                        JOptionPane.showMessageDialog(null, "Inserting Successful!");
+
+                    }
                 }
 
-                if (lock) {
-                    txt_error_selection.setText("This Sessions Already Exist");
-                } else {
-
-                    String q1 = "insert into sp2_nonoverlapping_session (sGid,cSession,sessionID) values (?,?,?)";
-                    pst4 = connection.prepareStatement(q1);
-                    pst4.setString(1, selection_sId.getSelectedItem().toString());
-                    pst4.setString(2, finalTags);
-                    pst4.setString(3, sessID);
-
-                    pst4.executeUpdate();
-
-                    model.setRowCount(0);
-                    model2.setRowCount(0);
-                    showNonOverlappingSessionNList();
-                    txt_id.setText("");
-                    JOptionPane.showMessageDialog(null, "Inserting Successful!");
-
-                }
             }
 
         } catch (Exception e) {
@@ -504,7 +510,7 @@ public class addNonOverlapping extends javax.swing.JPanel {
 
             } else {
 
-                int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+                int v = JOptionPane.showConfirmDialog(null, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
                 if (v == JOptionPane.YES_OPTION) {
 
                     txt_error_cs.setText("");

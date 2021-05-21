@@ -265,11 +265,11 @@ public class Degree extends javax.swing.JPanel {
                 showYnSList();
                 int i = dp.btn_deg_proHandleClick(deg_pro);
                 if (i != 0) {
-                    JOptionPane.showMessageDialog(jPanel1, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
                     txt_deg_pro.setSelectedItem("Select");
 
                 } else {
-                    JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 showYnSList();
             }
@@ -278,7 +278,7 @@ showYnSList();
 
 //            Logger.getLogger(Degree.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
-            JOptionPane.showMessageDialog(jPanel1, "Failed! MYSQL ERROR", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Failed! MYSQL ERROR", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_btn_deg_proActionPerformed
@@ -318,11 +318,11 @@ showYnSList();
 //                System.out.println(i);
                     if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                        JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
+                        JOptionPane.showMessageDialog(null, "Successfully Updated!");
                         txt_deg_pro.setSelectedItem("Select");
                         showYnSList();
                     } else {
-                        JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
                 }
@@ -348,7 +348,7 @@ showYnSList();
             String idYS = id.getText();
         int final_id = Integer.parseInt(idYS);
 
-        int v = JOptionPane.showConfirmDialog(jPanel1, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+        int v = JOptionPane.showConfirmDialog(null, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
 
         if (v == JOptionPane.YES_OPTION) {
 
@@ -360,11 +360,11 @@ showYnSList();
 
                 if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                    JOptionPane.showMessageDialog(jPanel1, "Successfully Deleted!");
+                    JOptionPane.showMessageDialog(null, "Successfully Deleted!");
                     txt_deg_pro.setSelectedItem("Select");
 
                 } else {
-                    JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (SQLException ex) {

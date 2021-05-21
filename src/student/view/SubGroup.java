@@ -266,20 +266,20 @@ public class SubGroup extends javax.swing.JPanel {
 
                 int i = sb.addHandleClick(sub_grp_num);
                 if (i != 0) {
-                    JOptionPane.showMessageDialog(jPanel1, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
                     txt_sub_grp_num.setSelectedItem("Select");
                     showYnSList();
                 } else {
-                    JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-showYnSList();
+                showYnSList();
             }
 
         } catch (SQLException ex) {
 
 //            Logger.getLogger(Degree.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
-            JOptionPane.showMessageDialog(jPanel1, "Failed! MYSQL ERROR", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Failed! MYSQL ERROR", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
 
@@ -308,11 +308,11 @@ showYnSList();
 //                System.out.println(i);
                     if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                        JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!");
+                        JOptionPane.showMessageDialog(null, "Successfully Updated!");
                         txt_sub_grp_num.setSelectedItem("Select");
                         showYnSList();
                     } else {
-                        JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
                 }
@@ -324,7 +324,7 @@ showYnSList();
 
         } catch (Exception e) {
         }
-showYnSList();
+        showYnSList();
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delActionPerformed
@@ -338,7 +338,7 @@ showYnSList();
             String idYS = id.getText();
             int final_id = Integer.parseInt(idYS);
 
-            int v = JOptionPane.showConfirmDialog(jPanel1, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+            int v = JOptionPane.showConfirmDialog(null, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
 
             if (v == JOptionPane.YES_OPTION) {
 
@@ -350,11 +350,11 @@ showYnSList();
 
                     if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                        JOptionPane.showMessageDialog(jPanel1, "Successfully Deleted!");
+                        JOptionPane.showMessageDialog(null, "Successfully Deleted!");
                         txt_sub_grp_num.setSelectedItem("Select");
 
                     } else {
-                        JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
                 } catch (SQLException e) {
@@ -373,7 +373,7 @@ showYnSList();
             errorMsg.setText("Please Selected Row");
             errorMsg.setVisible(true);
         }
-showYnSList();
+        showYnSList();
     }//GEN-LAST:event_btn_delActionPerformed
 
     private void tbl_sub_grpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sub_grpMouseClicked
@@ -390,12 +390,12 @@ showYnSList();
     }//GEN-LAST:event_tbl_sub_grpMouseClicked
 
     private void btn_back_deg1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_back_deg1ActionPerformed
-        
+
         id.setText(" ");
         txt_sub_grp_num.setSelectedItem("Select");
         showYnSList();
 
-        
+
     }//GEN-LAST:event_btn_back_deg1ActionPerformed
 
     public void showYnSList() {

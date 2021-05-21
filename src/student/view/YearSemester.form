@@ -122,7 +122,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" max="32767" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" pref="9" max="-2" attributes="0"/>
-                      <Component id="txt_acd_yer_and_sem" pref="22" max="32767" attributes="0"/>
+                      <Component id="txt_acd_yer_and_sem" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="errorMsg" min="-2" pref="14" max="-2" attributes="0"/>

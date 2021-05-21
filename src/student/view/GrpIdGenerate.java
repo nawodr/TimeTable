@@ -327,7 +327,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         int selectedRow = tbl_grp_num_gen.getSelectedRow();
         String idGen = id.getText();
 
-        int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+        int v = JOptionPane.showConfirmDialog(null, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
 
         if (v == JOptionPane.YES_OPTION) {
 
@@ -498,7 +498,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
                 jCombo_deg_pro.setSelectedIndex(0);
                 jCombo_grp_num.setSelectedIndex(0);
 
-                JOptionPane.showMessageDialog(this, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
             }
 
         } catch (Exception e) {
@@ -619,7 +619,7 @@ public class GrpIdGenerate extends javax.swing.JPanel {
                 jCombo_deg_pro.setSelectedIndex(0);
                 jCombo_grp_num.setSelectedIndex(0);
 
-                JOptionPane.showMessageDialog(this, "Successfully Updated!");
+                JOptionPane.showMessageDialog(null, "Successfully Updated!");
 
             }
 

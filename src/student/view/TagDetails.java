@@ -289,13 +289,13 @@ public class TagDetails extends javax.swing.JPanel {
 //                System.out.println(i);
                 if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                    JOptionPane.showMessageDialog(jLabel1, "Successfully Updated!");
+                    JOptionPane.showMessageDialog(null, "Successfully Updated!");
                     txt_tag_name.setText("");
                     txt_tag_code.setText("");
                     jCombo_tag.setSelectedItem("Select");
                     showYnSList();
                 } else {
-                    JOptionPane.showMessageDialog(jLabel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
 //                }
@@ -319,7 +319,7 @@ public class TagDetails extends javax.swing.JPanel {
             String idYS = id.getText();
             int final_id = Integer.parseInt(idYS);
 
-            int v = JOptionPane.showConfirmDialog(jLabel1, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+            int v = JOptionPane.showConfirmDialog(null, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
 
             if (v == JOptionPane.YES_OPTION) {
 
@@ -329,12 +329,12 @@ public class TagDetails extends javax.swing.JPanel {
 
                     if (i != 0) {
 //                    JOptionPane.showMessageDialog(jPanel1, "Successfully Updated!", "Done", JOptionPane.PLAIN_MESSAGE);
-                        JOptionPane.showMessageDialog(jLabel1, "Successfully Deleted!");
+                        JOptionPane.showMessageDialog(null, "Successfully Deleted!");
 //                        txt_grp_num.setText("");
                         showYnSList();
 
                     } else {
-                        JOptionPane.showMessageDialog(jLabel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
                 } catch (SQLException ex) {
@@ -367,12 +367,12 @@ public class TagDetails extends javax.swing.JPanel {
             showYnSList();
             int i = tc.addHandleClick(tag_name, tag_code, tag);
             if (i != 0) {
-                JOptionPane.showMessageDialog(jPanel1, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Successfully Addeda!", "Done", JOptionPane.PLAIN_MESSAGE);
                 txt_tag_name.setText("");
                 txt_tag_code.setText("");
 
             } else {
-                JOptionPane.showMessageDialog(jPanel1, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Failed!", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
 //            }
@@ -380,7 +380,7 @@ public class TagDetails extends javax.swing.JPanel {
 
 //            Logger.getLogger(Degree.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
-            JOptionPane.showMessageDialog(jPanel1, "Failed! MYSQL ERROR", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Failed! MYSQL ERROR", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
         showYnSList();

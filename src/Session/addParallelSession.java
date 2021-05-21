@@ -413,7 +413,11 @@ public class addParallelSession extends javax.swing.JPanel {
 
         try {
 
-            DefaultTableModel model = (DefaultTableModel) tbl_psSelected.getModel();
+            if (tbl_psSelected.getRowCount() < 2) {
+                JOptionPane.showMessageDialog(null, "Please Add Two or More Session", "Add Parallel Session", JOptionPane.ERROR_MESSAGE);
+            } else {
+            
+                DefaultTableModel model = (DefaultTableModel) tbl_psSelected.getModel();
             DefaultTableModel model2 = (DefaultTableModel) tbl_ps.getModel();
 
             if (tbl_psSelected.getRowCount() == 0) {
@@ -462,6 +466,8 @@ public class addParallelSession extends javax.swing.JPanel {
 
                 }
             }
+                
+            }                      
 
         } catch (Exception e) {
             Logger.getLogger(GrpIdGenerate.class.getName()).log(Level.SEVERE, null, e);
@@ -495,7 +501,7 @@ public class addParallelSession extends javax.swing.JPanel {
                     model.setRowCount(0);
                     showParallelSessionNList();
                     txt_id.setText("");
-                    JOptionPane.showMessageDialog(this, "Deleted");
+                    JOptionPane.showMessageDialog(null, "Deleted");
                 }
             }
 
