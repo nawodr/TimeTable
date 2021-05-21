@@ -55,6 +55,11 @@ public class pnl_Student extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         jTabbedPane2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTabbedPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTabbedPane2MousePressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -384,6 +389,10 @@ public class pnl_Student extends javax.swing.JPanel {
         setpanels2(sgi);
 
     }//GEN-LAST:event_jToggleButton7ActionPerformed
+
+    private void jTabbedPane2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MousePressed
+        showYnSList();
+    }//GEN-LAST:event_jTabbedPane2MousePressed
 
     public void showYnSList() {
         LinkedHashMap hm = new LinkedHashMap();

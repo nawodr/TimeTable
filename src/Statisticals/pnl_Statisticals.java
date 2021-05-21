@@ -236,8 +236,6 @@ public class pnl_Statisticals extends javax.swing.JPanel {
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jPanel5.setBackground(new java.awt.Color(153, 153, 153));
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Total Registered Rooms");
 
@@ -364,8 +362,6 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Registered Rooms", jPanel5);
-
-        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
         tbl_lec.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -567,8 +563,6 @@ public class pnl_Statisticals extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Registered Lectures", jPanel1);
 
-        jPanel7.setBackground(new java.awt.Color(153, 153, 153));
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Total Registered Student Groups");
 
@@ -712,8 +706,6 @@ public class pnl_Statisticals extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Registered Students", jPanel7);
-
-        jPanel6.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Total Registered Subjects");
