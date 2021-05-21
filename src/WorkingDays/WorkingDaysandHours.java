@@ -113,12 +113,12 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
 
         contentTabbedPane = new javax.swing.JTabbedPane();
         daysHoursPanel = new javax.swing.JPanel();
-        submitButton = new javax.swing.JButton();
-        resetButton = new javax.swing.JButton();
         workingTitleLabel = new javax.swing.JLabel();
         workingScrollPane = new javax.swing.JScrollPane();
         workingTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
+        submitButton = new javax.swing.JButton();
+        resetButton = new javax.swing.JButton();
         workingEditButton = new javax.swing.JButton();
         workingRemoveButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -143,14 +143,14 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         timeSlotsPanel = new javax.swing.JPanel();
         hourSlotsButton = new javax.swing.JButton();
         minuteSlotsButton = new javax.swing.JButton();
-        timeSubmitButton = new javax.swing.JButton();
-        timeResetButton = new javax.swing.JButton();
         timeTitleLabel = new javax.swing.JLabel();
         timeScrollPane = new javax.swing.JScrollPane();
         timeTable = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         timeRemoveButton = new javax.swing.JButton();
         timeEditButton = new javax.swing.JButton();
+        timeResetButton = new javax.swing.JButton();
+        timeSubmitButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         startLabel1 = new javax.swing.JLabel();
         startLabel = new javax.swing.JLabel();
@@ -172,28 +172,6 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         contentTabbedPane.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 contentTabbedPaneMouseClicked(evt);
-            }
-        });
-
-        submitButton.setBackground(java.awt.Color.black);
-        submitButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        submitButton.setText("Submit");
-        submitButton.setBorder(null);
-        submitButton.setFocusable(false);
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButtonActionPerformed(evt);
-            }
-        });
-
-        resetButton.setBackground(java.awt.Color.black);
-        resetButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        resetButton.setText("Reset");
-        resetButton.setBorder(null);
-        resetButton.setFocusable(false);
-        resetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetButtonActionPerformed(evt);
             }
         });
 
@@ -241,9 +219,31 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
 
         jPanel1.setBackground(java.awt.Color.black);
 
+        submitButton.setBackground(java.awt.Color.black);
+        submitButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        submitButton.setText("Submit");
+        submitButton.setBorder(null);
+        submitButton.setFocusable(false);
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
+
+        resetButton.setBackground(java.awt.Color.black);
+        resetButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        resetButton.setText("Reset");
+        resetButton.setBorder(null);
+        resetButton.setFocusable(false);
+        resetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetButtonActionPerformed(evt);
+            }
+        });
+
         workingEditButton.setBackground(java.awt.Color.black);
         workingEditButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        workingEditButton.setText("Edit");
+        workingEditButton.setText("Update");
         workingEditButton.setBorder(null);
         workingEditButton.setFocusable(false);
         workingEditButton.addActionListener(new java.awt.event.ActionListener() {
@@ -267,21 +267,27 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(workingEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(workingRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(workingEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(workingRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(workingEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(workingRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(workingRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(workingEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel3.setBackground(java.awt.Color.white);
@@ -404,7 +410,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(workingTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -475,51 +481,38 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
                     .addComponent(label3)
                     .addComponent(hoursComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(minutesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout daysHoursPanelLayout = new javax.swing.GroupLayout(daysHoursPanel);
         daysHoursPanel.setLayout(daysHoursPanelLayout);
         daysHoursPanelLayout.setHorizontalGroup(
             daysHoursPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(daysHoursPanelLayout.createSequentialGroup()
-                .addGroup(daysHoursPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(daysHoursPanelLayout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(workingTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(daysHoursPanelLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(workingScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(daysHoursPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(daysHoursPanelLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(daysHoursPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(daysHoursPanelLayout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(workingTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(daysHoursPanelLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(workingScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         daysHoursPanelLayout.setVerticalGroup(
             daysHoursPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(daysHoursPanelLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(workingTitleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(daysHoursPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(daysHoursPanelLayout.createSequentialGroup()
-                        .addGap(69, 69, 69)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(daysHoursPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(daysHoursPanelLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(workingTitleLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(workingScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(workingScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         contentTabbedPane.addTab("Days Hours ", daysHoursPanel);
@@ -545,29 +538,6 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         minuteSlotsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 minuteSlotsButtonActionPerformed(evt);
-            }
-        });
-
-        timeSubmitButton.setBackground(java.awt.Color.black);
-        timeSubmitButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        timeSubmitButton.setText("Submit");
-        timeSubmitButton.setBorder(null);
-        timeSubmitButton.setFocusable(false);
-        timeSubmitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timeSubmitButtonActionPerformed(evt);
-            }
-        });
-
-        timeResetButton.setBackground(java.awt.Color.black);
-        timeResetButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        timeResetButton.setForeground(new java.awt.Color(255, 255, 255));
-        timeResetButton.setText("Reset");
-        timeResetButton.setBorder(null);
-        timeResetButton.setFocusable(false);
-        timeResetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timeResetButtonActionPerformed(evt);
             }
         });
 
@@ -614,12 +584,35 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
 
         timeEditButton.setBackground(java.awt.Color.black);
         timeEditButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        timeEditButton.setText("Edit");
+        timeEditButton.setText("Update");
         timeEditButton.setBorder(null);
         timeEditButton.setFocusable(false);
         timeEditButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 timeEditButtonActionPerformed(evt);
+            }
+        });
+
+        timeResetButton.setBackground(java.awt.Color.black);
+        timeResetButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        timeResetButton.setForeground(new java.awt.Color(255, 255, 255));
+        timeResetButton.setText("Reset");
+        timeResetButton.setBorder(null);
+        timeResetButton.setFocusable(false);
+        timeResetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeResetButtonActionPerformed(evt);
+            }
+        });
+
+        timeSubmitButton.setBackground(java.awt.Color.black);
+        timeSubmitButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        timeSubmitButton.setText("Submit");
+        timeSubmitButton.setBorder(null);
+        timeSubmitButton.setFocusable(false);
+        timeSubmitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeSubmitButtonActionPerformed(evt);
             }
         });
 
@@ -629,18 +622,24 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(timeEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(timeRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(timeSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(timeResetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(timeEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(timeRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(timeEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(timeRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(timeRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timeEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timeResetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timeSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -749,7 +748,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(dateDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(59, 59, 59))
+                .addGap(47, 47, 47))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -790,24 +789,21 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
                     .addGroup(timeSlotsPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(timeSlotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(timeTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(timeSlotsPanelLayout.createSequentialGroup()
-                                .addComponent(timeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(timeSlotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(timeSlotsPanelLayout.createSequentialGroup()
-                                        .addGap(139, 139, 139)
-                                        .addComponent(timeSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(83, 83, 83)
-                                        .addComponent(timeResetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(timeSlotsPanelLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(timeTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(timeSlotsPanelLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(timeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                                .addGap(39, 39, 39)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(timeSlotsPanelLayout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(hourSlotsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(minuteSlotsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(172, Short.MAX_VALUE))
+                        .addComponent(minuteSlotsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         timeSlotsPanelLayout.setVerticalGroup(
             timeSlotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -817,19 +813,14 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
                     .addComponent(minuteSlotsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(timeTitleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(timeSlotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(timeSlotsPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(timeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addComponent(timeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(timeSlotsPanelLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addGroup(timeSlotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(timeSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(timeResetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -839,7 +830,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1146, Short.MAX_VALUE)
+            .addComponent(contentTabbedPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -147,17 +147,17 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         locationTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         roomLabel = new javax.swing.JLabel();
-        roomComboBox = new javax.swing.JComboBox<>();
+        roomComboBox = new javax.swing.JComboBox<String>();
         dateDateChooser = new com.toedter.calendar.JDateChooser();
         dateLabel = new javax.swing.JLabel();
         hoursLabel = new javax.swing.JLabel();
         minutesLabel = new javax.swing.JLabel();
-        startMinutesComboBox = new javax.swing.JComboBox<>();
-        endMinutesComboBox = new javax.swing.JComboBox<>();
-        endHoursComboBox = new javax.swing.JComboBox<>();
+        startMinutesComboBox = new javax.swing.JComboBox<String>();
+        endMinutesComboBox = new javax.swing.JComboBox<String>();
+        endHoursComboBox = new javax.swing.JComboBox<String>();
         startLabel = new javax.swing.JLabel();
         endLabel = new javax.swing.JLabel();
-        startHoursComboBox = new javax.swing.JComboBox<>();
+        startHoursComboBox = new javax.swing.JComboBox<String>();
         jPanel6 = new javax.swing.JPanel();
         refreshButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
@@ -203,7 +203,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         roomLabel.setText("Room");
 
         roomComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        roomComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Room" }));
+        roomComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Room" }));
         roomComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roomComboBoxActionPerformed(evt);
@@ -226,7 +226,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         minutesLabel.setText("Minutes");
 
         startMinutesComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        startMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
+        startMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
         startMinutesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startMinutesComboBoxActionPerformed(evt);
@@ -234,7 +234,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         });
 
         endMinutesComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        endMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
+        endMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
         endMinutesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endMinutesComboBoxActionPerformed(evt);
@@ -242,7 +242,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         });
 
         endHoursComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        endHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1" }));
+        endHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
         endHoursComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endHoursComboBoxActionPerformed(evt);
@@ -256,7 +256,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
         endLabel.setText("End");
 
         startHoursComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        startHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1" }));
+        startHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
         startHoursComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startHoursComboBoxActionPerformed(evt);
@@ -353,7 +353,7 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(locationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(locationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -430,14 +430,14 @@ public class NotAvailableLocationView extends javax.swing.JPanel {
                     .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1190, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1192, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(addPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE))
