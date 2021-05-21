@@ -44,7 +44,7 @@ public class SessionController {
 
         try {
 
-            String sql = "SELECT DISTINCT tagName FROM Tag";
+            String sql = "SELECT DISTINCT relatedTag FROM Tag";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
 
@@ -53,7 +53,7 @@ public class SessionController {
 
             while(rs.next()) {
 
-                jComboBox.addItem(rs.getString("tagName"));
+                jComboBox.addItem(rs.getString("relatedTag"));
                 
             }
         } 

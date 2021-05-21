@@ -28,6 +28,7 @@ import student.util.LoadTable;
 public class pnl_GroupRoom extends javax.swing.JPanel {
 
     addLocations addLoc = new addLocations();
+
     /**
      * Creates new form pnl_GroupRoom
      */
@@ -35,8 +36,8 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
         initComponents();
         refreshData();
     }
-    
-    public void refreshData() throws SQLException{
+
+    public void refreshData() throws SQLException {
         try {
             showYnSList();
             lbl_Error.setVisible(false);
@@ -44,16 +45,16 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
             cmbMdl = new DefaultComboBoxModel(new addLocations().LoadGroupId().toArray());
             cmb_GrpId.setModel(cmbMdl);
             cmb_GrpId.setSelectedItem("");
-            
+
             DefaultComboBoxModel cmbMdl1 = new DefaultComboBoxModel(new addLocations().LoadRooms().toArray());
             cmb_Room.setModel(cmbMdl1);
             cmb_Room.setSelectedItem("");
-            
+
         } catch (Exception e) {
         }
     }
-    
-    public void resetForm(){
+
+    public void resetForm() {
         cmb_GrpId.setSelectedItem("");
         cmb_Room.setSelectedItem("");
         lbl_Error.setVisible(false);
@@ -338,22 +339,23 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
         String GrpId = cmb_GrpId.getSelectedItem().toString();
         String query = "Select group_Id FROM group_Location WHERE group_Id = ?";
         String colName = "group_Id";
-        
+
         try {
-            if(addLoc.isExist(GrpId,query,colName)){
-                
+            if (addLoc.isExist(GrpId, query, colName)) {
+
                 JOptionPane.showMessageDialog(null, "This Tag Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
-            }else{
+            } else {
                 ps = connection.prepareStatement("INSERT INTO group_Location (group_Id,room) VALUES (?,?)");
-                
+
                 // set db value
                 ps.setString(1, cmb_GrpId.getSelectedItem().toString());
                 ps.setString(2, cmb_Room.getSelectedItem().toString());
 
                 ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Location Added Successfully For group", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
+
+                JOptionPane.showMessageDialog(null, "Location Added Successfully For group", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                showYnSList();
+                resetForm();
             }
         } catch (SQLException ex) {
             Logger.getLogger(pnl_GroupRoom.class.getName()).log(Level.SEVERE, null, ex);
@@ -367,28 +369,29 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
         String query = "Select group_Id FROM group_Location WHERE group_Id = ?";
         String colName = "group_Id";
         try {
-            if (!addLoc.isExist(GrpId,query,colName)) {
+            if (!addLoc.isExist(GrpId, query, colName)) {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Row you Want To Update");
-            } else{
-            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-            if(res == 0) {
-                ps = connection.prepareStatement("UPDATE group_Location SET room = ? WHERE group_Id = ?");
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
+                    ps = connection.prepareStatement("UPDATE group_Location SET room = ? WHERE group_Id = ?");
 
-                // set db value
-                ps.setString(1, cmb_Room.getSelectedItem().toString());
-                ps.setString(2, GrpId);
+                    // set db value
+                    ps.setString(1, cmb_Room.getSelectedItem().toString());
+                    ps.setString(2, GrpId);
 
-                ps.executeUpdate();
+                    ps.executeUpdate();
 
-                JOptionPane.showMessageDialog(null, "Location Update Successfully For Group", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-                showYnSList();
+                    JOptionPane.showMessageDialog(null, "Location Update Successfully For Group", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                    showYnSList();
+                    resetForm();
+                }
             }
-        } 
         } catch (SQLException ex) {
             Logger.getLogger(pnl_GroupRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_cus_UpdateActionPerformed
 
     private void cus_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_deleteActionPerformed
@@ -396,28 +399,28 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
             String GrpId = cmb_GrpId.getSelectedItem().toString();
             String query = "Select group_Id FROM group_Location WHERE group_Id = ?";
             String colName = "group_Id";
-            
-            if (!addLoc.isExist(GrpId,query,colName)) {
-                    lbl_Error.setVisible(true);
-                    lbl_Error.setText("Please Select Row you Want To Delete");
-            } else{
-            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-            if(res == 0) {
-                Connection connection = DBConnection.getConnection();
-                PreparedStatement ps = null;
-                ps = connection.prepareStatement("DELETE FROM group_Location WHERE group_Id = ?");
-                ps.setString(1, GrpId);
-                ps.executeUpdate();
-                showYnSList();
-                resetForm();
-                JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+
+            if (!addLoc.isExist(GrpId, query, colName)) {
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Row you Want To Delete");
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
+                    Connection connection = DBConnection.getConnection();
+                    PreparedStatement ps = null;
+                    ps = connection.prepareStatement("DELETE FROM group_Location WHERE group_Id = ?");
+                    ps.setString(1, GrpId);
+                    ps.executeUpdate();
+                    showYnSList();
+                    JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+                    resetForm();
+                }
             }
-        }
         } catch (SQLException ex) {
-           Logger.getLogger(pnl_GroupRoom.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
-        
+            Logger.getLogger(pnl_GroupRoom.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_cus_deleteActionPerformed
 
     private void cus_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_NewActionPerformed
@@ -425,8 +428,8 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_cus_NewActionPerformed
 
     private void cus_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_ExitActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
+        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (res == 0) {
             Component comp = SwingUtilities.getRoot(this);
             ((Window) comp).dispose();
         }
@@ -462,6 +465,5 @@ public class pnl_GroupRoom extends javax.swing.JPanel {
 
         new LoadTable(tbl_GrpLocation, "SELECT * FROM group_Location", hm);
     }
-
 
 }

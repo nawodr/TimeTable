@@ -55,32 +55,34 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
         lbl_Error.setVisible(false);
 //        setpanels2(nt);
     }
-    
-    public void refreshData() throws SQLException{
+
+    public void refreshData() throws SQLException {
         try {
             showYnSList();
-            
+
             DefaultComboBoxModel cmbMdl;
             cmbMdl = new DefaultComboBoxModel(addLoc.LoadConSessionId().toArray());
             cmb_Id1.setModel(cmbMdl);
             cmb_Id1.setSelectedItem("");
-            
+
             DefaultComboBoxModel cmbMdl1 = new DefaultComboBoxModel(addLoc.LoadRooms().toArray());
             cmb_Room1.setModel(cmbMdl1);
             cmb_Room1.setSelectedItem("");
-            
+
         } catch (Exception e) {
             Logger.getLogger(pnl_ReserveRoom.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
-    public void resetForm(){
+    public void resetForm() {
         cmb_Id1.setSelectedItem("");
         txt_grp1.setText("");
         txt_ConSessions.setText("");
         txt_SessionId.setText("");
         cmb_Room1.setSelectedItem("");
+        lbl_Error.setVisible(false);
     }
+
     public Boolean validateData(String message) {
 
         if (txt_grp1.getText().isEmpty()) {
@@ -89,11 +91,11 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
 //            cmb_Id1.grabFocus();
             return false;
         }
-        
-        
+
         return true;
-         
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -627,20 +629,20 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(pnl_TagRoom.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
-            setpanels(tagR);
+        }
+        setpanels(tagR);
     }//GEN-LAST:event_jToggleButton4ActionPerformed
     pnl_SubjectRoom subR;
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
 
-         if (subR == null) {
-             try {
-                 subR = new pnl_SubjectRoom();
-             } catch (SQLException ex) {
-                 Logger.getLogger(pnl_ReserveRoom.class.getName()).log(Level.SEVERE, null, ex);
-             }
-        } 
-            setpanels(subR);
+        if (subR == null) {
+            try {
+                subR = new pnl_SubjectRoom();
+            } catch (SQLException ex) {
+                Logger.getLogger(pnl_ReserveRoom.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        setpanels(subR);
     }//GEN-LAST:event_jToggleButton3ActionPerformed
     pnl_LecRoom lecR;
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
@@ -650,21 +652,21 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(pnl_ReserveRoom.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
-            setpanels(lecR);
+        }
+        setpanels(lecR);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
     pnl_SessionRoom sr;
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-       
+
         if (sr == null) {
             try {
                 sr = new pnl_SessionRoom();
             } catch (SQLException ex) {
                 Logger.getLogger(pnl_ReserveRoom.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
-            setpanels(sr);
-        
+        }
+        setpanels(sr);
+
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     pnl_GroupRoom grpR;
@@ -675,8 +677,8 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(pnl_ReserveRoom.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
-            setpanels(grpR);
+        }
+        setpanels(grpR);
     }//GEN-LAST:event_jToggleButton5ActionPerformed
 
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
@@ -687,13 +689,13 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
         String query = "Select cons_Id FROM consecutive_Location WHERE cons_Id = ?";
         String colName = "cons_Id";
         String message = "Please Select Consecutive Session Id";
-        
+
         try {
-            if(validateData(message)){
-                if(addLoc.isExist(ConSessionId,query,colName)){
-                
+            if (validateData(message)) {
+                if (addLoc.isExist(ConSessionId, query, colName)) {
+
                     JOptionPane.showMessageDialog(null, "This Consecutive Session Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
-                }else{
+                } else {
                     ps = connection.prepareStatement("INSERT INTO consecutive_Location (cons_Id,grp_Id,cons_Sessions,session_Id,room) VALUES (?,?,?,?,?)");
 
                     // set db value
@@ -705,12 +707,13 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
 
                     ps.executeUpdate();
 
-                JOptionPane.showMessageDialog(null, "Location Added Successfully For Consecutive Session", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-                showYnSList();
+                    JOptionPane.showMessageDialog(null, "Location Added Successfully For Consecutive Session", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                    showYnSList();
+                    resetForm();
                 }
             }
-            
-            } catch (SQLException ex) {
+
+        } catch (SQLException ex) {
             Logger.getLogger(pnl_ReserveRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_AddActionPerformed
@@ -728,32 +731,31 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
 //        int locationId = 0;
         int Id = Integer.parseInt(cmb_Id1.getSelectedItem().toString());
         String message = "Please Select The Row You want To Update";
-        
-        
+
         try {
-            if(validateData(message)){
-                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-                if(res == 0) {
-                        ps = connection.prepareStatement("UPDATE consecutive_Location SET grp_Id = ?, cons_Sessions = ?, session_Id = ?, room = ? WHERE cons_Id = ?");                
-                        // set db value
-                        ps.setString(1, txt_grp1.getText());
-                        ps.setString(2, txt_ConSessions.getText());
-                        ps.setString(3, txt_SessionId.getText());
-                        ps.setString(4, cmb_Room1.getSelectedItem().toString());
-                        ps.setInt(5, Id);
+            if (validateData(message)) {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
+                    ps = connection.prepareStatement("UPDATE consecutive_Location SET grp_Id = ?, cons_Sessions = ?, session_Id = ?, room = ? WHERE cons_Id = ?");
+                    // set db value
+                    ps.setString(1, txt_grp1.getText());
+                    ps.setString(2, txt_ConSessions.getText());
+                    ps.setString(3, txt_SessionId.getText());
+                    ps.setString(4, cmb_Room1.getSelectedItem().toString());
+                    ps.setInt(5, Id);
 
-                        ps.executeUpdate();
+                    ps.executeUpdate();
 
-                        JOptionPane.showMessageDialog(null, "Location Update Successfully For Consecutive Session", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-                        showYnSList();
+                    JOptionPane.showMessageDialog(null, "Location Update Successfully For Consecutive Session", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                    showYnSList();
+                    resetForm();
+                }
 
-                }  
-        
             }
         } catch (SQLException ex) {
             Logger.getLogger(pnl_ReserveRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_cus_Update1ActionPerformed
 
     private void cus_Update1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cus_Update1KeyPressed
@@ -768,25 +770,24 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
 
     private void cus_delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_delete1ActionPerformed
         String message = "Please Select The Row You want To Delete";
-        if(validateData(message)){
-            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-            if(res == 0) {
-            Connection connection = DBConnection.getConnection();
-            PreparedStatement ps = null;
+        if (validateData(message)) {
+            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (res == 0) {
+                Connection connection = DBConnection.getConnection();
+                PreparedStatement ps = null;
 
-            int Id = Integer.parseInt(cmb_Id1.getSelectedItem().toString());
+                int Id = Integer.parseInt(cmb_Id1.getSelectedItem().toString());
 
-            try {
-                ps = connection.prepareStatement("DELETE FROM consecutive_Location WHERE cons_Id = ?");
-                ps.setInt(1, Id);
-                ps.executeUpdate();
-                showYnSList();
-                resetForm();
-                JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
-
-            } catch (SQLException ex) {
-               Logger.getLogger(pnl_ReserveRoom.class.getName()).log(Level.SEVERE, null, ex);
-            }  
+                try {
+                    ps = connection.prepareStatement("DELETE FROM consecutive_Location WHERE cons_Id = ?");
+                    ps.setInt(1, Id);
+                    ps.executeUpdate();
+                    showYnSList();
+                    JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+                    resetForm();
+                } catch (SQLException ex) {
+                    Logger.getLogger(pnl_ReserveRoom.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }//GEN-LAST:event_cus_delete1ActionPerformed
@@ -803,8 +804,8 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_cus_New1ActionPerformed
 
     private void cus_Exit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Exit1ActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
+        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (res == 0) {
             Component comp = SwingUtilities.getRoot(this);
             ((Window) comp).dispose();
         }
@@ -812,13 +813,13 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
 
     private void cmb_Id1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_Id1ActionPerformed
         String id = cmb_Id1.getSelectedItem().toString();
-        
+
         PreparedStatement ps = null;
         Connection connection = DBConnection.getConnection();
         ResultSet rs = null;
         try {
             ps = connection.prepareStatement("SELECT sGid,cSession,sessionID FROM sp2_consecutive_session WHERE id = ?");
-            
+
             //excuite sql
             ps.setString(1, id);
             rs = ps.executeQuery();
@@ -828,12 +829,12 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
                 txt_grp1.setText(rs.getString("sGid"));
                 txt_ConSessions.setText(rs.getString("cSession"));
                 txt_SessionId.setText(rs.getString("sessionID"));
-                 
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(pnl_ReserveRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_cmb_Id1ActionPerformed
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
@@ -893,7 +894,7 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
     private javax.swing.JTextField txt_grp1;
     // End of variables declaration//GEN-END:variables
 
-   public void showYnSList() {
+    public void showYnSList() {
         LinkedHashMap hm = new LinkedHashMap();
         hm.put("cons_Id", "int");
         hm.put("grp_Id", "String");
@@ -903,7 +904,7 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
 
         new LoadTable(tbl_Consecutive, "SELECT * FROM consecutive_Location", hm);
     }
-    
+
     public static void setpanels(JPanel panel) {
         LpanelBody.removeAll();
         panel.setSize(LpanelBody.getSize());
@@ -911,6 +912,7 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
         panel.setVisible(true);
         LpanelBody.moveToFront(panel);
     }
+
     public static void setpanels2(JPanel panel) {
         LpanelBody1.removeAll();
         panel.setSize(LpanelBody1.getSize());

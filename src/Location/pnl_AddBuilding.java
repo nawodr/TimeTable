@@ -29,6 +29,7 @@ import student.util.LoadTable;
 public class pnl_AddBuilding extends javax.swing.JPanel {
 
     addLocations addLoc = new addLocations();
+
     /**
      * Creates new form SessionRoom
      */
@@ -40,17 +41,18 @@ public class pnl_AddBuilding extends javax.swing.JPanel {
         lbl_Error.setVisible(false);
     }
 
-    public void resetForm(){
+    public void resetForm() {
         txt_buildingName.setText("");
     }
-    
-    public void refreshData() throws SQLException{
+
+    public void refreshData() throws SQLException {
         try {
             showYnSList();
-            
+
         } catch (Exception e) {
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,7 +113,7 @@ public class pnl_AddBuilding extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tbl_Session);
         if (tbl_Session.getColumnModel().getColumnCount() > 0) {
-            tbl_Session.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tbl_Session.getColumnModel().getColumn(0).setPreferredWidth(20);
         }
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -182,7 +184,7 @@ public class pnl_AddBuilding extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(539, Short.MAX_VALUE)
+                .addContainerGap(365, Short.MAX_VALUE)
                 .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(cus_Update1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,20 +226,21 @@ public class pnl_AddBuilding extends javax.swing.JPanel {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_Error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(402, 402, 402)
-                        .addComponent(lbl_Id1))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_buildingName, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(107, 107, 107)
-                .addComponent(lbl_Rtype1))
-            .addComponent(lbl_Error, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbl_Id1)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_buildingName, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(10, 10, 10)
+                        .addComponent(lbl_Rtype1)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,9 +279,9 @@ public class pnl_AddBuilding extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbl_Id)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 501, Short.MAX_VALUE)
-                .addGap(11, 11, 11))
+                .addGap(10, 10, 10)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -287,18 +290,15 @@ public class pnl_AddBuilding extends javax.swing.JPanel {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(lbl_Id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_Id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 286, Short.MAX_VALUE)))
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(35, 35, 35)
@@ -321,8 +321,8 @@ public class pnl_AddBuilding extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_SessionMouseClicked
 
     private void cus_Exit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Exit1ActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
+        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (res == 0) {
             Component comp = SwingUtilities.getRoot(this);
             ((Window) comp).dispose();
         }
@@ -341,22 +341,23 @@ public class pnl_AddBuilding extends javax.swing.JPanel {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Enter Building Name");
                 txt_buildingName.grabFocus();
-            
-            }else if(addLoc.isExist(buildingId,query,colName)){
-                
+
+            } else if (addLoc.isExist(buildingId, query, colName)) {
+
                 JOptionPane.showMessageDialog(null, "This Building Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
-            }else{
+            } else {
                 ps = connection.prepareStatement("INSERT INTO building_Details (name) VALUES (?)");
-                
+
                 // set db value
                 ps.setString(1, txt_buildingName.getText());
 
                 ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Building Added Successfully", "Add Buildings", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
+
+                JOptionPane.showMessageDialog(null, "Building Added Successfully", "Add Buildings", JOptionPane.INFORMATION_MESSAGE);
+                showYnSList();
+                resetForm();
             }
-            } catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(pnl_AddBuilding.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_AddActionPerformed
@@ -365,68 +366,65 @@ public class pnl_AddBuilding extends javax.swing.JPanel {
         try {
             PreparedStatement ps = null;
             Connection connection = DBConnection.getConnection();
-    
+
             String buildingId = txt_buildingName.getText();
             String query = "Select name FROM building_Details WHERE name = ?";
             String colName = "name";
             if (lbl_Id.getText().isEmpty()) {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Row you Want To Update");
-            
-            } else if(addLoc.isExist(buildingId,query,colName)){
 
-                    JOptionPane.showMessageDialog(null, "This Building Name Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
-            } else{
-                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Building",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-                if(res == 0) 
+            } else if (addLoc.isExist(buildingId, query, colName)) {
 
-
-
+                JOptionPane.showMessageDialog(null, "This Building Name Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Building", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
                     ps = connection.prepareStatement("UPDATE building_Details SET name = ?"
                             + " WHERE id = ?");
+                }
 
-                    // set db value
+                // set db value
+                ps.setString(1, txt_buildingName.getText());
+                ps.setString(2, buildingId);
 
-                    ps.setString(1, txt_buildingName.getText());
-                    ps.setString(2, buildingId);
-
-                    ps.executeUpdate();
+                ps.executeUpdate();
 
                 JOptionPane.showMessageDialog(null, "Building Name Update Successfully", "Update Building", JOptionPane.INFORMATION_MESSAGE);
                 showYnSList();
+                resetForm();
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(pnl_AddBuilding.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_cus_Update1ActionPerformed
 
     private void cus_delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_delete1ActionPerformed
         if (lbl_Id.getText().isEmpty()) {
             lbl_Error.setVisible(true);
             lbl_Error.setText("Please Select Row you Want To Delete");
-        }else{
-            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        
-            if(res == 0) {
-            Connection connection = DBConnection.getConnection();
-            PreparedStatement ps = null;
+        } else {
+            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
-            String buildingId = lbl_Id.getText();
+            if (res == 0) {
+                Connection connection = DBConnection.getConnection();
+                PreparedStatement ps = null;
 
-            try {
-                ps = connection.prepareStatement("DELETE FROM building_Details WHERE id = ?");
-                ps.setString(1, buildingId);
-                ps.executeUpdate();
-                showYnSList();
-                resetForm();
-                JOptionPane.showMessageDialog(null, "Building Deleted successfully!", "Delete Building", JOptionPane.INFORMATION_MESSAGE);
-          
-        } catch (SQLException ex) {
-           Logger.getLogger(pnl_AddBuilding.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-        }
+                String buildingId = lbl_Id.getText();
+
+                try {
+                    ps = connection.prepareStatement("DELETE FROM building_Details WHERE id = ?");
+                    ps.setString(1, buildingId);
+                    ps.executeUpdate();
+                    showYnSList();
+                    JOptionPane.showMessageDialog(null, "Building Deleted successfully!", "Delete Building", JOptionPane.INFORMATION_MESSAGE);
+                    resetForm();
+                } catch (SQLException ex) {
+                    Logger.getLogger(pnl_AddBuilding.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
     }//GEN-LAST:event_cus_delete1ActionPerformed
     }
     private void cus_New1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_New1ActionPerformed
@@ -457,12 +455,11 @@ public class pnl_AddBuilding extends javax.swing.JPanel {
 
     public void showYnSList() {
         LinkedHashMap hm = new LinkedHashMap();
-        
+
         hm.put("id", "String");
         hm.put("name", "String");
 
         new LoadTable(tbl_Session, "SELECT * FROM building_Details", hm);
     }
 
-    
 }

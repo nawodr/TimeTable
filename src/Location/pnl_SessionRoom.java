@@ -29,6 +29,7 @@ import student.util.LoadTable;
 public class pnl_SessionRoom extends javax.swing.JPanel {
 
     addLocations addLoc = new addLocations();
+
     /**
      * Creates new form SessionRoom
      */
@@ -37,7 +38,7 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
         refreshData();
     }
 
-    public void resetForm(){
+    public void resetForm() {
         cmb_Id.setSelectedItem("");
         txt_Sub.setText("");
         txt_SubCode.setText("");
@@ -49,20 +50,21 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
         cmb_Room.setSelectedItem("");
         lbl_Error.setVisible(false);
     }
-    
-    public void refreshData() throws SQLException{
+
+    public void refreshData() throws SQLException {
         lbl_Error.setVisible(false);
         try {
             showYnSList();
-            
+
             DefaultComboBoxModel cmbMdl;
             cmbMdl = new DefaultComboBoxModel(new addLocations().LoadSessionId().toArray());
             cmb_Id.setModel(cmbMdl);
             cmb_Id.setSelectedItem("");
-            
+
         } catch (Exception e) {
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -514,8 +516,8 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_SessionMouseClicked
 
     private void cus_Exit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Exit1ActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
+        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (res == 0) {
             Component comp = SwingUtilities.getRoot(this);
             ((Window) comp).dispose();
         }
@@ -523,27 +525,25 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_cus_Exit1ActionPerformed
 
     private void cmb_IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_IdActionPerformed
-         String tag =  cmb_Id.getSelectedItem().toString();
-         
+        String tag = cmb_Id.getSelectedItem().toString();
+
         try {
 //            int cap = addLoc.getstdCountById(Integer.parseInt(tag));
             /*
             Show Session to All Fieled
-            */
+             */
             loadSessionToFields(tag);
             int cap = Integer.parseInt(txt_StudntCount.getText());
-            
-            if (txt_Tag.getText().equals("LEC") || txt_Tag.getText().equals("Tute")) {
 
+            if (txt_Tag.getText().equals("Lecture") || txt_Tag.getText().equals("Tutorial") || txt_Tag.getText().equals("Evalution")) {
 
                 DefaultComboBoxModel cmbMdl;
-                cmbMdl = new DefaultComboBoxModel(addLoc.LoadRoomsByCapacity(cap,"Lecture Hall").toArray());
+                cmbMdl = new DefaultComboBoxModel(addLoc.LoadRoomsByCapacity(cap, "Lecture Hall").toArray());
                 cmb_Room.setModel(cmbMdl);
                 cmb_Room.setSelectedItem("");
-            }
-            else{
+            } else {
                 DefaultComboBoxModel cmbMdl;
-                cmbMdl = new DefaultComboBoxModel(addLoc.LoadRoomsByCapacity(cap,"Labarotaory").toArray());
+                cmbMdl = new DefaultComboBoxModel(addLoc.LoadRoomsByCapacity(cap, "Labarotaory").toArray());
                 cmb_Room.setModel(cmbMdl);
                 cmb_Room.setSelectedItem("");
             }
@@ -566,12 +566,12 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Lecturer Id");
                 cmb_Id.grabFocus();
-            }else if(addLoc.isExist(sessionId,query,colName)){
-                
+            } else if (addLoc.isExist(sessionId, query, colName)) {
+
                 JOptionPane.showMessageDialog(null, "This Session Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
-            }else{
+            } else {
                 ps = connection.prepareStatement("INSERT INTO session_Location (session_Id,subject,sub_code,tag,tag_duration,group_id,subgroup_id,stu_count,room) VALUES (?,?,?,?,?,?,?,?,?)");
-                
+
                 // set db value
                 ps.setString(1, sessionId);
                 ps.setString(2, txt_Sub.getText());
@@ -584,11 +584,12 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
                 ps.setString(9, cmb_Room.getSelectedItem().toString());
 
                 ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Location Added Successfully For Session", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
+
+                JOptionPane.showMessageDialog(null, "Location Added Successfully For Session", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                showYnSList();
+                resetForm();
             }
-            } catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(pnl_SessionRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_AddActionPerformed
@@ -600,36 +601,36 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
             String sesId = cmb_Id.getSelectedItem().toString();
             String query = "Select session_Id FROM session_Location WHERE session_Id = ?";
             String colName = "session_Id";
-            if (!addLoc.isExist(sesId,query,colName)) {
+            if (!addLoc.isExist(sesId, query, colName)) {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Row you Want To Update");
-            } else{
-            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-            if(res == 0) {
-                ps = connection.prepareStatement("UPDATE session_Location SET subject = ?, sub_code = ?, tag = ?, tag_duration = ?, group_id = ?, subgroup_id = ?, stu_count = ?,room = ? WHERE session_Id = ?");
-                
-                // set db value
-                
-                ps.setString(1, txt_Sub.getText());
-                ps.setString(2, txt_SubCode.getText());
-                ps.setString(3, txt_Tag.getText());
-                ps.setString(4, txt_TagDuration.getText());
-                ps.setString(5, txt_GrpId.getText());
-                ps.setString(6, txt_SubGrpId.getText());
-                ps.setString(7, txt_StudntCount.getText());
-                ps.setString(8, cmb_Room.getSelectedItem().toString());
-                ps.setInt(9, Integer.parseInt(cmb_Id.getSelectedItem().toString()));
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
+                    ps = connection.prepareStatement("UPDATE session_Location SET subject = ?, sub_code = ?, tag = ?, tag_duration = ?, group_id = ?, subgroup_id = ?, stu_count = ?,room = ? WHERE session_Id = ?");
 
-                ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Location Update Successfully For Session", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
+                    // set db value
+                    ps.setString(1, txt_Sub.getText());
+                    ps.setString(2, txt_SubCode.getText());
+                    ps.setString(3, txt_Tag.getText());
+                    ps.setString(4, txt_TagDuration.getText());
+                    ps.setString(5, txt_GrpId.getText());
+                    ps.setString(6, txt_SubGrpId.getText());
+                    ps.setString(7, txt_StudntCount.getText());
+                    ps.setString(8, cmb_Room.getSelectedItem().toString());
+                    ps.setInt(9, Integer.parseInt(cmb_Id.getSelectedItem().toString()));
+
+                    ps.executeUpdate();
+
+                    JOptionPane.showMessageDialog(null, "Location Update Successfully For Session", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                    showYnSList();
+                    resetForm();
+                }
             }
-        }   
         } catch (SQLException ex) {
             Logger.getLogger(pnl_SessionRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_cus_Update1ActionPerformed
 
     private void cus_delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_delete1ActionPerformed
@@ -637,28 +638,27 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
             String sesId = cmb_Id.getSelectedItem().toString();
             String query = "Select session_Id FROM session_Location WHERE session_Id = ?";
             String colName = "session_Id";
-            
-            if (!addLoc.isExist(sesId,query,colName)) {
+
+            if (!addLoc.isExist(sesId, query, colName)) {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Row you Want To Delete");
-            } else{
-                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-                if(res == 0) {
-                Connection connection = DBConnection.getConnection();
-                PreparedStatement ps = null;
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
+                    Connection connection = DBConnection.getConnection();
+                    PreparedStatement ps = null;
 
-
-                ps = connection.prepareStatement("DELETE FROM session_Location WHERE session_Id = ?");
-                ps.setInt(1, Integer.parseInt(cmb_Id.getSelectedItem().toString()));
-                ps.executeUpdate();
-                showYnSList();
-                resetForm();
-                JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+                    ps = connection.prepareStatement("DELETE FROM session_Location WHERE session_Id = ?");
+                    ps.setInt(1, Integer.parseInt(cmb_Id.getSelectedItem().toString()));
+                    ps.executeUpdate();
+                    showYnSList();
+                    JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+                    resetForm();
                 }
             }
         } catch (SQLException ex) {
-           Logger.getLogger(pnl_SessionRoom.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+            Logger.getLogger(pnl_SessionRoom.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cus_delete1ActionPerformed
 
     private void cus_New1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_New1ActionPerformed
@@ -724,17 +724,15 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
         new LoadTable(tbl_Session, "SELECT * FROM session_Location", hm);
     }
 
-     /*
+    /*
     * load session Details to All Fieled             
      */
-                
-    public void loadSessionToFields(String id) throws SQLException{
-        
-        
+    public void loadSessionToFields(String id) throws SQLException {
+
         Connection connection = DBConnection.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         try {
             ps = connection.prepareStatement("SELECT id,subject,sub_code,tag,tag_duration,group_id,subgroup_id,stu_count FROM session WHERE id = ?");
 
@@ -751,10 +749,10 @@ public class pnl_SessionRoom extends javax.swing.JPanel {
                 txt_GrpId.setText(rs.getString("group_id"));
                 txt_SubGrpId.setText(rs.getString("subgroup_id"));
                 txt_StudntCount.setText(rs.getString("stu_count"));
-                
+
             }
         } catch (SQLException ex) {
-                Logger.getLogger(pnl_SessionRoom.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(pnl_SessionRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
