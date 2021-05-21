@@ -28,6 +28,7 @@ import student.util.LoadTable;
 public class pnl_SubjectRoom extends javax.swing.JPanel {
 
     addLocations addLoc = new addLocations();
+
     /**
      * Creates new form pnl_SubjectRoom
      */
@@ -41,27 +42,28 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
         txt_Name.setText("");
         txt_Year.setText("");
         txt_Sem.setText("");
-        cmb_Room.setSelectedItem("");    
+        cmb_Room.setSelectedItem("");
         lbl_Error.setVisible(false);
     }
-    
-    public void refreshData() throws SQLException{
+
+    public void refreshData() throws SQLException {
         lbl_Error.setVisible(false);
         try {
             showYnSList();
-            
+
             DefaultComboBoxModel cmbMdl = new DefaultComboBoxModel(new addLocations().LoadModuleCode().toArray());
             cmb_ModuleCode.setModel(cmbMdl);
             cmb_ModuleCode.setSelectedItem("");
-            
+
             DefaultComboBoxModel cmbMdl1 = new DefaultComboBoxModel(new addLocations().LoadRooms().toArray());
             cmb_Room.setModel(cmbMdl1);
             cmb_Room.setSelectedItem("");
-            
+
         } catch (Exception e) {
             Logger.getLogger(pnl_SubjectRoom.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -421,14 +423,14 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_SubjectMouseClicked
 
     private void cmb_ModuleCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_ModuleCodeActionPerformed
-        String moduleCode =  cmb_ModuleCode.getSelectedItem().toString();
+        String moduleCode = cmb_ModuleCode.getSelectedItem().toString();
 
         try {
             loadModuleToFields(moduleCode);
         } catch (SQLException ex) {
             Logger.getLogger(pnl_SubjectRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_cmb_ModuleCodeActionPerformed
 
     private void cus_New1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_New1ActionPerformed
@@ -436,8 +438,8 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_cus_New1ActionPerformed
 
     private void cus_Exit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Exit1ActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
+        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (res == 0) {
             Component comp = SwingUtilities.getRoot(this);
             ((Window) comp).dispose();
         }
@@ -455,12 +457,12 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Module Code");
                 cmb_ModuleCode.grabFocus();
-            }else if(addLoc.isExist(moduleId,query,colName)){
-                
+            } else if (addLoc.isExist(moduleId, query, colName)) {
+
                 JOptionPane.showMessageDialog(null, "This Module Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
-            }else{
+            } else {
                 ps = connection.prepareStatement("INSERT INTO module_Location (code,name,year,semester,room) VALUES (?,?,?,?,?)");
-                
+
                 // set db value
                 ps.setString(1, moduleId);
                 ps.setString(2, txt_Name.getText());
@@ -469,9 +471,10 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
                 ps.setString(5, cmb_Room.getSelectedItem().toString());
 
                 ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Location Added Successfully For Module", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-            showYnSList();
+
+                JOptionPane.showMessageDialog(null, "Location Added Successfully For Module", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                showYnSList();
+                resetForm();
             }
         } catch (SQLException ex) {
             Logger.getLogger(pnl_SubjectRoom.class.getName()).log(Level.SEVERE, null, ex);
@@ -479,55 +482,55 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_AddActionPerformed
 
     private void cus_Update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Update1ActionPerformed
-        
+
         try {
             PreparedStatement ps = null;
             Connection connection = DBConnection.getConnection();
             String moduleCode = cmb_ModuleCode.getSelectedItem().toString();
             String query = "Select code FROM module_Location WHERE code = ?";
             String colName = "code";
-            if (!addLoc.isExist(moduleCode,query,colName)) {
+            if (!addLoc.isExist(moduleCode, query, colName)) {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Row you Want To Update");
-            } else{
-            int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-            if(res == 0) {
-            
-                ps = connection.prepareStatement("UPDATE module_Location SET name = ?, year = ?, semester = ?, room = ? WHERE code = ?");
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
 
-                // set db value
+                    ps = connection.prepareStatement("UPDATE module_Location SET name = ?, year = ?, semester = ?, room = ? WHERE code = ?");
 
-                ps.setString(1, txt_Name.getText());
-                ps.setString(2, txt_Year.getText());
-                ps.setString(3, txt_Sem.getText());
-                ps.setString(4, cmb_Room.getSelectedItem().toString());
-                ps.setString(5, moduleCode);
+                    // set db value
+                    ps.setString(1, txt_Name.getText());
+                    ps.setString(2, txt_Year.getText());
+                    ps.setString(3, txt_Sem.getText());
+                    ps.setString(4, cmb_Room.getSelectedItem().toString());
+                    ps.setString(5, moduleCode);
 
-                ps.executeUpdate();
+                    ps.executeUpdate();
 
-                JOptionPane.showMessageDialog(null, "Location Update Successfully For Module", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-                showYnSList();
+                    JOptionPane.showMessageDialog(null, "Location Update Successfully For Module", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                    showYnSList();
+                    resetForm();
+                }
             }
-            }    
         } catch (SQLException ex) {
             Logger.getLogger(pnl_SubjectRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_cus_Update1ActionPerformed
 
     private void cus_delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_delete1ActionPerformed
-        
+
         try {
             String moduleCode = cmb_ModuleCode.getSelectedItem().toString();
             String query = "Select code FROM module_Location WHERE code = ?";
             String colName = "code";
-            
-            if (!addLoc.isExist(moduleCode,query,colName)) {
+
+            if (!addLoc.isExist(moduleCode, query, colName)) {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Row you Want To Delete");
-            } else{
-                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-                if(res == 0) {
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
                     Connection connection = DBConnection.getConnection();
                     PreparedStatement ps = null;
 
@@ -541,7 +544,7 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
             }
         } catch (SQLException ex) {
             Logger.getLogger(pnl_SubjectRoom.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+        }
     }//GEN-LAST:event_cus_delete1ActionPerformed
 
 
@@ -575,7 +578,7 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
     private javax.swing.JTextField txt_Sem;
     private javax.swing.JTextField txt_Year;
     // End of variables declaration//GEN-END:variables
-    
+
     public void showYnSList() {
         LinkedHashMap hm = new LinkedHashMap();
         hm.put("code", "String");
@@ -590,14 +593,12 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
     /*
     * load session Details to All Fieled             
      */
-                
-    public void loadModuleToFields(String code) throws SQLException{
-        
-        
+    public void loadModuleToFields(String code) throws SQLException {
+
         Connection connection = DBConnection.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         try {
             ps = connection.prepareStatement("SELECT mname,offeredyear,offeredsem FROM Module WHERE mcode = ?");
 
@@ -610,10 +611,10 @@ public class pnl_SubjectRoom extends javax.swing.JPanel {
                 txt_Name.setText(rs.getString("mname"));
                 txt_Year.setText(rs.getString("offeredyear"));
                 txt_Sem.setText(rs.getString("offeredsem"));
-                
+
             }
         } catch (SQLException ex) {
-                throw ex;
+            throw ex;
         }
     }
 }

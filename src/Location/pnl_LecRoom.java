@@ -29,6 +29,7 @@ import student.util.LoadTable;
 public class pnl_LecRoom extends javax.swing.JPanel {
 
     addLocations addLoc = new addLocations();
+
     /**
      * Creates new form pnl_LecRoom
      */
@@ -37,26 +38,28 @@ public class pnl_LecRoom extends javax.swing.JPanel {
         refreshData();
     }
 
-    public void refreshData() throws SQLException{
+    public void refreshData() throws SQLException {
         lbl_Error.setVisible(false);
         try {
             showYnSList();
-            
+
             DefaultComboBoxModel cmbMdl;
             cmbMdl = new DefaultComboBoxModel(new addLocations().LoadLecturerId().toArray());
             cmb_Id.setModel(cmbMdl);
             cmb_Id.setSelectedItem("");
-            
+
         } catch (Exception e) {
         }
     }
-    public void resetForm(){
+
+    public void resetForm() {
         cmb_Id.setSelectedItem("");
         txt_Faculty.setText("");
         txt_Building.setText("");
         cmb_Room.setSelectedItem("");
         lbl_Error.setVisible(false);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -408,21 +411,20 @@ public class pnl_LecRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_LecturerMouseClicked
 
     private void cmb_IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_IdActionPerformed
-           String lecId =  cmb_Id.getSelectedItem().toString();
-            /*
+        String lecId = cmb_Id.getSelectedItem().toString();
+        /*
             Show Customers to All Fieled
-            */
-            try{
-                loadLecturerToFields(lecId);
-                DefaultComboBoxModel cmbMdl = new DefaultComboBoxModel(new addLocations().LoadRooms().toArray());
-                cmb_Room.setModel(cmbMdl);
+         */
+        try {
+            loadLecturerToFields(lecId);
+            DefaultComboBoxModel cmbMdl = new DefaultComboBoxModel(new addLocations().LoadRooms().toArray());
+            cmb_Room.setModel(cmbMdl);
 //                cmb_Room.setSelectedItem("");
-            
-            
-            }catch (Exception e){
-                
-            }
-            
+
+        } catch (Exception e) {
+
+        }
+
     }//GEN-LAST:event_cmb_IdActionPerformed
 
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
@@ -432,18 +434,18 @@ public class pnl_LecRoom extends javax.swing.JPanel {
         String lecId = cmb_Id.getSelectedItem().toString();
         String query = "Select id FROM lecturer_Location WHERE id = ?";
         String colName = "id";
-        
+
         try {
             if (txt_Name.getText().isEmpty()) {
-            lbl_Error.setVisible(true);
-            lbl_Error.setText("Please Select Lecturer Id");
-            cmb_Id.grabFocus();
-        }else if(addLoc.isExist(lecId,query,colName)){
-                
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Lecturer Id");
+                cmb_Id.grabFocus();
+            } else if (addLoc.isExist(lecId, query, colName)) {
+
                 JOptionPane.showMessageDialog(null, "This Tag Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
-            }else{
+            } else {
                 ps = connection.prepareStatement("INSERT INTO lecturer_Location (id,name,faculty,building,room) VALUES (?,?,?,?,?)");
-                
+
                 // set db value
                 ps.setInt(1, Integer.parseInt(cmb_Id.getSelectedItem().toString()));
                 ps.setString(2, txt_Name.getText());
@@ -452,30 +454,30 @@ public class pnl_LecRoom extends javax.swing.JPanel {
                 ps.setString(5, cmb_Room.getSelectedItem().toString());
 
                 ps.executeUpdate();
-            
+
                 JOptionPane.showMessageDialog(null, "Location Added Successfully For Lecturer", "Add Location", JOptionPane.INFORMATION_MESSAGE);
                 showYnSList();
+                resetForm();
             }
         } catch (SQLException ex) {
             Logger.getLogger(pnl_LecRoom.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_btn_AddActionPerformed
 
     private void cus_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_UpdateActionPerformed
-        
-        
+
         try {
             PreparedStatement ps = null;
             Connection connection = DBConnection.getConnection();
             String lecId = cmb_Id.getSelectedItem().toString();
             String query = "Select id FROM lecturer_Location WHERE id = ?";
             String colName = "id";
-            if (!addLoc.isExist(lecId,query,colName)) {
+            if (!addLoc.isExist(lecId, query, colName)) {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Row you Want To Update");
-            } else{
-                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-                if(res == 0) {
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
                     ps = connection.prepareStatement("UPDATE lecturer_Location SET name = ?, faculty = ?, building = ?, room = ? WHERE id = ?");
 
                     // set db value
@@ -489,42 +491,41 @@ public class pnl_LecRoom extends javax.swing.JPanel {
 
                     JOptionPane.showMessageDialog(null, "Location Update Successfully For Lecturer", "Update Location", JOptionPane.INFORMATION_MESSAGE);
                     showYnSList();
+                    resetForm();
                 }
-            }   
+            }
         } catch (SQLException ex) {
             Logger.getLogger(pnl_LecRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cus_UpdateActionPerformed
 
     private void cus_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_deleteActionPerformed
-        
+
         try {
             String tagId = cmb_Id.getSelectedItem().toString();
             String query = "Select id FROM lecturer_Location WHERE id = ?";
             String colName = "id";
-            if (!addLoc.isExist(tagId,query,colName)) {
+            if (!addLoc.isExist(tagId, query, colName)) {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Row you Want To Delete");
-            } else{
-                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-                if(res == 0) {
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
                     Connection connection = DBConnection.getConnection();
                     PreparedStatement ps = null;
 
-                    
                     ps = connection.prepareStatement("DELETE FROM lecturer_Location WHERE id = ?");
                     ps.setInt(1, Integer.parseInt(cmb_Id.getSelectedItem().toString()));
                     ps.executeUpdate();
                     showYnSList();
-                    resetForm();
-
                     JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+                    resetForm();
                 }
             }
         } catch (SQLException ex) {
-           Logger.getLogger(pnl_LecRoom.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-        
+            Logger.getLogger(pnl_LecRoom.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_cus_deleteActionPerformed
 
     private void cus_NewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_NewActionPerformed
@@ -532,8 +533,8 @@ public class pnl_LecRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_cus_NewActionPerformed
 
     private void cus_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_ExitActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
+        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (res == 0) {
             Component comp = SwingUtilities.getRoot(this);
             ((Window) comp).dispose();
         }
@@ -581,18 +582,16 @@ public class pnl_LecRoom extends javax.swing.JPanel {
 
         new LoadTable(tbl_Lecturer, "SELECT * FROM lecturer_Location", hm);
     }
-    
+
     /*
     * load session Details to All Fieled             
      */
-                
-    public void loadLecturerToFields(String id) throws SQLException{
-        
-        
+    public void loadLecturerToFields(String id) throws SQLException {
+
         Connection connection = DBConnection.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         try {
             ps = connection.prepareStatement("SELECT id,empname,faculty,building FROM Lecture WHERE id = ?");
 
@@ -605,10 +604,10 @@ public class pnl_LecRoom extends javax.swing.JPanel {
                 txt_Name.setText(rs.getString("empname"));
                 txt_Faculty.setText(rs.getString("faculty"));
                 txt_Building.setText(rs.getString("building"));
-                
+
             }
         } catch (SQLException ex) {
-                throw ex;
+            throw ex;
         }
     }
 

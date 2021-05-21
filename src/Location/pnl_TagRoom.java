@@ -31,17 +31,17 @@ import student.util.LoadTable;
 public class pnl_TagRoom extends javax.swing.JPanel {
 
     addLocations addLoc = new addLocations();
+
     /**
      * Creates new form pnl_TagRoom
      */
     public pnl_TagRoom() throws SQLException {
         initComponents();
         refreshData();
-        
-        
+
     }
-    
-    public void resetForm(){
+
+    public void resetForm() {
         cmb_Tag.setSelectedItem("");
         txt_TagName.setText("");
         txt_TagCode.setText("");
@@ -50,26 +50,27 @@ public class pnl_TagRoom extends javax.swing.JPanel {
         lbl_Error.setVisible(false);
     }
 
-    public void refreshData() throws SQLException{
+    public void refreshData() throws SQLException {
         lbl_Error.setVisible(false);
         try {
             for (int i = 0; i < 5; i++) {
                 DefaultTableCellRenderer Renderer = new DefaultTableCellRenderer();
 //                centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-                tbl_TagLoc.getColumnModel().getColumn(i).setCellRenderer( Renderer );
+                tbl_TagLoc.getColumnModel().getColumn(i).setCellRenderer(Renderer);
                 DefaultTableModel tMdl = (DefaultTableModel) tbl_TagLoc.getModel();
                 tMdl.setRowCount(0);
-            } 
+            }
             showYnSList();
-            
+
             DefaultComboBoxModel cmbMdl;
             cmbMdl = new DefaultComboBoxModel(new addLocations().LoadTagId().toArray());
             cmb_Tag.setModel(cmbMdl);
             cmb_Tag.setSelectedItem("");
-            
+
         } catch (Exception e) {
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -419,31 +420,29 @@ public class pnl_TagRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_TagLocMouseClicked
 
     private void cus_Exit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Exit3ActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(res == 0) {
+        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (res == 0) {
             Component comp = SwingUtilities.getRoot(this);
             ((Window) comp).dispose();
         }
     }//GEN-LAST:event_cus_Exit3ActionPerformed
 
     private void cmb_TagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_TagActionPerformed
-        String tag =  cmb_Tag.getSelectedItem().toString();
+        String tag = cmb_Tag.getSelectedItem().toString();
         try {
             /*
             Show Customers to All Fieled
-            */
+             */
             loadTagToFields(tag);
-            
-            if (txt_Tag.getText().equals("Lecture") || txt_Tag.getText().equals("Tutorial")) {
+
+            if (txt_Tag.getText().equals("Lecture") || txt_Tag.getText().equals("Tutorial") || txt_Tag.getText().equals("Evalution")) {
 
                 //              addLoc.LoadRooms("Lecture Hall");
-
                 DefaultComboBoxModel cmbMdl;
                 cmbMdl = new DefaultComboBoxModel(addLoc.LoadRooms("Lecture Hall").toArray());
                 cmb_Room.setModel(cmbMdl);
                 cmb_Room.setSelectedItem("");
-            }
-            else{
+            } else {
                 DefaultComboBoxModel cmbMdl;
                 cmbMdl = new DefaultComboBoxModel(addLoc.LoadRooms("Labarotaory").toArray());
                 cmb_Room.setModel(cmbMdl);
@@ -455,7 +454,7 @@ public class pnl_TagRoom extends javax.swing.JPanel {
     }//GEN-LAST:event_cmb_TagActionPerformed
 
     private void btn_Add2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Add2ActionPerformed
-        
+
         try {
             PreparedStatement ps = null;
             Connection connection = DBConnection.getConnection();
@@ -467,12 +466,12 @@ public class pnl_TagRoom extends javax.swing.JPanel {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Module Code");
                 cmb_Tag.grabFocus();
-            }else if(!addLoc.isExist(tagId,query,colName)){
-                
+            } else if (!addLoc.isExist(tagId, query, colName)) {
+
                 JOptionPane.showMessageDialog(null, "This Tag Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
-            }else{
+            } else {
                 ps = connection.prepareStatement("INSERT INTO tag_Location (id,tag_Name,tag_Code,related_Tag,room_Name) VALUES (?,?,?,?,?)");
-                
+
                 // set db value
                 ps.setInt(1, Integer.parseInt(cmb_Tag.getSelectedItem().toString()));
                 ps.setString(2, txt_TagName.getText());
@@ -481,9 +480,10 @@ public class pnl_TagRoom extends javax.swing.JPanel {
                 ps.setString(5, cmb_Room.getSelectedItem().toString());
 
                 ps.executeUpdate();
-            
+
                 JOptionPane.showMessageDialog(null, "Location Added Successfully For Tag", "Add Location", JOptionPane.INFORMATION_MESSAGE);
                 showYnSList();
+                resetForm();
             }
         } catch (SQLException ex) {
             Logger.getLogger(pnl_TagRoom.class.getName()).log(Level.SEVERE, null, ex);
@@ -496,24 +496,23 @@ public class pnl_TagRoom extends javax.swing.JPanel {
 
     private void cus_Update3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Update3ActionPerformed
         // TODO add your handling code here:
-        
+
         try {
             PreparedStatement ps = null;
             Connection connection = DBConnection.getConnection();
             String tagId = cmb_Tag.getSelectedItem().toString();
             String query = "Select id FROM tag_Location WHERE id = ?";
             String colName = "id";
-            if (!addLoc.isExist(tagId,query,colName)) {
+            if (!addLoc.isExist(tagId, query, colName)) {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Row you Want To Update");
-            } else{
-                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-                if(res == 0) {
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Update", "Update Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
 
                     ps = connection.prepareStatement("UPDATE tag_Location SET tag_Name = ?, tag_Code = ?, related_Tag = ?, room_Name = ? WHERE id = ?");
 
                     // set db value
-
                     ps.setString(1, txt_TagName.getText());
                     ps.setString(2, txt_TagCode.getText());
                     ps.setString(3, txt_Tag.getText());
@@ -524,12 +523,13 @@ public class pnl_TagRoom extends javax.swing.JPanel {
 
                     JOptionPane.showMessageDialog(null, "Location Update Successfully For Tag", "Add Location", JOptionPane.INFORMATION_MESSAGE);
                     showYnSList();
+                    resetForm();
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(pnl_TagRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_cus_Update3ActionPerformed
 
     private void cus_delete3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_delete3ActionPerformed
@@ -537,29 +537,28 @@ public class pnl_TagRoom extends javax.swing.JPanel {
             String tagId = cmb_Tag.getSelectedItem().toString();
             String query = "Select id FROM tag_Location WHERE id = ?";
             String colName = "id";
-            
-            if (!addLoc.isExist(tagId,query,colName)) {
+
+            if (!addLoc.isExist(tagId, query, colName)) {
                 lbl_Error.setVisible(true);
                 lbl_Error.setText("Please Select Row you Want To Delete");
-            } else{
-                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-                if(res == 0) {
+            } else {
+                int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Delete", "Delete Location", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (res == 0) {
                     Connection connection = DBConnection.getConnection();
                     PreparedStatement ps = null;
-
 
                     ps = connection.prepareStatement("DELETE FROM tag_Location WHERE id = ?");
                     ps.setInt(1, Integer.parseInt(cmb_Tag.getSelectedItem().toString()));
                     ps.executeUpdate();
                     showYnSList();
-                    resetForm();
                     JOptionPane.showMessageDialog(null, "Location Deleted successfully!", "Delete Location", JOptionPane.INFORMATION_MESSAGE);
+                    resetForm();
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(pnl_TagRoom.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-        
+        }
+
     }//GEN-LAST:event_cus_delete3ActionPerformed
 
 
@@ -594,17 +593,15 @@ public class pnl_TagRoom extends javax.swing.JPanel {
     private javax.swing.JTextField txt_TagName;
     // End of variables declaration//GEN-END:variables
 
-     /*
+    /*
     * load Customer Details to All Fieled             
      */
-                
-    public void loadTagToFields(String id) throws SQLException{
-        
-        
+    public void loadTagToFields(String id) throws SQLException {
+
         Connection connection = DBConnection.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         try {
             ps = connection.prepareStatement("SELECT tagId,tagName,tagCode,relatedTag FROM Tag WHERE tagId = ?");
 
@@ -617,13 +614,13 @@ public class pnl_TagRoom extends javax.swing.JPanel {
                 txt_TagName.setText(rs.getString("tagName"));
                 txt_TagCode.setText(rs.getString("tagCode"));
                 txt_Tag.setText(rs.getString("relatedTag"));
-                
+
             }
         } catch (SQLException ex) {
-                throw ex;
+            throw ex;
         }
     }
-    
+
     public void showYnSList() {
         LinkedHashMap hm = new LinkedHashMap();
         hm.put("id", "int");
