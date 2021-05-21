@@ -531,6 +531,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
         panelBody.repaint();
         panelBody.revalidate();
+        
+        ld.refreshData();
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton10ActionPerformed
