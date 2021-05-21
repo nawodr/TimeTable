@@ -82,7 +82,7 @@ public class pnl_Session extends javax.swing.JPanel {
         });
 
         jToggleButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jToggleButton1.setText("Not");
+        jToggleButton1.setText("Not Available");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -111,7 +111,7 @@ public class pnl_Session extends javax.swing.JPanel {
                 .addGap(63, 63, 63)
                 .addComponent(btn_overlap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(41, 41, 41)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(21, 21, 21))
         );
         jPanel3Layout.setVerticalGroup(

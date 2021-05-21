@@ -442,7 +442,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
                 jComboBox2.setSelectedIndex(0);
                 showYnSList();
 
-                JOptionPane.showMessageDialog(this, "Inserting Successful!");
+                JOptionPane.showMessageDialog(null, "Inserting Successful!");
 
             }
 
@@ -561,7 +561,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
                 jComboBox1.setSelectedIndex(0);
                 jComboBox2.setSelectedIndex(0);
 
-                JOptionPane.showMessageDialog(this, "Record Updated!");
+                JOptionPane.showMessageDialog(null, "Record Updated!");
 
             }
 
@@ -619,7 +619,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
         int selectedRow = tbl_sub_id_gen.getSelectedRow();
         String sId = id.getText().toString();
 
-        int v = JOptionPane.showConfirmDialog(this, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
+        int v = JOptionPane.showConfirmDialog(null, "Are You Sure Delete", "Delete", JOptionPane.YES_NO_OPTION);
 
         if (v == JOptionPane.YES_OPTION) {
             
@@ -651,7 +651,7 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
 
                 model.setRowCount(0);
                 showYnSList();
-                JOptionPane.showMessageDialog(this, "Record Deleted!");
+                JOptionPane.showMessageDialog(null, "Record Deleted!");
 
             }
 

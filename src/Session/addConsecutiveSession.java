@@ -383,8 +383,12 @@ public class addConsecutiveSession extends javax.swing.JPanel {
     private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
 
         try {
-
-            DefaultTableModel model = (DefaultTableModel) tbl_csSelected.getModel();
+            
+            if(tbl_csSelected.getRowCount() < 2){
+                JOptionPane.showMessageDialog(null, "Please Add Two or More Session", "Add Consecutive Session", JOptionPane.ERROR_MESSAGE);
+            }else{
+                
+                DefaultTableModel model = (DefaultTableModel) tbl_csSelected.getModel();
             DefaultTableModel model2 = (DefaultTableModel) tbl_cs.getModel();
 
             if (tbl_csSelected.getRowCount() == 0) {
@@ -431,6 +435,8 @@ public class addConsecutiveSession extends javax.swing.JPanel {
 
                 }
             }
+                
+            }          
 
         } catch (Exception e) {
         }
@@ -461,7 +467,7 @@ public class addConsecutiveSession extends javax.swing.JPanel {
                     model.setRowCount(0);
                     showConsecutiveSessionNList();
                     txt_id.setText("");
-                    JOptionPane.showMessageDialog(this, "Deleted");
+                    JOptionPane.showMessageDialog(null, "Deleted");
 
                 }
             }

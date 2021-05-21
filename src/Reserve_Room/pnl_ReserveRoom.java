@@ -121,7 +121,6 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
         cus_Update1 = new javax.swing.JButton();
         cus_delete1 = new javax.swing.JButton();
         cus_New1 = new javax.swing.JButton();
-        cus_Exit1 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -266,7 +265,7 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
 
         btn_Add.setBackground(new java.awt.Color(187, 51, 51));
         btn_Add.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
-        btn_Add.setText("Add");
+        btn_Add.setText("Submit");
         btn_Add.setAlignmentY(0.0F);
         btn_Add.setPreferredSize(new java.awt.Dimension(73, 23));
         btn_Add.addActionListener(new java.awt.event.ActionListener() {
@@ -313,7 +312,7 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
 
         cus_New1.setBackground(new java.awt.Color(187, 51, 51));
         cus_New1.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
-        cus_New1.setText("New");
+        cus_New1.setText("Reset");
         cus_New1.setAlignmentY(0.0F);
         cus_New1.setPreferredSize(new java.awt.Dimension(73, 23));
         cus_New1.addActionListener(new java.awt.event.ActionListener() {
@@ -322,23 +321,12 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
             }
         });
 
-        cus_Exit1.setBackground(new java.awt.Color(187, 51, 51));
-        cus_Exit1.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
-        cus_Exit1.setText("Exit");
-        cus_Exit1.setAlignmentY(0.0F);
-        cus_Exit1.setPreferredSize(new java.awt.Dimension(73, 23));
-        cus_Exit1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cus_Exit1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(654, Short.MAX_VALUE)
                 .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(cus_Update1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,9 +334,7 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
                 .addComponent(cus_delete1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(cus_New1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(cus_Exit1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,8 +344,7 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
                     .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cus_Update1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cus_delete1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cus_New1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cus_Exit1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cus_New1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -524,7 +509,7 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1167, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1169, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
@@ -803,14 +788,6 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
 //        resetForm();
     }//GEN-LAST:event_cus_New1ActionPerformed
 
-    private void cus_Exit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Exit1ActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        if (res == 0) {
-            Component comp = SwingUtilities.getRoot(this);
-            ((Window) comp).dispose();
-        }
-    }//GEN-LAST:event_cus_Exit1ActionPerformed
-
     private void cmb_Id1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_Id1ActionPerformed
         String id = cmb_Id1.getSelectedItem().toString();
 
@@ -854,7 +831,6 @@ public final class pnl_ReserveRoom extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JComboBox<String> cmb_Id1;
     private javax.swing.JComboBox<String> cmb_Room1;
-    private javax.swing.JButton cus_Exit1;
     private javax.swing.JButton cus_New1;
     private javax.swing.JButton cus_Update1;
     private javax.swing.JButton cus_delete1;

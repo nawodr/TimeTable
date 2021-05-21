@@ -484,7 +484,7 @@ public class SessionView extends javax.swing.JPanel {
         );
 
         contentPanel.add(step1Panel);
-        step1Panel.setBounds(10, 50, 950, 376);
+        step1Panel.setBounds(10, 50, 950, 378);
 
         step2Panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Step 2", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
@@ -633,7 +633,7 @@ public class SessionView extends javax.swing.JPanel {
         );
 
         contentPanel.add(step2Panel);
-        step2Panel.setBounds(10, 50, 952, 376);
+        step2Panel.setBounds(10, 50, 956, 376);
 
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
@@ -890,8 +890,15 @@ public class SessionView extends javax.swing.JPanel {
         tag_duration = durationTextField.getText().trim();
 
         if(validateValue()) {
-
-            String sub[] = subjectComboBox.getSelectedItem().toString().split("-");
+            int x = Integer.parseInt(noOfStudentTextField.getText());
+            System.out.println(x);
+            if (x > 150) {
+                System.out.println(noOfStudentTextField.getText());
+                JOptionPane.showMessageDialog(null, "Max Student Count Is 150", "Validation", JOptionPane.ERROR_MESSAGE);
+                noOfStudentTextField.grabFocus();
+            }else{
+                
+                String sub[] = subjectComboBox.getSelectedItem().toString().split("-");
 
             sub_code = sub[0];
             subject = sub[1];
@@ -934,6 +941,8 @@ public class SessionView extends javax.swing.JPanel {
 
                 }
             }
+            }
+            
         }
 
         else {

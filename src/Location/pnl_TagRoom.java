@@ -107,7 +107,6 @@ public class pnl_TagRoom extends javax.swing.JPanel {
         cus_Update3 = new javax.swing.JButton();
         cus_delete3 = new javax.swing.JButton();
         cus_New3 = new javax.swing.JButton();
-        cus_Exit3 = new javax.swing.JButton();
 
         tbl_TagLoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -289,7 +288,7 @@ public class pnl_TagRoom extends javax.swing.JPanel {
 
         btn_Add2.setBackground(new java.awt.Color(187, 51, 51));
         btn_Add2.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
-        btn_Add2.setText("Add");
+        btn_Add2.setText("Submit");
         btn_Add2.setAlignmentY(0.0F);
         btn_Add2.setPreferredSize(new java.awt.Dimension(73, 23));
         btn_Add2.addActionListener(new java.awt.event.ActionListener() {
@@ -321,7 +320,7 @@ public class pnl_TagRoom extends javax.swing.JPanel {
 
         cus_New3.setBackground(new java.awt.Color(187, 51, 51));
         cus_New3.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
-        cus_New3.setText("New");
+        cus_New3.setText("Reset");
         cus_New3.setAlignmentY(0.0F);
         cus_New3.setPreferredSize(new java.awt.Dimension(73, 23));
         cus_New3.addActionListener(new java.awt.event.ActionListener() {
@@ -330,23 +329,12 @@ public class pnl_TagRoom extends javax.swing.JPanel {
             }
         });
 
-        cus_Exit3.setBackground(new java.awt.Color(187, 51, 51));
-        cus_Exit3.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
-        cus_Exit3.setText("Exit");
-        cus_Exit3.setAlignmentY(0.0F);
-        cus_Exit3.setPreferredSize(new java.awt.Dimension(73, 23));
-        cus_Exit3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cus_Exit3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(492, Short.MAX_VALUE)
                 .addComponent(btn_Add2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(cus_Update3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -354,9 +342,7 @@ public class pnl_TagRoom extends javax.swing.JPanel {
                 .addComponent(cus_delete3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(cus_New3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(cus_Exit3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,8 +352,7 @@ public class pnl_TagRoom extends javax.swing.JPanel {
                     .addComponent(btn_Add2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cus_Update3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cus_delete3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cus_New3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cus_Exit3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cus_New3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -419,14 +404,6 @@ public class pnl_TagRoom extends javax.swing.JPanel {
         cmb_Room.setSelectedItem(tblRoom);
     }//GEN-LAST:event_tbl_TagLocMouseClicked
 
-    private void cus_Exit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_Exit3ActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Are Sure Want To Exit", "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        if (res == 0) {
-            Component comp = SwingUtilities.getRoot(this);
-            ((Window) comp).dispose();
-        }
-    }//GEN-LAST:event_cus_Exit3ActionPerformed
-
     private void cmb_TagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_TagActionPerformed
         String tag = cmb_Tag.getSelectedItem().toString();
         try {
@@ -452,43 +429,6 @@ public class pnl_TagRoom extends javax.swing.JPanel {
             Logger.getLogger(pnl_TagRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cmb_TagActionPerformed
-
-    private void btn_Add2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Add2ActionPerformed
-
-        try {
-            PreparedStatement ps = null;
-            Connection connection = DBConnection.getConnection();
-
-            String tagId = cmb_Tag.getSelectedItem().toString();
-            String query = "Select id FROM tag_Location WHERE id = ?";
-            String colName = "id";
-            if (txt_TagName.getText().isEmpty()) {
-                lbl_Error.setVisible(true);
-                lbl_Error.setText("Please Select Module Code");
-                cmb_Tag.grabFocus();
-            } else if (!addLoc.isExist(tagId, query, colName)) {
-
-                JOptionPane.showMessageDialog(null, "This Tag Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
-            } else {
-                ps = connection.prepareStatement("INSERT INTO tag_Location (id,tag_Name,tag_Code,related_Tag,room_Name) VALUES (?,?,?,?,?)");
-
-                // set db value
-                ps.setInt(1, Integer.parseInt(cmb_Tag.getSelectedItem().toString()));
-                ps.setString(2, txt_TagName.getText());
-                ps.setString(3, txt_TagCode.getText());
-                ps.setString(4, txt_Tag.getText());
-                ps.setString(5, cmb_Room.getSelectedItem().toString());
-
-                ps.executeUpdate();
-
-                JOptionPane.showMessageDialog(null, "Location Added Successfully For Tag", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-                showYnSList();
-                resetForm();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(pnl_TagRoom.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btn_Add2ActionPerformed
 
     private void cus_New3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_New3ActionPerformed
         resetForm();
@@ -561,12 +501,48 @@ public class pnl_TagRoom extends javax.swing.JPanel {
 
     }//GEN-LAST:event_cus_delete3ActionPerformed
 
+    private void btn_Add2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Add2ActionPerformed
+
+        try {
+            PreparedStatement ps = null;
+            Connection connection = DBConnection.getConnection();
+
+            String tagId = cmb_Tag.getSelectedItem().toString();
+            String query = "Select id FROM tag_Location WHERE id = ?";
+            String colName = "id";
+            if (txt_TagName.getText().isEmpty()) {
+                lbl_Error.setVisible(true);
+                lbl_Error.setText("Please Select Module Code");
+                cmb_Tag.grabFocus();
+            } else if (!addLoc.isExist(tagId, query, colName)) {
+
+                JOptionPane.showMessageDialog(null, "This Tag Already Exist!", "Validation", JOptionPane.ERROR_MESSAGE);
+            } else {
+                ps = connection.prepareStatement("INSERT INTO tag_Location (id,tag_Name,tag_Code,related_Tag,room_Name) VALUES (?,?,?,?,?)");
+
+                // set db value
+                ps.setInt(1, Integer.parseInt(cmb_Tag.getSelectedItem().toString()));
+                ps.setString(2, txt_TagName.getText());
+                ps.setString(3, txt_TagCode.getText());
+                ps.setString(4, txt_Tag.getText());
+                ps.setString(5, cmb_Room.getSelectedItem().toString());
+
+                ps.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, "Location Added Successfully For Tag", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+                showYnSList();
+                resetForm();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(pnl_TagRoom.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_Add2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Add2;
     private javax.swing.JComboBox<String> cmb_Room;
     private javax.swing.JComboBox<String> cmb_Tag;
-    private javax.swing.JButton cus_Exit3;
     private javax.swing.JButton cus_New3;
     private javax.swing.JButton cus_Update3;
     private javax.swing.JButton cus_delete3;

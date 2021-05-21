@@ -124,7 +124,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         noOfDaysLabel = new javax.swing.JLabel();
         label1 = new javax.swing.JLabel();
-        noOfDaysComboBox = new javax.swing.JComboBox<String>();
+        noOfDaysComboBox = new javax.swing.JComboBox<>();
         mondayCheckBox = new javax.swing.JCheckBox();
         tuesdayCheckBox = new javax.swing.JCheckBox();
         wednesdayCheckBox = new javax.swing.JCheckBox();
@@ -134,8 +134,8 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         sundayCheckBox = new javax.swing.JCheckBox();
         hoursLabel = new javax.swing.JLabel();
         minutesLabel = new javax.swing.JLabel();
-        minutesComboBox = new javax.swing.JComboBox<String>();
-        hoursComboBox = new javax.swing.JComboBox<String>();
+        minutesComboBox = new javax.swing.JComboBox<>();
+        hoursComboBox = new javax.swing.JComboBox<>();
         label3 = new javax.swing.JLabel();
         workingTimeLabel = new javax.swing.JLabel();
         workingDaysLabel = new javax.swing.JLabel();
@@ -155,14 +155,14 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         startLabel1 = new javax.swing.JLabel();
         startLabel = new javax.swing.JLabel();
         label6 = new javax.swing.JLabel();
-        startHoursComboBox = new javax.swing.JComboBox<String>();
+        startHoursComboBox = new javax.swing.JComboBox<>();
         label4 = new javax.swing.JLabel();
         endLabel = new javax.swing.JLabel();
         label5 = new javax.swing.JLabel();
-        endHoursComboBox = new javax.swing.JComboBox<String>();
-        endMinutesComboBox = new javax.swing.JComboBox<String>();
+        endHoursComboBox = new javax.swing.JComboBox<>();
+        endMinutesComboBox = new javax.swing.JComboBox<>();
         startMinutesLabel = new javax.swing.JLabel();
-        startMinutesComboBox = new javax.swing.JComboBox<String>();
+        startMinutesComboBox = new javax.swing.JComboBox<>();
         startHoursLabel = new javax.swing.JLabel();
         dateDateChooser = new com.toedter.calendar.JDateChooser();
 
@@ -179,8 +179,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         workingTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         workingTitleLabel.setText("Manage Working Days And Hours");
 
-        workingTable.setBackground(new java.awt.Color(153, 153, 153));
-        workingTable.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        workingTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         workingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -299,7 +298,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         label1.setText(":");
 
         noOfDaysComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        noOfDaysComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0" }));
+        noOfDaysComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0" }));
         noOfDaysComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 noOfDaysComboBoxActionPerformed(evt);
@@ -378,7 +377,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         minutesLabel.setText("Minutes");
 
         minutesComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        minutesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
+        minutesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
         minutesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 minutesComboBoxActionPerformed(evt);
@@ -386,7 +385,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         });
 
         hoursComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        hoursComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
+        hoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1" }));
         hoursComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hoursComboBoxActionPerformed(evt);
@@ -545,7 +544,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         timeTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         timeTitleLabel.setText("Manage Time Slots");
 
-        timeTable.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        timeTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         timeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -657,7 +656,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         label6.setText(":");
 
         startHoursComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        startHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
+        startHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1" }));
         startHoursComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startHoursComboBoxActionPerformed(evt);
@@ -675,7 +674,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         label5.setText(":");
 
         endHoursComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        endHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
+        endHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1" }));
         endHoursComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endHoursComboBoxActionPerformed(evt);
@@ -683,7 +682,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         });
 
         endMinutesComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        endMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
+        endMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
         endMinutesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endMinutesComboBoxActionPerformed(evt);
@@ -695,7 +694,7 @@ public class WorkingDaysandHours extends javax.swing.JPanel {
         startMinutesLabel.setText("Minutes");
 
         startMinutesComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        startMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
+        startMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
         startMinutesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startMinutesComboBoxActionPerformed(evt);

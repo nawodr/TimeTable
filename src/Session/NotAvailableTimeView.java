@@ -253,23 +253,23 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         timeTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         startLabel = new javax.swing.JLabel();
-        lecturerComboBox = new javax.swing.JComboBox<String>();
+        lecturerComboBox = new javax.swing.JComboBox<>();
         subGroupLabel = new javax.swing.JLabel();
-        startHoursComboBox = new javax.swing.JComboBox<String>();
+        startHoursComboBox = new javax.swing.JComboBox<>();
         dateDateChooser = new com.toedter.calendar.JDateChooser();
-        endMinutesComboBox = new javax.swing.JComboBox<String>();
+        endMinutesComboBox = new javax.swing.JComboBox<>();
         groupLabel = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
         sessionLabel = new javax.swing.JLabel();
-        groupComboBox = new javax.swing.JComboBox<String>();
+        groupComboBox = new javax.swing.JComboBox<>();
         endLabel = new javax.swing.JLabel();
-        endHoursComboBox = new javax.swing.JComboBox<String>();
+        endHoursComboBox = new javax.swing.JComboBox<>();
         lecturerLabel = new javax.swing.JLabel();
-        startMinutesComboBox = new javax.swing.JComboBox<String>();
+        startMinutesComboBox = new javax.swing.JComboBox<>();
         hoursLabel = new javax.swing.JLabel();
         minutesLabel = new javax.swing.JLabel();
-        sessionComboBox = new javax.swing.JComboBox<String>();
-        subGroupComboBox = new javax.swing.JComboBox<String>();
+        sessionComboBox = new javax.swing.JComboBox<>();
+        subGroupComboBox = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         deleteButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
@@ -283,7 +283,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         addPanel.setBackground(new java.awt.Color(255, 255, 255));
         addPanel.setPreferredSize(new java.awt.Dimension(1136, 640));
 
-        timeTable.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        timeTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         timeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -313,7 +313,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         startLabel.setText("Start");
 
         lecturerComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        lecturerComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Lecturer" }));
+        lecturerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Lecturer" }));
         lecturerComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -333,7 +333,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         subGroupLabel.setText("Sub Group");
 
         startHoursComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        startHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
+        startHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1" }));
         startHoursComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startHoursComboBoxActionPerformed(evt);
@@ -345,7 +345,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         dateDateChooser.setPreferredSize(new java.awt.Dimension(195, 25));
 
         endMinutesComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        endMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
+        endMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
         endMinutesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endMinutesComboBoxActionPerformed(evt);
@@ -362,7 +362,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         sessionLabel.setText("Session");
 
         groupComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        groupComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Group" }));
+        groupComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Group" }));
         groupComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -382,7 +382,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         endLabel.setText("End");
 
         endHoursComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        endHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
+        endHoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1" }));
         endHoursComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endHoursComboBoxActionPerformed(evt);
@@ -393,7 +393,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         lecturerLabel.setText("Lecturer");
 
         startMinutesComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        startMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
+        startMinutesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
         startMinutesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startMinutesComboBoxActionPerformed(evt);
@@ -409,7 +409,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         minutesLabel.setText("Minutes");
 
         sessionComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        sessionComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Session" }));
+        sessionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Session" }));
         sessionComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -426,7 +426,7 @@ public class NotAvailableTimeView extends javax.swing.JPanel {
         });
 
         subGroupComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        subGroupComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Sub Group" }));
+        subGroupComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Sub Group" }));
         subGroupComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
