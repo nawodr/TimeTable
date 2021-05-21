@@ -262,6 +262,7 @@ DROP TABLE IF EXISTS timeslots;
 
 CREATE TABLE 'timeslots' (
 	'id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+    'date' TEXT,
 	'start'	TEXT,
 	'end'	TEXT,
 	'slotType'	INTEGER

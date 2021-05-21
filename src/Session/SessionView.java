@@ -188,8 +188,6 @@ public class SessionView extends javax.swing.JPanel {
             }
         });
 
-        sessionPanel.setBackground(new java.awt.Color(255, 255, 255));
-
         searchTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         searchComboBox.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
