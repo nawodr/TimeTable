@@ -516,16 +516,19 @@ public class GrpIdGenerate extends javax.swing.JPanel {
         String valueAt = (String) tbl_grp_num_gen.getValueAt(selectedRow, 1);
         String valuId = String.valueOf(Id);
         id.setText(valuId);
+        //System.out.println(valueAt);
 
-        String[] val = valueAt.split("");
+        String[] val = valueAt.split("\\.");
 
-        String first = val[0] + val[1] + val[2] + val[3] + val[4];
+        String first = val[0]+"."+ val[1];
+        
+        //System.out.println(val.length);
         jCombo_yer_and_sem.setSelectedItem(first);
 
-        String second = val[6] + val[7];
+        String second = val[2];
         jCombo_deg_pro.setSelectedItem(second);
 
-        String third = val[9] + val[10];
+        String third = val[3];      
         jCombo_grp_num.setSelectedItem(third);
 
         TableModel mt = tbl_grp_num_gen.getModel();
