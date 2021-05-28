@@ -469,12 +469,12 @@ public class SubGrpIdGenerate extends javax.swing.JPanel {
         String valuId = String.valueOf(Id);
         id.setText(valuId);
 
-        String[] val = valueAt.split("");
+        String[] val = valueAt.split("\\.");
 
-        String first = val[0] + val[1] + val[2] + val[3] + val[4] + val[5] + val[6] + val[7] + val[8] + val[9] + val[10];
+        String first = val[0]+"."+ val[1]+"."+val[2]+"."+val[3];
         jComboBox1.setSelectedItem(first);
 
-        String second = val[12] + val[13];
+        String second = val[4];
         jComboBox2.setSelectedItem(second);
 
         TableModel mt = tbl_sub_id_gen.getModel();
